@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "./scripts/build.sh",
+      "windows": {
+        "command": ".\\scripts\\build.cmd"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Publish",
+      "type": "shell",
+      "command": "./scripts/publish.sh",
+      "windows": {
+        "command": ".\\scripts\\publish.cmd"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}
