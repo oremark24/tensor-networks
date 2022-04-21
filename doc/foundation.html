@@ -52,11 +52,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Markdown Files" href="markdown.html" />
+    <link rel="next" title="Bibliography" href="bibliography.html" />
     <link rel="prev" title="Welcome" href="welcome.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -107,19 +105,11 @@ const thebe_selector_output = ".output, .cell_output"
    1. Foundation
   </a>
  </li>
+</ul>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   2. Markdown Files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   3. Content with notebooks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown-notebooks.html">
-   4. Notebooks with MyST Markdown
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
   </a>
  </li>
 </ul>
@@ -303,6 +293,35 @@ abstractions and then introduce basic structures of Linear Algebra as
 learned here to define <em>tensors</em> and <em>tensor networks</em>.</p>
 <div class="section" id="abstraction">
 <h2><span class="section-number">1.1. </span>Abstraction<a class="headerlink" href="#abstraction" title="Permalink to this headline">¶</a></h2>
+<p>We will use the programming language <a class="reference external" href="https://www.python.org/">Python</a>
+for our coding examples. Recently it has undergone a raise in popularity.
+Confer page
+<a class="reference external" href="https://executablebooks.github.io/quantecon-mini-example/docs/about_py.html">About Python</a>,
+also to gain more motivation and insights.
+What are the reasons for this increase in interest?</p>
+<p>Usually a programming language needs a killer app to be successful, or
+a killer framework. Ruby had Ruby on Rails, JavaScript’s killer app is the
+web browser, Java was pushed by the JVM. According to the linked document,
+Python is the proven leader when it comes to data analysis, with
+<a class="reference external" href="https://pandas.pydata.org/">pandas</a> being the library driving this effort.</p>
+<p>Still, there are reasons within the language’s design, enabling this wide acceptance.
+Data analysis requires both, numerical performance to process huge data sets,
+and expressive power to handle complex tasks and to have short development cycles.
+Very often these demands stand for incompatible requirements, but Python got both
+right at the same time. With bindings for C/C++ code and even Fortran routines, it is
+able to consume high performant numerical code as incorporated in <a class="reference external" href="https://numpy.org/">NumPy</a>
+for example. On the other hand, Python is long known for expressive syntax and
+concepts, for instance <em>list comprehensions</em>.</p>
+<p>Combining both is a nice example of <em>abstraction</em>. The details of mathematical
+algorithms are encapsulated in C/C++ assemblies and abstracted away from the
+user of libraries as NumPy or pandas. It feels very comfortable to use lightweight
+glue code in the dynamically typed Python language, to combine the numerical
+building blocks into the solution of a real world problem.</p>
+<p>We will illustrate the power of abstraction on a much smaller scale
+(and completely in Python). We assume that our real world problem is to
+print out all odd integers between <code class="docutils literal notranslate"><span class="pre">10</span></code> and <code class="docutils literal notranslate"><span class="pre">20</span></code>. This is not very realistic,
+but will serve the purpose of exemplification.</p>
+<p>A very straight forward and not very abstract solution would be:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">11</span>
@@ -322,6 +341,16 @@ learned here to define <em>tensors</em> and <em>tensor networks</em>.</p>
 </div>
 </div>
 </div>
+<p>You might object that it would be a one-liner if we would have used the
+built-in <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#range"><code class="docutils literal notranslate"><span class="pre">range</span></code></a>
+generator. This is true, but on one hand this will be our starting point
+of a non-abstract solution, on the other hand if we would have had to
+use plain C code, the solution would have looked very similar to this example.</p>
+<p>What is the problem with this snippet? It intertwines the part of generating
+the numbers with the part of looping through the numbers with the part of
+printing the output. What if we would like to print out other content or
+use another output method? Much better would be to decouple these parts as
+in the following code, providing a solution to the same problem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="n">print_fn</span><span class="p">,</span> <span class="n">xs</span><span class="p">):</span>
@@ -342,6 +371,22 @@ learned here to define <em>tensors</em> and <em>tensor networks</em>.</p>
 </div>
 </div>
 </div>
+<p>The parts are separated now. The number generation is provided by
+<code class="docutils literal notranslate"><span class="pre">range</span></code>, the output done by <code class="docutils literal notranslate"><span class="pre">print</span></code>. The <code class="docutils literal notranslate"><span class="pre">log</span></code> function connects the
+low-level parts. It takes a function for printing and the numbers as iterable.
+Both is combined using <code class="docutils literal notranslate"><span class="pre">for</span></code>, iterating through the numbers and feeding
+them into the print function.</p>
+<p>What have we won? The glue code is simple, we could consider it
+to be declarative. Furthermore, the details are abstracted away. In <code class="docutils literal notranslate"><span class="pre">log</span></code>
+there is no interest in how <code class="docutils literal notranslate"><span class="pre">print_fn</span></code> and <code class="docutils literal notranslate"><span class="pre">xs</span></code> are implemented. We just
+need to know that <code class="docutils literal notranslate"><span class="pre">print_fn</span></code> takes a number and outputs it, whereas <code class="docutils literal notranslate"><span class="pre">xs</span></code>
+is iterable. This has the consequences, that under these requirements,
+the detail providing parts are easily exchangeable. <code class="docutils literal notranslate"><span class="pre">print_fn</span></code> could follow
+different output strategies, printing to stdout, or using an api-call to
+send it to a web service, or write it to a database. Also the content can
+easily be changed. The following snippet prints out all permutations of
+a given list, using
+<a class="reference external" href="https://en.wikipedia.org/wiki/Heap%27s_algorithm">Heap’s algorithm</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">xs</span><span class="p">):</span>
@@ -380,6 +425,12 @@ learned here to define <em>tensors</em> and <em>tensor networks</em>.</p>
 </div>
 </div>
 </div>
+<p>Having implemented <code class="docutils literal notranslate"><span class="pre">permutations</span></code>, we can now leave the detail level
+behind us, and simple use it. A magic square is a square of numbers
+with each row, column and both diagonals yielding the same sum.
+Let us find all magic squares of numbers <code class="docutils literal notranslate"><span class="pre">1,...,9</span></code>. Using the existing
+functions, this is now implemented in a few lines of code -
+although not in the most performant way.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
@@ -446,9 +497,26 @@ learned here to define <em>tensors</em> and <em>tensor networks</em>.</p>
 </div>
 </div>
 </div>
+<p>To summarize, abstractions help to focus on the appropriate level
+of detail and to decompose complex structures into exchangable pieces.
+Coming back to tensors, we will use exactly this strategy to develop
+our understanding. Basic building blocks are <em>vector spaces</em> and
+<em>linear maps</em>. There is a huge variety of instances. Vector spaces can
+be based on real numbers, complex numbers, can contain arrays of fixed length,
+infinite sequences or even continuous functions. Accordingly, linear maps
+can look quite differently as well. But to all these different objects,
+the principles of linearity and preserving linearity are common.
+Similarly to the mentioned considerations, we will leave out the details
+of the specific instances and exploit linearity to obtain common properties.
+This will lead to <em>tensors</em> and <em>tensor networks</em> as structures with a
+wide range of potential applications in Physics, Machine Learning and
+Data Science.</p>
 </div>
 <div class="section" id="vector-spaces">
 <h2><span class="section-number">1.2. </span>Vector Spaces<a class="headerlink" href="#vector-spaces" title="Permalink to this headline">¶</a></h2>
+<p>We will fast forward through all necessary result of Linear Algebra.
+To gain a more detailed view, we recommend the excellent text book
+<span id="id1">[<a class="reference internal" href="bibliography.html#id7" title="Sheldon Jay Axler. Linear Algebra Done Right. Undergraduate Texts in Mathematics. Springer International Publishing, third edition, 2015. ISBN 9783319110806 3319110802. URL: http://linear.axler.net/, doi:10.1007/978-3-319-11080-6.">Axl15</a>]</span>.</p>
 </div>
 <div class="section" id="linear-maps">
 <h2><span class="section-number">1.3. </span>Linear Maps<a class="headerlink" href="#linear-maps" title="Permalink to this headline">¶</a></h2>
@@ -487,10 +555,10 @@ learned here to define <em>tensors</em> and <em>tensor networks</em>.</p>
             <p class="prev-next-title">Welcome</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="markdown.html" title="next page">
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Markdown Files</p>
+        <p class="prev-next-title">Bibliography</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

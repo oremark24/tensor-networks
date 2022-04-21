@@ -21,8 +21,8 @@ But what are _tensor networks_? These are ensembles of tensors, interacting with
 This explanation appears simple on first sight, but tensor networks can easily become
 a rather complex research topic. But we will untangle them - literally, but more on 
 _entanglement_ later. Having in mind, that tensor networks offer interesting applications
-in machine learning and quantum computing, check out this course and have fun 
-with a cool and sometimes mind-boggling framework. The content can be found here:
+in machine learning and quantum computing, check out this course. Have fun 
+with a cool and sometimes mind-boggling framework!
 
 ```{tableofcontents}
 ```

@@ -29,12 +29,60 @@ _vector spaces_ and _linear maps_. Later we will generalize what we have
 learned here to define _tensors_ and _tensor networks_.
 
 ## Abstraction
+
+We will use the programming language [Python](https://www.python.org/) 
+for our coding examples. Recently it has undergone a raise in popularity.
+Confer page
+[About Python](https://executablebooks.github.io/quantecon-mini-example/docs/about_py.html),
+also to gain more motivation and insights.
+What are the reasons for this increase in interest?
+
+Usually a programming language needs a killer app to be successful, or 
+a killer framework. Ruby had Ruby on Rails, JavaScript's killer app is the 
+web browser, Java was pushed by the JVM. According to the linked document, 
+Python is the proven leader when it comes to data analysis, with 
+[pandas](https://pandas.pydata.org/) being the library driving this effort.
+
+Still, there are reasons within the language's design, enabling this wide acceptance.
+Data analysis requires both, numerical performance to process huge data sets,
+and expressive power to handle complex tasks and to have short development cycles.
+Very often these demands stand for incompatible requirements, but Python got both 
+right at the same time. With bindings for C/C++ code and even Fortran routines, it is 
+able to consume high performant numerical code as incorporated in [NumPy](https://numpy.org/) 
+for example. On the other hand, Python is long known for expressive syntax and 
+concepts, for instance _list comprehensions_.
+
+Combining both is a nice example of _abstraction_. The details of mathematical
+algorithms are encapsulated in C/C++ assemblies and abstracted away from the 
+user of libraries as NumPy or pandas. It feels very comfortable to use lightweight
+glue code in the dynamically typed Python language, to combine the numerical 
+building blocks into the solution of a real world problem. 
+
+We will illustrate the power of abstraction on a much smaller scale 
+(and completely in Python). We assume that our real world problem is to
+print out all odd integers between `10` and `20`. This is not very realistic, 
+but will serve the purpose of exemplification.
+
+A very straight forward and not very abstract solution would be:
+
 ```{code-cell}
 x = 11
 while x < 20:
     print(x)
     x += 2
 ```
+
+You might object that it would be a one-liner if we would have used the 
+built-in [`range`](https://docs.python.org/3/library/stdtypes.html#range) 
+generator. This is true, but on one hand this will be our starting point 
+of a non-abstract solution, on the other hand if we would have had to 
+use plain C code, the solution would have looked very similar to this example.
+
+What is the problem with this snippet? It intertwines the part of generating
+the numbers with the part of looping through the numbers with the part of 
+printing the output. What if we would like to print out other content or 
+use another output method? Much better would be to decouple these parts as 
+in the following code, providing a solution to the same problem.
 
 ```{code-cell}
 def log(print_fn, xs):
@@ -43,6 +91,24 @@ def log(print_fn, xs):
         
 log(print, range(11, 20, 2))
 ```
+
+The parts are separated now. The number generation is provided by
+`range`, the output done by `print`. The `log` function connects the 
+low-level parts. It takes a function for printing and the numbers as iterable.
+Both is combined using `for`, iterating through the numbers and feeding 
+them into the print function.
+
+What have we won? The glue code is simple, we could consider it 
+to be declarative. Furthermore, the details are abstracted away. In `log`
+there is no interest in how `print_fn` and `xs` are implemented. We just 
+need to know that `print_fn` takes a number and outputs it, whereas `xs`
+is iterable. This has the consequences, that under these requirements, 
+the detail providing parts are easily exchangeable. `print_fn` could follow 
+different output strategies, printing to stdout, or using an api-call to 
+send it to a web service, or write it to a database. Also the content can 
+easily be changed. The following snippet prints out all permutations of 
+a given list, using 
+[Heap's algorithm](https://en.wikipedia.org/wiki/Heap%27s_algorithm).
 
 ```{code-cell}
 def permutations(xs):
@@ -68,6 +134,13 @@ def permutations(xs):
     
 log(print, permutations(["Penny", "Leonard", "Sheldon"]))
 ```
+
+Having implemented `permutations`, we can now leave the detail level
+behind us, and simple use it. A magic square is a square of numbers
+with each row, column and both diagonals yielding the same sum.
+Let us find all magic squares of numbers `1,...,9`. Using the existing
+functions, this is now implemented in a few lines of code -
+although not in the most performant way.
 
 ```{code-cell}
 def check(numbers):
@@ -97,6 +170,25 @@ magic_squares = [p for p in permutations(numbers) if check(p)]
 log(print_square, magic_squares)
 ```
 
+To summarize, abstractions help to focus on the appropriate level 
+of detail and to decompose complex structures into exchangable pieces.
+Coming back to tensors, we will use exactly this strategy to develop 
+our understanding. Basic building blocks are _vector spaces_ and 
+_linear maps_. There is a huge variety of instances. Vector spaces can 
+be based on real numbers, complex numbers, can contain arrays of fixed length,
+infinite sequences or even continuous functions. Accordingly, linear maps 
+can look quite differently as well. But to all these different objects,
+the principles of linearity and preserving linearity are common.
+Similarly to the mentioned considerations, we will leave out the details
+of the specific instances and exploit linearity to obtain common properties.
+This will lead to _tensors_ and _tensor networks_ as structures with a 
+wide range of potential applications in Physics, Machine Learning and 
+Data Science.
+
 ## Vector Spaces
+
+We will fast forward through all necessary result of Linear Algebra.
+To gain a more detailed view, we recommend the excellent text book
+{cite}`axler15`.
 
 ## Linear Maps
