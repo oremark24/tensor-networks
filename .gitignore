@@ -27,7 +27,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
+## Python
+.ipynb_checkpoints
+__pycache__/
 
 ## Jupyter Book
 
