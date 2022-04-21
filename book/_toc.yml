@@ -3,10 +3,9 @@
 
 format: jb-book
 root: doc/welcome
-options:
-  numbered: True
-chapters:
-- file: doc/foundation
-- file: doc/markdown
-- file: doc/notebooks
-- file: doc/markdown-notebooks
+parts:
+  - numbered: True
+    chapters:
+    - file: doc/foundation
+  - chapters: 
+    - file: doc/bibliography
