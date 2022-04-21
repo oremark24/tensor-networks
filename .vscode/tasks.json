@@ -3,7 +3,7 @@
   "tasks": [
     {
       "label": "Build",
-      "type": "shell",
+      "type": "process",
       "command": "./scripts/build.sh",
       "windows": {
         "command": ".\\scripts\\build.cmd"
@@ -11,12 +11,13 @@
       "group": "build",
       "presentation": {
         "reveal": "always",
-        "panel": "new"
+        "panel": "new",
+        "close": true
       }
     },
     {
       "label": "Publish",
-      "type": "shell",
+      "type": "process",
       "command": "./scripts/publish.sh",
       "windows": {
         "command": ".\\scripts\\publish.cmd"
@@ -24,7 +25,8 @@
       "group": "build",
       "presentation": {
         "reveal": "always",
-        "panel": "new"
+        "panel": "new",
+        "close": true
       }
     }
   ]
