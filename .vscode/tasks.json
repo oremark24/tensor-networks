@@ -11,8 +11,20 @@
       "group": "build",
       "presentation": {
         "reveal": "always",
-        "panel": "new",
-        "close": true
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Clean & Build",
+      "type": "process",
+      "command": "./scripts/clean.sh",
+      "windows": {
+        "command": ".\\scripts\\clean.cmd"
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
       }
     },
     {
@@ -25,8 +37,7 @@
       "group": "build",
       "presentation": {
         "reveal": "always",
-        "panel": "new",
-        "close": true
+        "panel": "new"
       }
     }
   ]
