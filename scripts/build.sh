@@ -1,1 +1,1 @@
-jupyter-book build book/
+jupyter-book build ../book/
