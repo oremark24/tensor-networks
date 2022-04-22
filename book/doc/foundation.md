@@ -175,20 +175,143 @@ of detail and to decompose complex structures into exchangable pieces.
 Coming back to tensors, we will use exactly this strategy to develop 
 our understanding. Basic building blocks are _vector spaces_ and 
 _linear maps_. There is a huge variety of instances. Vector spaces can 
-be based on real numbers, complex numbers, can contain arrays of fixed length,
+be based on real numbers, complex numbers, can contain lists of fixed length,
 infinite sequences or even continuous functions. Accordingly, linear maps 
 can look quite differently as well. But to all these different objects,
 the principles of linearity and preserving linearity are common.
 Similarly to the mentioned considerations, we will leave out the details
 of the specific instances and exploit linearity to obtain common properties.
-This will lead to _tensors_ and _tensor networks_ as structures with a 
-wide range of potential applications in Physics, Machine Learning and 
-Data Science.
+For example, a method for solving linear equations will work regardless if
+the underlying field is real numbers or complex numbers.
+Similarly, after we will have introduced _tensors_ and _tensor networks_ 
+as structures, we will recognize their wide range of potential applications
+in Physics, Machine Learning and Data Science.
 
 ## Vector Spaces
 
-We will fast forward through all necessary result of Linear Algebra.
-To gain a more detailed view, we recommend the excellent text book
-{cite}`axler15`.
+We will recall needed concepts from Linear Algebra, but mostly refer 
+to results instead of laying out proofs. We recommend the excellent text book
+{cite}`axler15` to gain more details.
+
+Vector spaces are defined over fields, we will restrict ourselves to
+the fields of real numbers $\R$ and complex numbers $\C$. A vector space
+generalizes the idea of a geometric space with coordinates. Coordinates help
+to turn geometric operations as (homogeneous) dilation and translation
+into arithmetic operations. Dilation translates into multiplication of 
+a vector's coordinates by a number from the underlying field. We will call
+this operation _scalar multiplication_. Translation will add a vector's 
+coordinates by the coordinates of a tranlation defining vector. We will
+call this operation _addition_.
+
+```{prf:definition} vector space
+:label: def-vector-space
+
+A ___vector space___ over a field $\F$ is a set $V$, 
+equipped with an ___addition___ and a ___scalar multiplication___, 
+fulfilling all conditions given below.
+
+* An ___addition___ on $V$ is a function that assigns to each pair
+of elements $u,v\in V$ an element $u+v\in V$.
+* A ___scalar multiplication___ on $V$ over $\F$ is a function that assigns
+to each pair of elements $a\in\F$ and $v\in V$ an element $a\cdot v\in V$.
+Most of the time we will omit the multiplication dot and simply write
+$av\in V$.
+
+The addition has to satisfy these conditions:
+
+* ___commutativity___: $u+v=v+u$ for all $u,v\in V$,
+* ___associativity___: $(u+v)+w=u+(w+v)$ for all $u,v,w\in V$,
+* ___identity___: there exists an element $0\in V$ such that $v+0=v$
+for all $v\in V$,
+* ___inverse___: for every $v\in V$, there exists an element $(-v)\in V$
+such that $v+(-v)=0$.
+
+The scalar multiplication has to satisfy these conditions:
+
+* ___associativity___: $(ab)v=a(bv)$ for all $a,b\in\F$ and all $v\in V$,
+* ___inverse___: $1v=v$ for all $v\in V$.
+
+Together both operations have to satisfy this condition:
+
+* ___distributivity___: $a(u+v)=au+av$ and $(a+b)v=av+bv$ for all
+$a,b\in\F$ and all $u,v\in V$.
+
+We call the elements of $V$ ___vectors___ or ___points___. 
+
+In case $\F=\R$, we call $V$ a ___real vector space___. 
+
+In case $\F=\C$, we call $V$ a ___complex vector space___.
+```
+
+We will give a few examples. Evidence that those indeed define
+vector spaces, will be handled in the exercise section.
+
+```{prf:example} $\F^n$
+:label: ex-Fn
+
+$\F^n$ is the set of all lists of length $n$ of elements of $\F$:
+
+$$\F^n\def\{(v_1,\ldots,v_n):v_i\in\F,\,i=1,\ldots,n\}\,.$$
+
+The operations are executed elementwise. For $u=(u_1,\ldots,u_n)\in\F^n$ 
+and $v=(v_1,\ldots,v_n)\in\F^n$ we define the addition as
+
+$$u+v\def (u_1+v_1,\ldots,u_n+v_n)\,.$$
+
+The multiplication with a scalar $a\in\F$ is defined as 
+
+$$av\def (av_1,\ldots,av_n)\,.$$
+
+$\F^n$ together with addition and scalar multiplication is a
+vector space over $\F$. Often used are $\R^3$ or $\R^4$ to model
+the space or spacetime of our universe. Quantum computing makes
+use of $\C^2$ to model the state space of a qubit.
+```
+
+```{prf:example} magic squares
+:label: ex-magic-squares
+
+Let $M_n$ be the set of all magic squares of edge length $n$.
+A magic square $m\in M_n$ is described by $n^2$ real numbers
+$m_{ij}\in\R,\,i=1,\ldots,n,\,j=1,\ldots,n$ (with $i$ denoting the row 
+and $j$ denoting the column). All row sums
+
+$$\sum\limits_{j=1}^nm_{ij}=s\,,$$
+
+all column sums
+
+$$\sum\limits_{i=1}^nm_{ij}=s\,,$$
+
+the main diagonal sum
+
+$$\sum\limits_{i=1}^nm_{ii}=s\,,$$
+
+and the secondary diagonal sum
+
+$$\sum\limits_{i=1}^nm_{i(n+1-i)}=s\,,$$
+
+shall yield the same value $s$. Note, that we do not require that the $m_{ij}$
+are distinct. The square with all entries being $1$ is a valid magic square.
+Equipped with elementwise operations (similar to $\R^n$)
+
+$$
+(m+m')_{ij} &\def m_{ij}+m'_{ij}\,,\\
+(am)_{ij} &\def am_{ij}\,,\,a\in\R\,,
+$$
+
+$M_n$ is a vector space.
+
+```
+
 
 ## Linear Maps
+
+## Exercises
+
+1. Show that $\F^n$ as given in {prf:ref}`ex-Fn` is indeed a vector space. Discuss the 
+following (special) cases:
+    - $n=1$, that is $\R^1$ and $\C^1$.
+    - Is $\R^n$ over $\C$ a vector space?
+    - Is $\C^n$ over $\R$ a vector space?
+2. Show that magic squares as given in {prf:ref}`ex-magic-squares` form a vector space. 
+What are the consequences?
