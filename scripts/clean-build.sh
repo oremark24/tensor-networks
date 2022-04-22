@@ -1,1 +1,1 @@
-jupyter-book clean -a ../book/ && jupyter-book build ../book/
+jupyter-book clean -a book && jupyter-book build book
