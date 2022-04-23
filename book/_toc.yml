@@ -7,5 +7,6 @@ parts:
   - numbered: True
     chapters:
     - file: doc/foundation
+    - file: doc/tensors
   - chapters: 
     - file: doc/bibliography
