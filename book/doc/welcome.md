@@ -24,5 +24,7 @@ _entanglement_ later. Having in mind, that tensor networks offer interesting app
 in machine learning and quantum computing, check out this course. Have fun 
 with a cool and sometimes mind-boggling framework!
 
+__Contents__:
+
 ```{tableofcontents}
 ```

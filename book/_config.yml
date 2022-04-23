@@ -35,9 +35,15 @@ sphinx:
           cL: \mathcal{L}
           def: \mathrel{\vcenter{:}}=
           fed: =\mathrel{\vcenter{:}}
-          norm: \|#1\|
-          ip: \langle#1,#2\rangle
-          IP: \Bigg\langle#1,#2\Bigg\rangle
+          norm: 
+            - \|#1\|
+            - 1
+          ip: 
+            - \langle#1,#2\rangle
+            - 2
+          IP: 
+            - \Bigg\langle#1,#2\Bigg\rangle
+            - 2
           tr: \mathrm{tr}
           span: \mathrm{span}          
 
