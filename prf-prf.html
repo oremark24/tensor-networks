@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": "\\|#1\\|", "ip": "\\langle#1,#2\\rangle", "IP": "\\Bigg\\langle#1,#2\\Bigg\\rangle", "tr": "\\mathrm{tr}", "span": "\\mathrm{span}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 
@@ -111,6 +111,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="doc/foundation.html">
    1. Foundation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="doc/tensors.html">
+   2. Tensors
   </a>
  </li>
 </ul>
@@ -208,8 +213,32 @@ const thebe_selector_output = ".output, .cell_output"
 
    <div class="modindex-jumpbox">
    <a href="#cap-def-vector-space"><strong>def-vector-space</strong></a> | 
+   <a href="#cap-defContraction"><strong>defContraction</strong></a> | 
+   <a href="#cap-defEntanglement"><strong>defEntanglement</strong></a> | 
+   <a href="#cap-defGrouping"><strong>defGrouping</strong></a> | 
+   <a href="#cap-defKronecker"><strong>defKronecker</strong></a> | 
+   <a href="#cap-defProduct"><strong>defProduct</strong></a> | 
+   <a href="#cap-defTensorOrder"><strong>defTensorOrder</strong></a> | 
    <a href="#cap-ex-Fn"><strong>ex-Fn</strong></a> | 
-   <a href="#cap-ex-magic-squares"><strong>ex-magic-squares</strong></a>
+   <a href="#cap-ex-magic-squares"><strong>ex-magic-squares</strong></a> | 
+   <a href="#cap-exCircuit"><strong>exCircuit</strong></a> | 
+   <a href="#cap-exCnot"><strong>exCnot</strong></a> | 
+   <a href="#cap-exContraction"><strong>exContraction</strong></a> | 
+   <a href="#cap-exHadamard"><strong>exHadamard</strong></a> | 
+   <a href="#cap-exHadamardGate"><strong>exHadamardGate</strong></a> | 
+   <a href="#cap-exIdentity"><strong>exIdentity</strong></a> | 
+   <a href="#cap-exMatrixContraction"><strong>exMatrixContraction</strong></a> | 
+   <a href="#cap-exNot"><strong>exNot</strong></a> | 
+   <a href="#cap-exSeparation"><strong>exSeparation</strong></a> | 
+   <a href="#cap-lemProductMap"><strong>lemProductMap</strong></a> | 
+   <a href="#cap-obsContractionLinearity"><strong>obsContractionLinearity</strong></a> | 
+   <a href="#cap-obsContractionOrder"><strong>obsContractionOrder</strong></a> | 
+   <a href="#cap-obsContractionProduct"><strong>obsContractionProduct</strong></a> | 
+   <a href="#cap-obsDimension"><strong>obsDimension</strong></a> | 
+   <a href="#cap-obsInnerProduct"><strong>obsInnerProduct</strong></a> | 
+   <a href="#cap-thmComposition"><strong>thmComposition</strong></a> | 
+   <a href="#cap-thmMultilinearity"><strong>thmMultilinearity</strong></a> | 
+   <a href="#cap-thmProductMap"><strong>thmProductMap</strong></a>
    </div>
 
    <table class="indextable modindextable">
@@ -220,6 +249,54 @@ const thebe_selector_output = ".output, .cell_output"
        <td></td>
        <td>
        <a href="doc/foundation.html#def-vector-space"><code class="xref">def-vector-space</code></a> <em>(doc/foundation)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defContraction"><td></td><td>
+       <strong>defContraction</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#defContraction"><code class="xref">defContraction</code></a> <em>(doc/tensors)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defEntanglement"><td></td><td>
+       <strong>defEntanglement</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#defEntanglement"><code class="xref">defEntanglement</code></a> <em>(doc/tensors)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defGrouping"><td></td><td>
+       <strong>defGrouping</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#defGrouping"><code class="xref">defGrouping</code></a> <em>(doc/tensors)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defKronecker"><td></td><td>
+       <strong>defKronecker</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#defKronecker"><code class="xref">defKronecker</code></a> <em>(doc/tensors)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defProduct"><td></td><td>
+       <strong>defProduct</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#defProduct"><code class="xref">defProduct</code></a> <em>(doc/tensors)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-defTensorOrder"><td></td><td>
+       <strong>defTensorOrder</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#defTensorOrder"><code class="xref">defTensorOrder</code></a> <em>(doc/tensors)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-Fn"><td></td><td>
@@ -237,6 +314,150 @@ const thebe_selector_output = ".output, .cell_output"
        <td>
        <a href="doc/foundation.html#ex-magic-squares"><code class="xref">ex-magic-squares</code></a> <em>(doc/foundation)</em></td><td>
        <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exCircuit"><td></td><td>
+       <strong>exCircuit</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exCircuit"><code class="xref">exCircuit</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exCnot"><td></td><td>
+       <strong>exCnot</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exCnot"><code class="xref">exCnot</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exContraction"><td></td><td>
+       <strong>exContraction</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exContraction"><code class="xref">exContraction</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exHadamard"><td></td><td>
+       <strong>exHadamard</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exHadamard"><code class="xref">exHadamard</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exHadamardGate"><td></td><td>
+       <strong>exHadamardGate</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exHadamardGate"><code class="xref">exHadamardGate</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exIdentity"><td></td><td>
+       <strong>exIdentity</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exIdentity"><code class="xref">exIdentity</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exMatrixContraction"><td></td><td>
+       <strong>exMatrixContraction</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exMatrixContraction"><code class="xref">exMatrixContraction</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exNot"><td></td><td>
+       <strong>exNot</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exNot"><code class="xref">exNot</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exSeparation"><td></td><td>
+       <strong>exSeparation</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#exSeparation"><code class="xref">exSeparation</code></a> <em>(doc/tensors)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-lemProductMap"><td></td><td>
+       <strong>lemProductMap</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#lemProductMap"><code class="xref">lemProductMap</code></a> <em>(doc/tensors)</em></td><td>
+       <em>lemma</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obsContractionLinearity"><td></td><td>
+       <strong>obsContractionLinearity</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#obsContractionLinearity"><code class="xref">obsContractionLinearity</code></a> <em>(doc/tensors)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obsContractionOrder"><td></td><td>
+       <strong>obsContractionOrder</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#obsContractionOrder"><code class="xref">obsContractionOrder</code></a> <em>(doc/tensors)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obsContractionProduct"><td></td><td>
+       <strong>obsContractionProduct</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#obsContractionProduct"><code class="xref">obsContractionProduct</code></a> <em>(doc/tensors)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obsDimension"><td></td><td>
+       <strong>obsDimension</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#obsDimension"><code class="xref">obsDimension</code></a> <em>(doc/tensors)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obsInnerProduct"><td></td><td>
+       <strong>obsInnerProduct</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#obsInnerProduct"><code class="xref">obsInnerProduct</code></a> <em>(doc/tensors)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thmComposition"><td></td><td>
+       <strong>thmComposition</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#thmComposition"><code class="xref">thmComposition</code></a> <em>(doc/tensors)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thmMultilinearity"><td></td><td>
+       <strong>thmMultilinearity</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#thmMultilinearity"><code class="xref">thmMultilinearity</code></a> <em>(doc/tensors)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thmProductMap"><td></td><td>
+       <strong>thmProductMap</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensors.html#thmProductMap"><code class="xref">thmProductMap</code></a> <em>(doc/tensors)</em></td><td>
+       <em>theorem</em></td></tr>
    </table>
 
 

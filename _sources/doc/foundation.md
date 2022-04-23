@@ -243,24 +243,39 @@ In case $\F=\R$, we call $V$ a ___real vector space___.
 In case $\F=\C$, we call $V$ a ___complex vector space___.
 ```
 
-We will give a few examples. Evidence that those indeed define
-vector spaces, will be handled in the exercise section.
+We will give a few examples. In the exercises we will provide
+evidence, that those indeed define vector spaces. 
+
+```{note}
+In respect of
+notation, we will do something that is uncommon in Linear Algebra
+works, but widely used in elaborations on tensors. We will
+write indices of coefficients in superscript. This helps to immediately
+identify coefficients and to use subscript indices to denote
+a bunch of vectors. For example, $v_i$ refers to a vector,
+whereas $v^i$ refers to to the $i$-th coefficient/component of vector $v$.
+In case, this convention confuses with usage of powers, we will
+explicitely state, how a notation is meant. There is also the possibility
+to put an index into parantheses, in this case it will never be a power.
+For example $v^{(i)}$ is not $v$ to the power of $i$, but again the
+$i$-th coefficient of $v$.
+```
 
 ```{prf:example} $\F^n$
 :label: ex-Fn
 
 $\F^n$ is the set of all lists of length $n$ of elements of $\F$:
 
-$$\F^n\def\{(v_1,\ldots,v_n):v_i\in\F,\,i=1,\ldots,n\}\,.$$
+$$\F^n\def\{(v^1,\ldots,v^n):v^i\in\F,\,i=1,\ldots,n\}\,.$$
 
-The operations are executed elementwise. For $u=(u_1,\ldots,u_n)\in\F^n$ 
-and $v=(v_1,\ldots,v_n)\in\F^n$ we define the addition as
+The operations are executed elementwise. For $u=(u^1,\ldots,u^n)\in\F^n$ 
+and $v=(v^1,\ldots,v^n)\in\F^n$ we define the addition as
 
-$$u+v\def (u_1+v_1,\ldots,u_n+v_n)\,.$$
+$$u+v\def (u^1+v^1,\ldots,u^n+v^n)\,.$$
 
 The multiplication with a scalar $a\in\F$ is defined as 
 
-$$av\def (av_1,\ldots,av_n)\,.$$
+$$av\def (av^1,\ldots,av^n)\,.$$
 
 $\F^n$ together with addition and scalar multiplication is a
 vector space over $\F$. Often used are $\R^3$ or $\R^4$ to model
@@ -271,47 +286,56 @@ use of $\C^2$ to model the state space of a qubit.
 ```{prf:example} magic squares
 :label: ex-magic-squares
 
-Let $M_n$ be the set of all magic squares of edge length $n$.
-A magic square $m\in M_n$ is described by $n^2$ real numbers
-$m_{ij}\in\R,\,i=1,\ldots,n,\,j=1,\ldots,n$ (with $i$ denoting the row 
+Let $M^n$ be the set of all magic squares of edge length $n$.
+A magic square $m\in M^n$ is described by $n^2$ real numbers
+$m^{ij}\in\R,\,i=1,\ldots,n,\,j=1,\ldots,n$ (with $i$ denoting the row 
 and $j$ denoting the column). All row sums
 
-$$\sum\limits_{j=1}^nm_{ij}=s\,,$$
+$$\sum\limits_{j=1}^nm^{ij}=s\,,$$
 
 all column sums
 
-$$\sum\limits_{i=1}^nm_{ij}=s\,,$$
+$$\sum\limits_{i=1}^nm^{ij}=s\,,$$
 
 the main diagonal sum
 
-$$\sum\limits_{i=1}^nm_{ii}=s\,,$$
+$$\sum\limits_{i=1}^nm^{ii}=s\,,$$
 
 and the secondary diagonal sum
 
-$$\sum\limits_{i=1}^nm_{i(n+1-i)}=s\,,$$
+$$\sum\limits_{i=1}^nm^{i(n+1-i)}=s\,,$$
 
-shall yield the same value $s$. Note, that we do not require that the $m_{ij}$
+shall yield the same value $s$. Note, that we do not require that the $m^{ij}$
 are distinct. The square with all entries being $1$ is a valid magic square.
 Equipped with elementwise operations (similar to $\R^n$)
 
 $$
-(m+m')_{ij} &\def m_{ij}+m'_{ij}\,,\\
-(am)_{ij} &\def am_{ij}\,,\,a\in\R\,,
+(m+\tilde{m})^{ij} &\def m^{ij}+\tilde{m}^{ij}\,,\\
+(am)^{ij} &\def am^{ij}\,,\,a\in\R\,,
 $$
 
-$M_n$ is a vector space.
+$M^n$ is a vector space.
 
 ```
 
 
 ## Linear Maps
 
+## Dual Vector Spaces
+
 ## Exercises
 
-1. Show that $\F^n$ as given in {prf:ref}`ex-Fn` is indeed a vector space. Discuss the 
+```{admonition} Exercise 1.1
+:class: tip
+Show that $\F^n$ as given in {prf:ref}`ex-Fn` is indeed a vector space. Discuss the 
 following (special) cases:
-    - $n=1$, that is $\R^1$ and $\C^1$.
-    - Is $\R^n$ over $\C$ a vector space?
-    - Is $\C^n$ over $\R$ a vector space?
-2. Show that magic squares as given in {prf:ref}`ex-magic-squares` form a vector space. 
+- $n=1$, that is $\R^1$ and $\C^1$.
+- Is $\R^n$ over $\C$ a vector space?
+- Is $\C^n$ over $\R$ a vector space?
+```
+
+```{admonition} Exercise 1.2
+:class: tip
+Show that magic squares as given in {prf:ref}`ex-magic-squares` form a vector space. 
 What are the consequences?
+```

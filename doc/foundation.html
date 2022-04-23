@@ -54,10 +54,10 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": "\\|#1\\|", "ip": "\\langle#1,#2\\rangle", "IP": "\\Bigg\\langle#1,#2\\Bigg\\rangle", "tr": "\\mathrm{tr}", "span": "\\mathrm{span}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Bibliography" href="bibliography.html" />
+    <link rel="next" title="2. Tensors" href="tensors.html" />
     <link rel="prev" title="Welcome" href="welcome.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -106,6 +106,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    1. Foundation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tensors.html">
+   2. Tensors
   </a>
  </li>
 </ul>
@@ -238,8 +243,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dual-vector-spaces">
+   1.4. Dual Vector Spaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   1.4. Exercises
+   1.5. Exercises
   </a>
  </li>
 </ul>
@@ -278,8 +288,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dual-vector-spaces">
+   1.4. Dual Vector Spaces
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exercises">
-   1.4. Exercises
+   1.5. Exercises
   </a>
  </li>
 </ul>
@@ -578,21 +593,36 @@ such that <span class="math notranslate nohighlight">\(v+(-v)=0\)</span>.</p></l
 <p>In case <span class="math notranslate nohighlight">\(\F=\R\)</span>, we call <span class="math notranslate nohighlight">\(V\)</span> a <em><strong>real vector space</strong></em>.</p>
 <p>In case <span class="math notranslate nohighlight">\(\F=\C\)</span>, we call <span class="math notranslate nohighlight">\(V\)</span> a <em><strong>complex vector space</strong></em>.</p>
 </div>
-</div><p>We will give a few examples. Evidence that those indeed define
-vector spaces, will be handled in the exercise section.</p>
+</div><p>We will give a few examples. In the exercises we will provide
+evidence, that those indeed define vector spaces.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In respect of
+notation, we will do something that is uncommon in Linear Algebra
+works, but widely used in elaborations on tensors. We will
+write indices of coefficients in superscript. This helps to immediately
+identify coefficients and to use subscript indices to denote
+a bunch of vectors. For example, <span class="math notranslate nohighlight">\(v_i\)</span> refers to a vector,
+whereas <span class="math notranslate nohighlight">\(v^i\)</span> refers to to the <span class="math notranslate nohighlight">\(i\)</span>-th coefficient/component of vector <span class="math notranslate nohighlight">\(v\)</span>.
+In case, this convention confuses with usage of powers, we will
+explicitely state, how a notation is meant. There is also the possibility
+to put an index into parantheses, in this case it will never be a power.
+For example <span class="math notranslate nohighlight">\(v^{(i)}\)</span> is not <span class="math notranslate nohighlight">\(v\)</span> to the power of <span class="math notranslate nohighlight">\(i\)</span>, but again the
+<span class="math notranslate nohighlight">\(i\)</span>-th coefficient of <span class="math notranslate nohighlight">\(v\)</span>.</p>
+</div>
 <div class="proof example admonition" id="ex-Fn">
 <p class="admonition-title"><span class="caption-number">Example 1.1 </span> (<span class="math notranslate nohighlight">\(\F^n\)</span>)</p>
 <div class="example-content section" id="proof-content">
 <p><span class="math notranslate nohighlight">\(\F^n\)</span> is the set of all lists of length <span class="math notranslate nohighlight">\(n\)</span> of elements of <span class="math notranslate nohighlight">\(\F\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\F^n\def\{(v_1,\ldots,v_n):v_i\in\F,\,i=1,\ldots,n\}\,.\]</div>
-<p>The operations are executed elementwise. For <span class="math notranslate nohighlight">\(u=(u_1,\ldots,u_n)\in\F^n\)</span>
-and <span class="math notranslate nohighlight">\(v=(v_1,\ldots,v_n)\in\F^n\)</span> we define the addition as</p>
+\[\F^n\def\{(v^1,\ldots,v^n):v^i\in\F,\,i=1,\ldots,n\}\,.\]</div>
+<p>The operations are executed elementwise. For <span class="math notranslate nohighlight">\(u=(u^1,\ldots,u^n)\in\F^n\)</span>
+and <span class="math notranslate nohighlight">\(v=(v^1,\ldots,v^n)\in\F^n\)</span> we define the addition as</p>
 <div class="math notranslate nohighlight">
-\[u+v\def (u_1+v_1,\ldots,u_n+v_n)\,.\]</div>
+\[u+v\def (u^1+v^1,\ldots,u^n+v^n)\,.\]</div>
 <p>The multiplication with a scalar <span class="math notranslate nohighlight">\(a\in\F\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
-\[av\def (av_1,\ldots,av_n)\,.\]</div>
+\[av\def (av^1,\ldots,av^n)\,.\]</div>
 <p><span class="math notranslate nohighlight">\(\F^n\)</span> together with addition and scalar multiplication is a
 vector space over <span class="math notranslate nohighlight">\(\F\)</span>. Often used are <span class="math notranslate nohighlight">\(\R^3\)</span> or <span class="math notranslate nohighlight">\(\R^4\)</span> to model
 the space or spacetime of our universe. Quantum computing makes
@@ -601,49 +631,55 @@ use of <span class="math notranslate nohighlight">\(\C^2\)</span> to model the s
 </div><div class="proof example admonition" id="ex-magic-squares">
 <p class="admonition-title"><span class="caption-number">Example 1.2 </span> (magic squares)</p>
 <div class="example-content section" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(M_n\)</span> be the set of all magic squares of edge length <span class="math notranslate nohighlight">\(n\)</span>.
-A magic square <span class="math notranslate nohighlight">\(m\in M_n\)</span> is described by <span class="math notranslate nohighlight">\(n^2\)</span> real numbers
-<span class="math notranslate nohighlight">\(m_{ij}\in\R,\,i=1,\ldots,n,\,j=1,\ldots,n\)</span> (with <span class="math notranslate nohighlight">\(i\)</span> denoting the row
+<p>Let <span class="math notranslate nohighlight">\(M^n\)</span> be the set of all magic squares of edge length <span class="math notranslate nohighlight">\(n\)</span>.
+A magic square <span class="math notranslate nohighlight">\(m\in M^n\)</span> is described by <span class="math notranslate nohighlight">\(n^2\)</span> real numbers
+<span class="math notranslate nohighlight">\(m^{ij}\in\R,\,i=1,\ldots,n,\,j=1,\ldots,n\)</span> (with <span class="math notranslate nohighlight">\(i\)</span> denoting the row
 and <span class="math notranslate nohighlight">\(j\)</span> denoting the column). All row sums</p>
 <div class="math notranslate nohighlight">
-\[\sum\limits_{j=1}^nm_{ij}=s\,,\]</div>
+\[\sum\limits_{j=1}^nm^{ij}=s\,,\]</div>
 <p>all column sums</p>
 <div class="math notranslate nohighlight">
-\[\sum\limits_{i=1}^nm_{ij}=s\,,\]</div>
+\[\sum\limits_{i=1}^nm^{ij}=s\,,\]</div>
 <p>the main diagonal sum</p>
 <div class="math notranslate nohighlight">
-\[\sum\limits_{i=1}^nm_{ii}=s\,,\]</div>
+\[\sum\limits_{i=1}^nm^{ii}=s\,,\]</div>
 <p>and the secondary diagonal sum</p>
 <div class="math notranslate nohighlight">
-\[\sum\limits_{i=1}^nm_{i(n+1-i)}=s\,,\]</div>
-<p>shall yield the same value <span class="math notranslate nohighlight">\(s\)</span>. Note, that we do not require that the <span class="math notranslate nohighlight">\(m_{ij}\)</span>
+\[\sum\limits_{i=1}^nm^{i(n+1-i)}=s\,,\]</div>
+<p>shall yield the same value <span class="math notranslate nohighlight">\(s\)</span>. Note, that we do not require that the <span class="math notranslate nohighlight">\(m^{ij}\)</span>
 are distinct. The square with all entries being <span class="math notranslate nohighlight">\(1\)</span> is a valid magic square.
 Equipped with elementwise operations (similar to <span class="math notranslate nohighlight">\(\R^n\)</span>)</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-(m+m')_{ij} &amp;\def m_{ij}+m'_{ij}\,,\\
-(am)_{ij} &amp;\def am_{ij}\,,\,a\in\R\,,
+(m+\tilde{m})^{ij} &amp;\def m^{ij}+\tilde{m}^{ij}\,,\\
+(am)^{ij} &amp;\def am^{ij}\,,\,a\in\R\,,
 \end{split}\]</div>
-<p><span class="math notranslate nohighlight">\(M_n\)</span> is a vector space.</p>
+<p><span class="math notranslate nohighlight">\(M^n\)</span> is a vector space.</p>
 </div>
 </div></div>
 <div class="section" id="linear-maps">
 <h2><span class="section-number">1.3. </span>Linear Maps<a class="headerlink" href="#linear-maps" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="dual-vector-spaces">
+<h2><span class="section-number">1.4. </span>Dual Vector Spaces<a class="headerlink" href="#dual-vector-spaces" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="exercises">
-<h2><span class="section-number">1.4. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Show that <span class="math notranslate nohighlight">\(\F^n\)</span> as given in <a class="reference internal" href="#ex-Fn">Example 1.1</a> is indeed a vector space. Discuss the
+<h2><span class="section-number">1.5. </span>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="tip admonition">
+<p class="admonition-title">Exercise 1.1</p>
+<p>Show that <span class="math notranslate nohighlight">\(\F^n\)</span> as given in <a class="reference internal" href="#ex-Fn">Example 1.1</a> is indeed a vector space. Discuss the
 following (special) cases:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(n=1\)</span>, that is <span class="math notranslate nohighlight">\(\R^1\)</span> and <span class="math notranslate nohighlight">\(\C^1\)</span>.</p></li>
 <li><p>Is <span class="math notranslate nohighlight">\(\R^n\)</span> over <span class="math notranslate nohighlight">\(\C\)</span> a vector space?</p></li>
 <li><p>Is <span class="math notranslate nohighlight">\(\C^n\)</span> over <span class="math notranslate nohighlight">\(\R\)</span> a vector space?</p></li>
 </ul>
-</li>
-<li><p>Show that magic squares as given in <a class="reference internal" href="#ex-magic-squares">Example 1.2</a> form a vector space.
-What are the consequences?</p></li>
-</ol>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Exercise 1.2</p>
+<p>Show that magic squares as given in <a class="reference internal" href="#ex-magic-squares">Example 1.2</a> form a vector space.
+What are the consequences?</p>
+</div>
 </div>
 </div>
 
@@ -679,10 +715,10 @@ What are the consequences?</p></li>
             <p class="prev-next-title">Welcome</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
+    <a class='right-next' id="next-link" href="tensors.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bibliography</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Tensors</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

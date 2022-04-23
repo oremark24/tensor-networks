@@ -1,0 +1,1913 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Tensors &#8212; Tensor Networks for Computer Scientists</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >let toggleHintShow = 'Click to show';</script>
+    <script >let toggleHintHide = 'Click to hide';</script>
+    <script >let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliography" href="bibliography.html" />
+    <link rel="prev" title="1. Foundation" href="foundation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Tensor Networks for Computer Scientists</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="foundation.html">
+   1. Foundation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Tensors
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/doc/tensors.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/oremark24/tensor-networks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/oremark24/tensor-networks/issues/new?title=Issue%20on%20page%20%2Fdoc/tensors.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   2.1. Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensor-product">
+   2.2. Tensor Product
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping">
+   2.3. Grouping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contraction">
+   2.4. Contraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multilinear-maps">
+   2.5. Multilinear Maps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensor-cheat-sheet">
+   2.6. Tensor Cheat Sheet
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tensors</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   2.1. Motivation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensor-product">
+   2.2. Tensor Product
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#grouping">
+   2.3. Grouping
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contraction">
+   2.4. Contraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multilinear-maps">
+   2.5. Multilinear Maps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensor-cheat-sheet">
+   2.6. Tensor Cheat Sheet
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tensors">
+<h1><span class="section-number">2. </span>Tensors<a class="headerlink" href="#tensors" title="Permalink to this headline">¶</a></h1>
+<p>This chapter will define the notion of a <em>tensor</em> and develop
+the toolset needed for the study of tensor networks. We will start with
+a motivational section to explain the goal that is formulating a
+natural extension of Linear Algebra terms as vectors or linear maps.
+Then we will study operations on tensors that serve for their
+construction and modification. We have dedicated sections on
+<em>tensor products</em>, <em>grouping</em> and <em>contraction</em>.
+Next we will outline how tensors and multilinear maps are associated.
+We conclude this chapter with an overview of the basic tensor terms and
+their relations - this ought to serve as glossary for later chapters.</p>
+<div class="section" id="motivation">
+<h2><span class="section-number">2.1. </span>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>A <em>field</em> <span class="math notranslate nohighlight">\(\F\)</span> can also be considered
+as a vector space (over <span class="math notranslate nohighlight">\(\F\)</span>).
+Indeed, the inner addition fulfills all axioms of
+vector space addition - and the inner multiplication fulfills
+all axioms of vector space scalar multiplication.
+An element <span class="math notranslate nohighlight">\(a\in\F\)</span> would then play the role
+of a vector. Furthermore it could also be seen as a
+linear map of <span class="math notranslate nohighlight">\(\cL(\F)\)</span>
+by <span class="math notranslate nohighlight">\(x\mapsto a\cdot x\)</span>. Choosing the basis
+<span class="math notranslate nohighlight">\(\{1\}\)</span>, we can express <span class="math notranslate nohighlight">\(a\)</span>
+with component <span class="math notranslate nohighlight">\(a^1\def a\)</span> and
+<span class="math notranslate nohighlight">\([a^1]\)</span> would denote the vector components or
+matrix for <span class="math notranslate nohighlight">\(a\)</span> seen as vector of likewise
+linear map.</p>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be (another) finite dimensional
+<em>vector space</em> over <span class="math notranslate nohighlight">\(\F\)</span>.
+Let <span class="math notranslate nohighlight">\(v\in V\)</span> and <span class="math notranslate nohighlight">\(v^i\)</span>
+denote its components in basis <span class="math notranslate nohighlight">\(\{e_1,\ldots,e_n\}\)</span>.
+Obviously, <span class="math notranslate nohighlight">\(v\)</span> is a vector, but can also be
+considered as linear map of <span class="math notranslate nohighlight">\(\cL(V,\F)\)</span> by
+<span class="math notranslate nohighlight">\(x=\sum\limits_{i=1}^nx^ie_i\mapsto\sum\limits_{i=1}^nx^iv^i\)</span>.
+The transposed component vector <span class="math notranslate nohighlight">\([v_1\ldots v_n]\)</span>
+encodes the matrix representation of this linear map in bases
+<span class="math notranslate nohighlight">\(\{e_1,\ldots,e_n\}\)</span> and
+<span class="math notranslate nohighlight">\(\{1\}\)</span>.</p>
+<p>Consider a linear map <span class="math notranslate nohighlight">\(T\in\cL(V,W)\)</span>
+between finite dimensional vector spaces
+<span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span>
+over <span class="math notranslate nohighlight">\(\F\)</span>.
+We know that the set of all such linear maps
+<span class="math notranslate nohighlight">\(\cL(V,W)\)</span> forms a vector space
+itself. Again, on one hand <span class="math notranslate nohighlight">\(T\)</span> can
+be seen as vector and on the other hand of course
+as linear map. Fixing bases
+<span class="math notranslate nohighlight">\(\{e_1,\ldots,e_n\}\subseteq V\)</span> and
+<span class="math notranslate nohighlight">\(\{f_1,\ldots,f_m\}\subseteq W\)</span> we
+obtain the matrix representation
+<span class="math notranslate nohighlight">\([T^{ij}]_{i=1,j=1}^{n\;\;\;\;m}\)</span>
+of the linear map <span class="math notranslate nohighlight">\(T\)</span>. Likewise this
+would also serve as component description of
+<span class="math notranslate nohighlight">\(T\)</span> regarded as vector.</p>
+<p>Summarizing, Linear Algebra knows different kinds of
+objects that behave linearly. We have:</p>
+<ul class="simple">
+<li><p><em>Scalars</em> <span class="math notranslate nohighlight">\(a,b,\ldots\in\F\)</span> can be
+seen as vectors as well as linear maps. Their components descriptions
+are again scalars (no index needed), which can be interpreted
+as 0-dimensional arrays.</p></li>
+<li><p><em>Vectors</em> <span class="math notranslate nohighlight">\(v,w,\ldots\in V\)</span> can be
+seen as vectors as well as linear maps. Their componts descriptions
+need one index and can be interpreted as 1-dimensional arrays.</p></li>
+<li><p><em>Linear maps</em> <span class="math notranslate nohighlight">\(S,T,\ldots\in\cL(V,W)\)</span> can be
+seen as vectors as well as linear maps. Their matrix representations
+need two indices and can be interpreted as 2-dimensional arrays.</p></li>
+</ul>
+<p>The notion of a <em>tensor</em> will uniform these objects and generalize
+them into a framework that incorporates representations of arbitrary many indices.
+Linearity will be preserved, thus making tensors, being interpreted as
+vectors or as multilinear maps an expressive tool for e.g. Physicists.
+Furthermore, their components representations being interpreted as
+multidimensional arrays prove to be useful in Computer Science applications
+as Machine Learning.</p>
+</div>
+<div class="section" id="tensor-product">
+<h2><span class="section-number">2.2. </span>Tensor Product<a class="headerlink" href="#tensor-product" title="Permalink to this headline">¶</a></h2>
+<p>We will construct tensors out of tensors with less indices. So we can start
+with ordinary vectors and combine them to tensors. Those again being interpreted
+as vectors can then be used to construct tensors with even more indices.
+This construction rule will be given by the <em>tensor product</em> that combines
+vectors <span class="math notranslate nohighlight">\(v\in V,\,w\in W\)</span> in vector spaces
+<span class="math notranslate nohighlight">\(V,W\)</span> over the same field <span class="math notranslate nohighlight">\(\F\)</span> to
+a vector <span class="math notranslate nohighlight">\(v\otimes w\)</span> in a vector space
+<span class="math notranslate nohighlight">\(V\otimes W\)</span> over <span class="math notranslate nohighlight">\(\F\)</span>.
+This product will be commutative, associative, distributive over vector addition
+and interchangable with scalar multiplication.</p>
+<p>To motivate the upcoming definition we will have a closer look to distributivity over
+vector addition and interchangability with scalar multiplication.
+Together with the map
+<span class="math notranslate nohighlight">\(\varphi:V\times W\rightarrow V\otimes W,\,\varphi(v,w)\def v\otimes w\)</span>
+and
+<span class="math notranslate nohighlight">\(a\in\F,\,v,v_1,v_2\in V,\,w,w_1,w_2\in W\)</span>
+this implies the following equations.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; \varphi(v_1+v_2,w)=(v_1+v_2)\otimes w = v_1\otimes w + v_2\otimes w = \varphi(v_1,w)+\varphi(v_2,w) \\
+&amp; \varphi(a\cdot v,w)=(a\cdot v)\otimes w = a\cdot(v\otimes w) = a\cdot \varphi(v,w) \\    
+&amp; \varphi(v,w_1+w_2)=v\otimes(w_1+w_2) = v\otimes w_1 + v\otimes w_2 = \varphi(v,w_1)+\varphi(v,w_2) \\
+&amp; \varphi(v,a\cdot w)=v\otimes (a\cdot w) = a\cdot(v\otimes w) = a\cdot \varphi(v,w)
+\end{split}\]</div>
+<p>We see, that both desired properties of the tensor product require the function
+<span class="math notranslate nohighlight">\(\varphi\)</span> to be linear in both arguments, i.e. being bilinear. This explains
+the following definition.</p>
+<div class="proof definition admonition" id="defProduct">
+<p class="admonition-title"><span class="caption-number">Definition 2.1 </span> (Tensor Product)</p>
+<div class="definition-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(V,W\)</span> be vector spaces over a field
+<span class="math notranslate nohighlight">\(\F\)</span> with bases
+<span class="math notranslate nohighlight">\(\{e_1,\ldots,e_n\}\subseteq V,\,\{f_1,\ldots,f_m\}\subseteq W\)</span>.
+For each combination of two basis elements
+<span class="math notranslate nohighlight">\(e_i\in V,\,f_j\in W\)</span> we define a symbol
+<span class="math notranslate nohighlight">\(e_i\otimes f_j\)</span>. The set of all symbols
+<span class="math notranslate nohighlight">\(\{e_i\otimes f_j:1\le i\le n,\,1\le j\le m\}\)</span>
+forms a basis of the <em><strong>tensor product space</strong></em>
+<span class="math notranslate nohighlight">\(V\otimes W\)</span> and we define</p>
+<div class="math notranslate nohighlight">
+\[
+V\otimes W\def \span\{e_i\otimes f_j:1\le i\le n,\,1\le j\le m\}\,.
+\]</div>
+<p>The <em><strong>tensor product</strong></em> of two vectors
+is given by a bilinear embedding map
+<span class="math notranslate nohighlight">\(\varphi:V\times W\rightarrow V\otimes W\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[
+\varphi(v_i,w_j)=v_i\otimes w_j,\,1\le i\le n,\,1\le j\le m\,.
+\]</div>
+<p>For <span class="math notranslate nohighlight">\(v\in V\)</span> and <span class="math notranslate nohighlight">\(w\in W\)</span>
+we define</p>
+<div class="math notranslate nohighlight">
+\[
+v\otimes w\def\varphi(v,w)\,.
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span> are inner product
+spaces, <span class="math notranslate nohighlight">\(V\otimes W\)</span> is also an inner product space
+with</p>
+<div class="math notranslate nohighlight">
+\[
+\ip{e_i\otimes f_j}{e_p\otimes f_q}_{V\otimes W}\def
+  \ip{e_i}{e_p}_V\cdot\ip{f_j}{f_q}_W\,,\quad
+  i,p\in\{1,\ldots,n\},\;j,q\in\{1,\ldots,m\}\,.
+\]</div>
+</div>
+</div><p>Directly from construction of <span class="math notranslate nohighlight">\(V\otimes W\)</span>
+(and its basis) we obtain the dimension of the tensor product space.</p>
+<div class="proof observation admonition" id="obsDimension">
+<p class="admonition-title"><span class="caption-number">Observation 2.1 </span> (Dimension of Tensor Product Space)</p>
+<div class="observation-content section" id="proof-content">
+<div class="math notranslate nohighlight">
+\[
+\dim(V\otimes W)=\dim V\cdot\dim W
+\]</div>
+</div>
+</div><p>In general a tensor <span class="math notranslate nohighlight">\(T\in V\otimes W\)</span> can be
+expressed in chosen combined basis as</p>
+<div class="math notranslate nohighlight" id="equation-eqntensorbasis">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-eqntensorbasis" title="Permalink to this equation">¶</a></span>\[T=\sum\limits_{i=1}^n\sum\limits_{j=1}^mT^{ij}\,e_i\otimes f_j\]</div>
+<p>with <span class="math notranslate nohighlight">\(T^{ij}\in\F\)</span>. The components can be interpreted as
+matrix <span class="math notranslate nohighlight">\([T^{ij}]_{i=1,j=1}^{n\;\;\;\;m}\)</span>.
+Products of vectors from <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span> are
+embedded into <span class="math notranslate nohighlight">\(V\otimes W\)</span> by means of
+<span class="math notranslate nohighlight">\(\varphi\)</span>. The basis representation of
+<span class="math notranslate nohighlight">\(v\otimes w\)</span> for
+<span class="math notranslate nohighlight">\(v=\sum\limits_{i=1}^nv^ie_i\in V\)</span> and
+<span class="math notranslate nohighlight">\(w=\sum\limits_{j=1}^mw^je_j\in W\)</span>
+is (using bilinearity of <span class="math notranslate nohighlight">\(\varphi\)</span>)</p>
+<div class="math notranslate nohighlight" id="equation-eqnproductbasis">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-eqnproductbasis" title="Permalink to this equation">¶</a></span>\[\begin{split}v\otimes w 
+&amp;= \Bigg(\sum\limits_{i=1}^nv^ie_i\Bigg) \otimes \Bigg(\sum\limits_{j=1}^mw^je_j\Bigg) \\
+&amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^mv^iw^j\,e_i\otimes f_j\,.\end{split}\]</div>
+<p>Seen from opposite direction, the tensor
+<span class="math notranslate nohighlight">\(v\otimes w=\sum\limits_{i=1}^n\sum\limits_{j=1}^m(v\otimes w)^{ij}\,e_i\otimes f_j\)</span>
+has a decomposition into <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span>
+with</p>
+<div class="math notranslate nohighlight" id="equation-eqnproductcomponents">
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-eqnproductcomponents" title="Permalink to this equation">¶</a></span>\[(v\otimes w)^{ij}=v^iw^j\,,\]</div>
+<p>or written as matrix equation</p>
+<div class="math notranslate nohighlight" id="equation-eqnproductmatrix">
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-eqnproductmatrix" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{bmatrix} 
+  (v\otimes w)^{11} &amp; \cdots &amp; (v\otimes w)^{1m} \\
+  \vdots &amp; \ddots &amp; \vdots \\
+  (v\otimes w)^{n1} &amp; \cdots &amp; (v\otimes w)^{nm}
+\end{bmatrix}
+=
+\begin{bmatrix} 
+  v^1 \\
+  \vdots \\
+  v^n
+\end{bmatrix}
+\begin{bmatrix} 
+  w^1 &amp; \cdots &amp; w^m
+\end{bmatrix}\end{split}\]</div>
+<p>Not all tensors from <span class="math notranslate nohighlight">\(V\otimes W\)</span> can be decomposed this way.</p>
+<div class="proof example admonition" id="exSeparation">
+<p class="admonition-title"><span class="caption-number">Example 2.1 </span> (Tensor Product Decomposition)</p>
+<div class="example-content section" id="proof-content">
+<p>We choose <span class="math notranslate nohighlight">\(V\def W\def\R^2\)</span>, both with standard basis
+<span class="math notranslate nohighlight">\(\{e_1\def [1\;\;0]^T,\,e_2\def [0\;\;1]^T\}\)</span>
+and consider the tensors</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp;S=e_1\otimes e_1+e_2\otimes e_1\,,\\
+&amp;T=e_1\otimes e_1+e_2\otimes e_2\,.
+\end{split}\]</div>
+<p>Tensor <span class="math notranslate nohighlight">\(S\)</span> can be written as product
+<span class="math notranslate nohighlight">\(S=(e_1+e_2)\otimes e_1\)</span>. This can be
+obtained by applying the distributive law
+(bilinearity of <span class="math notranslate nohighlight">\(\varphi\)</span>) and simply
+multiplying out. Another way would be to validate the
+respective matrix equation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 
+  1 &amp; 0 \\
+  1 &amp; 0
+\end{bmatrix}
+=
+\begin{bmatrix} 
+  1 \\
+  1
+\end{bmatrix}
+\begin{bmatrix} 
+  1 &amp; 0
+\end{bmatrix}
+\,.
+\end{split}\]</div>
+<p>We see also, that the product decomposition is not unique. Due to interchangability
+with scalar multiplication (bilinearity of <span class="math notranslate nohighlight">\(\varphi\)</span>), we
+can shift a scalar factor from one side to the other, e.g.
+<span class="math notranslate nohighlight">\(S=2(e_1+e_2)\otimes 2^{-1}e_1\)</span>.</p>
+<p>Tensor <span class="math notranslate nohighlight">\(T\)</span> can not be written as a tensor product
+of two vectors. The ansatz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 
+  1 &amp; 0 \\
+  0 &amp; 1
+\end{bmatrix}
+=
+\begin{bmatrix} 
+  v^1 \\
+  v^2
+\end{bmatrix}
+\begin{bmatrix} 
+  w^1 &amp; w^2
+\end{bmatrix}
+\end{split}\]</div>
+<p>yields <span class="math notranslate nohighlight">\(v^1w^1=v^2w^2=1\)</span>, which demands that all components
+<span class="math notranslate nohighlight">\(v^i\)</span> and <span class="math notranslate nohighlight">\(w^j\)</span> are different from zero.
+But this contradicts <span class="math notranslate nohighlight">\(v^1w^2=0\)</span>.</p>
+</div>
+</div><p>This means, the following definition is sensible.</p>
+<div class="proof definition admonition" id="defEntanglement">
+<p class="admonition-title"><span class="caption-number">Definition 2.2 </span> (Entanglement)</p>
+<div class="definition-content section" id="proof-content">
+<p>A tensor <span class="math notranslate nohighlight">\(T\in V\otimes W\)</span> is called
+<em><strong>separable</strong></em> or
+<em><strong>unentangled</strong></em>, if vectors
+<span class="math notranslate nohighlight">\(v\in V,\,w\in W\)</span> exist, such that
+<span class="math notranslate nohighlight">\(T=v\otimes w\)</span>.
+Otherwise <span class="math notranslate nohighlight">\(T\)</span> is called
+<em><strong>entangled</strong></em>.</p>
+</div>
+</div><p>The term <em>entangled</em> is motivated from Quantum Mechanics.
+We will leave it here with briefly mentioning the background.
+A system of several particle states, e.g. two electron spins, is modelled as tensor.
+The particle states behave correlatedly, exactly when this tensor
+cannot be decomposed into a tensor product of individual particle states.</p>
+<p>In the beginning of this section we have stated, that the tensor product
+shall be commutative and associative. Obviously it is not commutative.
+E.g. in the setting of <a class="reference internal" href="#exSeparation">Example 2.1</a> we have to admit that</p>
+<div class="math notranslate nohighlight">
+\[
+e_1\otimes e_2\neq e_2\otimes e_1
+\]</div>
+<p>or as matrix equation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix} 
+  1 \\
+  0
+\end{bmatrix} 
+\begin{bmatrix} 
+  0 &amp; 1 \\
+\end{bmatrix} 
+=
+\begin{bmatrix} 
+  0 &amp; 1 \\
+  0 &amp; 0
+\end{bmatrix} 
+\neq
+\begin{bmatrix} 
+  0 &amp; 0 \\
+  1 &amp; 0
+\end{bmatrix} 
+=
+\begin{bmatrix} 
+  0 \\
+  1
+\end{bmatrix} 
+\begin{bmatrix} 
+  1 &amp; 0 \\
+\end{bmatrix} 
+\,.
+\end{split}\]</div>
+<p>But there is a natural isomorphism between <span class="math notranslate nohighlight">\(V\otimes W\)</span>
+and <span class="math notranslate nohighlight">\(W\otimes V\)</span> given by this mapping of all basis elements:</p>
+<div class="math notranslate nohighlight" id="equation-eqncommutative">
+<span class="eqno">(2.5)<a class="headerlink" href="#equation-eqncommutative" title="Permalink to this equation">¶</a></span>\[e_i\otimes f_j\longleftrightarrow f_j\otimes e_i\,.\]</div>
+<p>This isomorphism swaps the indices of the tensor, i.e.</p>
+<div class="math notranslate nohighlight" id="equation-eqncommutative2">
+<span class="eqno">(2.6)<a class="headerlink" href="#equation-eqncommutative2" title="Permalink to this equation">¶</a></span>\[\sum\limits_{i=1}^n\sum\limits_{j=1}^m T^{ij}\,e_i\otimes f_j
+\longleftrightarrow 
+\sum\limits_{j=1}^m\sum\limits_{i=1}^n \tilde{T}^{ji}\,f_j\otimes e_i\]</div>
+<p>with <span class="math notranslate nohighlight">\(T^{ij}=\tilde{T}^{ji}\)</span>. Hence, the tensors are
+essentially the same, apart from transposed coefficients matrices.
+Keeping in mind, that we actually have
+<span class="math notranslate nohighlight">\(V\otimes W\simeq W\otimes V\)</span>, we will identify both
+tensor product spaces and make the tensor product commutative.</p>
+<p>In a similar way we will identify
+<span class="math notranslate nohighlight">\((V\otimes W)\otimes X\)</span> with
+<span class="math notranslate nohighlight">\(V\otimes (W\otimes X)\)</span> by
+utilizing the isomorphism</p>
+<div class="math notranslate nohighlight" id="equation-eqnassociative">
+<span class="eqno">(2.7)<a class="headerlink" href="#equation-eqnassociative" title="Permalink to this equation">¶</a></span>\[(e_i\otimes f_j)\otimes g_k\longleftrightarrow e_i\otimes (f_j\otimes g_k)\]</div>
+<p>with <span class="math notranslate nohighlight">\(\{g_1,\ldots,g_p\}\)</span> being a basis of
+<span class="math notranslate nohighlight">\(X\)</span>. This leads to an associative tensor product.
+As common for associative products (which means that multiplication order
+does not matter), we can and will omit paranthesis completely and write e.g.
+<span class="math notranslate nohighlight">\(V\otimes W\otimes X\)</span>.</p>
+<p>We have succeeded in finding a way to combine vectors
+into tensors, such that the underlying product is commutative,
+associative, distributive over vector addition and interchangable with
+scalar multiplication. Since the tensor product space is a vector
+space itself, we can continue to further construct tensors with even more
+indices. An element of <span class="math notranslate nohighlight">\(\R^2\otimes\R^2\otimes\R^2\)</span> reads
+in general (using standard bases as given in <a class="reference internal" href="#exSeparation">Example 2.1</a>)</p>
+<div class="math notranslate nohighlight">
+\[
+\sum\limits_{i=1}^2
+\sum\limits_{j=1}^2
+\sum\limits_{k=1}^2
+  T^{ijk}\,e_i\otimes e_j\otimes e_k\,.
+\]</div>
+<p>The coefficients form a 3-dimensional array, e.g. the tensor</p>
+<div class="math notranslate nohighlight">
+\[
+3\,e_1\otimes e_1\otimes e_1 +
+6\,e_1\otimes e_1\otimes e_2 +
+4\,e_2\otimes e_2\otimes e_1 +
+8\,e_2\otimes e_2\otimes e_2
+\]</div>
+<p>is represented by the following structure.</p>
+<a class="reference internal image-reference" href="../_images/order-3.svg"><img alt="../_images/order-3.svg" class="align-center" height="150em" src="../_images/order-3.svg" /></a>
+<p>Dual vector spaces play a prominent role in tensor products.
+Therefore they will be explicitly noted.
+The general tensor product space is of form</p>
+<div class="math notranslate nohighlight" id="equation-eqngenprodspace">
+<span class="eqno">(2.8)<a class="headerlink" href="#equation-eqngenprodspace" title="Permalink to this equation">¶</a></span>\[W_1\otimes\ldots\otimes W_r\otimes V^\ast_1\otimes\ldots\otimes V^\ast_s\]</div>
+<p>with all <span class="math notranslate nohighlight">\(W_p\)</span> being vector spaces over a field
+<span class="math notranslate nohighlight">\(\F\)</span>, and all <span class="math notranslate nohighlight">\(V^\ast_q\)</span> being dual
+spaces over <span class="math notranslate nohighlight">\(\F\)</span> (to vector
+spaces <span class="math notranslate nohighlight">\(V_q\)</span> over <span class="math notranslate nohighlight">\(\F\)</span>).</p>
+<div class="proof definition admonition" id="defTensorOrder">
+<p class="admonition-title"><span class="caption-number">Definition 2.3 </span> (Contravariant, Covariant, Tensor Order)</p>
+<div class="definition-content section" id="proof-content">
+<p>The coefficients of a tensor
+<span class="math notranslate nohighlight">\(T\in W_1\otimes\ldots\otimes W_r\otimes V^\ast_1\otimes\ldots\otimes V^\ast_s\)</span>
+are identified by <span class="math notranslate nohighlight">\(r+s\)</span> indices.</p>
+<p>We call indices belonging to
+vector spaces <span class="math notranslate nohighlight">\(W_1,\ldots,W_r\)</span>
+<em><strong>contravariant</strong></em> indices.
+Indices belonging to dual spaces <span class="math notranslate nohighlight">\(V^\ast_1,\ldots,V^\ast_s\)</span>
+are called <em><strong>covariant</strong></em> indices.</p>
+<p>Contravariant indices will be written in superscript at coefficients and
+in subscript at basis elements. Vice versa, covariant indices will be
+written in subscript at coefficients and in superscript at basis elements.<br />
+Having bases <span class="math notranslate nohighlight">\(\{f^{(p)}_1,\ldots,f^{(p)}_{m_p}\}\)</span> of
+<span class="math notranslate nohighlight">\(W_p\)</span> and bases <span class="math notranslate nohighlight">\(\{e^{(q)1},\ldots,e^{(q)n_q}\}\)</span> of
+<span class="math notranslate nohighlight">\(V^\ast_q\)</span>, we would write</p>
+<div class="math notranslate nohighlight">
+\[
+T=
+\sum\limits_{j_1=1}^{m_1}\cdots
+\sum\limits_{j_r=1}^{m_r}
+\sum\limits_{i_1=1}^{n_1}\cdots
+\sum\limits_{i_s=1}^{n_s}
+T^{j_1\ldots j_r}_{i_1\ldots i_s}\,
+f^{(1)}_{j_1}\otimes\ldots\otimes f^{(r)}_{j_r}\otimes
+e^{(1){i_1}}\otimes\ldots\otimes e^{(s){i_s}}
+\,.
+\]</div>
+<p>A tensor with <span class="math notranslate nohighlight">\(r\)</span> contravariant and
+<span class="math notranslate nohighlight">\(s\)</span> covariant indices is called
+an <em><strong>order-</strong></em><span class="math notranslate nohighlight">\(\pmb{(r,s)}\)</span> <em><strong>tensor</strong></em>.</p>
+</div>
+</div><p>Let us come back to the standard objects of Linear Algebra.
+They smoothly fit into the general tensor language.</p>
+<ul class="simple">
+<li><p><em>Vectors</em> are order-<span class="math notranslate nohighlight">\((1,0)\)</span> tensors.</p></li>
+<li><p><em>Dual vectors</em> are order-<span class="math notranslate nohighlight">\((0,1)\)</span> tensors.</p></li>
+<li><p><em>Linear maps</em> are order-<span class="math notranslate nohighlight">\((1,1)\)</span> tensors. This will be explained in section
+<a class="reference internal" href="#sec-multilinear"><span class="std std-ref">Multilinear Maps</span></a>.</p></li>
+<li><p><em>Scalars</em> are order-<span class="math notranslate nohighlight">\((0,0)\)</span> tensors. This is justified by the fact that a scalar
+does not require an index at all (although it might be indexed by a constant).</p></li>
+</ul>
+<p>We conclude this section by turning our attention back to
+<a class="reference internal" href="#defProduct">Definition 2.1</a> and showing that the definition of
+the inner product for basis elements extends naturally to all
+tensor products.</p>
+<div class="proof observation admonition" id="obsInnerProduct">
+<p class="admonition-title"><span class="caption-number">Observation 2.2 </span> (Inner Product)</p>
+<div class="observation-content section" id="proof-content">
+<p>In the setting of <a class="reference internal" href="#defProduct">Definition 2.1</a> we have for
+<span class="math notranslate nohighlight">\(v_1,v_2\in V\)</span> and <span class="math notranslate nohighlight">\(w_1,w_2\in W\)</span>
+the identity</p>
+<div class="math notranslate nohighlight">
+\[
+\ip{v_1\otimes w_1}{v_2\otimes w_2}_{V\otimes W}
+=
+\ip{v_1}{v_2}_V\cdot\ip{w_1}{w_2}_W\,.
+\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. With
+<span class="math notranslate nohighlight">\(
+v_1=\sum\limits_{i=1}^nv_1^ie_i,\,
+v_2=\sum\limits_{p=1}^nv_2^pe_p,\,
+w_1=\sum\limits_{j=1}^mw_1^jf_j,\,
+w_2=\sum\limits_{q=1}^mw_2^qf_q
+\)</span>
+we obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ip{v_1\otimes w_1}{v_2\otimes w_2}_{V\otimes W}
+&amp;= \IP{\Bigg(\sum\limits_{i=1}^nv_1^ie_i\Bigg)
+          \otimes
+        \Bigg(\sum\limits_{j=1}^mw_1^jf_j\Bigg)}
+      {\Bigg(\sum\limits_{p=1}^nv_2^pe_p\Bigg)
+          \otimes
+        \Bigg(\sum\limits_{q=1}^mw_2^qf_q\Bigg)} 
+      _{V\otimes W} \\
+&amp;= \sum\limits_{i=1}^n
+    \sum\limits_{j=1}^m
+    \sum\limits_{p=1}^n
+    \sum\limits_{q=1}^m
+      v_1^iw_1^jv_2^pw_2^q\,
+      \ip{e_i\otimes f_j}{e_p\otimes f_q}_{V\otimes W} \\
+&amp;= \sum\limits_{i=1}^n
+    \sum\limits_{j=1}^m
+    \sum\limits_{p=1}^n
+    \sum\limits_{q=1}^m
+      v_1^iw_1^jv_2^pw_2^q\,
+      \ip{e_i}{e_p}_V\ip{f_j}{f_q}_W \\
+&amp;= \IP{\sum\limits_{i=1}^nv_1^ie_i}{\sum\limits_{p=1}^nv_2^pe_p}_V\cdot
+    \IP{\sum\limits_{j=1}^mw_1^jf_j}{\sum\limits_{q=1}^mw_2^qf_q}_W \\
+&amp;= \ip{v_1}{v_2}_V\cdot\ip{w_1}{w_2}_W \,.
+\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="grouping">
+<h2><span class="section-number">2.3. </span>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h2>
+<p>Again, we take a look at the tensor</p>
+<div class="math notranslate nohighlight">
+\[
+T =
+3\,e_1\otimes e_1\otimes e_1 +
+6\,e_1\otimes e_1\otimes e_2 +
+4\,e_2\otimes e_2\otimes e_1 +
+8\,e_2\otimes e_2\otimes e_2
+\in\R^2\otimes\R^2\otimes\R^2\,.
+\]</div>
+<p>Using associativity, let us assume, that we resolve the
+right-hand side tensor product first, inducing the execution
+order <span class="math notranslate nohighlight">\(\R^2\otimes(\R^2\otimes\R^2)\)</span>.
+Now, we will consider the outcome of this first
+tensor product as another vector space and rewrite
+the second tensor product be means of that space.
+We define</p>
+<div class="math notranslate nohighlight" id="equation-eqnrprodspace">
+<span class="eqno">(2.9)<a class="headerlink" href="#equation-eqnrprodspace" title="Permalink to this equation">¶</a></span>\[\R^{2\otimes 2}\def\R^2\otimes\R^2\]</div>
+<p>and relabel its basis elements by
+<span class="math notranslate nohighlight">\(
+f_1\def e_1\otimes e_1,\,
+f_2\def e_1\otimes e_2,\,
+f_3\def e_2\otimes e_1,\,
+f_4\def e_2\otimes e_2
+\)</span>.
+Then <span class="math notranslate nohighlight">\(T\)</span> reads</p>
+<div class="math notranslate nohighlight">
+\[
+T =
+3\,e_1\otimes f_1 +
+6\,e_1\otimes f_2 +
+4\,e_2\otimes f_3 +
+8\,e_2\otimes f_4
+\in\R^2\otimes\R^{2\otimes 2}\,.
+\]</div>
+<p>By doing so, we have reduced the amount of indices in the description
+of <span class="math notranslate nohighlight">\(T\)</span> by merging index 2 and 3. The representation
+has changed from (including a reshape of the coefficients data structure)</p>
+<div class="math notranslate nohighlight">
+\[
+T = 
+\sum\limits_{i=1}^2
+\sum\limits_{j=1}^2
+\sum\limits_{k=1}^2
+T^{ijk}\,e_i\otimes e_j\otimes e_k
+\in\R^2\otimes\R^2\otimes\R^2
+\]</div>
+<a class="reference internal image-reference" href="../_images/order-3.svg"><img alt="../_images/order-3.svg" class="align-center" height="150em" src="../_images/order-3.svg" /></a>
+<p>to</p>
+<div class="math notranslate nohighlight">
+\[
+T = 
+\sum\limits_{i=1}^2
+\sum\limits_{j=1}^4
+\tilde{T}^{ij}\,e_i\otimes f_j
+\in\R^2\otimes\R^{2\otimes 2}\,.
+\]</div>
+<a class="reference internal image-reference" href="../_images/order-3-grouped.svg"><img alt="../_images/order-3-grouped.svg" class="align-center" height="100em" src="../_images/order-3-grouped.svg" /></a>
+<p>In general we can treat an arbitrary large tensor
+product in this way. Since we consider the tensor
+product to be commutative, we can assume
+that the spaces to be merged (multiplied first)
+are all located at the end of the tensor product.</p>
+<div class="proof definition admonition" id="defGrouping">
+<p class="admonition-title"><span class="caption-number">Definition 2.4 </span> (Grouping)</p>
+<div class="definition-content section" id="proof-content">
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[
+T =
+\sum\limits_{i_1=1}^{n_1}\cdots\sum\limits_{i_s=1}^{n_s}
+T^{i_1\ldots i_s}\,e^{(1)}_{i_1}\otimes\ldots\otimes e^{(s)}_{i_s}
+\in V_1\otimes\ldots\otimes V_s
+\]</div>
+<p>be a tensor. For
+<span class="math notranslate nohighlight">\(W=V_{r+1}\otimes\ldots\otimes V_s,\,1\le r+1&lt;s\)</span>
+with basis <span class="math notranslate nohighlight">\(\{f_1,\ldots,f_m\}\)</span>, we call the operaton
+of describing <span class="math notranslate nohighlight">\(T\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+T =
+\sum\limits_{i_1=1}^{n_1}\cdots\sum\limits_{i_r=1}^{n_r}
+  \sum\limits_{j=1}^m
+\tilde{T}^{i_1\ldots i_rj}\,e^{(1)}_{i_1}\otimes\ldots\otimes e^{(r)}_{i_r}
+  \otimes f_j
+\in V_1\otimes\ldots\otimes V_r\otimes W
+\]</div>
+<p><em><strong>grouping</strong></em> of the indices
+<span class="math notranslate nohighlight">\(i_{r+1},\ldots,i_s\)</span>. If we do the opposite and expand a
+space of a tensor product into a product itself, we would call the
+change of description of a tensor <em><strong>ungrouping</strong></em> of
+the according index.</p>
+</div>
+</div><p>Note, that grouping/ungrouping changes the order of the tensor. Although being
+the same tensor, its order is dependent on the indices used to label its coefficients.</p>
+</div>
+<div class="section" id="contraction">
+<h2><span class="section-number">2.4. </span>Contraction<a class="headerlink" href="#contraction" title="Permalink to this headline">¶</a></h2>
+<p>For the following we need quite a useful symbol to express
+index equality.</p>
+<div class="proof definition admonition" id="defKronecker">
+<p class="admonition-title"><span class="caption-number">Definition 2.5 </span> (Kronecker Delta)</p>
+<div class="definition-content section" id="proof-content">
+<p>The <em><strong>Kronecker delta</strong></em> is a
+symbol with two indices. To be universally applicable,
+each index could be covariant (written subscript) or
+contravariant (written superscript). We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\delta_{ij}=\delta^i_j=\delta_i^j=\delta^{ij}
+\def 
+  \begin{cases}
+    0,\quad i\neq j\,, \\
+    1,\quad i=j\,.          
+  \end{cases}   
+\end{split}\]</div>
+</div>
+</div><p>Let <span class="math notranslate nohighlight">\(V\)</span> be a vector space over
+<span class="math notranslate nohighlight">\(\F\)</span> with basis
+<span class="math notranslate nohighlight">\(\{e_1,\ldots,e_n\}\)</span>. Let
+<span class="math notranslate nohighlight">\(V^\ast\)</span> be its dual space, and
+<span class="math notranslate nohighlight">\(\{e^1,\ldots,e^n\}\)</span> the respective
+dual basis.
+We recall that the dual space <span class="math notranslate nohighlight">\(V^\ast\)</span>
+is in fact the space of all linear functionals on
+<span class="math notranslate nohighlight">\(V\)</span>, i.e.
+<span class="math notranslate nohighlight">\(V^\ast=\cL(V,\F)\)</span>. Furthermore,
+the link between basis elements and dual
+basis elements is the identity</p>
+<div class="math notranslate nohighlight">
+\[
+e^i(e_j)=\delta^i_j\,.
+\]</div>
+<p>Note, that all elements of <span class="math notranslate nohighlight">\(V^\ast\)</span> are in fact linear functionals and can be applied
+to elements of of <span class="math notranslate nohighlight">\(V\)</span>. For tensors</p>
+<div class="math notranslate nohighlight">
+\[
+T = 
+\sum\limits_{j=1}^n 
+\sum\limits_{i=1}^n    
+T^j_i\,e_j\otimes e^i\in V\otimes V^\ast\,,
+\]</div>
+<p>the <em>contraction</em> of the indices <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> is the map</p>
+<div class="math notranslate nohighlight" id="equation-eqncontraction">
+<span class="eqno">(2.10)<a class="headerlink" href="#equation-eqncontraction" title="Permalink to this equation">¶</a></span>\[\begin{split}&amp; C_{i,j}:V\otimes V^*\longrightarrow\F,\\
+&amp; C_{i,j}(T)\def
+\sum\limits_{j=1}^n 
+\sum\limits_{i=1}^n    
+T^j_i\,\underbrace{e^i(e_j)}_{=\delta^i_j}
+= \sum\limits_{k=1}^nT^k_k
+\,.\end{split}\]</div>
+<p>This term can be defined in general using the notions of
+<a class="reference internal" href="#defTensorOrder">Definition 2.3</a>. A contraction will always
+contract a covariant index with a contravariant index.
+Due to commutativity we can assume without loss of generality,
+that the indices to be contracted are the first ones of each group
+(vector spaces or dual spaces, respectively).</p>
+<div class="proof definition admonition" id="defContraction">
+<p class="admonition-title"><span class="caption-number">Definition 2.6 </span> (Contraction)</p>
+<div class="definition-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(T\in W_1\otimes\ldots\otimes W_r\otimes V^\ast_1\otimes\ldots\otimes V^\ast_s\)</span>
+be a tensor with</p>
+<div class="math notranslate nohighlight">
+\[
+T =
+\sum\limits_{j_1=1}^{m_1}\cdots
+\sum\limits_{j_r=1}^{m_r}
+\sum\limits_{i_1=1}^{n_1}\cdots
+\sum\limits_{i_s=1}^{n_s}
+T^{j_1\ldots j_r}_{i_1\ldots i_s}\,
+f^{(1)}_{j_1}\otimes\ldots\otimes f^{(r)}_{j_r}\otimes
+e^{(1){i_1}}\otimes\ldots\otimes e^{(s){i_s}}
+\,.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(W_1=V_1\)</span> be a matching vector space to dual space
+<span class="math notranslate nohighlight">\(V^\ast_1\)</span>. Let
+<span class="math notranslate nohighlight">\(\{f^{(1)}_1,\ldots,f^{(1)}_{m_1}\}\subseteq W_1\)</span> be the dual basis
+of <span class="math notranslate nohighlight">\(\{e^{(1)1},\ldots,e^{(1)n_1}\}\subseteq V^\ast_1\)</span>,
+obviously <span class="math notranslate nohighlight">\(m_1=n_1\fed n\)</span>.</p>
+<p>The <em><strong>contraction</strong></em>
+of the indices <span class="math notranslate nohighlight">\(i_1\)</span> and
+<span class="math notranslate nohighlight">\(j_1\)</span> is the function</p>
+<div class="math notranslate nohighlight">
+\[
+C_{i_1,j_1}:
+  W_1\otimes\ldots\otimes W_r\otimes V^\ast_1\otimes\ldots\otimes V^\ast_s
+    \longrightarrow
+  W_2\otimes\ldots\otimes W_r\otimes V^\ast_2\otimes\ldots\otimes V^\ast_s
+\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C_{i_1,j_1}(T) 
+&amp; \def
+\sum\limits_{j_1=1}^{m_1}\cdots
+\sum\limits_{j_r=1}^{m_r}
+\sum\limits_{i_1=1}^{n_1}\cdots
+\sum\limits_{i_s=1}^{n_s}
+T^{j_1\ldots j_r}_{i_1\ldots i_s}\cdot
+e^{(1)i_1}\Big(f^{(1)}_{j_1}\Big)\cdot
+f^{(2)}_{j_2}\otimes\ldots\otimes f^{(r)}_{j_r}\otimes
+e^{(2){i_2}}\otimes\ldots\otimes e^{(s){i_s}} \\
+&amp; = 
+\sum\limits_{j_2=1}^{m_2}\cdots
+\sum\limits_{j_r=1}^{m_r}
+\sum\limits_{i_2=1}^{n_2}\cdots
+\sum\limits_{i_s=1}^{n_s}
+\Bigg(
+  \underbrace{
+    \sum\limits_{k=1}^n
+    T^{kj_2\ldots j_r}_{ki_2\ldots i_s}
+  }_{\fed\tilde{T}^{j_2\ldots j_r}_{i_2\ldots i_s}}
+\Bigg)\,
+f^{(2)}_{j_2}\otimes\ldots\otimes f^{(r)}_{j_r}\otimes
+e^{(2){i_2}}\otimes\ldots\otimes e^{(s){i_s}} \\
+&amp; = 
+\sum\limits_{j_2=1}^{m_2}\cdots
+\sum\limits_{j_r=1}^{m_r}
+\sum\limits_{i_2=1}^{n_2}\cdots
+\sum\limits_{i_s=1}^{n_s}
+\tilde{T}^{j_2\ldots j_r}_{i_2\ldots i_s} \,
+f^{(2)}_{j_2}\otimes\ldots\otimes f^{(r)}_{j_r}\otimes
+e^{(2){i_2}}\otimes\ldots\otimes e^{(s){i_s}}
+\,.
+\end{split}\]</div>
+<p>The case <span class="math notranslate nohighlight">\(r=s=1\)</span> is already defined in
+equation <a class="reference internal" href="#equation-eqncontraction">(2.10)</a>.</p>
+</div>
+</div><p>This definition seems to be rather complicated. For a tensor</p>
+<div class="math notranslate nohighlight">
+\[
+T =      
+\sum\limits_{j=1}^n
+\sum\limits_{k=1}^m
+\sum\limits_{i=1}^n
+T^{jk}_i\,e_j\otimes f_k\otimes e^i 
+\in V\otimes W\otimes V^\ast
+\]</div>
+<p>let us illustrate the contraction of the indices
+<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\,\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+C_{i,j}(T) = \sum\limits_{k=1}^m\tilde{T}^k f_k\in W
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{T}^k = \sum\limits_{i=1}^n T^{ik}_i\,.
+\]</div>
+<a class="reference internal image-reference" href="../_images/contraction.svg"><img alt="../_images/contraction.svg" class="align-center" height="240em" src="../_images/contraction.svg" /></a>
+<p>The determination of a concrete example is straight forward.</p>
+<div class="proof example admonition" id="exContraction">
+<p class="admonition-title"><span class="caption-number">Example 2.2 </span> (Contraction)</p>
+<div class="example-content section" id="proof-content">
+<p>We consider the tensor
+<span class="math notranslate nohighlight">\(T\in\R^2\otimes\R^2\otimes\R^2\)</span>
+(we recall <span class="math notranslate nohighlight">\((\R^2)^\ast=\R^2\)</span>),
+specified by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T &amp; =      
+\sum\limits_{j=1}^n
+\sum\limits_{k=1}^m
+\sum\limits_{i=1}^n
+T^{jk}_i\,e_j\otimes e_k\otimes e^i \\
+&amp; = 
+3\,e_1\otimes e_1\otimes e^1 +
+6\,e_1\otimes e_1\otimes e^2 +
+4\,e_2\otimes e_2\otimes e^1 +
+8\,e_2\otimes e_2\otimes e^2
+\,.      
+\end{split}\]</div>
+<p>We calculate</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C_{i,j}(T) &amp; =
+3\,\underbrace{e^1(e_1)}_{=1}\,e_1 +
+6\,\underbrace{e^2(e_1)}_{=0}\,e_1 +
+4\,\underbrace{e^1(e_2)}_{=0}\,e_2 +
+8\,\underbrace{e^2(e_2)}_{=1}\,e_2 \\
+&amp; = 3e_1+8e_2\in\R^2\,.
+\end{split}\]</div>
+<a class="reference internal image-reference" href="../_images/contraction-example.svg"><img alt="../_images/contraction-example.svg" class="align-center" height="150em" src="../_images/contraction-example.svg" /></a>
+</div>
+</div><p>Since always a covariant index and a contravariant index will
+be contracted, an order-<span class="math notranslate nohighlight">\((r,s)\)</span> tensor will be turned
+into an order-<span class="math notranslate nohighlight">\((r-1,s-1)\)</span> tensor. Directly from
+definiton we obtain further results.</p>
+<div class="proof observation admonition" id="obsContractionLinearity">
+<p class="admonition-title"><span class="caption-number">Observation 2.3 </span> (Contraction Linearity)</p>
+<div class="observation-content section" id="proof-content">
+<p>The contraction is a linear function, i.e. for tensors
+<span class="math notranslate nohighlight">\(T,T_1,T_2\)</span> from a tensor space over
+<span class="math notranslate nohighlight">\(\F\)</span> and <span class="math notranslate nohighlight">\(a\in\F\)</span>
+we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; C_{i,j}(a\cdot T) = a\cdot C_{i,j}(T)\,, \\
+&amp; C_{i,j}(T_1+T_2) = C_{i,j}(T_1) + C_{i,j}(T_2)\,.
+\end{split}\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Both equations can be validated directly from <a class="reference internal" href="#defContraction">Definition 2.6</a>.</p>
+</div>
+<div class="proof observation admonition" id="obsContractionOrder">
+<p class="admonition-title"><span class="caption-number">Observation 2.4 </span> (Contraction Execution Order)</p>
+<div class="observation-content section" id="proof-content">
+<p>If we contract a tensor <span class="math notranslate nohighlight">\(T\)</span> twice,
+then the order of both contractions does not matter.
+We have for covariant indices <span class="math notranslate nohighlight">\(i_1,i_2\)</span>
+and contravariant indices <span class="math notranslate nohighlight">\(j_1,j_2\)</span>
+the identity</p>
+<div class="math notranslate nohighlight">
+\[
+C_{i_1,j_1}(C_{i_2,j_2}(T))= C_{i_2,j_2}(C_{i_1,j_1}(T))\,.
+\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. The assertion results from direct application of <a class="reference internal" href="#defContraction">Definition 2.6</a>.</p>
+</div>
+<div class="proof observation admonition" id="obsContractionProduct">
+<p class="admonition-title"><span class="caption-number">Observation 2.5 </span> (Contraction compatible with Tensor Product)</p>
+<div class="observation-content section" id="proof-content">
+<p>The contraction is interchangable with the tensor product.
+Let <span class="math notranslate nohighlight">\(i\)</span> be a covariant index of a
+tensor <span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(j\)</span>
+be a contravariant index of <span class="math notranslate nohighlight">\(T_1\)</span>.
+Contracting <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>
+can be executed before or after a tensor product with another tensor,
+the result is the same.</p>
+<div class="math notranslate nohighlight">
+\[
+C_{i,j}(T_1)\otimes T_2 = C_{i,j}(T_1\otimes T_2)
+\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. The equation is derived directly from definitions
+<a class="reference internal" href="#defProduct">Definition 2.1</a> and <a class="reference internal" href="#defContraction">Definition 2.6</a>.</p>
+</div>
+<p>Contracting consecutively all indices of a tensor will always lead to
+a scalar result. The simplest case is the contraction of a matrix.</p>
+<div class="proof example admonition" id="exMatrixContraction">
+<p class="admonition-title"><span class="caption-number">Example 2.3 </span> (Matrix Contraction)</p>
+<div class="example-content section" id="proof-content">
+<p>We recall equation <a class="reference internal" href="#equation-eqncontraction">(2.10)</a>,
+<span class="math notranslate nohighlight">\(C_{i,j}:V\otimes V^*\longrightarrow\F,\,C_{i,j}(T) = \sum\limits_{k=1}^nT^k_k\,\)</span>.
+Considering the coefficients of <span class="math notranslate nohighlight">\(T\)</span> as matrix, we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+C_{i,j}(T)=\tr(T)\,.
+\]</div>
+</div>
+</div></div>
+<div class="section" id="multilinear-maps">
+<span id="sec-multilinear"></span><h2><span class="section-number">2.5. </span>Multilinear Maps<a class="headerlink" href="#multilinear-maps" title="Permalink to this headline">¶</a></h2>
+<p>Having introduced the main tensor operations - tensor product, grouping,
+contraction - we are able to generalize more building blocks of
+Linear Algebra. We start with linear maps.
+Let <span class="math notranslate nohighlight">\(V,W\)</span> be vector spaces,
+let <span class="math notranslate nohighlight">\(\{e_1,\ldots,e_n\}\)</span> be a basis of
+<span class="math notranslate nohighlight">\(V\)</span> and let <span class="math notranslate nohighlight">\(\{f_1,\ldots,f_m\}\)</span>
+be a basis of <span class="math notranslate nohighlight">\(W\)</span>. We recall, how the matrix
+representation of a linear map <span class="math notranslate nohighlight">\(S\in\cL(V,W)\)</span>
+is derived. For <span class="math notranslate nohighlight">\(v=\sum\limits_{i=1}^nv^ie_i\in V\)</span>
+and <span class="math notranslate nohighlight">\(S(e_i)=\sum\limits_{j=1}^mS^j_if_j\in W\)</span>
+we compute</p>
+<div class="math notranslate nohighlight" id="equation-eqnlinearmap">
+<span class="eqno">(2.11)<a class="headerlink" href="#equation-eqnlinearmap" title="Permalink to this equation">¶</a></span>\[\begin{split}S(v) &amp;= S\Bigg(\sum\limits_{i=1}^nv^ie_i\Bigg) \\
+&amp;= \sum\limits_{i=1}^nv^iS(e_i) \\
+&amp;= \sum\limits_{i=1}^nv^i\sum\limits_{j=1}^mS^j_if_j \\
+&amp;= \sum\limits_{j=1}^m\sum\limits_{i=1}^nS^j_iv^if_j \,.\end{split}\]</div>
+<p>Let <span class="math notranslate nohighlight">\(V^\ast\)</span> be the dual space of <span class="math notranslate nohighlight">\(V\)</span>,
+and let <span class="math notranslate nohighlight">\(\{e^1,\ldots,e^n\}\)</span> be the dual basis. Let
+<span class="math notranslate nohighlight">\(T=\sum\limits_{j=1}^m\sum\limits_{i=1}^nT^j_i\,f_j\otimes e^i\in W\otimes V^\ast\)</span>
+be a tensor. For <span class="math notranslate nohighlight">\(v=\sum\limits_{k=1}^nv^ke_k\in V\)</span> we define a map <span class="math notranslate nohighlight">\(T':V\rightarrow W\)</span> by</p>
+<div class="math notranslate nohighlight" id="equation-eqncontractionmap">
+<span class="eqno">(2.12)<a class="headerlink" href="#equation-eqncontractionmap" title="Permalink to this equation">¶</a></span>\[T'(v)\def C_{i,k}(T\otimes v)\,.\]</div>
+<p>We recall bilinearity of the tensor product (<a class="reference internal" href="#defProduct">Definition 2.1</a>)
+and linearity of the contraction (<a class="reference internal" href="#obsContractionLinearity">Observation 2.3</a>).
+Together both imply that <span class="math notranslate nohighlight">\(T'\)</span> is linear as well, i.e.
+<span class="math notranslate nohighlight">\(T'\in\cL(V,W)\)</span>. Its matrix representation can be obtained
+by resolving the contraction.</p>
+<div class="math notranslate nohighlight" id="equation-eqnlinearmapcontraction">
+<span class="eqno">(2.13)<a class="headerlink" href="#equation-eqnlinearmapcontraction" title="Permalink to this equation">¶</a></span>\[\begin{split}T'(v) &amp;= C_{i,k}(T\otimes v) \\
+&amp;= C_{i,k}\Bigg(\Bigg[
+  \sum\limits_{j=1}^m
+  \sum\limits_{i=1}^n
+  T^j_i\,f_j\otimes e^i\Bigg]
+  \otimes\Bigg[
+  \sum\limits_{k=1}^n
+  v^ke_k      
+  \Bigg]\Bigg) \\
+&amp;= C_{i,k}\Bigg(
+  \sum\limits_{j=1}^m
+  \sum\limits_{i=1}^n
+  \sum\limits_{k=1}^n
+  T^j_iv^k\,f_j\otimes e^i\otimes e_k      
+  \Bigg) \\
+&amp;= C_{i,k}\Bigg(
+  \sum\limits_{j=1}^m
+  \sum\limits_{i=1}^n
+  \sum\limits_{k=1}^n
+  T^j_iv^k\,f_j\otimes\underbrace{e^i(e_k)}_{=\delta^i_k}      
+  \Bigg) \\
+&amp;= \sum\limits_{j=1}^m\sum\limits_{i=1}^nT^j_iv^if_j \,.\end{split}\]</div>
+<p>Comparing equations <a class="reference internal" href="#equation-eqnlinearmap">(2.11)</a> and <a class="reference internal" href="#equation-eqnlinearmapcontraction">(2.13)</a>
+we obtain that the coefficients <span class="math notranslate nohighlight">\(T^j_i\)</span> of tensor <span class="math notranslate nohighlight">\(T\)</span> form the matrix representation
+of the linear map <span class="math notranslate nohighlight">\(T'\)</span>. This twofold interpretation of
+<span class="math notranslate nohighlight">\(T^j_i\)</span> as tensor coefficients and matrix of a
+linear map provides the natural isomorphism
+<span class="math notranslate nohighlight">\(W\otimes V^\ast\simeq\cL(V,W)\)</span>.
+Nevertheless, to be precise during theory development,
+we will continue to differentiate linear map and related tensor
+by adding a prime to the character denoting the map. Later we will abandon
+this distinction.  After having discussed the case of a expressing
+a linear map with a tensor, we will take this approach even further
+and lift it to multilinear maps.</p>
+<div class="proof theorem admonition" id="thmMultilinearity">
+<p class="admonition-title"><span class="caption-number">Theorem 2.1 </span> (Tensors are Multilinear Maps)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(V_1,\ldots,V_s\)</span> be vector spaces with bases
+<span class="math notranslate nohighlight">\(\{e^{(i)}_1,\ldots,e^{(i)}_{n_i}\}\)</span> and
+respective dual bases
+<span class="math notranslate nohighlight">\(\{e^{(i)1},\ldots,e^{(i)n_i}\}\)</span>. In addition
+let <span class="math notranslate nohighlight">\(W\)</span> be a vector space with basis
+<span class="math notranslate nohighlight">\(\{f_1,\ldots,f_m\}.\)</span>
+Let</p>
+<div class="math notranslate nohighlight">
+\[
+T = \sum\limits_{j=1}^{m}
+\sum\limits_{i_1=1}^{n_1}\cdots
+\sum\limits_{i_s=1}^{n_s}
+T^j_{i_1\ldots i_s}\,
+f_j\otimes e^{(1){i_1}}\otimes\ldots\otimes e^{(s){i_s}}
+\]</div>
+<p>be a tensor of
+<span class="math notranslate nohighlight">\(W\otimes V^\ast_1\otimes\ldots\otimes V^\ast_s\)</span>.
+Then we can define a multilinear map
+<span class="math notranslate nohighlight">\(T'\in\cL^s(V_1,\ldots,V_s \, ; \, W)\)</span>
+as follows. For
+<span class="math notranslate nohighlight">\(v_p=\sum\limits_{k_p=1}^{n_p}v_p^{k_p}e^{(p)}_{k_p}\in V_p\)</span>
+we set</p>
+<div class="math notranslate nohighlight">
+\[
+T'(v_1,\ldots,v_s)
+\def
+(C_{i_1,k_1}\circ\ldots\circ C_{i_s,k_s})
+  (T\otimes v_1\otimes\ldots\otimes v_s)\,.
+\]</div>
+<p>The way tensor <span class="math notranslate nohighlight">\(T\)</span> is used to define <span class="math notranslate nohighlight">\(T'\)</span> provides an isomorphism</p>
+<div class="math notranslate nohighlight">
+\[
+W\otimes V^\ast_1\otimes\ldots\otimes V^\ast_s
+\simeq\cL^s(V_1,\ldots,V_s \, ; \, W) \,.
+\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. The argument follows the same path as already explained for the
+case <span class="math notranslate nohighlight">\(s=1\)</span>. Bilinearity of the tensor product
+ensures that</p>
+<div class="math notranslate nohighlight">
+\[
+(v_1,\ldots,v_s)\longmapsto T\otimes v_1\otimes\ldots\otimes v_s
+\]</div>
+<p>is linear in each variable. Linearity of contractions preserves that.
+Hence <span class="math notranslate nohighlight">\(T'\)</span> is linear in each variable and therefore</p>
+<div class="math notranslate nohighlight">
+\[
+T'\in\cL^s(V_1,\ldots,V_s \, ; \, W) \,.
+\]</div>
+<p>Calculating</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T'(v_1,\ldots,v_s) 
+&amp;=
+(C_{i_1,k_1}\circ\ldots\circ C_{i_s,k_s})
+  (T\otimes v_1\otimes\ldots\otimes v_s) \\
+&amp;=\sum\limits_{j=1}^{m}
+  \sum\limits_{i_1=1}^{n_1}\cdots
+  \sum\limits_{i_s=1}^{n_s}
+  T^j_{i_1\ldots i_s}v_1^{i_1}\cdots v_s^{i_s}f_j
+\,.
+\end{split}\]</div>
+<p>yields <span class="math notranslate nohighlight">\(T^j_{i_1\ldots i_s}v_1^{i_1}\cdots v_s^{i_s}\)</span>
+as coefficients. If one strips down a multilinear map
+<span class="math notranslate nohighlight">\(S\in\cL^s(V_1,\ldots,V_s \, ; \, W)\)</span> to
+its effects on basis elements - in a similar way linear maps are
+expressed by means of their matrix representation - then one
+obtains the same coefficients
+<span class="math notranslate nohighlight">\(S^j_{i_1\ldots i_s}v_1^{i_1}\cdots v_s^{i_s}\)</span>.
+This delivers an isomorphism for</p>
+<div class="math notranslate nohighlight">
+\[
+W\otimes V^\ast_1\otimes\ldots\otimes V^\ast_s
+\simeq\cL^s(V_1,\ldots,V_s \, ; \, W) \,.
+\]</div>
+</div>
+<p>We will give a few examples to illustrate how a linear transformation
+can be realized by a tensor.</p>
+<div class="proof example admonition" id="exHadamard">
+<p class="admonition-title"><span class="caption-number">Example 2.4 </span> (Hadamard Transformation)</p>
+<div class="example-content section" id="proof-content">
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H=
+\begin{bmatrix}
+  1 &amp; 1 \\
+  1 &amp; -1
+\end{bmatrix}
+\end{split}\]</div>
+<p>be the Hadamard matrix of order 2. Let <span class="math notranslate nohighlight">\(H'\)</span> be the associated
+linear map of <span class="math notranslate nohighlight">\(\cL(\R^2)\)</span> - with basis of
+<span class="math notranslate nohighlight">\(\R^2\)</span> being the standard basis
+<span class="math notranslate nohighlight">\(\{e_1\def [1\;\;0]^T,\,e_2\def [0\;\;1]^T\}\)</span> for
+domain space as well as for image space. It is folklore to obtain the
+image of <span class="math notranslate nohighlight">\(v=ae_1+be_2\)</span> by feeding
+<span class="math notranslate nohighlight">\([a\;\;b]^T\)</span> into</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+  1 &amp; 1 \\
+  1 &amp; -1
+\end{bmatrix}
+\begin{bmatrix}
+  a \\
+  b
+\end{bmatrix}
+=
+\begin{bmatrix}
+  a+b \\
+  a-b
+\end{bmatrix}
+\end{split}\]</div>
+<p>to obtain <span class="math notranslate nohighlight">\(H'(v)=(a+b)e_1+(a-b)e_2\)</span>.</p>
+<p>We want to do the same exercise using <span class="math notranslate nohighlight">\(H\)</span> as tensor.
+We can rephrase <span class="math notranslate nohighlight">\(H\)</span> (using the same coefficients) as</p>
+<div class="math notranslate nohighlight">
+\[
+H = e_1\otimes e^1 + e_1\otimes e^2 +
+e_2\otimes e^1 - e_2\otimes e^2 \,.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(i\)</span> be the covariant index of <span class="math notranslate nohighlight">\(H\)</span>
+and <span class="math notranslate nohighlight">\(k\)</span> be the index of the argument <span class="math notranslate nohighlight">\(v\)</span>.
+We can express application of <span class="math notranslate nohighlight">\(H'\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H'(v) &amp;= C_{i,k}(H\otimes v) \\
+&amp;= C_{i,k}(
+  (e_1\otimes e^1 +
+  e_1\otimes e^2 +
+  e_2\otimes e^1 -
+  e_2\otimes e^2)
+  \otimes
+  (ae_1+be_2)
+) \\
+&amp;= C_{i,k}(
+  ((e_1+e_2)\otimes e^1 + (e_1-e_2)\otimes e^2) 
+  \otimes
+  (ae_1+be_2)
+) \\
+&amp;= a(e_1+e_2)\underbrace{e^1(e_1)}_{=1}
+  + b(e_1+e_2)\underbrace{e^1(e_2)}_{=0}
+  + a(e_1-e_2)\underbrace{e^2(e_1)}_{=0}        
+  + b(e_1-e_2)\underbrace{e^2(e_2)}_{=1} \\
+&amp;= a(e_1+e_2) + b(e_1-e_2) \\
+&amp;= (a+b)e_1+(a-b)e_2\,.
+\end{split}\]</div>
+<p>This might appear clumsy on first sight. But this approach will later turn out
+to be very powerful, especially when the linear map is interacting between
+tensor product spaces.</p>
+</div>
+</div><div class="proof example admonition" id="exIdentity">
+<p class="admonition-title"><span class="caption-number">Example 2.5 </span> (Identity Map)</p>
+<div class="example-content section" id="proof-content">
+<p>The identity map <span class="math notranslate nohighlight">\(I'\in\cL(\R^2)\)</span> can be realized by tensor</p>
+<div class="math notranslate nohighlight">
+\[
+I=e_1\otimes e^1+e_2\otimes e^2\,.
+\]</div>
+<p>Although this is true regardless of the chosen basis,
+<span class="math notranslate nohighlight">\(\{e_1,e_2\}\)</span> shall still denote the standard basis.
+To validate that linear maps match, it is sufficient to check all basis arguments.
+So, let us outline where the <span class="math notranslate nohighlight">\(I\)</span> induced map sends
+<span class="math notranslate nohighlight">\(e_1\)</span> and <span class="math notranslate nohighlight">\(e_2\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; e_1 \longmapsto 
+  e_1\otimes\underbrace{e^1(e_1)}_{=1}
+  + e_2\otimes\underbrace{e^2(e_1)}_{=0}
+  = e_1\,, \\
+&amp; e_2 \longmapsto 
+  e_1\otimes\underbrace{e^1(e_2)}_{=0}
+  + e_2\otimes\underbrace{e^2(e_2)}_{=1}
+  = e_2\,. \\
+\end{split}\]</div>
+<p>Indeed, this is the identity.</p>
+</div>
+</div><div class="proof example admonition" id="exNot">
+<p class="admonition-title"><span class="caption-number">Example 2.6 </span></p>
+<div class="example-content section" id="proof-content">
+<p>The Hadamard transformation (and the identity of course as well) will play
+a prominent role in the later Quantum Computing elaboration. The NOT gate is
+another building block. A quantum bit (<em>qubit</em>) holds state values of
+<span class="math notranslate nohighlight">\(\C^2\)</span>. For the sake of simplicity we will stick to
+<span class="math notranslate nohighlight">\(\R^2\)</span> here. Again, let <span class="math notranslate nohighlight">\(\{e_1,e_2\}\)</span> be
+the standard basis. <span class="math notranslate nohighlight">\(e_1\)</span> plays the role of logical
+<em>false</em>, <span class="math notranslate nohighlight">\(e_2\)</span> features logical <em>true</em>. A
+linear combindation of both reflects the qubit being in superposition.</p>
+<p>The NOT gate <span class="math notranslate nohighlight">\(X'\)</span> negates the logical values <span class="math notranslate nohighlight">\(e_1\)</span> and <span class="math notranslate nohighlight">\(e_2\)</span>, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X'(e_1)=e_2\,,\\
+X'(e_2)=e_1\,. 
+\end{split}\]</div>
+<p>Compared to the identity map, we have to cross-wire <span class="math notranslate nohighlight">\(e_1\)</span>
+with <span class="math notranslate nohighlight">\(e^2\)</span> and vice versa. The tensor realizing <span class="math notranslate nohighlight">\(X'\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+X=e_1\otimes e^2+e_2\otimes e^1\,.
+\]</div>
+<p>Indeed, we can verify</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; e_1 \longmapsto 
+  e_1\otimes\underbrace{e^2(e_1)}_{=0}
+  + e_2\otimes\underbrace{e^1(e_1)}_{=1}
+  = e_2\,, \\
+&amp; e_2 \longmapsto 
+  e_1\otimes\underbrace{e^2(e_2)}_{=1}
+  + e_2\otimes\underbrace{e^1(e_2)}_{=0}
+  = e_1\,. \\
+\end{split}\]</div>
+</div>
+</div><p>We succeeded in expressing any linear transformation between
+vector spaces as a contraction of a tensor product. How does this
+apply to chaining of linear transformations? Let
+<span class="math notranslate nohighlight">\(T'\in\cL(V,W)\)</span> and <span class="math notranslate nohighlight">\(S'\in\cL(W,X)\)</span>.
+We have learned that both linear functions can also be constructed
+with tensors having same coefficients (as the matrix representations)
+in same bases. Let</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T &amp;=
+  \sum\limits_{j=1}^m\sum\limits_{i=1}^nT^j_i\,f_j\otimes e^i
+  \in W\otimes V^\ast \,, \\
+S &amp;=
+  \sum\limits_{q=1}^r\sum\limits_{p=1}^mS^q_p\,g_q\otimes f^p
+  \in X\otimes W^\ast
+\end{split}\]</div>
+<p>denote these tensors. Take notice of
+<span class="math notranslate nohighlight">\(\{g_1,\ldots,g_r\}\)</span> being basis of
+<span class="math notranslate nohighlight">\(X\)</span>, all other already introduced notations
+remain - same basis characters  with superscript and subscript
+indices form dual bases.</p>
+<div class="proof theorem admonition" id="thmComposition">
+<p class="admonition-title"><span class="caption-number">Theorem 2.2 </span> (Function Composition)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Composition of linear maps can be expressed by contraction and
+tensor product. The tensor associated to the map
+<span class="math notranslate nohighlight">\(S'\circ T'\in\cL(V,X)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+C_{p,j}(S\otimes T)=
+\sum\limits_{q=1}^r\sum\limits_{i=1}^n\sum\limits_{j=1}^m
+S^q_jT^j_i\,g_q\otimes e^i\in X\otimes V^\ast \,.
+\]</div>
+<p>For <span class="math notranslate nohighlight">\(v=\sum\limits_{k=1}^nv^ke_k\in V\)</span> the
+map is realized by</p>
+<div class="math notranslate nohighlight">
+\[
+(S'\circ T')(v) = C_{i,k}(C_{p,j}(S\otimes T)\otimes v)\,.
+\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Using <a class="reference internal" href="#obsContractionOrder">Observation 2.4</a>, <a class="reference internal" href="#obsContractionProduct">Observation 2.5</a> and
+<a class="reference internal" href="#thmMultilinearity">Theorem 2.1</a> we can transform</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+(S'\circ T')(v) &amp;= S'(C_{i,k}(T\otimes v)) \\
+&amp;= C_{p,j}(S\otimes C_{i,k}(T\otimes v)) \\
+&amp;= C_{p,j}(C_{i,k}(S\otimes T\otimes v)) \\
+&amp;= C_{i,k}(C_{p,j}(S\otimes T\otimes v)) \\
+&amp;= C_{i,k}(C_{p,j}(S\otimes T)\otimes v) \,.
+\end{split}\]</div>
+</div>
+<p>The possibility to define linear maps with help of tensors will
+help us now to extend linear maps to tensor product spaces.
+Let <span class="math notranslate nohighlight">\(T'\in\cL(V,W)\)</span> and
+<span class="math notranslate nohighlight">\(S'\in\cL(X,Y)\)</span>. In addition to notations already in use,
+let <span class="math notranslate nohighlight">\(\{h_1,\ldots,h_s\}\)</span> denote a basis of
+<span class="math notranslate nohighlight">\(Y\)</span>. Let <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(S\)</span>
+be the tensors realizing <span class="math notranslate nohighlight">\(T'\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>.
+Then for <span class="math notranslate nohighlight">\(v=\sum\limits_{k=1}^nv^ke_k\in V\)</span> and
+<span class="math notranslate nohighlight">\(x=\sum\limits_{l=1}^rx^lg_l\in X\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T &amp;=
+  \sum\limits_{j=1}^m\sum\limits_{i=1}^nT^j_i\,f_j\otimes e^i
+  \in W\otimes V^\ast \,, \\
+T'(v) &amp;= C_{i,k}(T\otimes v) \,, \\
+S &amp;=
+  \sum\limits_{q=1}^s\sum\limits_{p=1}^rS^q_p\,h_q\otimes g^p
+  \in Y\otimes X^\ast \,, \\
+S'(x) &amp;= C_{p,l}(S\otimes x) \,.
+\end{split}\]</div>
+<p>We are going to combine <span class="math notranslate nohighlight">\(T'\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>
+in a natural way to obtain a linear map
+<span class="math notranslate nohighlight">\(T'\odot S'\in\cL(V\otimes X,W\otimes Y)\)</span>. We will do
+this with help of</p>
+<div class="math notranslate nohighlight" id="equation-eqnproductmap">
+<span class="eqno">(2.14)<a class="headerlink" href="#equation-eqnproductmap" title="Permalink to this equation">¶</a></span>\[T\otimes S =
+\sum\limits_{j=1}^m
+\sum\limits_{i=1}^n
+\sum\limits_{q=1}^s
+\sum\limits_{p=1}^r
+T^j_iS^q_p \, f_j\otimes e^i\otimes h_q\otimes g^p
+\in W\otimes V^\ast\otimes Y\otimes X^\ast \,.\]</div>
+<p>One strategy to define <span class="math notranslate nohighlight">\(T'\odot S'\)</span> would be to group indices <span class="math notranslate nohighlight">\(i,p\)</span> and
+<span class="math notranslate nohighlight">\(j,q\)</span> in <span class="math notranslate nohighlight">\(T\otimes S\)</span> and then follow <a class="reference internal" href="#thmMultilinearity">Theorem 2.1</a>.
+However, this would require to justify that <span class="math notranslate nohighlight">\(V^\ast\otimes X^\ast\)</span>
+(part of definition of <span class="math notranslate nohighlight">\(T\otimes S\)</span>) can be identified with <span class="math notranslate nohighlight">\((V\otimes X)^\ast\)</span>
+(necessary to define the linear map). We will deviate from this
+strategy and use the fact that the tensor is given as tensor product.
+We will use <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(S\)</span> separately to define the map for arguments from <span class="math notranslate nohighlight">\(V\otimes X\)</span>
+that are <em>separable</em>. Afterwards we will continue the function
+linearly to all possible arguments.</p>
+<div class="proof lemma admonition" id="lemProductMap">
+<p class="admonition-title"><span class="caption-number">Lemma 2.1 </span> (Tensor Product of Linear Maps)</p>
+<div class="lemma-content section" id="proof-content">
+<p>We define <span class="math notranslate nohighlight">\(T'\odot S':V\otimes X\rightarrow W\otimes Y\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+(T'\odot S')(u)\def 
+\begin{cases}
+C_{i,k}(C_{p,l}(T\otimes S\otimes v\otimes x)) \,,\quad 
+  \text{for }u=v\otimes x,\,v\in V,\,x\in X, \\
+\sum\limits_{k=1}^n
+\sum\limits_{l=1}^r
+u^{kl}\,(T'\odot S')(e_k\otimes g_l) \,,\quad\text{otherwise.}
+\end{cases}
+\end{split}\]</div>
+<p>Then <span class="math notranslate nohighlight">\(T'\odot S'\)</span> is well-defined and
+<span class="math notranslate nohighlight">\(T'\odot S'\in\cL(V\otimes X,W\otimes Y)\)</span>.
+Furthermore, for <span class="math notranslate nohighlight">\(v\otimes x\in V\otimes X\)</span>
+holds</p>
+<div class="math notranslate nohighlight">
+\[
+(T'\odot S')(v\otimes x)=T'(v)\otimes S'(x)\,.
+\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We start with the case that <span class="math notranslate nohighlight">\(u\)</span> is <em>separable</em>, <span class="math notranslate nohighlight">\(u=v\otimes x\)</span>.
+Linearity follows again from linearity of tensor product and contraction.
+We calculate (using <a class="reference internal" href="#obsContractionProduct">Observation 2.5</a>)</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+(T'\odot S')(v\otimes x)
+&amp;= C_{i,k}(C_{p,l}(T\otimes S\otimes v\otimes x)) \\
+&amp;= C_{i,k}(T\otimes v\otimes C_{p,l}(S\otimes x)) \\
+&amp;= C_{i,k}(T\otimes v)\otimes C_{p,l}(S\otimes x) \\
+&amp;= T'(v)\otimes S'(x) \in W\otimes Y \,.
+\end{split}\]</div>
+<p>Now consider the case that <span class="math notranslate nohighlight">\(u\)</span> is <em>entangled</em>. The basis representation</p>
+<div class="math notranslate nohighlight">
+\[
+u = \sum\limits_{k=1}^n\sum\limits_{l=1}^ru^{kl}\,e_k\otimes g_l
+\]</div>
+<p>is unique. Hence,</p>
+<div class="math notranslate nohighlight">
+\[
+(T'\odot S')(u)=
+\sum\limits_{k=1}^n\sum\limits_{l=1}^ru^{kl}\,(T'\odot S')(e_k\otimes g_l)
+\]</div>
+<p>is well-defined. It is also compatible with <em>separable</em> arguments
+(the function value would be the same also when fed into the second
+line of the function definition)
+and linear. Since the function value is
+a linear combination of already defined values, it stays in
+<span class="math notranslate nohighlight">\(W\otimes Y\)</span>. All in all,
+<span class="math notranslate nohighlight">\(T'\odot S'\)</span> is
+a well defined linear map fulfilling
+<span class="math notranslate nohighlight">\(T'\odot S'\in\cL(V\otimes X,W\otimes Y)\)</span>.</p>
+</div>
+<p>The coefficients of <span class="math notranslate nohighlight">\(T\otimes S\)</span> are <span class="math notranslate nohighlight">\(T^j_iS^q_p\)</span> (confer equation
+<a class="reference internal" href="#equation-eqnproductmap">(2.14)</a>). <span class="math notranslate nohighlight">\(T^j_i\)</span> also represents the matrix of <span class="math notranslate nohighlight">\(T'\)</span> (in same bases),
+<span class="math notranslate nohighlight">\(S^q_p\)</span> represents the matrix of <span class="math notranslate nohighlight">\(S'\)</span>. This means, if we interpret <span class="math notranslate nohighlight">\(T'\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>
+as vectors of vector spaces <span class="math notranslate nohighlight">\(\cL(V,W)\)</span> and <span class="math notranslate nohighlight">\(\cL(X,Y)\)</span> respectively. Then <span class="math notranslate nohighlight">\(T^j_i,\,S^q_p\)</span>
+would be their coefficients. Hence, <span class="math notranslate nohighlight">\(T^j_iS^q_p\)</span> would be the coefficients of
+<span class="math notranslate nohighlight">\(T'\otimes S'\in\cL(V,W)\otimes\cL(X,Y)\)</span>. This justifies to use <span class="math notranslate nohighlight">\(T'\otimes S'=T'\odot S'\)</span>
+when referring to the composed linear map. Using this notation we express the results of
+<a class="reference internal" href="#lemProductMap">Lemma 2.1</a> entirely by means of <span class="math notranslate nohighlight">\(T'\)</span> and <span class="math notranslate nohighlight">\(S'\)</span>.</p>
+<div class="proof theorem admonition" id="thmProductMap">
+<p class="admonition-title"><span class="caption-number">Theorem 2.3 </span> (Tensor Product of Linear Maps)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(T'\in\cL(V,W),\,S'\in\cL(X,Y)\)</span>. Let
+<span class="math notranslate nohighlight">\(T'\otimes S'\in\cL(V\otimes X,W\otimes Y)\)</span> be
+defined as mentioned before.</p>
+<p>If <span class="math notranslate nohighlight">\(u\in V\otimes X\)</span> is separable, i.e. <span class="math notranslate nohighlight">\(u=v\otimes x\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+(T'\otimes S')(v\otimes x)=T'(v)\otimes S'(x) \,.
+\]</div>
+<p>For all (other) arguments the function value of
+<span class="math notranslate nohighlight">\(
+u=\sum\limits_{k=1}^n\sum\limits_{l=1}^ru^{kl} \,
+e_k\otimes g_l\in V\otimes W 
+\)</span>
+is obtained from</p>
+<div class="math notranslate nohighlight">
+\[
+(T'\otimes S')(u)=\sum\limits_{k=1}^n\sum\limits_{l=1}^r
+u^{kl} \,T'(e_k)\otimes S'(g_l) \,.
+\]</div>
+</div>
+</div><p>Note, that this theorem (and the lemma before) makes heavy use of the fact,
+that the effect of the linear map on <span class="math notranslate nohighlight">\(V\otimes X\)</span>
+can be broken down to local transformations acting solely on
+<span class="math notranslate nohighlight">\(V\)</span> or on <span class="math notranslate nohighlight">\(X\)</span>. Not all linear maps in
+<span class="math notranslate nohighlight">\(\cL(V\otimes W,X\otimes Y)\)</span> are decompossible this way.
+This is the case if and only if the linear map - considered as tensor - is
+separable. We will see a separable as well as an entangled
+linear map in the following examples. From now on, we will abandon the
+strict distinction between multilinear map and generating tensor. We will
+treat them as synonyms now and let them share the same character as identifier.</p>
+<div class="proof example admonition" id="exHadamardGate">
+<p class="admonition-title"><span class="caption-number">Example 2.7 </span> (Hadamard Gate)</p>
+<div class="example-content section" id="proof-content">
+<p>Based on <a class="reference internal" href="#exHadamard">Example 2.4</a> we will extend the Hadamard transformation <span class="math notranslate nohighlight">\(H\)</span>
+into a quantum gate acting on two qubits. A two-qubit system is a state space
+in <span class="math notranslate nohighlight">\(\C^2\otimes\C^2\)</span>. We will continue to simplify and let the Hadamard gate
+act on <span class="math notranslate nohighlight">\(\R^2\otimes\R^2\)</span>, where <span class="math notranslate nohighlight">\(\R^2\)</span> is equipped with standard basis
+<span class="math notranslate nohighlight">\(\{e_1,e_2\}\)</span>. We will also neglect the fact that quantum states
+are actually vectors of norm <span class="math notranslate nohighlight">\(1\)</span>, which would enforce the Hadamard transformation
+to contain a scaling factor of <span class="math notranslate nohighlight">\(1/\sqrt{2}\)</span>.</p>
+<p>We require the quantum gate to act on the first qubit as Hadamard transformation
+and to leave the second qubit unchanged. <a class="reference internal" href="#thmProductMap">Theorem 2.3</a> shows how we can
+combine these separate actions on single qubits into a combined action on the
+two-qubit system - by merging them by tensor product. The combined quantum gate is</p>
+<div class="math notranslate nohighlight">
+\[
+H\otimes I\in\R^2\otimes\R^2\,.
+\]</div>
+<p>Quantum circuits are usually initialized by setting all qubits to
+logical false. In our example that would be
+<span class="math notranslate nohighlight">\(e_1\otimes e_1\)</span>. We will calculate the result
+of applying the just constructed quantum gate to this configuration:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+(H\otimes I)(e_1\otimes e_1) &amp;= H(e_1)\otimes I(e_1) \\
+&amp;= (e_1+e_2)\otimes e_1 \\
+&amp;= e_1 \otimes e_1+e_2\otimes e_1\,.
+\end{split}\]</div>
+</div>
+</div><div class="proof example admonition" id="exCnot">
+<p class="admonition-title"><span class="caption-number">Example 2.8 </span> (CNOT Gate)</p>
+<div class="example-content section" id="proof-content">
+<p>The CNOT gate is also acting on two qubits. CNOT stands for
+<em>Controlled NOT</em>. Qubit one is the <em>control bit</em>,
+qubit two the <em>target bit</em>. The control bit remains unchanged
+but will decide how the target bit will be manipulated. If
+the contol bit is set to <span class="math notranslate nohighlight">\(e_1\)</span>, the target bit
+will not be changed (modified by identity <span class="math notranslate nohighlight">\(I\)</span>). If
+the contol bit is set to <span class="math notranslate nohighlight">\(e_2\)</span>, the target bit
+will be inverted (modified by NOT gate <span class="math notranslate nohighlight">\(X\)</span>).
+The CNOT gate <span class="math notranslate nohighlight">\(CX\)</span> is implemented by</p>
+<div class="math notranslate nohighlight">
+\[
+CX=e_1\otimes e^1\otimes I+e_2\otimes e^2\otimes X\,.
+\]</div>
+<p>To analyze how this works, we will inspect both summands.
+We need to name indices. Let <span class="math notranslate nohighlight">\(i\)</span> be the
+covariant index of <span class="math notranslate nohighlight">\(CX\)</span> that belongs
+to the control bit and let <span class="math notranslate nohighlight">\(p\)</span> be the
+covariant index of <span class="math notranslate nohighlight">\(CX\)</span> that belongs
+to the target bit. For the arguments (qubits) we denote the
+control bit index by <span class="math notranslate nohighlight">\(k\)</span> and the target bit index by <span class="math notranslate nohighlight">\(l\)</span>.
+We will distinguish both control bit cases <span class="math notranslate nohighlight">\(e_1\)</span> and <span class="math notranslate nohighlight">\(e_2\)</span>,
+the argument of target bit is denoted by <span class="math notranslate nohighlight">\(v\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; C_{i,k}(C_{p.l}(e_1\otimes e^1\otimes I\otimes e_1\otimes v))
+  = e^1(e_1)e_1\otimes I(v)
+  = e_1\otimes v \,, \\
+&amp; C_{i,k}(C_{p.l}(e_2\otimes e^2\otimes X\otimes e_1\otimes v))
+  = e^2(e_1)e_2\otimes X(v)
+  = 0 \\
+\end{split}\]</div>
+<p>yield</p>
+<div class="math notranslate nohighlight">
+\[
+CX(e_1\otimes v)=e_1\otimes v
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; C_{i,k}(C_{p.l}(e_1\otimes e^1\otimes I\otimes e_2\otimes v))
+  = e^1(e_2)e_1\otimes I(v)
+  = 0 \,, \\      
+&amp; C_{i,k}(C_{p.l}(e_2\otimes e^2\otimes X\otimes e_2\otimes v))
+  = e^2(e_2)e_2\otimes X(v)
+  = e_2\otimes X(v)
+\end{split}\]</div>
+<p>yield</p>
+<div class="math notranslate nohighlight">
+\[
+CX(e_2\otimes v)=e_2\otimes X(v) \,.
+\]</div>
+<p>We want to process the outcome of the previous example. We compute</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+CX(e_1\otimes e_1+e_2\otimes e_1) &amp;= CX(e_1\otimes e_1)+CX(e_2\otimes e_1) \\
+&amp;= e_1\otimes e_1+e_2\otimes X(e_1) \\
+&amp;= e_1\otimes e_1+e_2\otimes e_2 \,.
+\end{split}\]</div>
+<p>Referring to <a class="reference internal" href="#exSeparation">Example 2.1</a>, we have shown by example, that
+CNOT maps an unentangled argument to an entangled image. Hence, CNOT can not be
+expressed by a separable tensor. Otherwise <a class="reference internal" href="#thmProductMap">Theorem 2.3</a> would
+ensure that every unentangled argument yields an unentangled image.</p>
+<p>Most sources on Quantum Computing give the CNOT gate as a
+<span class="math notranslate nohighlight">\(4\times 4\)</span>-matrix, e.g. (depending on index order),</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+M=
+\begin{bmatrix} 
+  1 &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; 1 &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 1 \\
+  0 &amp; 0 &amp; 1 &amp; 0
+\end{bmatrix}\,,
+\end{split}\]</div>
+<p>whereas in our definition the CNOT gate belongs to
+<span class="math notranslate nohighlight">\((\R^2\otimes\R^2)\otimes(\R^2\otimes\R^2)\,.\)</span>
+How does this fit together?</p>
+<p>Interpreting the tensor as linear map, as we have done, it is an element
+of <span class="math notranslate nohighlight">\(\cL(\R^2\otimes\R^2,\R^2\otimes\R^2)\)</span>, modifying the
+(possibly entangled) value of two qubits. In terms of coefficients this
+linear map is represented by a 4-dimensional array
+(<span class="math notranslate nohighlight">\(2\times 2\times 2\times 2\)</span>) and is mapping a
+<span class="math notranslate nohighlight">\(2\times 2\)</span>-matrix to a <span class="math notranslate nohighlight">\(2\times 2\)</span>-matrix.
+But, grouping both covariant indices (inputs of control and target bit) and both
+contravariant indices (outputs of control and target bit) of the tensor,
+it stands for a linear map of <span class="math notranslate nohighlight">\(\cL(\R^4,\R^4)\)</span>. We enumerate
+the basis or <span class="math notranslate nohighlight">\(\R^4\simeq\R^2\otimes\R^2\)</span>
+in the order (control bit left, target bit right)
+<span class="math notranslate nohighlight">\(e_1\otimes e_1,\,e_1\otimes e_2,\,e_2\otimes e_1,\,e_2\otimes e_2\)</span>.
+Evaluating the effect of <span class="math notranslate nohighlight">\(CX\)</span> to these basis elements,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+e_1\otimes e_1\longrightarrow e_1\otimes e_1\,,\\
+e_1\otimes e_2\longrightarrow e_1\otimes e_2\,,\\
+e_2\otimes e_1\longrightarrow e_2\otimes e_2\,,\\
+e_2\otimes e_2\longrightarrow e_2\otimes e_1\,,\\
+\end{split}\]</div>
+<p>we obtain indeed <span class="math notranslate nohighlight">\(M\)</span> as matrix representation of <span class="math notranslate nohighlight">\(CX\)</span>.</p>
+</div>
+</div><div class="proof example admonition" id="exCircuit">
+<p class="admonition-title"><span class="caption-number">Example 2.9 </span> (Entanglement Circuit)</p>
+<div class="example-content section" id="proof-content">
+<p>A quantum circuit is a sequence of quantum gates. We construct one out of the
+previous two examples and chain an Hadamard gate and a CNOT gate:</p>
+<div class="math notranslate nohighlight">
+\[
+CX\circ (H\otimes I)\,.
+\]</div>
+<p>This represents a simple quantum circuit for obtaining an entangled state out of
+all-falsy initial configuration.</p>
+<div class="math notranslate nohighlight">
+\[
+(CX\circ (H\otimes I))(e_1\otimes e_1)=e_1\otimes e_1+e_2\otimes e_2\,.
+\]</div>
+</div>
+</div></div>
+<div class="section" id="tensor-cheat-sheet">
+<h2><span class="section-number">2.6. </span>Tensor Cheat Sheet<a class="headerlink" href="#tensor-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<p>We want to reflect and summarize the discoveries of this chapter.
+We had started with the motivation to bring elements of
+Linear Algebra into a general framework. In good old Computer
+Science tradition its building blocks are objects and operations
+on these objects. There is only one type of object, the
+<em><strong>tensor</strong></em>, which can act as vector,
+dual vector or linear map depending on the context. There are
+two major operations, the <em><strong>tensor product</strong></em>
+and the <em><strong>contraction</strong></em>. The tensor
+product is used to combine tensors to bigger ones, e.g. a
+linear map can be built out of the tensor product of a
+vector and a dual vector. The contraction, however, reduces the
+size (order) of a tensor by summing along a covariant index
+and associated contravariant index. It generalizes the
+matrix-vector-product. Together tensor product and contraction
+can be used to mimic the application of a linear map to a vector,
+or to express the composition of linear maps. In addition,
+as we have pointed out, tensors do not only allow to express concepts
+of Linear Algebra in a consistent way, they even add multilinearity
+to those concepts.</p>
+<div class="admonition-vector admonition">
+<p class="admonition-title">Vector</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; v=\sum\limits_{k=1}^nv^ke_k\in V \\
+&amp; w=\sum\limits_{l=1}^mw^lf_l\in W
+\end{split}\]</div>
+</div>
+<div class="admonition-dual-vector admonition">
+<p class="admonition-title">Dual Vector</p>
+<div class="math notranslate nohighlight">
+\[
+w^\ast=\sum\limits_{l=1}^mw_lf^l\in W^\ast
+\]</div>
+</div>
+<div class="admonition-tensor-product admonition">
+<p class="admonition-title">Tensor Product</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; T=\sum\limits_{j=1}^m\sum\limits_{i=1}^nT_i^j\,f_j\otimes e^i
+  \in W\otimes V^\ast\simeq V^\ast\otimes W^{\ast\ast} \\
+&amp; S=\sum\limits_{q=1}^r\sum\limits_{p=1}^mS_p^q\,g_q\otimes f^p
+  \in X\otimes W^\ast
+\end{split}\]</div>
+</div>
+<div class="admonition-linear-map admonition">
+<p class="admonition-title">Linear Map</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; T(v)=C_{i,k}(T\otimes v)
+      =\sum\limits_{j=1}^m\sum\limits_{i=1}^nT_i^jv^if_j
+      \in\cL(V,W) \\
+&amp; S(w)=C_{p,l}(S\otimes w)
+      =\sum\limits_{q=1}^r\sum\limits_{p=1}^mS_p^qw^pg_q
+      \in\cL(W,X)
+\end{split}\]</div>
+</div>
+<div class="admonition-dual-map admonition">
+<p class="admonition-title">Dual Map</p>
+<div class="math notranslate nohighlight">
+\[
+T^\ast(w^\ast)
+  =C_{l,j}(T\otimes w^\ast)
+  =\sum\limits_{i=1}^n\sum\limits_{j=1}^mT_i^jw_je^i
+  \in\cL(W^\ast,V^\ast)
+\]</div>
+</div>
+<div class="admonition-composed-linear-map admonition">
+<p class="admonition-title">Composed Linear Map</p>
+<div class="math notranslate nohighlight">
+\[
+(S\circ T)(v)
+  =C_{p,j}(C_{i,k}(S\otimes T\otimes v))
+  =\sum\limits_{q=1}^r\sum\limits_{p=1}^m\sum\limits_{i=1}^n
+    S_p^qT_i^pv^ig_q
+  \in\cL(V,X)
+\]</div>
+</div>
+<div class="admonition-bilinear-map admonition">
+<p class="admonition-title">Bilinear Map</p>
+<div class="math notranslate nohighlight">
+\[
+T(v_1,v_2)
+  =C_{i_1,k_1}(C_{i_2,k_2}(T\otimes v_1\otimes v_2))
+  =\sum\limits_{j=1}^m\sum\limits_{i_1=1}^{n_1}\sum\limits_{i_2=1}^{n_2} 
+    T_{i_1i_2}^jv^{i_1}_1v^{i_2}_2f_j
+  \in\cL^2(V_1,V_2\,;\,W)
+\]</div>
+</div>
+<div class="admonition-multilinear-map admonition">
+<p class="admonition-title">Multilinear Map</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+T(v_1,\ldots,v_s) 
+  &amp;=(C_{i_1,k_1}\circ\ldots\circ C_{i_s,k_s})(T\otimes v_1\otimes\ldots\otimes v_s) \\
+  &amp;=\sum\limits_{j=1}^m
+    \sum\limits_{i_1=1}^{n_1}
+    \cdots
+    \sum\limits_{i_s=1}^{n_s} 
+    T_{i_1\ldots i_s}^j
+    v^{i_1}_1\cdots v^{i_s}_sf_j
+  \in\cL^s(V_1,\ldots,V_s \, ; \, W)
+\end{split}\]</div>
+</div>
+<div class="admonition-tensor-product-of-linear-maps admonition">
+<p class="admonition-title">Tensor Product of Linear Maps</p>
+<div class="math notranslate nohighlight">
+\[
+(T\otimes S)(v\otimes x)=T(v)\otimes S(x)\in\cL(V\otimes X,W\otimes Y)
+\]</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./doc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="foundation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">1. </span>Foundation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bibliography</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Markus Wappler, Enterprise Application Development Group, University of Applied Sciences Zittau/Görlitz<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
