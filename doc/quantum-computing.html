@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome &#8212; Tensor Networks for Computer Scientists</title>
+    <title>5. Quantum Computing &#8212; Tensor Networks for Computer Scientists</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -57,7 +57,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Foundation" href="foundation.html" />
+    <link rel="next" title="6. Matrix Product State" href="matrix-product-state.html" />
+    <link rel="prev" title="4. Tensors and Combinatorics" href="combinatorics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -95,13 +96,13 @@ const thebe_selector_output = ".output, .cell_output"
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
    Welcome
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="foundation.html">
    1. Foundation
@@ -122,8 +123,8 @@ const thebe_selector_output = ".output, .cell_output"
    4. Tensors and Combinatorics
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="quantum-computing.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    5. Quantum Computing
   </a>
  </li>
@@ -190,7 +191,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/doc/welcome.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/doc/quantum-computing.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -210,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/oremark24/tensor-networks/issues/new?title=Issue%20on%20page%20%2Fdoc/welcome.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/oremark24/tensor-networks/issues/new?title=Issue%20on%20page%20%2Fdoc/quantum-computing.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -238,7 +239,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome</h1>
+                <h1>Quantum Computing</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -249,47 +250,16 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="welcome">
-<h1>Welcome<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to the wonderful world of <em>tensor networks</em>. Tensor … what?
-Since Google has launched <a class="reference external" href="https://www.tensorflow.org/">TensorFlow</a>,
-tensors are on everyone’s lips. Ok, everyone refers to mostly
-computer scientists. But with increased importance of Machine Learning,
-tensors are becoming popular as well.</p>
-<p>As we know, some stuff the cool kids are using, are actually rediscoveries
-of old almost forgotten ideas. Tensors are an old concept - and not even forgotten,
-but bullet-proof tool in physical theories. The word <em>tensor</em> was introduced in 1846
-by <a class="reference external" href="https://de.wikipedia.org/wiki/William_Rowan_Hamilton">William Rowan Hamilton</a>,
-although it had a different meaning back then. The word refers to
-the <a class="reference external" href="https://en.wikipedia.org/wiki/Cauchy_stress_tensor">stress principle from continuum mechanics</a>.
-Applying force to a rigid body will cause stress which justifies the term
-<em>tense</em>. This has been the starting point of success story and tensors have become indispensable in
-Physics. One theory heavily relying on, so called <em>tensor product spaces</em>, is Quantum Mechanics.
-So, everyone who wants to understand <em>Quantum Computing</em> has to deal with tensors.</p>
-<p>But what are <em>tensor networks</em>? These are ensembles of tensors, interacting with eachother.
-This explanation appears simple on first sight, but tensor networks can easily become
-a rather complex research topic. But we will untangle them - literally, but more on
-<em>entanglement</em> later. Having in mind, that tensor networks offer interesting applications
-in machine learning and quantum computing, check out this course. Have fun
-with a cool and sometimes mind-boggling framework!</p>
-<p><strong>Contents</strong>:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="foundation.html">1. Foundation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tensors.html">2. Tensors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tensor-networks.html">3. Tensor Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="combinatorics.html">4. Tensors and Combinatorics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quantum-computing.html">5. Quantum Computing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="matrix-product-state.html">6. Matrix Product State</a></li>
-<li class="toctree-l1"><a class="reference internal" href="machine-learning.html">7. Tensor Machine Learning</a></li>
+  <div class="tex2jax_ignore mathjax_ignore section" id="quantum-computing">
+<h1><span class="section-number">5. </span>Quantum Computing<a class="headerlink" href="#quantum-computing" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Inner product spaces</p></li>
+<li><p>Unitary and Hermitian Maps (and properties)</p></li>
+<li><p>Dirac notation</p></li>
+<li><p>Quantum Computing (Operations and Measurements)</p></li>
+<li><p>Quantum Circuits are Tensor Networks</p></li>
+<li><p>(Approximating Tensor Networks with Quantum Circuits)</p></li>
 </ul>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">ToDo</a></li>
-</ul>
-</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -316,11 +286,18 @@ with a cool and sometimes mind-boggling framework!</p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="foundation.html" title="next page">
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="combinatorics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Tensors and Combinatorics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="matrix-product-state.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Foundation</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Matrix Product State</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
