@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Tensor Networks &#8212; Tensor Networks for Computer Scientists</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >let toggleHintShow = 'Click to show';</script>
+    <script >let toggleHintHide = 'Click to hide';</script>
+    <script >let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script >const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bibliography" href="bibliography.html" />
+    <link rel="prev" title="2. Tensors" href="tensors.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Tensor Networks for Computer Scientists</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="welcome.html">
+   Welcome
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="foundation.html">
+   1. Foundation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tensors.html">
+   2. Tensors
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   3. Tensor Networks
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="bibliography.html">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/doc/tensor-networks.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/oremark24/tensor-networks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/oremark24/tensor-networks/issues/new?title=Issue%20on%20page%20%2Fdoc/tensor-networks.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensor-network-diagrams">
+   3.1. Tensor Network Diagrams
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wiring-and-kronecker-delta">
+   3.2. Wiring and Kronecker Delta
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutations-and-levi-civita-symbol">
+   3.3. Permutations and Levi-Civita Symbol
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Tensor Networks</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensor-network-diagrams">
+   3.1. Tensor Network Diagrams
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wiring-and-kronecker-delta">
+   3.2. Wiring and Kronecker Delta
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#permutations-and-levi-civita-symbol">
+   3.3. Permutations and Levi-Civita Symbol
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="tensor-networks">
+<h1><span class="section-number">3. </span>Tensor Networks<a class="headerlink" href="#tensor-networks" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tensor-network-diagrams">
+<h2><span class="section-number">3.1. </span>Tensor Network Diagrams<a class="headerlink" href="#tensor-network-diagrams" title="Permalink to this headline">¶</a></h2>
+<p>In the previous chapter we have introduced tensors and operations on
+tensors. Tensor products and contractions offer ways to compose
+existing tensors to new ones. Consider for example the tensor of
+order-<span class="math notranslate nohighlight">\((2,1)\)</span> tensor</p>
+<div class="math notranslate nohighlight" id="equation-eqnnetwork">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-eqnnetwork" title="Permalink to this equation">¶</a></span>\[N=\sum\limits_{i=1}^n\sum\limits_{k=1}^r\sum\limits_{l=1}^s\sum\limits_{j=1}^m
+  T^i_jS^{jl}_k\,e_i\otimes f^k\otimes g_l\,.\]</div>
+<p>It was composed from an order-<span class="math notranslate nohighlight">\((1,1)\)</span> tensor
+<span class="math notranslate nohighlight">\(T\)</span> and an order-<span class="math notranslate nohighlight">\((2,1)\)</span> tensor
+<span class="math notranslate nohighlight">\(S\)</span>. Both have been combined by a
+tensor product (yielding 5 tensor indices) and then zipped by a contraction
+(yielding 3 remaining tensor indices and the summation index
+<span class="math notranslate nohighlight">\(j\)</span>).</p>
+<p>In literature various opinions (definitions) are circulating on what
+<em>tensor networks</em> are. Some call already a decomposition of a
+tensor by means of tensor products and contractions a tensor networks.
+For example the <em>Matrix Product State</em>, a decomposition of a
+tensor into a sum of matrix products is often referred as a simplistic
+instance of a tensor network. Others connect the term tensor network with
+the graphical language (notation) we will introduce shortly. Indeed,
+<em>tensor network diagrams</em> join shapes representing tensors with
+wires. Hence, such diagrams display networks of tensors wired together.
+Defining the name is not the most important thing, so we will give a
+shaky definition that follows the notion of decomposition into tensors,
+but use tensor networks from now on always in conjunction with
+illustrations exploiting the graphical language.</p>
+<div class="proof definition admonition" id="defNetwork">
+<p class="admonition-title"><span class="caption-number">Definition 3.1 </span> (Tensor Network)</p>
+<div class="definition-content section" id="proof-content">
+<p>A <em><strong>tensor network</strong></em> is a tensor, composed from other tensors using tensor
+products and contractions.</p>
+</div>
+</div><p>Having clarified this, let us straight away jump into the graphical notation
+for tensor networks. It was introduced by Roger Penrose in
+<span id="id1">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span>. Jacob Biamonte has refined the way certain shapes underpin
+the structure of tensors <span id="id2">[<a class="reference internal" href="bibliography.html#id3" title="Jacob Biamonte. Lectures on quantum tensor networks. 2019. URL: https://arxiv.org/abs/1912.10049, doi:10.48550/ARXIV.1912.10049.">Bia19</a>]</span>, we will follow mostly his suggestions.</p>
+<div class="proof remark admonition" id="illuDiagrams">
+<p class="admonition-title"><span class="caption-number">Remark 3.1 </span> (Tensor Network Diagrams)</p>
+<div class="remark-content section" id="proof-content">
+<p>Each tensor is represented by a geometric shape. Indices are represented by
+legs connected to the shape. We will distinguish covariant and contravariant
+indices by consideration of the leg direction. Covariant legs point to the
+left or up, contravariant legs point to the right or down. The tensor</p>
+<div class="math notranslate nohighlight">
+\[
+T=\sum\limits_{i=1}^n\sum\limits_{j=1}^mT^i_j\,e_i\otimes h^j
+\]</div>
+<p>can be drawn with left-right orientation as follows.</p>
+<a class="reference internal image-reference" href="../_images/intro-t.svg"><img alt="../_images/intro-t.svg" class="align-center" height="52em" src="../_images/intro-t.svg" /></a>
+<p>Orienting the legs up-down and describe tensor</p>
+<div class="math notranslate nohighlight">
+\[
+S=\sum\limits_{k=1}^r\sum\limits_{p=1}^m\sum\limits_{l=1}^s
+  S^{pl}_k\,f^k\otimes h_p\otimes g_l
+\]</div>
+<p>as seen here.</p>
+<a class="reference internal image-reference" href="../_images/intro-s.svg"><img alt="../_images/intro-s.svg" class="align-center" height="102em" src="../_images/intro-s.svg" /></a>
+<p>Also having mixed orientations is possible.</p>
+<a class="reference internal image-reference" href="../_images/intro-s2.svg"><img alt="../_images/intro-s2.svg" class="align-center" height="75em" src="../_images/intro-s2.svg" /></a>
+<p>The tensor product is displayed by drawing the factor tensor next to each other. We draw</p>
+<div class="math notranslate nohighlight">
+\[
+T\otimes S=
+  \sum\limits_{i=1}^n
+  \sum\limits_{j=1}^m
+  \sum\limits_{k=1}^r
+  \sum\limits_{p=1}^m
+  \sum\limits_{l=1}^s
+  T^i_jS^{pl}_k\,
+  e_i\otimes h^j\otimes f^k\otimes h_p\otimes g_l
+\]</div>
+<p>as follows.</p>
+<a class="reference internal image-reference" href="../_images/intro-t-prod-s.svg"><img alt="../_images/intro-t-prod-s.svg" class="align-center" height="110em" src="../_images/intro-t-prod-s.svg" /></a>
+<p>The contraction of two indices will be represented by connecting
+the respective legs. We will call this a wire. The tensor of equation
+<a class="reference internal" href="#equation-eqnnetwork">(3.1)</a> is obtained by</p>
+<div class="math notranslate nohighlight">
+\[N=C_{j,p}(T\otimes S)\]</div>
+<p>and can be displayed as shown in this picture.</p>
+<a class="reference internal image-reference" href="../_images/intro-t-prod-s-contracted.svg"><img alt="../_images/intro-t-prod-s-contracted.svg" class="align-center" height="110em" src="../_images/intro-t-prod-s-contracted.svg" /></a>
+<p>The naming of indices is an implementation detail that might be omitted
+by not labeling certain (or all) legs. In general objects might not be
+named if not in focus. Furthermore we will be free to
+use symbols, containers, etc. if it supports understanding.</p>
+<a class="reference internal image-reference" href="../_images/intro-equation.svg"><img alt="../_images/intro-equation.svg" class="align-center" height="130em" src="../_images/intro-equation.svg" /></a>
+</div>
+</div><p>So far the general alphabet of graphical tensor language is already defined.
+We will now go over some specific words.</p>
+<div class="proof remark admonition" id="illuVectors">
+<p class="admonition-title"><span class="caption-number">Remark 3.2 </span> (Vectors)</p>
+<div class="remark-content section" id="proof-content">
+<p>Vectors are represented by triangular shapes, e.g.</p>
+<div class="math notranslate nohighlight">
+\[
+v=\sum\limits_{i=1}^nv^ie_i\in V \,.
+\]</div>
+<a class="reference internal image-reference" href="../_images/vectors-basic.svg"><img alt="../_images/vectors-basic.svg" class="align-center" height="90em" src="../_images/vectors-basic.svg" /></a>
+<p>We will apply this shape also to elements from tensor product spaces
+that have only covariant indices, e.g.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp;T=\sum\limits_{i=1}^n\sum\limits_{j=1}^m
+  T^{ij}\,e_i\otimes f_j
+  \in V\otimes W \,, \\
+&amp;S=\sum\limits_{i=1}^n\sum\limits_{j=1}^m\sum\limits_{k=1}^r
+  S^{ijk}\,e_i\otimes f_j\otimes g_k
+  \in V\otimes W\otimes X \,.
+\end{split}\]</div>
+<a class="reference internal image-reference" href="../_images/vectors-product.svg"><img alt="../_images/vectors-product.svg" class="align-center" height="90em" src="../_images/vectors-product.svg" /></a>
+</div>
+</div><div class="proof remark admonition" id="illuDuals">
+<p class="admonition-title"><span class="caption-number">Remark 3.3 </span> (Dual Vectors)</p>
+<div class="remark-content section" id="proof-content">
+<p>Contrarily, the shape is flipped when standing for an element of
+a dual space or tensor product of dual spaces, e.g.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp;v=\sum\limits_{i=1}^nv_ie^i\in V^\ast \,, \\ 
+&amp;T=\sum\limits_{i=1}^n\sum\limits_{j=1}^m
+  T_{ij}\,e^i\otimes f^j
+  \in V^\ast\otimes W^\ast \,.
+\end{split}\]</div>
+<a class="reference internal image-reference" href="../_images/vectors-dual.svg"><img alt="../_images/vectors-dual.svg" class="align-center" height="90em" src="../_images/vectors-dual.svg" /></a>
+</div>
+</div><div class="proof remark admonition" id="illuGeneral">
+<p class="admonition-title"><span class="caption-number">Remark 3.4 </span> (General Tensors)</p>
+<div class="remark-content section" id="proof-content">
+<p>All tensors combining vector parts and dual parts will usually
+be displayed as a square - with exception of specific tensors
+that shall be visually distinguishable. We have already seen
+examples in <a class="reference internal" href="#illuDiagrams">Remark 3.1</a>, let us
+display tensor</p>
+<div class="math notranslate nohighlight">
+\[
+N=\sum\limits_{i=1}^n\sum\limits_{k=1}^r\sum\limits_{l=1}^s 
+  N^{il}_k\,e_i\otimes f^k\otimes g_l
+\]</div>
+<p>from <a class="reference internal" href="#equation-eqnnetwork">(3.1)</a> again.</p>
+<a class="reference internal image-reference" href="../_images/general-n.svg"><img alt="../_images/general-n.svg" class="align-center" height="60em" src="../_images/general-n.svg" /></a>
+<p>A first species that will own a separate shape to reveal its specifics are
+tensors with diagonal coefficients matrix, e.g.</p>
+<div class="math notranslate nohighlight">
+\[
+d=\sum\limits_{i=1}^nd^i_i\,e_i\otimes e^i\in V\otimes V^\ast\,.
+\]</div>
+<p>These diagonal tensors are, so to speak, a hybrid of a vector and
+a tensor having a covariant as well as a contravariant index. This
+is reflected by combining the shapes of a vector and a dual vector
+into a diamond shape.</p>
+<a class="reference internal image-reference" href="../_images/general-diagonal.svg"><img alt="../_images/general-diagonal.svg" class="align-center" height="75em" src="../_images/general-diagonal.svg" /></a>
+</div>
+</div><p>Now we are ready to combine tensors by connecting legs (indices) with
+wires (contractions). A fundamental ingredient of Linear Algebra
+are linear maps. In the previous chapter we have seen, how they can
+be formulated in terms of tensors. We will translate the formulas
+obtained there into the graphical tensor language. The outcome
+will match our intuition.</p>
+<div class="proof remark admonition" id="illuLinMaps">
+<p class="admonition-title"><span class="caption-number">Remark 3.5 </span> (Linear Maps)</p>
+<div class="remark-content section" id="proof-content">
+<p>We recall, that we can write the application of a linear map
+<span class="math notranslate nohighlight">\(T\)</span> to a vector <span class="math notranslate nohighlight">\(v\)</span> as the tensor product of both regarded as tensors:</p>
+<div class="math notranslate nohighlight">
+\[
+T(v)=C_{i,k}(T\otimes v)\,.
+\]</div>
+<p>Hence, this can be drawn as follows.</p>
+<a class="reference internal image-reference" href="../_images/lin-maps-Tv.svg"><img alt="../_images/lin-maps-Tv.svg" class="align-center" height="90em" src="../_images/lin-maps-Tv.svg" /></a>
+<p>Similarly, we can visualize the application of a dual map</p>
+<div class="math notranslate nohighlight">
+\[
+T^\ast(v^\ast)=C_{k,j}(T\otimes v^\ast)
+\]</div>
+<p>as:</p>
+<a class="reference internal image-reference" href="../_images/lin-maps-vT.svg"><img alt="../_images/lin-maps-vT.svg" class="align-center" height="90em" src="../_images/lin-maps-vT.svg" /></a>
+<p>Actually, the same tensor can be interpreted in both ways.
+If we connect the covariant index with a vector, then it
+is acting as linear map. The remaining open index of the
+construct is a contravariant index, symbolizing the
+image vector. If we connect the contravariant index of the
+tensor with a dual vector, then we have visualized
+the application of a dual linear map. The resulting image
+possesses a covariant index, thus being the dual image
+vector.</p>
+<p>Chaining linear maps is straight forward as well. This is
+achieved by contracting the tensor product of the tensors
+representing the maps.</p>
+<div class="math notranslate nohighlight">
+\[
+(S\circ T)(v)=C_{p,j}(C_{i,k}(S\otimes T\otimes v))
+\]</div>
+<p>Hence, the picture shows what intution expects, the
+two tensors symbolizing the maps have to be wired together.</p>
+<a class="reference internal image-reference" href="../_images/lin-maps-STv.svg"><img alt="../_images/lin-maps-STv.svg" class="align-center" height="90em" src="../_images/lin-maps-STv.svg" /></a>
+<p>Hence, the picture shows what intution expects, the
+two tensors symbolizing the maps have to be wired together.</p>
+<p>A bilinear map</p>
+<div class="math notranslate nohighlight">
+\[
+T(v_1,v_2)=C_{i_1,k_1}(C_{i_2,k_2}(T\otimes v_1\otimes v_2))
+\]</div>
+<p>extends this picture simply by adding and contracting the second argument
+to the map tensor.</p>
+<a class="reference internal image-reference" href="../_images/lin-maps-Tvw.svg"><img alt="../_images/lin-maps-Tvw.svg" class="align-center" height="120em" src="../_images/lin-maps-Tvw.svg" /></a>
+<p>Multilinear maps would extend this picture even further by adding as many
+argument vectors as needed.</p>
+<p>In case that the map tensor can be decomposed into a tensor product,
+enabling equation</p>
+<div class="math notranslate nohighlight">
+\[
+(T_1\otimes T_2)(v_1\otimes v_2)=T_1(v_1)\otimes T_2(v_2)\,,
+\]</div>
+<p>the decomposition is shown as two maps next to each other. Note, that
+this complies with the figure of a tensor product - both
+tensors will be drawn independently without any interaction (as long as no
+contraction is involved).</p>
+<a class="reference internal image-reference" href="../_images/lin-maps-TvSw.svg"><img alt="../_images/lin-maps-TvSw.svg" class="align-center" height="120em" src="../_images/lin-maps-TvSw.svg" /></a>
+</div>
+</div><div class="proof remark admonition" id="illuScalar">
+<p class="admonition-title"><span class="caption-number">Remark 3.6 </span> (Scalars, Complete Contraction)</p>
+<div class="remark-content section" id="proof-content">
+<p>So far we have not considered the possibility of a scalar (element of the underlying field).
+Since a scalar value can be treated as tensor without indices, it is exactly drawn like this,
+as shape without legs.</p>
+<a class="reference internal image-reference" href="../_images/scalar.svg"><img alt="../_images/scalar.svg" class="align-center" height="50em" src="../_images/scalar.svg" /></a>
+<p>Having used a circle is arbitrary - actually it does not
+matter, because we will very rarely draw isoloated
+scalar tensors. More common is the case, that a complex
+tensor network is fully contracted to a scalar. We give a
+few examples (with limited complexity though) here.
+Referring to <a class="reference internal" href="tensors.html#exMatrixContraction">Example 2.3</a>, the
+trace of a matrix can be expressed as fully contracted
+tensor:</p>
+<div class="math notranslate nohighlight">
+\[
+\tr(T)=C_{i,j}(T) \,.
+\]</div>
+<a class="reference internal image-reference" href="../_images/scalar-trace.svg"><img alt="../_images/scalar-trace.svg" class="align-center" height="72em" src="../_images/scalar-trace.svg" /></a>
+<p>Using the way of visualizing composed linear maps, the <em>trace</em> of
+a matrix product (composed linear maps) would be:</p>
+<a class="reference internal image-reference" href="../_images/scalar-trace2.svg"><img alt="../_images/scalar-trace2.svg" class="align-center" height="76em" src="../_images/scalar-trace2.svg" /></a>
+<p>Another operation from Linear Algebra that results in a scalar value is the <em>inner product</em>.
+We consider the case of the inner product space being <span class="math notranslate nohighlight">\(\C^n\)</span> equipped with the standard basis
+(which is orthonormal) <span class="math notranslate nohighlight">\(\{e_1,\ldots,e_n\}\)</span>. We can calculate the inner product of
+<span class="math notranslate nohighlight">\(v=\sum\limits_{i=1}^nv^ie_i\)</span> and <span class="math notranslate nohighlight">\(w=\sum\limits_{j=1}^nw^je_j\)</span> by their coefficients:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ip{v}{w} 
+&amp;= \IP{\sum\limits_{i=1}^nv^ie_i}{\sum\limits_{j=1}^nw^je_j} \\
+&amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^n
+  \bar{v}^iw^j\underbrace{\ip{e_i}{e_j}}_{=\delta_{ij}} \\
+&amp;= \sum\limits_{i=1}^n\bar{v}^iw^i\,.
+\end{split}\]</div>
+<p>On the other hand, let <span class="math notranslate nohighlight">\(\bar{v}=\sum\limits_{i=1}^n\bar{v}_ie^i\)</span>
+be a dual vector, that has the conjugate complex coefficients of <span class="math notranslate nohighlight">\(v\)</span>
+(i.e. <span class="math notranslate nohighlight">\(\bar{v}^i=\bar{v}_i\)</span>) in the dual standard basis. We calculate</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+C_{i,j}(\bar{v}\otimes w)
+&amp;= C_{i,j}\Bigg(\sum\limits_{i=1}^n\sum\limits_{j=1}^n
+  \bar{v}_iw^j\,e^i\otimes e_j\Bigg) \\
+&amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^n
+  \bar{v}_iw^j\underbrace{e^i(e_j)}_{=\delta^i_j} \\
+&amp;= \sum\limits_{i=1}^n\underbrace{\bar{v}_i}_{=\bar{v}^i}w^i \\
+&amp;= \ip{v}{w} \,.
+\end{split}\]</div>
+<p>Thus, the inner product of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> can be expressed with a tensor product
+using <span class="math notranslate nohighlight">\(\bar{v}\)</span> instead of <span class="math notranslate nohighlight">\(v\)</span>. The tensor network diagram can be drawn accordingly.</p>
+<a class="reference internal image-reference" href="../_images/scalar-ip.svg"><img alt="../_images/scalar-ip.svg" class="align-center" height="90em" src="../_images/scalar-ip.svg" /></a>
+</div>
+</div><p>With this we have introduced the basic building blocks of tensor network
+diagrams. As we see, they provide a bird’s eye perspective on tensor networks.
+Certain implementation details are abstracted away from the viewer, such as
+index labels or index order. For example, the tensor behind</p>
+<a class="reference internal image-reference" href="../_images/general-t.svg"><img alt="../_images/general-t.svg" class="align-center" height="60em" src="../_images/general-t.svg" /></a>
+<p>could be</p>
+<div class="math notranslate nohighlight">
+\[
+T=\sum\limits_{i=1}^n\sum\limits_{j=1}^m\sum\limits_{k=1}^r 
+  T^{ij}_k\,e_i\otimes f_j\otimes g^k \in V\otimes W\otimes X^\ast
+  \,,
+\]</div>
+<p>or with other index names</p>
+<div class="math notranslate nohighlight">
+\[
+T=\sum\limits_{p=1}^n\sum\limits_{q=1}^m\sum\limits_{t=1}^r 
+  T^{pq}_t\,e_p\otimes f_q\otimes g^t \in V\otimes W\otimes X^\ast
+  \,,
+\]</div>
+<p>or changing the index order</p>
+<div class="math notranslate nohighlight">
+\[
+T=\sum\limits_{k=1}^r \sum\limits_{j=1}^m\sum\limits_{i=1}^n
+  T^{ji}_k\,g^k\otimes f_j\otimes e_i \in X^\ast\otimes W\otimes V
+  \,,
+\]</div>
+<p>or an object in another space</p>
+<div class="math notranslate nohighlight">
+\[
+T=\sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n
+  T^{ij}_k\,e_i\otimes e_j\otimes e^k \in \R^n\otimes\R^n\otimes\R^n
+  \,.
+\]</div>
+<p>However, we want to emphasize that certain properties are strict and do not allow for
+ambiguity. The following tensor network diagrams refer to different object because the
+amounts of covariant and contravariant (the tensor’s order) do matter.</p>
+<a class="reference internal image-reference" href="../_images/general-neq.svg"><img alt="../_images/general-neq.svg" class="align-center" height="60em" src="../_images/general-neq.svg" /></a>
+<p>But we need to be careful, indices might not be interchangeable when tensor’s internal
+mode of operation is known and not symmetric. Consider e.g.
+<span class="math notranslate nohighlight">\(T=e^1\otimes e^2\in\R^2\otimes\R^2\)</span> with <span class="math notranslate nohighlight">\(\{e^1,e^2\}\)</span> being dual standard
+basis. Then the diagrams</p>
+<a class="reference internal image-reference" href="../_images/general-neq2.svg"><img alt="../_images/general-neq2.svg" class="align-center" height="160em" src="../_images/general-neq2.svg" /></a>
+<p>are not equal, the left one contracts to value <span class="math notranslate nohighlight">\(1\)</span>, the right one contracts to value <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</div>
+<div class="section" id="wiring-and-kronecker-delta">
+<h2><span class="section-number">3.2. </span>Wiring and Kronecker Delta<a class="headerlink" href="#wiring-and-kronecker-delta" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(\delta^i_j\)</span></p>
+</div>
+<div class="section" id="permutations-and-levi-civita-symbol">
+<h2><span class="section-number">3.3. </span>Permutations and Levi-Civita Symbol<a class="headerlink" href="#permutations-and-levi-civita-symbol" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(\varepsilon_{ijk}\)</span></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./doc"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="tensors.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Tensors</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bibliography.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bibliography</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Markus Wappler, Enterprise Application Development Group, University of Applied Sciences Zittau/Görlitz<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
