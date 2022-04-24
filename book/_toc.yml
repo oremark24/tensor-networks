@@ -8,5 +8,6 @@ parts:
     chapters:
     - file: doc/foundation
     - file: doc/tensors
+    - file: doc/tensor-networks
   - chapters: 
     - file: doc/bibliography
