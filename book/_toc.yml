@@ -9,6 +9,10 @@ parts:
     - file: doc/foundation
     - file: doc/tensors
     - file: doc/tensor-networks
+    - file: doc/combinatorics
+    - file: doc/quantum-computing
+    - file: doc/matrix-product-state
+    - file: doc/machine-learning
   - chapters: 
     - file: doc/bibliography
     - file: doc/todo
