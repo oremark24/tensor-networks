@@ -1,0 +1,6 @@
+# ToDo
+
+- Compare chapter __Tensors__ with old structure
+- Compare chapter __Tensor Networks__ with old structure
+- Add a caption to every picture
+- Move parts on __Inner products__ from chapter __Tensors__ to beginning of __Quantum__ chapter

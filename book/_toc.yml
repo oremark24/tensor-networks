@@ -11,3 +11,4 @@ parts:
     - file: doc/tensor-networks
   - chapters: 
     - file: doc/bibliography
+    - file: doc/todo
