@@ -600,7 +600,7 @@ T =
 $$
 
 ```{image} ../img/tensors/order-3-grouped.svg
-:height: 100em
+:height: 94em
 :align: center
 ```
 
@@ -815,7 +815,7 @@ $$
 $$
 
 ```{image} ../img/tensors/contraction.svg
-:height: 240em
+:height: 190em
 :align: center
 ```
 
@@ -1053,6 +1053,7 @@ $$
 ```
 
 ```{prf:proof}
+We content ourselves with giving a sketch of a proof.
 The argument follows the same path as already explained for the
 case $s=1$. Bilinearity of the tensor product 
 ensures that
@@ -1206,10 +1207,10 @@ $$
 Indeed, this is the identity.
 ```
 
-```{prf:example}
+```{prf:example} NOT Gate
 :label: exNot
 The Hadamard transformation (and the identity of course as well) will play 
-a prominent role in the later Quantum Computing elaboration. The NOT gate is 
+a prominent role in the later Quantum Computing elaboration. The _NOT gate_ is 
 another building block. A quantum bit (_qubit_) holds state values of 
 $\C^2$. For the sake of simplicity we will stick to 
 $\R^2$ here. Again, let $\{e_1,e_2\}$ be

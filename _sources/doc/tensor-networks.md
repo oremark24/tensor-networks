@@ -60,7 +60,7 @@ $$
 can be drawn with left-right orientation as follows.
    
 ```{image} ../img/tensor-networks/intro-t.svg
-:height: 52em
+:height: 39em
 :align: center
 ```
    
@@ -74,14 +74,14 @@ $$
 as seen here.
    
 ```{image} ../img/tensor-networks/intro-s.svg
-:height: 102em
+:height: 77em
 :align: center
 ```
    
 Also having mixed orientations is possible.   
 
 ```{image} ../img/tensor-networks/intro-s2.svg
-:height: 75em
+:height: 56em
 :align: center
 ```
    
@@ -101,7 +101,7 @@ $$
 as follows.   
 
 ```{image} ../img/tensor-networks/intro-t-prod-s.svg
-:height: 110em
+:height: 83em
 :align: center
 ```
 
@@ -114,7 +114,7 @@ $$N=C_{j,p}(T\otimes S)$$
 and can be displayed as shown in this picture.   
 
 ```{image} ../img/tensor-networks/intro-t-prod-s-contracted.svg
-:height: 110em
+:height: 83em
 :align: center
 ```
    
@@ -124,7 +124,7 @@ named if not in focus. Furthermore we will be free to
 use symbols, containers, etc. if it supports understanding.
 
 ```{image} ../img/tensor-networks/intro-equation.svg
-:height: 130em
+:height: 98em
 :align: center
 ```
 ````
@@ -142,7 +142,7 @@ v=\sum\limits_{i=1}^nv^ie_i\in V \,.
 $$
   
 ```{image} ../img/tensor-networks/vectors-basic.svg
-:height: 90em
+:height: 68em
 :align: center
 ```
    
@@ -159,7 +159,7 @@ $$
 $$
 
 ```{image} ../img/tensor-networks/vectors-product.svg
-:height: 90em
+:height: 68em
 :align: center
 ```
 ````
@@ -177,7 +177,7 @@ $$
 $$
 
 ```{image} ../img/tensor-networks/vectors-dual.svg
-:height: 90em
+:height: 68em
 :align: center
 ```
 ````
@@ -198,7 +198,7 @@ $$
 from {eq}`eqnNetwork` again.   
 
 ```{image} ../img/tensor-networks/general-n.svg
-:height: 60em
+:height: 45em
 :align: center
 ```
    
@@ -215,7 +215,7 @@ is reflected by combining the shapes of a vector and a dual vector
 into a diamond shape.
 
 ```{image} ../img/tensor-networks/general-diagonal.svg
-:height: 75em
+:height: 56em
 :align: center
 ```
 ````
@@ -239,7 +239,7 @@ $$
 Hence, this can be drawn as follows.   
 
 ```{image} ../img/tensor-networks/lin-maps-Tv.svg
-:height: 90em
+:height: 68em
 :align: center
 ```
    
@@ -252,7 +252,7 @@ $$
 as:   
 
 ```{image} ../img/tensor-networks/lin-maps-vT.svg
-:height: 90em
+:height: 68em
 :align: center
 ```
    
@@ -278,7 +278,7 @@ Hence, the picture shows what intution expects, the
 two tensors symbolizing the maps have to be wired together.   
 
 ```{image} ../img/tensor-networks/lin-maps-STv.svg
-:height: 90em
+:height: 68em
 :align: center
 ```
    
@@ -295,7 +295,7 @@ extends this picture simply by adding and contracting the second argument
 to the map tensor.   
   
 ```{image} ../img/tensor-networks/lin-maps-Tvw.svg
-:height: 120em
+:height: 90em
 :align: center
 ```
    
@@ -315,7 +315,7 @@ tensors will be drawn independently without any interaction (as long as no
 contraction is involved).   
 
 ```{image} ../img/tensor-networks/lin-maps-TvSw.svg
-:height: 120em
+:height: 90em
 :align: center
 ```
 ````
@@ -327,7 +327,7 @@ Since a scalar value can be treated as tensor without indices, it is exactly dra
 as shape without legs.   
 
 ```{image} ../img/tensor-networks/scalar.svg
-:height: 50em
+:height: 38em
 :align: center
 ```
    
@@ -345,7 +345,7 @@ $$
 $$
 
 ```{image} ../img/tensor-networks/scalar-trace.svg
-:height: 72em
+:height: 54em
 :align: center
 ```
    
@@ -353,7 +353,7 @@ Using the way of visualizing composed linear maps, the _trace_ of
 a matrix product (composed linear maps) would be:   
 
 ```{image} ../img/tensor-networks/scalar-trace2.svg
-:height: 76em
+:height: 57em
 :align: center
 ```
    
@@ -388,7 +388,7 @@ Thus, the inner product of $v$ and $w$ can be expressed with a tensor product
 using $\bar{v}$ instead of $v$. The tensor network diagram can be drawn accordingly.   
 
 ```{image} ../img/tensor-networks/scalar-ip.svg
-:height: 90em
+:height: 68em
 :align: center
 ```
 ````
@@ -399,7 +399,7 @@ Certain implementation details are abstracted away from the viewer, such as
 index labels or index order. For example, the tensor behind 
 
 ```{image} ../img/tensor-networks/general-t.svg
-:height: 60em
+:height: 45em
 :align: center
 ```
  
@@ -440,7 +440,7 @@ ambiguity. The following tensor network diagrams refer to different object becau
 amounts of covariant and contravariant (the tensor's order) do matter. 
 
 ```{image} ../img/tensor-networks/general-neq.svg
-:height: 60em
+:height: 44em
 :align: center
 ```
  
@@ -450,7 +450,7 @@ $T=e^1\otimes e^2\in\R^2\otimes\R^2$ with $\{e^1,e^2\}$ being dual standard
 basis. Then the diagrams 
 
 ```{image} ../img/tensor-networks/general-neq2.svg
-:height: 160em
+:height: 105em
 :align: center
 ```
  
