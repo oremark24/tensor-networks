@@ -651,7 +651,7 @@ For the following we need quite a useful symbol to express
 index equality.
 
 ```{prf:definition} Kronecker Delta
-:label: defKronecker
+:label: def-kronecker
 The ___Kronecker delta___ is a 
 symbol with two indices. To be universally applicable, 
 each index could be covariant (written subscript) or 
@@ -659,7 +659,7 @@ contravariant (written superscript). We have
 
 
 $$
-\delta_{ij}=\delta^i_j=\delta_i^j=\delta^{ij}
+\delta_{ij}=\delta^i_j=\delta^{ij}
 \def 
   \begin{cases}
     0,\quad i\neq j\,, \\

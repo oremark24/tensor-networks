@@ -243,14 +243,40 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#wiring-and-kronecker-delta">
-   3.2. Wiring and Kronecker Delta
+  <a class="reference internal nav-link" href="#wires">
+   3.2. Wires
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#todo">
+     3.2.1. TODO
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#permutations-and-levi-civita-symbol">
-   3.3. Permutations and Levi-Civita Symbol
+  <a class="reference internal nav-link" href="#permutations">
+   3.3. Permutations
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     3.3.1. TODO
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#levi-civita-symbol">
+   3.4. Levi-Civita Symbol
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     3.4.1. TODO
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -278,14 +304,40 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#wiring-and-kronecker-delta">
-   3.2. Wiring and Kronecker Delta
+  <a class="reference internal nav-link" href="#wires">
+   3.2. Wires
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#todo">
+     3.2.1. TODO
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#permutations-and-levi-civita-symbol">
-   3.3. Permutations and Levi-Civita Symbol
+  <a class="reference internal nav-link" href="#permutations">
+   3.3. Permutations
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     3.3.1. TODO
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#levi-civita-symbol">
+   3.4. Levi-Civita Symbol
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     3.4.1. TODO
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -302,8 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2><span class="section-number">3.1. </span>Tensor Network Diagrams<a class="headerlink" href="#tensor-network-diagrams" title="Permalink to this headline">¶</a></h2>
 <p>In the previous chapter we have introduced tensors and operations on
 tensors. Tensor products and contractions offer ways to compose
-existing tensors to new ones. Consider for example the tensor of
-order-<span class="math notranslate nohighlight">\((2,1)\)</span> tensor</p>
+existing tensors to new ones. Consider for example the order-<span class="math notranslate nohighlight">\((2,1)\)</span> tensor</p>
 <div class="math notranslate nohighlight" id="equation-eqnnetwork">
 <span class="eqno">(3.1)<a class="headerlink" href="#equation-eqnnetwork" title="Permalink to this equation">¶</a></span>\[N=\sum\limits_{i=1}^n\sum\limits_{k=1}^r\sum\limits_{l=1}^s\sum\limits_{j=1}^m
   T^i_jS^{jl}_k\,e_i\otimes f^k\otimes g_l\,.\]</div>
@@ -524,7 +575,7 @@ contraction is involved).</p>
 <p>So far we have not considered the possibility of a scalar (element of the underlying field).
 Since a scalar value can be treated as tensor without indices, it is exactly drawn like this,
 as shape without legs.</p>
-<a class="reference internal image-reference" href="../_images/scalar.svg"><img alt="../_images/scalar.svg" class="align-center" height="38em" src="../_images/scalar.svg" /></a>
+<a class="reference internal image-reference" href="../_images/scalar.svg"><img alt="../_images/scalar.svg" class="align-center" height="48em" src="../_images/scalar.svg" /></a>
 <p>Having used a circle is arbitrary - actually it does not
 matter, because we will very rarely draw isoloated
 scalar tensors. More common is the case, that a complex
@@ -614,13 +665,117 @@ basis. Then the diagrams</p>
 <a class="reference internal image-reference" href="../_images/general-neq2.svg"><img alt="../_images/general-neq2.svg" class="align-center" height="105em" src="../_images/general-neq2.svg" /></a>
 <p>are not equal, the left one contracts to value <span class="math notranslate nohighlight">\(1\)</span>, the right one contracts to value <span class="math notranslate nohighlight">\(0\)</span>.</p>
 </div>
-<div class="section" id="wiring-and-kronecker-delta">
-<h2><span class="section-number">3.2. </span>Wiring and Kronecker Delta<a class="headerlink" href="#wiring-and-kronecker-delta" title="Permalink to this headline">¶</a></h2>
-<p><span class="math notranslate nohighlight">\(\delta^i_j\)</span></p>
+<div class="section" id="wires">
+<h2><span class="section-number">3.2. </span>Wires<a class="headerlink" href="#wires" title="Permalink to this headline">¶</a></h2>
+<p>The graphical representation of a tensor network can be considered as a graph, consisting
+of nodes and wires, with potentially open wires coming out of a tensor but not leading
+to another tensor. After having described different kinds of nodes, we will deal with the
+wires in this section.</p>
+<p>First, we recall the definition of the <em>Kronecker delta</em>, <a class="reference internal" href="tensors.html#def-kronecker">Definition 2.5</a>. Now,
+we will consider the Kronecker delta as tensor by using for example <span class="math notranslate nohighlight">\(\delta_i^j\)</span> as
+coefficients. This results in tensor</p>
+<div class="math notranslate nohighlight" id="equation-eq-kronecker-delta-tensor">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-kronecker-delta-tensor" title="Permalink to this equation">¶</a></span>\[\sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta^i_j\,e_i\otimes e^j\]</div>
+<p>that can be drawn as:</p>
+<div class="figure align-center" id="fig-tensor-networks-kronecker-delta">
+<a class="reference internal image-reference" href="../_images/kronecker-delta.svg"><img alt="../_images/kronecker-delta.svg" height="39em" src="../_images/kronecker-delta.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Kronecker delta</span><a class="headerlink" href="#fig-tensor-networks-kronecker-delta" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="permutations-and-levi-civita-symbol">
-<h2><span class="section-number">3.3. </span>Permutations and Levi-Civita Symbol<a class="headerlink" href="#permutations-and-levi-civita-symbol" title="Permalink to this headline">¶</a></h2>
-<p><span class="math notranslate nohighlight">\(\varepsilon_{ijk}\)</span></p>
+<p>Usually the Kronecker delta will be used in situations when both indices share the
+same dimension. This is the reason, that both summation indices of equation
+<a class="reference internal" href="#equation-eq-kronecker-delta-tensor">(3.2)</a> have the same limits.</p>
+<p>Now, assume we have other tensors connected to the Kronecker delta, for example:</p>
+<div class="figure align-center" id="fig-tensor-networks-kronecker-connected">
+<a class="reference internal image-reference" href="../_images/kronecker-connected.svg"><img alt="../_images/kronecker-connected.svg" height="39em" src="../_images/kronecker-connected.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Connected Kronecker delta</span><a class="headerlink" href="#fig-tensor-networks-kronecker-connected" title="Permalink to this image">¶</a></p>
+</div>
+<p>The Kronecker delta will only keep coefficients with <span class="math notranslate nohighlight">\(i=j\)</span> alive. This means, that
+the two contractions along <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> will be resolved into one contraction along
+a unified index:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum\limits_{k=1}^r\sum\limits_{l=1}^s\sum\limits_{i=1}^n\sum\limits_{j=1}^n
+  T^k_i\delta^i_jS^j_l\,f_k\otimes g^l
+= \sum\limits_{k=1}^r\sum\limits_{l=1}^s\sum\limits_{i=1}^n
+  T^k_iS^i_l\,f_k\otimes g^l
+\,.
+\]</div>
+<p>This equation can also be expressed within the diagramatic language:</p>
+<div class="figure align-center" id="fig-tensor-networks-kronecker-equation">
+<a class="reference internal image-reference" href="../_images/kronecker-equation.svg"><img alt="../_images/kronecker-equation.svg" height="39em" src="../_images/kronecker-equation.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text">Resolution of Kronecker delta</span><a class="headerlink" href="#fig-tensor-networks-kronecker-equation" title="Permalink to this image">¶</a></p>
+</div>
+<p>In consequence the Kronecker delta is in a sense representing a wire. The directions are
+defined by the type of Kronecker delta (location of the indices).</p>
+<div class="proof remark admonition" id="rem-kronecker">
+<p class="admonition-title"><span class="caption-number">Remark 3.7 </span> (Representing the Kronecker delta)</p>
+<div class="remark-content section" id="proof-content">
+<p>We have the following diagramatic representations of the Kronecker delta versions.</p>
+<div class="figure align-center" id="fig-tensor-networks-kronecker-line">
+<a class="reference internal image-reference" href="../_images/kronecker-line.svg"><img alt="../_images/kronecker-line.svg" height="64em" src="../_images/kronecker-line.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.4 </span><span class="caption-text">Kronecker delta as map</span><a class="headerlink" href="#fig-tensor-networks-kronecker-line" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="fig-tensor-networks-kronecker-left">
+<a class="reference internal image-reference" href="../_images/kronecker-left.svg"><img alt="../_images/kronecker-left.svg" height="64em" src="../_images/kronecker-left.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.5 </span><span class="caption-text">Kronecker delta as vector</span><a class="headerlink" href="#fig-tensor-networks-kronecker-left" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="fig-tensor-networks-kronecker-right">
+<a class="reference internal image-reference" href="../_images/kronecker-right.svg"><img alt="../_images/kronecker-right.svg" height="64em" src="../_images/kronecker-right.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Kronecker delta as dual vector</span><a class="headerlink" href="#fig-tensor-networks-kronecker-right" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div><p>We have justified <a class="reference internal" href="#fig-tensor-networks-kronecker-line"><span class="std std-numref">Fig. 3.4</span></a>, but what about
+<a class="reference internal" href="#fig-tensor-networks-kronecker-left"><span class="std std-numref">Fig. 3.5</span></a> and <a class="reference internal" href="#fig-tensor-networks-kronecker-right"><span class="std std-numref">Fig. 3.6</span></a>?
+After all we have worked out that contractions always combine a contravariant
+and a covariant index. So, how can a bended wire represent a contraction? This
+question is answered by the Kronecker delta interpretation. Consider for example the
+following situation.</p>
+<div class="figure align-center" id="fig-tensor-networks-kronecker-bended">
+<a class="reference internal image-reference" href="../_images/kronecker-bended.svg"><img alt="../_images/kronecker-bended.svg" height="110em" src="../_images/kronecker-bended.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.7 </span><span class="caption-text">Bended contraction</span><a class="headerlink" href="#fig-tensor-networks-kronecker-bended" title="Permalink to this image">¶</a></p>
+</div>
+<p>This looks like a linear map <span class="math notranslate nohighlight">\(T\)</span> applied to a dual vector <span class="math notranslate nohighlight">\(v^*\)</span>. With help of
+<span class="math notranslate nohighlight">\(\sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta^{ij}\,e_i\otimes e_j\)</span> which is
+standing for the bending to the left, we can describe this tensor network algebraically:</p>
+<div class="math notranslate nohighlight">
+\[
+\sum\limits_{k=1}^m\sum\limits_{i=1}^n\sum\limits_{j=1}^n
+  T^k_i\delta^{ij}v^\ast_j\,f_k
+= \sum\limits_{k=1}^m\sum\limits_{i=1}^n
+  T^k_iv^\ast_i\,f_k
+\,.
+\]</div>
+<p>The intermediate Kronecker delta is adapting the index locations. Thus, the diagram
+<a class="reference internal" href="#fig-tensor-networks-kronecker-bended"><span class="std std-numref">Fig. 3.7</span></a> is completely justified. It appears as
+either the index <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(T\)</span> was rasied to superscript or as index <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(v^\ast\)</span> was
+lowered to subscript (so that the application of linear map to dual vector can be
+executed). Accordingly this technique is called <em>raising</em> respectively <em>lowering</em> indices.</p>
+<div class="section" id="todo">
+<h3><span class="section-number">3.2.1. </span>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Definition 2.1 in Biamonte Lecture Notes</p></li>
+<li><p>Snake Equation (refer to Penrose paper, because it was invented there)</p></li>
+<li><p>SWAP operator</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="permutations">
+<h2><span class="section-number">3.3. </span>Permutations<a class="headerlink" href="#permutations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3><span class="section-number">3.3.1. </span>TODO<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Copy and adapt Permutations chapter from old structure</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="levi-civita-symbol">
+<h2><span class="section-number">3.4. </span>Levi-Civita Symbol<a class="headerlink" href="#levi-civita-symbol" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3><span class="section-number">3.4.1. </span>TODO<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\varepsilon_{ijk}\)</span></p></li>
+</ul>
+</div>
 </div>
 </div>
 
