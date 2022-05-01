@@ -4,8 +4,7 @@
  
 In the previous chapter we have introduced tensors and operations on 
 tensors. Tensor products and contractions offer ways to compose 
-existing tensors to new ones. Consider for example the tensor of 
-order-$(2,1)$ tensor
+existing tensors to new ones. Consider for example the order-$(2,1)$ tensor
 
 ```{math}
 :label: eqnNetwork
@@ -327,7 +326,7 @@ Since a scalar value can be treated as tensor without indices, it is exactly dra
 as shape without legs.   
 
 ```{image} ../img/tensor-networks/scalar.svg
-:height: 38em
+:height: 48em
 :align: center
 ```
    
@@ -456,12 +455,140 @@ basis. Then the diagrams
  
 are not equal, the left one contracts to value $1$, the right one contracts to value $0$. 
 
-## Wiring and Kronecker Delta
+## Wires
 
-$\delta^i_j$
+The graphical representation of a tensor network can be considered as a graph, consisting
+of nodes and wires, with potentially open wires coming out of a tensor but not leading
+to another tensor. After having described different kinds of nodes, we will deal with the
+wires in this section.
 
-## Permutations and Levi-Civita Symbol
+First, we recall the definition of the _Kronecker delta_, {prf:ref}`def-kronecker`. Now,
+we will consider the Kronecker delta as tensor by using for example $\delta_i^j$ as 
+coefficients. This results in tensor
 
-$\varepsilon_{ijk}$
+```{math}
+:label: eq-kronecker-delta-tensor
+\sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta^i_j\,e_i\otimes e^j
+```
+
+that can be drawn as:
+
+```{figure} ../img/tensor-networks/kronecker-delta.svg
+:height: 39em
+:align: center
+:name: fig-tensor-networks-kronecker-delta
+Kronecker delta
+```
+
+Usually the Kronecker delta will be used in situations when both indices share the
+same dimension. This is the reason, that both summation indices of equation 
+{eq}`eq-kronecker-delta-tensor` have the same limits.
+
+Now, assume we have other tensors connected to the Kronecker delta, for example:
+
+```{figure} ../img/tensor-networks/kronecker-connected.svg
+:height: 39em
+:align: center
+:name: fig-tensor-networks-kronecker-connected
+Connected Kronecker delta
+```
+
+The Kronecker delta will only keep coefficients with $i=j$ alive. This means, that
+the two contractions along $i$ and $j$ will be resolved into one contraction along
+a unified index:
+
+$$
+\sum\limits_{k=1}^r\sum\limits_{l=1}^s\sum\limits_{i=1}^n\sum\limits_{j=1}^n
+  T^k_i\delta^i_jS^j_l\,f_k\otimes g^l
+= \sum\limits_{k=1}^r\sum\limits_{l=1}^s\sum\limits_{i=1}^n
+  T^k_iS^i_l\,f_k\otimes g^l
+\,.
+$$
+
+This equation can also be expressed within the diagramatic language:
+
+```{figure} ../img/tensor-networks/kronecker-equation.svg
+:height: 39em
+:align: center
+:name: fig-tensor-networks-kronecker-equation
+Resolution of Kronecker delta
+```
+
+In consequence the Kronecker delta is in a sense representing a wire. The directions are
+defined by the type of Kronecker delta (location of the indices).
+
+````{prf:remark} Representing the Kronecker delta
+:label: rem-kronecker
+We have the following diagramatic representations of the Kronecker delta versions.
+
+```{figure} ../img/tensor-networks/kronecker-line.svg
+:height: 64em
+:align: center
+:name: fig-tensor-networks-kronecker-line
+Kronecker delta as map
+```
+
+```{figure} ../img/tensor-networks/kronecker-left.svg
+:height: 64em
+:align: center
+:name: fig-tensor-networks-kronecker-left
+Kronecker delta as vector
+```
+
+```{figure} ../img/tensor-networks/kronecker-right.svg
+:height: 64em
+:align: center
+:name: fig-tensor-networks-kronecker-right
+Kronecker delta as dual vector
+```
+
+````
+
+We have justified {numref}`fig-tensor-networks-kronecker-line`, but what about
+{numref}`fig-tensor-networks-kronecker-left` and {numref}`fig-tensor-networks-kronecker-right`?
+After all we have worked out that contractions always combine a contravariant
+and a covariant index. So, how can a bended wire represent a contraction? This
+question is answered by the Kronecker delta interpretation. Consider for example the
+following situation.
+
+```{figure} ../img/tensor-networks/kronecker-bended.svg
+:height: 110em
+:align: center
+:name: fig-tensor-networks-kronecker-bended
+Bended contraction
+```
+
+This looks like a linear map $T$ applied to a dual vector $v^*$. With help of
+$\sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta^{ij}\,e_i\otimes e_j$ which is
+standing for the bending to the left, we can describe this tensor network algebraically:
+
+$$
+\sum\limits_{k=1}^m\sum\limits_{i=1}^n\sum\limits_{j=1}^n
+  T^k_i\delta^{ij}v^\ast_j\,f_k
+= \sum\limits_{k=1}^m\sum\limits_{i=1}^n
+  T^k_iv^\ast_i\,f_k
+\,.
+$$
+
+The intermediate Kronecker delta is adapting the index locations. Thus, the diagram
+{numref}`fig-tensor-networks-kronecker-bended` is completely justified. It appears as
+either the index $i$ of $T$ was rasied to superscript or as index $j$ of $v^\ast$ was
+lowered to subscript (so that the application of linear map to dual vector can be 
+executed). Accordingly this technique is called _raising_ respectively _lowering_ indices.
+
+### TODO
+* Definition 2.1 in Biamonte Lecture Notes
+* Snake Equation (refer to Penrose paper, because it was invented there)
+* SWAP operator
+
+## Permutations
+
+### TODO
+* Copy and adapt Permutations chapter from old structure
+
+## Levi-Civita Symbol
+
+### TODO
+* $\varepsilon_{ijk}$
 
     
