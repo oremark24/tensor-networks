@@ -45,7 +45,8 @@ sphinx:
             - \Bigg\langle#1,#2\Bigg\rangle
             - 2
           tr: \mathrm{tr}
-          span: \mathrm{span}          
+          span: \mathrm{span}
+          SWAP: \mathrm{SWAP}     
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:

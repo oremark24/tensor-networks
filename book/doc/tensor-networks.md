@@ -455,7 +455,7 @@ basis. Then the diagrams
  
 are not equal, the left one contracts to value $1$, the right one contracts to value $0$. 
 
-## Wires
+## Wiring
 
 The graphical representation of a tensor network can be considered as a graph, consisting
 of nodes and wires, with potentially open wires coming out of a tensor but not leading
@@ -552,7 +552,7 @@ question is answered by the Kronecker delta interpretation. Consider for example
 following situation.
 
 ```{figure} ../img/tensor-networks/kronecker-bended.svg
-:height: 110em
+:height: 114em
 :align: center
 :name: fig-tensor-networks-kronecker-bended
 Bended contraction
@@ -575,11 +575,187 @@ The intermediate Kronecker delta is adapting the index locations. Thus, the diag
 either the index $i$ of $T$ was rasied to superscript or as index $j$ of $v^\ast$ was
 lowered to subscript (so that the application of linear map to dual vector can be 
 executed). Accordingly this technique is called _raising_ respectively _lowering_ indices.
+Raising and lowering indices preserves the coefficients of a tensor, but uses it together
+with the dual basis (for the modified index). 
 
-### TODO
-* Definition 2.1 in Biamonte Lecture Notes
-* Snake Equation (refer to Penrose paper, because it was invented there)
-* SWAP operator
+If we consider vector $\sum\limits_{k=1}^nv^ke_k$, then lowering the index (of coefficients) 
+would be achieved by following equation:
+
+```{math}
+:label: eq-tensor-networks-lowering-index
+C_{j,k}\Bigg(
+  \Bigg[\sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta_{ij}\,e^i\otimes e^j\Bigg]
+  \otimes\Bigg[\sum\limits_{k=1}^nv^ke_k\Bigg]
+\Bigg) 
+&= \sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\delta_{ij}v^k
+  \underbrace{e^j(e_k)}_{=\delta^j_k}e^i \\
+&= \sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta_{ij}v^je^i \\
+&= \sum\limits_{i=1}^nv^ie^i \\
+&\fed v' \,.
+```
+
+We see, that we have constructed a dual vector $v'$ with same coefficients $v^i$. It
+would be convenient to write them with a subscript index now. On the other hand,
+a dual vector is representing a linear functional with its matrix representation
+being a row vector. Keeping the basis fixed, we identify
+
+$$
+v=
+\begin{bmatrix}
+  v^1 \\
+  \vdots \\
+  v^n
+\end{bmatrix}\,.
+$$
+
+The constructed dual vector, having the same coefficients, is represented by
+
+$$
+v'=
+\begin{bmatrix}
+  v^1 & \cdots & v^n
+\end{bmatrix}
+=v^T\,.
+$$
+
+Hence, we could write $v'=\sum\limits_{i=1}^nv^T_ie^i$. Bending the wire, which
+implies lowering the index, is transposing the coefficients vector. The same
+can be done for a dual vector and a linear map (matrix). Using the tensor
+network diagram notation, the relations can be expressed as follows.
+
+````{prf:observation} Transposition
+:label: obs-tensor-networks-transposition
+```{figure} ../img/tensor-networks/transposition-vector.svg
+:height: 84em
+:align: center
+:name: fig-tensor-networks-transposition-vector
+Vector transposition
+```
+
+```{figure} ../img/tensor-networks/transposition-dual.svg
+:height: 84em
+:align: center
+:name: fig-tensor-networks-transposition-dual
+Dual vector transposition
+```
+
+```{figure} ../img/tensor-networks/transposition-matrix.svg
+:height: 78em
+:align: center
+:name: fig-tensor-networks-transposition-matrix
+Linear map transposition
+```
+````
+
+{cite}`penrose71` gives the following identity, called snake or
+zig-zag equation.
+
+````{prf:observation} Snake equation
+:label: obs-tensor-networks-snake-equation
+```{figure} ../img/tensor-networks/transposition-snake.svg
+:height: 78em
+:align: center
+:name: fig-tensor-networks-transposition-snake
+Snake equation
+```
+````
+
+```{prf:proof}
+We have $\delta^{ik}\delta_{kj}\neq 0$ if and only if $i=k=j$. Therefore, 
+
+$$
+\sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\delta^{ik}\delta_{kj}\,e_i\otimes e^j
+=\sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta^i_j\,e_i\otimes e^j \,.
+$$
+```
+
+Next we will use the tensor
+```{math}
+:label: eqn-tensor-networks-swap-tensor
+S=\sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\sum\limits_{l=1}^n
+  \delta^i_l\delta^j_k\,e_i\otimes e_j\otimes e^k\otimes e^l\,.
+```
+
+For $v=\sum\limits_{p=1}^nv^pe_p\in V$ and $w=\sum\limits_{q=1}^nw^qe_q\in W$ we define the
+$\SWAP$ operator by
+
+```{math}
+:label: eqn-tensor-networks-swap-operator
+\SWAP:v\otimes w\longmapsto C_{k,p}(C_{l,q}(S\otimes v\otimes w))\,.
+```
+
+Evaluating the contractions we obtain
+
+```{math}
+:label: eqn-tensor-networks-swap-resolution
+\SWAP(v\otimes w) 
+&= \sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\sum\limits_{l=1}^n
+  \delta^i_l\delta^j_kv^kw^l\,e_i\otimes e_j \\
+&= \sum\limits_{i=1}^n\sum\limits_{j=1}^nv^jw^i\,e_i\otimes e_j \\
+&= \Bigg(\sum\limits_{i=1}^nw^ie_i\Bigg)\otimes \Bigg(\sum\limits_{j=1}^nv^je_j\Bigg) \\
+&= w\otimes v\,.
+```
+
+Hence the $\SWAP$ operator is a linear map (bilinear if we consider $v$ and $w$ to be
+independent variables) with
+
+```{math}
+:label: eqn-tensor-networks-swap-meta
+\SWAP: &\, V\otimes W\longrightarrow W\otimes V\,,\\
+  &\, v\otimes w\longmapsto w\otimes v\,.
+```
+
+During chapter {ref}`ch-tensors` we have stated that the tensor product can be
+consider as commutative. We will not question this fact, as
+$V\otimes W\simeq W\otimes V$ with the natural isomorphism 
+$v\otimes w\leftrightarrow w\otimes v$. In practical applications, however,
+the order of factors might be relevant - because it might define which
+tensors in the diagram are connected. In quantum circuits for example
+qubits might not be interchangeable. In these cases, the $\SWAP$ operator is
+relevant - if values of two qubits need to be swapped during a quantum computation
+for instance. In chapter {ref}`ch-quantum` we will learn how the $\SWAP$ operator
+can implemented on quantum computers. For the moment we leave it with claiming
+its relevance.
+
+Equations {eq}`eqn-tensor-networks-swap-tensor`,
+{eq}`eqn-tensor-networks-swap-operator`,
+{eq}`eqn-tensor-networks-swap-resolution` can be depicted as
+
+```{figure} ../img/tensor-networks/swap-indices.svg
+:height: 100em
+:align: center
+:name: fig-tensor-networks-swap-indices
+$\SWAP$ operator in action
+```
+
+visualizing the exchanged roles of $v$ and $w$. This leads to the following definition.
+
+````{prf:definition} $\SWAP$ operator
+:label: def-tensor-networks-swap-operator
+The $\SWAP$ operator, respectively tensor $S$ of equation 
+{eq}`eqn-tensor-networks-swap-tensor`, will be displayed in
+tensor network diagram notation as:
+
+```{figure} ../img/tensor-networks/swap-definition.svg
+:height: 66em
+:align: center
+:name: fig-tensor-networks-swap-definition
+$\SWAP$ operator
+```
+````
+
+````{prf:observation} $\SWAP$ twice
+:label: obs-tensor-networks-swap-selfinverse
+The $\SWAP$ operator is self-inverse. Swapping the same vectors
+twice is nothing different than the identity map.
+
+```{figure} ../img/tensor-networks/swap-selfinverse.svg
+:height: 66em
+:align: center
+:name: fig-tensor-networks-swap-selfinverse
+$\SWAP$ twice
+```
+````
 
 ## Permutations
 
