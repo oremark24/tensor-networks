@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 
@@ -242,7 +242,12 @@ const thebe_selector_output = ".output, .cell_output"
    <h1>Proof Index</h1>
 
    <div class="modindex-jumpbox">
+   <a href="#cap-cor-tensor-networks-determinant-el-ops"><strong>cor-tensor-networks-determinant-el-ops</strong></a> | 
+   <a href="#cap-cor-tensor-networks-determinant-id-cols"><strong>cor-tensor-networks-determinant-id-cols</strong></a> | 
    <a href="#cap-def-kronecker"><strong>def-kronecker</strong></a> | 
+   <a href="#cap-def-tensor-networks-determinant"><strong>def-tensor-networks-determinant</strong></a> | 
+   <a href="#cap-def-tensor-networks-permutation"><strong>def-tensor-networks-permutation</strong></a> | 
+   <a href="#cap-def-tensor-networks-permutation-parity"><strong>def-tensor-networks-permutation-parity</strong></a> | 
    <a href="#cap-def-tensor-networks-swap-operator"><strong>def-tensor-networks-swap-operator</strong></a> | 
    <a href="#cap-def-vector-space"><strong>def-vector-space</strong></a> | 
    <a href="#cap-defContraction"><strong>defContraction</strong></a> | 
@@ -269,6 +274,8 @@ const thebe_selector_output = ".output, .cell_output"
    <a href="#cap-illuScalar"><strong>illuScalar</strong></a> | 
    <a href="#cap-illuVectors"><strong>illuVectors</strong></a> | 
    <a href="#cap-lemProductMap"><strong>lemProductMap</strong></a> | 
+   <a href="#cap-obs-tensor-networks-determinant-multilinearity"><strong>obs-tensor-networks-determinant-multilinearity</strong></a> | 
+   <a href="#cap-obs-tensor-networks-invariant"><strong>obs-tensor-networks-invariant</strong></a> | 
    <a href="#cap-obs-tensor-networks-snake-equation"><strong>obs-tensor-networks-snake-equation</strong></a> | 
    <a href="#cap-obs-tensor-networks-swap-selfinverse"><strong>obs-tensor-networks-swap-selfinverse</strong></a> | 
    <a href="#cap-obs-tensor-networks-transposition"><strong>obs-tensor-networks-transposition</strong></a> | 
@@ -278,6 +285,7 @@ const thebe_selector_output = ".output, .cell_output"
    <a href="#cap-obsDimension"><strong>obsDimension</strong></a> | 
    <a href="#cap-obsInnerProduct"><strong>obsInnerProduct</strong></a> | 
    <a href="#cap-rem-kronecker"><strong>rem-kronecker</strong></a> | 
+   <a href="#cap-thm-tensor-networks-invertibility"><strong>thm-tensor-networks-invertibility</strong></a> | 
    <a href="#cap-thmComposition"><strong>thmComposition</strong></a> | 
    <a href="#cap-thmMultilinearity"><strong>thmMultilinearity</strong></a> | 
    <a href="#cap-thmProductMap"><strong>thmProductMap</strong></a>
@@ -285,12 +293,52 @@ const thebe_selector_output = ".output, .cell_output"
 
    <table class="indextable modindextable">
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-cor-tensor-networks-determinant-el-ops"><td></td><td>
+       <strong>cor-tensor-networks-determinant-el-ops</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensor-networks.html#cor-tensor-networks-determinant-el-ops"><code class="xref">cor-tensor-networks-determinant-el-ops</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <em>corollary</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-cor-tensor-networks-determinant-id-cols"><td></td><td>
+       <strong>cor-tensor-networks-determinant-id-cols</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensor-networks.html#cor-tensor-networks-determinant-id-cols"><code class="xref">cor-tensor-networks-determinant-id-cols</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <em>corollary</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-kronecker"><td></td><td>
        <strong>def-kronecker</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="doc/tensors.html#def-kronecker"><code class="xref">def-kronecker</code></a> <em>(doc/tensors)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def-tensor-networks-determinant"><td></td><td>
+       <strong>def-tensor-networks-determinant</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensor-networks.html#def-tensor-networks-determinant"><code class="xref">def-tensor-networks-determinant</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def-tensor-networks-permutation"><td></td><td>
+       <strong>def-tensor-networks-permutation</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensor-networks.html#def-tensor-networks-permutation"><code class="xref">def-tensor-networks-permutation</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def-tensor-networks-permutation-parity"><td></td><td>
+       <strong>def-tensor-networks-permutation-parity</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensor-networks.html#def-tensor-networks-permutation-parity"><code class="xref">def-tensor-networks-permutation-parity</code></a> <em>(doc/tensor-networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-tensor-networks-swap-operator"><td></td><td>
@@ -501,6 +549,22 @@ const thebe_selector_output = ".output, .cell_output"
        <a href="doc/tensors.html#lemProductMap"><code class="xref">lemProductMap</code></a> <em>(doc/tensors)</em></td><td>
        <em>lemma</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-tensor-networks-determinant-multilinearity"><td></td><td>
+       <strong>obs-tensor-networks-determinant-multilinearity</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensor-networks.html#obs-tensor-networks-determinant-multilinearity"><code class="xref">obs-tensor-networks-determinant-multilinearity</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-obs-tensor-networks-invariant"><td></td><td>
+       <strong>obs-tensor-networks-invariant</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensor-networks.html#obs-tensor-networks-invariant"><code class="xref">obs-tensor-networks-invariant</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <em>observation</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-tensor-networks-snake-equation"><td></td><td>
        <strong>obs-tensor-networks-snake-equation</strong></td><td></td></tr>
      <tr>
@@ -572,6 +636,14 @@ const thebe_selector_output = ".output, .cell_output"
        <td>
        <a href="doc/tensor-networks.html#rem-kronecker"><code class="xref">rem-kronecker</code></a> <em>(doc/tensor-networks)</em></td><td>
        <em>remark</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm-tensor-networks-invertibility"><td></td><td>
+       <strong>thm-tensor-networks-invertibility</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/tensor-networks.html#thm-tensor-networks-invertibility"><code class="xref">thm-tensor-networks-invertibility</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-thmComposition"><td></td><td>
        <strong>thmComposition</strong></td><td></td></tr>

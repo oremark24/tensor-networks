@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Tensors and Combinatorics" href="combinatorics.html" />
@@ -251,13 +251,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#permutations">
    3.3. Permutations
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#todo">
-     3.3.1. TODO
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#levi-civita-symbol">
@@ -265,7 +258,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+    <a class="reference internal nav-link" href="#todo">
      3.4.1. TODO
     </a>
    </li>
@@ -305,13 +298,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#permutations">
    3.3. Permutations
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#todo">
-     3.3.1. TODO
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#levi-civita-symbol">
@@ -319,7 +305,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+    <a class="reference internal nav-link" href="#todo">
      3.4.1. TODO
     </a>
    </li>
@@ -694,7 +680,7 @@ a unified index:</p>
 <p>In consequence the Kronecker delta is in a sense representing a wire. The directions are
 defined by the type of Kronecker delta (location of the indices).</p>
 <div class="proof remark admonition" id="rem-kronecker">
-<p class="admonition-title"><span class="caption-number">Remark 3.7 </span> (Representing the Kronecker delta)</p>
+<p class="admonition-title"><span class="caption-number">Remark 3.7 </span> (Drawing the Kronecker delta)</p>
 <div class="remark-content section" id="proof-content">
 <p>We have the following diagramatic representations of the Kronecker delta versions.</p>
 <div class="figure align-center" id="fig-tensor-networks-kronecker-line">
@@ -873,18 +859,253 @@ twice is nothing different than the identity map.</p>
 </div>
 </div></div>
 <div class="section" id="permutations">
-<h2><span class="section-number">3.3. </span>Permutations<a class="headerlink" href="#permutations" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="todo">
-<h3><span class="section-number">3.3.1. </span>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
+<span id="sec-tensor-networks-permutations"></span><h2><span class="section-number">3.3. </span>Permutations<a class="headerlink" href="#permutations" title="Permalink to this headline">¶</a></h2>
+<p>Before we continue with tensor networks, we will investigate permutations. This will come handy
+when we introduce the Levi-Civita Symbol.</p>
+<p>We start with some history and the 15-puzzle. As a reference confer <span id="id4">[<a class="reference internal" href="bibliography.html#id6" title="Jerry Slocum. Sam loyd's most successful hoax. 2009. URL: https://collections.libraries.indiana.edu/lilly/exhibitions_legacy/collections/overview/puzzle_docs/Sam_Loyd_Successful_Hoax.pdf.">Slo09</a>]</span>.
+Worcester, Massachusetts, January 1880: Dentist Dr. Pevey published following reward offer.</p>
+<div class="figure align-center" id="fig-tensor-networks-permutations-price-offer">
+<img alt="../_images/permutations-price-offer.jpg" src="../_images/permutations-price-offer.jpg" />
+<p class="caption"><span class="caption-number">Fig. 3.15 </span><span class="caption-text">Award</span><a class="headerlink" href="#fig-tensor-networks-permutations-price-offer" title="Permalink to this image">¶</a></p>
+</div>
+<p>A set of false teeth and $100 for the successful competitor, who would be able to solve the 15-puzzle.
+The puzzle was invented a few years earlier and first sold around Christmas 1879.</p>
+<div class="figure align-center" id="fig-tensor-networks-permutations-gem-puzzle">
+<img alt="../_images/permutations-gem-puzzle.jpg" src="../_images/permutations-gem-puzzle.jpg" />
+<p class="caption"><span class="caption-number">Fig. 3.16 </span><span class="caption-text">Gem Puzzle</span><a class="headerlink" href="#fig-tensor-networks-permutations-gem-puzzle" title="Permalink to this image">¶</a></p>
+</div>
+<p>The instructions have been very simple: “Place the blocks in the box irregularly,
+then move until in regular order.” Maybe you want to try yourself.</p>
+<p align="center">
+  <iframe src="https://game-15-puzzle.herokuapp.com/" width="600" height="560"></iframe>
+</p>
+<p>When you hit “scramble”, random moves are executed to create a starting configuration.
+Obviously this is always solvable, you just would need to reverse the sequence of moves.
+However, back in 1880 using the wooden box and starting with a random placement of blocks,
+this turned out to be different. One time people could solve it - and the next time it
+seemed impossible. Especially the arrangement, with all the numbers already correctly
+placed but numbers 14 and 15 reversed, conveyed the impression to not be solvable.
+Still many people claimed it was.</p>
+<div class="figure align-center" id="fig-tensor-networks-permutations-unsolvable">
+<a class="reference internal image-reference" href="../_images/permutations-unsolvable.png"><img alt="../_images/permutations-unsolvable.png" src="../_images/permutations-unsolvable.png" style="height: 20em;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.17 </span><span class="caption-text">Unsolvable</span><a class="headerlink" href="#fig-tensor-networks-permutations-unsolvable" title="Permalink to this image">¶</a></p>
+</div>
+<p>Such an argument led Dr. Pevey to offer a price as he described later.</p>
+<blockquote>
+<div><p>Dr. Pevey Explains. (<em>Worcester Evening Gazette</em>, January 31, 1880)
+The reason why I wanted you all to help me work out the puzzle was to convince that girl.
+You see she said she worked it out; she knew she did, and if I said she did not,
+I simply doubted her veracity. Now to doubt the word of a young lady is high treason and
+of course should be punished as such, so I stopped to think how I could convince her
+(without putting it into words) that she did not do what she said she did.
+From her looks I made up my mind it was no easy task and would probably require the whole
+population of Worcester to help me. For she knew she did it! And that you know would
+ordinarily settle it, but take what it would or cost what it would, she must be convinced,
+but now that we have all given the matter a weeks careful study, and without a single
+favorable result. Probably she will no longer contend that she did it.
+At first some of us, as you know, rather held to it that it could be done, and that perhaps
+she was right. But now that we are all of one mind, that it can not be done, and that we
+were mistaken, we will laugh over our week’s fun and proceed to business again.
+Respectfully,
+Chas. K. Pevey
+Pevey’s Dental Rooms, cor. Main and Pleasant Streets, Worcester, Mass.</p>
+</div></blockquote>
+<p>But is it really bulletproof evidence that a crowd didn’t come up with a solution? Of course not,
+otherwise inventions not made yet would never be made. Let’s develop a <em>logical</em> argument that
+demystifies the riddle.</p>
+<p>We claim that there are two kinds of piece configurations.</p>
 <ul class="simple">
-<li><p>Copy and adapt Permutations chapter from old structure</p></li>
+<li><p><strong>Solvable</strong>: Those that can be transferred by regular moves into the target configuration.
+That is numbers being in order <span class="math notranslate nohighlight">\(1,2,\ldots,15\)</span> (row by row from left to right) with the empty
+square located after number <span class="math notranslate nohighlight">\(15\)</span> (in lower right corner).</p></li>
+<li><p><strong>Unsolvable</strong>: Those that can not be transferred by regular moves into the target configuration.</p></li>
 </ul>
+<p>In particular, the configuration derived from target configuration by swapping <span class="math notranslate nohighlight">\(14\)</span> and <span class="math notranslate nohighlight">\(15\)</span> is
+unsolvable. To classify piece configurations we’ll construct an invariant that doesn’t change
+under moving. This will be done with the help of permutations and inversions.</p>
+<div class="proof definition admonition" id="def-tensor-networks-permutation">
+<p class="admonition-title"><span class="caption-number">Definition 3.3 </span> (Permutation)</p>
+<div class="definition-content section" id="proof-content">
+<p>An <span class="math notranslate nohighlight">\(\pmb{n}\)</span>-<em><strong>permutation</strong></em> <span class="math notranslate nohighlight">\(\pi\)</span> is a bijection
+<span class="math notranslate nohighlight">\(\pi:\{1,\ldots,n\}\rightarrow\{1,\ldots,n\}\)</span>. If the specific <span class="math notranslate nohighlight">\(n\)</span> is unimportant or implicitely given,
+we might use the term <em><strong>permutation</strong></em>.</p>
+<p>An <em><strong>inversion</strong></em> of a permutation <span class="math notranslate nohighlight">\(\pi\)</span> is a pair <span class="math notranslate nohighlight">\((i,j)\)</span> with <span class="math notranslate nohighlight">\(i&lt;j\)</span> and <span class="math notranslate nohighlight">\(\pi(i)&gt;\pi(j)\)</span>.</p>
+<p>The <em><strong>inversion set</strong></em> ist the set of all inversions.</p>
+<p>The <em><strong>inversion number</strong></em> <span class="math notranslate nohighlight">\(\inv(\pi)\)</span> is given by the cardinality of the inversion set</p>
+<div class="math notranslate nohighlight">
+\[
+\inv(\pi)\def\,\#\{(i,j):i&lt;j\text{ and }\pi(i)&gt;\pi(j)\} \,.
+\]</div>
+</div>
+</div><p>To every piece configuration a permutation of pieces can be assigned. We form a sequence
+of pieces by reading the first row from left to right, then the second row from left to
+right and so on (the empty square is to be ignored). The resulting sequence is considered
+to be <span class="math notranslate nohighlight">\(\pi(1),\pi(2),\ldots,\pi(15)\)</span>.</p>
+<p>For example, to the target configuration the identity map <span class="math notranslate nohighlight">\(\id:\id(k)=k,\,\forall k\)</span> is
+assigned, <span class="math notranslate nohighlight">\(\inv(\id)=0\)</span>. To the configuration with <span class="math notranslate nohighlight">\(14\)</span> and <span class="math notranslate nohighlight">\(15\)</span> being swapped, the permutation</p>
+<div class="math notranslate nohighlight">
+\[\tau:\tau(k)=k,\,\forall k\le 13,\;\tau(14)=15,\,\tau(15)=14\]</div>
+<p>is assigned, <span class="math notranslate nohighlight">\(\inv(\tau)=1\)</span>.</p>
+<div class="proof observation admonition" id="obs-tensor-networks-invariant">
+<p class="admonition-title"><span class="caption-number">Observation 3.4 </span> (Invariant)</p>
+<div class="observation-content section" id="proof-content">
+<p>For a given piece configuration let <span class="math notranslate nohighlight">\(\pi\)</span> denote the assigned permutation and let
+<span class="math notranslate nohighlight">\(r:1\le r\le 4\)</span> denote the row number of the empty square. Then</p>
+<div class="math notranslate nohighlight">
+\[\inv(\pi)+r\mod 2\]</div>
+<p>is invariant under any legal move.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. First of all, sliding a piece in the same row changes neither the number of inversions nor
+the row number of the empty square. Therefore let’s consider moving a piece down (moving up
+is following the same argument).</p>
+<p>What happens to the assigned permutation? Consider the sequence of pieces we used during
+construction. The moving piece is shifted three positions towards the end of sequence.
+Hence, exactly three swaps of piece pairs occur. Each swap will impose a change of inversion
+status of the affected pair. Either the pair will be turned from being in order into an
+inversion or vice versa. Since there are three swaps, the inversion number will change parity.</p>
+<p>On the other hand the empty square moves up, causing the row number to change parity as well.
+Therefore the parity of <span class="math notranslate nohighlight">\(\inv(\pi)+r\)</span> doesn’t change.</p>
+</div>
+<p>The rest is simple. To be solvable a piece configuration needs to have same parity of
+<span class="math notranslate nohighlight">\(\inv(\pi)+r\)</span> as the target configuration, that is even. Swapping <span class="math notranslate nohighlight">\(14\)</span> and <span class="math notranslate nohighlight">\(15\)</span> yields odd
+<span class="math notranslate nohighlight">\(\inv(\tau)+r\)</span>. Therefore no sequence of legal moves exists to transfer this configuration
+into the target configuration.</p>
+<p>Let’s continue with another quadratic playing field, this time a matrix <span class="math notranslate nohighlight">\(A\in\C^{n\times n}\)</span>.
+This time the classes are:</p>
+<ul class="simple">
+<li><p><strong>Solvable</strong>: <span class="math notranslate nohighlight">\(A\)</span> is invertible, i.e. there is a matrix <span class="math notranslate nohighlight">\(A^{-1}\in\C^{n\times n}\)</span> with
+<span class="math notranslate nohighlight">\(AA^{-1}=A^{-1}A=I\)</span>.</p></li>
+<li><p><strong>Unsolvable</strong>: Aforementioned matrix <span class="math notranslate nohighlight">\(A^{-1}\)</span> is not existing.</p></li>
+</ul>
+<p>Again we will distinguish both classes be constructing an appropriate invariant.</p>
+<div class="proof definition admonition" id="def-tensor-networks-permutation-parity">
+<p class="admonition-title"><span class="caption-number">Definition 3.4 </span> (Parity of permutation)</p>
+<div class="definition-content section" id="proof-content">
+<p>The <em><strong>parity</strong></em> <span class="math notranslate nohighlight">\(\sgn(\pi)\)</span> of a permutation <span class="math notranslate nohighlight">\(\pi\)</span> is defined by
+$<span class="math notranslate nohighlight">\(
+\sgn(\pi)\def(-1)^{\inv(\pi)}
+\)</span>$.</p>
+</div>
+</div><div class="proof definition admonition" id="def-tensor-networks-determinant">
+<p class="admonition-title"><span class="caption-number">Definition 3.5 </span> (Determinant)</p>
+<div class="definition-content section" id="proof-content">
+<p>We denote the set of all <span class="math notranslate nohighlight">\(n\)</span>-permutations by <span class="math notranslate nohighlight">\(S_n\)</span>. We define the <em><strong>determinant</strong></em>
+of a matrix <span class="math notranslate nohighlight">\(A=\lbrack a_{ij}\rbrack_{i=1,j=1}^{n,\;\;\;n}\in\C^{n\times n}\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+\det(A)\def\sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots a_{\pi(n)n}\,.
+\]</div>
+</div>
+</div><p>This formula will become much clearer, when writing out for small or sparse matrices.</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(A=[a]\)</span>. The only permutation of one element is <span class="math notranslate nohighlight">\(\id\)</span> with <span class="math notranslate nohighlight">\(\sgn(\id)=1\)</span>.
+We get <span class="math notranslate nohighlight">\(\det(A)=1\cdot a=a\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(A=\begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)</span>. We have two permutations,
+<span class="math notranslate nohighlight">\(\id\)</span> and <span class="math notranslate nohighlight">\(\pi:\pi(1)=2,\pi(2)=1\)</span> with <span class="math notranslate nohighlight">\(\sgn(\pi)=-1\)</span>. We get <span class="math notranslate nohighlight">\(\det(A)=1\cdot a\cdot d+(-1)\cdot c\cdot b=ad-bc\)</span>.</p></li>
+<li><p>Let
+<span class="math notranslate nohighlight">\(A=\begin{bmatrix} a_{11} &amp; a_{12} &amp; a_{13} \\ a_{21} &amp; a_{22} &amp; a_{23} \\ a_{31} &amp; a_{32} &amp; a_{33} \end{bmatrix}\)</span>.
+We get <span class="math notranslate nohighlight">\(\det(A)=a_{11}a_{22}a_{33}-a_{11}a_{32}a_{23}-a_{21}a_{12}a_{33}+a_{21}a_{32}a_{13}+a_{31}a_{12}a_{23}-a_{31}a_{22}a_{13}.\)</span></p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(A=\diag(a_1,\ldots,a_n)\)</span>. All permutations but <span class="math notranslate nohighlight">\(\id\)</span> contain a zero-element in the respective product. Hence only one addend remains and we get <span class="math notranslate nohighlight">\(\det(A)=a_1\cdot\ldots\cdot a_n.\)</span></p></li>
+<li><p>The same reasoning applies also to triangular matrices. Again only the main diagonal addend survives and the determinant is given by the product of the main diagonal entries.</p></li>
+</ul>
+<p>It’s time to derive some properties from the definition.</p>
+<div class="proof observation admonition" id="obs-tensor-networks-determinant-multilinearity">
+<p class="admonition-title"><span class="caption-number">Observation 3.5 </span> (Determinant properties)</p>
+<div class="observation-content section" id="proof-content">
+<p>We regard matrices <span class="math notranslate nohighlight">\(A=\lbrack a_{ij}\rbrack_{i=1,j=1}^{n,\;\;\;n}\in\C^{n\times n}\)</span> as
+being composed of its <span class="math notranslate nohighlight">\(n\)</span> columns, so denoted as <span class="math notranslate nohighlight">\(A=[A_1\ldots A_n]\)</span>. The column vector
+<span class="math notranslate nohighlight">\(A_j\)</span> is composed of the entries of the <span class="math notranslate nohighlight">\(j\)</span>-th column <span class="math notranslate nohighlight">\((A_j)_i=a_{ij}\)</span>. Thus,
+the determinant <span class="math notranslate nohighlight">\(\det(A)\)</span> can be considered as function of the <span class="math notranslate nohighlight">\(n\)</span> columns
+<span class="math notranslate nohighlight">\(\det(A)=f(A_1,\ldots,A_n)\)</span>. This function has the following properties:</p>
+<p><span class="math notranslate nohighlight">\(f\)</span> is <em><strong>multilinear</strong></em>, i.e. <span class="math notranslate nohighlight">\(f\)</span> is linear for every column <span class="math notranslate nohighlight">\(A_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f(A_1,\ldots,\lambda A_i,\ldots,A_n)&amp;=\lambda f(A_1,\ldots,A_i,\ldots,A_n)\,, \\
+f(A_1,\ldots,A_i+B_i,\ldots,A_n)&amp;=f(A_1,\ldots,A_i,\ldots,A_n)+f(A_1,\ldots,B_i,\ldots,A_n)\,.
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(f\)</span> is <em><strong>alternating</strong></em>, i.e. swapping two columns will change the sign:</p>
+<div class="math notranslate nohighlight">
+\[
+f(A_1,\ldots,A_i,\ldots,A_j,\ldots,A_n)=-f(A_1,\ldots,A_j,\ldots,A_i,\ldots,A_n)\,.
+\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Multilinearity can be shown straight forward from definition of determinant.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f(A_1,\ldots,\lambda A_i,\ldots,A_n)
+&amp;= \sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots\lambda a_{\pi(i)i}\cdots a_{\pi(n)n} \\
+&amp;= \lambda\sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots a_{\pi(i)i}\cdots a_{\pi(n)n} \\
+&amp;= \lambda f(A_1,\ldots,A_i,\ldots,A_n)\,,
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+f(A_1,\ldots,A_i+B_i,\ldots,A_n)
+&amp;= \sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots(a_{\pi(i)i}+b_{\pi(i)i})\cdots a_{\pi(n)n} \\
+&amp;= \sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots a_{\pi(i)i}\cdots a_{\pi(n)n} \\
+&amp;\quad +\sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots b_{\pi(i)i}\cdots a_{\pi(n)n} \\
+&amp;= f(A_1,\ldots,A_i,\ldots,A_n)+f(A_1,\ldots,B_i,\ldots,A_n)\,.
+\end{split}\]</div>
+<p>For proving the alternating property, we first assume that the two columns <span class="math notranslate nohighlight">\(A_i\)</span> and <span class="math notranslate nohighlight">\(A_j\)</span>
+are adjacent. Swapping them correlates to replacing in each addend permutation
+<span class="math notranslate nohighlight">\(\pi\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+\pi':\pi'(i)=\pi(j),\,\pi'(j)=\pi(i),\,\pi'(k)=\pi(k),\forall k\neq i,j\,.
+\]</div>
+<p>By construction <span class="math notranslate nohighlight">\(\pi'\)</span> has the same inversions as <span class="math notranslate nohighlight">\(\pi\)</span> but the status of <span class="math notranslate nohighlight">\((i,j)\)</span> is flipped.
+Thus, <span class="math notranslate nohighlight">\(\sgn(\pi')=-\sgn(\pi)\)</span>. This implies the assertion for adjacent columns.</p>
+<p>If <span class="math notranslate nohighlight">\(A_i\)</span> and <span class="math notranslate nohighlight">\(A_j\)</span> are not adjacent, the swap can be executed by consecutive execution of
+adjacent swaps. Similar to bubble sort, move <span class="math notranslate nohighlight">\(A_i\)</span> next to <span class="math notranslate nohighlight">\(A_j\)</span>. Swap both and move <span class="math notranslate nohighlight">\(A_j\)</span>
+back to the initial position of <span class="math notranslate nohighlight">\(A_i\)</span>. The procedure takes an odd number of swaps (twice
+the movement plus the swap of <span class="math notranslate nohighlight">\(A_i\)</span> and <span class="math notranslate nohighlight">\(A_j\)</span>). This yields the full assertion.</p>
+</div>
+<p>From this result we can draw two simple yet powerful consequences.</p>
+<div class="proof corollary admonition" id="cor-tensor-networks-determinant-id-cols">
+<p class="admonition-title"><span class="caption-number">Corollary 3.1 </span> (Identical columns)</p>
+<div class="corollary-content section" id="proof-content">
+<p>If two columns of <span class="math notranslate nohighlight">\(A\)</span> are the same, then <span class="math notranslate nohighlight">\(\det(A)=0\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We use the alternating property and swap the equal columns. This would not change <span class="math notranslate nohighlight">\(A\)</span> but
+the sign of its determinant. Hence, zero is the only possible value.</p>
+</div>
+<div class="proof corollary admonition" id="cor-tensor-networks-determinant-el-ops">
+<p class="admonition-title"><span class="caption-number">Corollary 3.2 </span> (Elementary operations)</p>
+<div class="corollary-content section" id="proof-content">
+<p>If to one column of <span class="math notranslate nohighlight">\(A\)</span> a linear combination of other columns is added,
+then the determinant doesn’t change.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We use multilinearity and the previous corollary. Taking apart the linear combination into
+a sum of determinants leaves only the original determinant. The other addends are zero due
+to duplication of a column.</p>
+</div>
+<p>Now we are ready to formulate the invariant.</p>
+<div class="proof theorem admonition" id="thm-tensor-networks-invertibility">
+<p class="admonition-title"><span class="caption-number">Theorem 3.1 </span> (Invertibility criteria)</p>
+<div class="theorem-content section" id="proof-content">
+<p>A matrix <span class="math notranslate nohighlight">\(A\in\C^{n\times n}\)</span> is invertible if and only if <span class="math notranslate nohighlight">\(\det(A)\neq 0\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We use Gaussian elimination to try to obtain the inverse to <span class="math notranslate nohighlight">\(A\)</span>. Usually Gaussian
+elemination is executed row-wise, but due to the fact that <span class="math notranslate nohighlight">\((A^{-1})^\dagger=(A^\dagger)^{-1}\)</span>
+we can apply it column-wise. The previous corollary ensures, that the elimination steps will
+not modify the determinant. We will run into either one of the following cases:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is invertible. In this case Gaussian elimination will yield a triangular matrix with main
+diagonal entries being non-zero. Consequently, <span class="math notranslate nohighlight">\(\det(A)\neq 0\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is not invertible. In this case Gaussian elimination will yield a zero-column. Hence,
+every product of the determinant definition has a zero factor. We obtain <span class="math notranslate nohighlight">\(\det(A)=0\)</span>.</p></li>
+</ul>
+<p>This proves the theorem.</p>
 </div>
 </div>
 <div class="section" id="levi-civita-symbol">
 <h2><span class="section-number">3.4. </span>Levi-Civita Symbol<a class="headerlink" href="#levi-civita-symbol" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id4">
-<h3><span class="section-number">3.4.1. </span>TODO<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="todo">
+<h3><span class="section-number">3.4.1. </span>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\varepsilon_{ijk}\)</span></p></li>
 </ul>
