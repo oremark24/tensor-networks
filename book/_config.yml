@@ -46,7 +46,12 @@ sphinx:
             - 2
           tr: \mathrm{tr}
           span: \mathrm{span}
-          SWAP: \mathrm{SWAP}     
+          SWAP: \mathrm{SWAP}
+          inv: \mathrm{inv}
+          sgn: \mathrm{sgn}
+          id: \mathrm{id}
+          diag: \mathrm{diag}
+          Diag: \mathrm{Diag}
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:

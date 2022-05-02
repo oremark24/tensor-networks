@@ -517,7 +517,7 @@ Resolution of Kronecker delta
 In consequence the Kronecker delta is in a sense representing a wire. The directions are
 defined by the type of Kronecker delta (location of the indices).
 
-````{prf:remark} Representing the Kronecker delta
+````{prf:remark} Drawing the Kronecker delta
 :label: rem-kronecker
 We have the following diagramatic representations of the Kronecker delta versions.
 
@@ -757,10 +757,288 @@ $\SWAP$ twice
 ```
 ````
 
+(sec-tensor-networks-permutations)=
 ## Permutations
 
-### TODO
-* Copy and adapt Permutations chapter from old structure
+Before we continue with tensor networks, we will investigate permutations. This will come handy
+when we introduce the Levi-Civita Symbol.
+
+We start with some history and the 15-puzzle. As a reference confer {cite}`slocum09`. 
+Worcester, Massachusetts, January 1880: Dentist Dr. Pevey published following reward offer.
+
+```{figure} ../img/tensor-networks/permutations-price-offer.jpg
+:align: center
+:name: fig-tensor-networks-permutations-price-offer
+Award
+```
+
+A set of false teeth and $100 for the successful competitor, who would be able to solve the 15-puzzle. 
+The puzzle was invented a few years earlier and first sold around Christmas 1879.
+
+```{figure} ../img/tensor-networks/permutations-gem-puzzle.jpg
+:align: center
+:name: fig-tensor-networks-permutations-gem-puzzle
+Gem Puzzle
+```
+
+The instructions have been very simple: "Place the blocks in the box irregularly, 
+then move until in regular order." Maybe you want to try yourself.
+
+<p align="center">
+  <iframe src="https://game-15-puzzle.herokuapp.com/" width="600" height="560"></iframe>
+</p>
+
+When you hit "scramble", random moves are executed to create a starting configuration. 
+Obviously this is always solvable, you just would need to reverse the sequence of moves. 
+However, back in 1880 using the wooden box and starting with a random placement of blocks, 
+this turned out to be different. One time people could solve it - and the next time it 
+seemed impossible. Especially the arrangement, with all the numbers already correctly 
+placed but numbers 14 and 15 reversed, conveyed the impression to not be solvable. 
+Still many people claimed it was.
+
+```{figure} ../img/tensor-networks/permutations-unsolvable.png
+:align: center
+:height: 20em
+:name: fig-tensor-networks-permutations-unsolvable
+Unsolvable
+```
+
+Such an argument led Dr. Pevey to offer a price as he described later.
+
+> Dr. Pevey Explains. (_Worcester Evening Gazette_, January 31, 1880)
+> The reason why I wanted you all to help me work out the puzzle was to convince that girl. 
+> You see she said she worked it out; she knew she did, and if I said she did not, 
+> I simply doubted her veracity. Now to doubt the word of a young lady is high treason and 
+> of course should be punished as such, so I stopped to think how I could convince her 
+> (without putting it into words) that she did not do what she said she did. 
+> From her looks I made up my mind it was no easy task and would probably require the whole 
+> population of Worcester to help me. For she knew she did it! And that you know would 
+> ordinarily settle it, but take what it would or cost what it would, she must be convinced, 
+> but now that we have all given the matter a weeks careful study, and without a single 
+> favorable result. Probably she will no longer contend that she did it.
+> At first some of us, as you know, rather held to it that it could be done, and that perhaps 
+> she was right. But now that we are all of one mind, that it can not be done, and that we 
+> were mistaken, we will laugh over our week’s fun and proceed to business again.
+> Respectfully,
+> Chas. K. Pevey
+> Pevey’s Dental Rooms, cor. Main and Pleasant Streets, Worcester, Mass.
+
+But is it really bulletproof evidence that a crowd didn't come up with a solution? Of course not, 
+otherwise inventions not made yet would never be made. Let's develop a _logical_ argument that 
+demystifies the riddle.
+
+We claim that there are two kinds of piece configurations.
+
+- __Solvable__: Those that can be transferred by regular moves into the target configuration. 
+That is numbers being in order $1,2,\ldots,15$ (row by row from left to right) with the empty 
+square located after number $15$ (in lower right corner).
+- __Unsolvable__: Those that can not be transferred by regular moves into the target configuration.
+
+In particular, the configuration derived from target configuration by swapping $14$ and $15$ is 
+unsolvable. To classify piece configurations we'll construct an invariant that doesn't change 
+under moving. This will be done with the help of permutations and inversions.
+
+```{prf:definition} Permutation
+:label: def-tensor-networks-permutation
+An $\pmb{n}$-___permutation___ $\pi$ is a bijection 
+$\pi:\{1,\ldots,n\}\rightarrow\{1,\ldots,n\}$. If the specific $n$ is unimportant or implicitely given, 
+we might use the term ___permutation___.
+
+An ___inversion___ of a permutation $\pi$ is a pair $(i,j)$ with $i<j$ and $\pi(i)>\pi(j)$. 
+
+The ___inversion set___ ist the set of all inversions. 
+
+The ___inversion number___ $\inv(\pi)$ is given by the cardinality of the inversion set 
+
+$$
+\inv(\pi)\def\,\#\{(i,j):i<j\text{ and }\pi(i)>\pi(j)\} \,.
+$$
+```
+
+To every piece configuration a permutation of pieces can be assigned. We form a sequence 
+of pieces by reading the first row from left to right, then the second row from left to 
+right and so on (the empty square is to be ignored). The resulting sequence is considered 
+to be $\pi(1),\pi(2),\ldots,\pi(15)$.
+
+For example, to the target configuration the identity map $\id:\id(k)=k,\,\forall k$ is 
+assigned, $\inv(\id)=0$. To the configuration with $14$ and $15$ being swapped, the permutation 
+
+$$\tau:\tau(k)=k,\,\forall k\le 13,\;\tau(14)=15,\,\tau(15)=14$$ 
+
+is assigned, $\inv(\tau)=1$.
+
+```{prf:observation} Invariant
+:label: obs-tensor-networks-invariant
+For a given piece configuration let $\pi$ denote the assigned permutation and let 
+$r:1\le r\le 4$ denote the row number of the empty square. Then 
+
+$$\inv(\pi)+r\mod 2$$ 
+
+is invariant under any legal move.
+```
+
+```{prf:proof}
+First of all, sliding a piece in the same row changes neither the number of inversions nor 
+the row number of the empty square. Therefore let's consider moving a piece down (moving up 
+is following the same argument). 
+
+What happens to the assigned permutation? Consider the sequence of pieces we used during 
+construction. The moving piece is shifted three positions towards the end of sequence. 
+Hence, exactly three swaps of piece pairs occur. Each swap will impose a change of inversion 
+status of the affected pair. Either the pair will be turned from being in order into an 
+inversion or vice versa. Since there are three swaps, the inversion number will change parity.
+
+On the other hand the empty square moves up, causing the row number to change parity as well. 
+Therefore the parity of $\inv(\pi)+r$ doesn't change.
+```
+
+The rest is simple. To be solvable a piece configuration needs to have same parity of 
+$\inv(\pi)+r$ as the target configuration, that is even. Swapping $14$ and $15$ yields odd 
+$\inv(\tau)+r$. Therefore no sequence of legal moves exists to transfer this configuration 
+into the target configuration.
+
+Let's continue with another quadratic playing field, this time a matrix $A\in\C^{n\times n}$. 
+This time the classes are:
+
+- __Solvable__: $A$ is invertible, i.e. there is a matrix $A^{-1}\in\C^{n\times n}$ with 
+$AA^{-1}=A^{-1}A=I$.
+- __Unsolvable__: Aforementioned matrix $A^{-1}$ is not existing.
+
+Again we will distinguish both classes be constructing an appropriate invariant.
+
+```{prf:definition} Parity of permutation
+:label: def-tensor-networks-permutation-parity
+The ___parity___ $\sgn(\pi)$ of a permutation $\pi$ is defined by 
+$$
+\sgn(\pi)\def(-1)^{\inv(\pi)}
+$$.
+``` 
+
+```{prf:definition} Determinant
+:label: def-tensor-networks-determinant
+We denote the set of all $n$-permutations by $S_n$. We define the ___determinant___ 
+of a matrix $A=\lbrack a_{ij}\rbrack_{i=1,j=1}^{n,\;\;\;n}\in\C^{n\times n}$ by 
+
+$$
+\det(A)\def\sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots a_{\pi(n)n}\,.
+$$
+```
+
+This formula will become much clearer, when writing out for small or sparse matrices.
+
+- Let $A=[a]$. The only permutation of one element is $\id$ with $\sgn(\id)=1$. 
+We get $\det(A)=1\cdot a=a$.
+- Let $A=\begin{bmatrix} a & b \\ c & d \end{bmatrix}$. We have two permutations, 
+$\id$ and $\pi:\pi(1)=2,\pi(2)=1$ with $\sgn(\pi)=-1$. We get $\det(A)=1\cdot a\cdot d+(-1)\cdot c\cdot b=ad-bc$.
+- Let 
+$A=\begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}$. 
+We get $\det(A)=a_{11}a_{22}a_{33}-a_{11}a_{32}a_{23}-a_{21}a_{12}a_{33}+a_{21}a_{32}a_{13}+a_{31}a_{12}a_{23}-a_{31}a_{22}a_{13}.$
+- Let $A=\diag(a_1,\ldots,a_n)$. All permutations but $\id$ contain a zero-element in the respective product. Hence only one addend remains and we get $\det(A)=a_1\cdot\ldots\cdot a_n.$
+- The same reasoning applies also to triangular matrices. Again only the main diagonal addend survives and the determinant is given by the product of the main diagonal entries.
+
+It's time to derive some properties from the definition.
+
+```{prf:observation} Determinant properties
+:label: obs-tensor-networks-determinant-multilinearity
+We regard matrices $A=\lbrack a_{ij}\rbrack_{i=1,j=1}^{n,\;\;\;n}\in\C^{n\times n}$ as 
+being composed of its $n$ columns, so denoted as $A=[A_1\ldots A_n]$. The column vector 
+$A_j$ is composed of the entries of the $j$-th column $(A_j)_i=a_{ij}$. Thus, 
+the determinant $\det(A)$ can be considered as function of the $n$ columns 
+$\det(A)=f(A_1,\ldots,A_n)$. This function has the following properties:
+
+$f$ is ___multilinear___, i.e. $f$ is linear for every column $A_i$: 
+
+$$
+f(A_1,\ldots,\lambda A_i,\ldots,A_n)&=\lambda f(A_1,\ldots,A_i,\ldots,A_n)\,, \\
+f(A_1,\ldots,A_i+B_i,\ldots,A_n)&=f(A_1,\ldots,A_i,\ldots,A_n)+f(A_1,\ldots,B_i,\ldots,A_n)\,.
+$$
+
+$f$ is ___alternating___, i.e. swapping two columns will change the sign: 
+
+$$
+f(A_1,\ldots,A_i,\ldots,A_j,\ldots,A_n)=-f(A_1,\ldots,A_j,\ldots,A_i,\ldots,A_n)\,.
+$$
+```
+
+```{prf:proof}
+Multilinearity can be shown straight forward from definition of determinant.
+
+$$
+f(A_1,\ldots,\lambda A_i,\ldots,A_n)
+&= \sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots\lambda a_{\pi(i)i}\cdots a_{\pi(n)n} \\
+&= \lambda\sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots a_{\pi(i)i}\cdots a_{\pi(n)n} \\
+&= \lambda f(A_1,\ldots,A_i,\ldots,A_n)\,,
+$$
+
+$$
+f(A_1,\ldots,A_i+B_i,\ldots,A_n)
+&= \sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots(a_{\pi(i)i}+b_{\pi(i)i})\cdots a_{\pi(n)n} \\
+&= \sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots a_{\pi(i)i}\cdots a_{\pi(n)n} \\
+&\quad +\sum_{\pi\in S_n}\sgn(\pi)\cdot a_{\pi(1)1}\cdots b_{\pi(i)i}\cdots a_{\pi(n)n} \\
+&= f(A_1,\ldots,A_i,\ldots,A_n)+f(A_1,\ldots,B_i,\ldots,A_n)\,.
+$$
+
+For proving the alternating property, we first assume that the two columns $A_i$ and $A_j$ 
+are adjacent. Swapping them correlates to replacing in each addend permutation 
+$\pi$ by 
+
+$$
+\pi':\pi'(i)=\pi(j),\,\pi'(j)=\pi(i),\,\pi'(k)=\pi(k),\forall k\neq i,j\,.
+$$
+
+By construction $\pi'$ has the same inversions as $\pi$ but the status of $(i,j)$ is flipped. 
+Thus, $\sgn(\pi')=-\sgn(\pi)$. This implies the assertion for adjacent columns.
+
+If $A_i$ and $A_j$ are not adjacent, the swap can be executed by consecutive execution of 
+adjacent swaps. Similar to bubble sort, move $A_i$ next to $A_j$. Swap both and move $A_j$ 
+back to the initial position of $A_i$. The procedure takes an odd number of swaps (twice 
+the movement plus the swap of $A_i$ and $A_j$). This yields the full assertion.
+```
+
+From this result we can draw two simple yet powerful consequences.
+
+```{prf:corollary} Identical columns
+:label: cor-tensor-networks-determinant-id-cols
+If two columns of $A$ are the same, then $\det(A)=0$.
+```
+
+```{prf:proof}
+We use the alternating property and swap the equal columns. This would not change $A$ but 
+the sign of its determinant. Hence, zero is the only possible value.
+```
+
+```{prf:corollary} Elementary operations
+:label: cor-tensor-networks-determinant-el-ops
+If to one column of $A$ a linear combination of other columns is added, 
+then the determinant doesn't change.
+```
+
+```{prf:proof}
+We use multilinearity and the previous corollary. Taking apart the linear combination into 
+a sum of determinants leaves only the original determinant. The other addends are zero due 
+to duplication of a column. 
+```
+
+Now we are ready to formulate the invariant.
+
+```{prf:theorem} Invertibility criteria
+:label: thm-tensor-networks-invertibility
+A matrix $A\in\C^{n\times n}$ is invertible if and only if $\det(A)\neq 0$.
+```
+
+```{prf:proof}
+We use Gaussian elimination to try to obtain the inverse to $A$. Usually Gaussian 
+elemination is executed row-wise, but due to the fact that $(A^{-1})^\dagger=(A^\dagger)^{-1}$ 
+we can apply it column-wise. The previous corollary ensures, that the elimination steps will 
+not modify the determinant. We will run into either one of the following cases:
+
+- $A$ is invertible. In this case Gaussian elimination will yield a triangular matrix with main 
+diagonal entries being non-zero. Consequently, $\det(A)\neq 0$.
+- $A$ is not invertible. In this case Gaussian elimination will yield a zero-column. Hence, 
+every product of the determinant definition has a zero factor. We obtain $\det(A)=0$.
+
+This proves the theorem.
+```
 
 ## Levi-Civita Symbol
 
