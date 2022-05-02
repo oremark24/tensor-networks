@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Tensors and Combinatorics" href="combinatorics.html" />
@@ -243,16 +243,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#wires">
-   3.2. Wires
+  <a class="reference internal nav-link" href="#wiring">
+   3.2. Wiring
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#todo">
-     3.2.1. TODO
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#permutations">
@@ -260,7 +253,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+    <a class="reference internal nav-link" href="#todo">
      3.3.1. TODO
     </a>
    </li>
@@ -304,16 +297,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#wires">
-   3.2. Wires
+  <a class="reference internal nav-link" href="#wiring">
+   3.2. Wiring
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#todo">
-     3.2.1. TODO
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#permutations">
@@ -321,7 +307,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+    <a class="reference internal nav-link" href="#todo">
      3.3.1. TODO
     </a>
    </li>
@@ -665,8 +651,8 @@ basis. Then the diagrams</p>
 <a class="reference internal image-reference" href="../_images/general-neq2.svg"><img alt="../_images/general-neq2.svg" class="align-center" height="105em" src="../_images/general-neq2.svg" /></a>
 <p>are not equal, the left one contracts to value <span class="math notranslate nohighlight">\(1\)</span>, the right one contracts to value <span class="math notranslate nohighlight">\(0\)</span>.</p>
 </div>
-<div class="section" id="wires">
-<h2><span class="section-number">3.2. </span>Wires<a class="headerlink" href="#wires" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="wiring">
+<h2><span class="section-number">3.2. </span>Wiring<a class="headerlink" href="#wiring" title="Permalink to this headline">¶</a></h2>
 <p>The graphical representation of a tensor network can be considered as a graph, consisting
 of nodes and wires, with potentially open wires coming out of a tensor but not leading
 to another tensor. After having described different kinds of nodes, we will deal with the
@@ -731,7 +717,7 @@ and a covariant index. So, how can a bended wire represent a contraction? This
 question is answered by the Kronecker delta interpretation. Consider for example the
 following situation.</p>
 <div class="figure align-center" id="fig-tensor-networks-kronecker-bended">
-<a class="reference internal image-reference" href="../_images/kronecker-bended.svg"><img alt="../_images/kronecker-bended.svg" height="110em" src="../_images/kronecker-bended.svg" /></a>
+<a class="reference internal image-reference" href="../_images/kronecker-bended.svg"><img alt="../_images/kronecker-bended.svg" height="114em" src="../_images/kronecker-bended.svg" /></a>
 <p class="caption"><span class="caption-number">Fig. 3.7 </span><span class="caption-text">Bended contraction</span><a class="headerlink" href="#fig-tensor-networks-kronecker-bended" title="Permalink to this image">¶</a></p>
 </div>
 <p>This looks like a linear map <span class="math notranslate nohighlight">\(T\)</span> applied to a dual vector <span class="math notranslate nohighlight">\(v^*\)</span>. With help of
@@ -749,20 +735,147 @@ standing for the bending to the left, we can describe this tensor network algebr
 <a class="reference internal" href="#fig-tensor-networks-kronecker-bended"><span class="std std-numref">Fig. 3.7</span></a> is completely justified. It appears as
 either the index <span class="math notranslate nohighlight">\(i\)</span> of <span class="math notranslate nohighlight">\(T\)</span> was rasied to superscript or as index <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(v^\ast\)</span> was
 lowered to subscript (so that the application of linear map to dual vector can be
-executed). Accordingly this technique is called <em>raising</em> respectively <em>lowering</em> indices.</p>
-<div class="section" id="todo">
-<h3><span class="section-number">3.2.1. </span>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Definition 2.1 in Biamonte Lecture Notes</p></li>
-<li><p>Snake Equation (refer to Penrose paper, because it was invented there)</p></li>
-<li><p>SWAP operator</p></li>
-</ul>
+executed). Accordingly this technique is called <em>raising</em> respectively <em>lowering</em> indices.
+Raising and lowering indices preserves the coefficients of a tensor, but uses it together
+with the dual basis (for the modified index).</p>
+<p>If we consider vector <span class="math notranslate nohighlight">\(\sum\limits_{k=1}^nv^ke_k\)</span>, then lowering the index (of coefficients)
+would be achieved by following equation:</p>
+<div class="math notranslate nohighlight" id="equation-eq-tensor-networks-lowering-index">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-tensor-networks-lowering-index" title="Permalink to this equation">¶</a></span>\[\begin{split}C_{j,k}\Bigg(
+  \Bigg[\sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta_{ij}\,e^i\otimes e^j\Bigg]
+  \otimes\Bigg[\sum\limits_{k=1}^nv^ke_k\Bigg]
+\Bigg) 
+&amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\delta_{ij}v^k
+  \underbrace{e^j(e_k)}_{=\delta^j_k}e^i \\
+&amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta_{ij}v^je^i \\
+&amp;= \sum\limits_{i=1}^nv^ie^i \\
+&amp;\fed v' \,.\end{split}\]</div>
+<p>We see, that we have constructed a dual vector <span class="math notranslate nohighlight">\(v'\)</span> with same coefficients <span class="math notranslate nohighlight">\(v^i\)</span>. It
+would be convenient to write them with a subscript index now. On the other hand,
+a dual vector is representing a linear functional with its matrix representation
+being a row vector. Keeping the basis fixed, we identify</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+v=
+\begin{bmatrix}
+  v^1 \\
+  \vdots \\
+  v^n
+\end{bmatrix}\,.
+\end{split}\]</div>
+<p>The constructed dual vector, having the same coefficients, is represented by</p>
+<div class="math notranslate nohighlight">
+\[
+v'=
+\begin{bmatrix}
+  v^1 &amp; \cdots &amp; v^n
+\end{bmatrix}
+=v^T\,.
+\]</div>
+<p>Hence, we could write <span class="math notranslate nohighlight">\(v'=\sum\limits_{i=1}^nv^T_ie^i\)</span>. Bending the wire, which
+implies lowering the index, is transposing the coefficients vector. The same
+can be done for a dual vector and a linear map (matrix). Using the tensor
+network diagram notation, the relations can be expressed as follows.</p>
+<div class="proof observation admonition" id="obs-tensor-networks-transposition">
+<p class="admonition-title"><span class="caption-number">Observation 3.1 </span> (Transposition)</p>
+<div class="observation-content section" id="proof-content">
+<div class="figure align-center" id="fig-tensor-networks-transposition-vector">
+<a class="reference internal image-reference" href="../_images/transposition-vector.svg"><img alt="../_images/transposition-vector.svg" height="84em" src="../_images/transposition-vector.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.8 </span><span class="caption-text">Vector transposition</span><a class="headerlink" href="#fig-tensor-networks-transposition-vector" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="fig-tensor-networks-transposition-dual">
+<a class="reference internal image-reference" href="../_images/transposition-dual.svg"><img alt="../_images/transposition-dual.svg" height="84em" src="../_images/transposition-dual.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.9 </span><span class="caption-text">Dual vector transposition</span><a class="headerlink" href="#fig-tensor-networks-transposition-dual" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="fig-tensor-networks-transposition-matrix">
+<a class="reference internal image-reference" href="../_images/transposition-matrix.svg"><img alt="../_images/transposition-matrix.svg" height="78em" src="../_images/transposition-matrix.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.10 </span><span class="caption-text">Linear map transposition</span><a class="headerlink" href="#fig-tensor-networks-transposition-matrix" title="Permalink to this image">¶</a></p>
 </div>
 </div>
+</div><p><span id="id3">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> gives the following identity, called snake or
+zig-zag equation.</p>
+<div class="proof observation admonition" id="obs-tensor-networks-snake-equation">
+<p class="admonition-title"><span class="caption-number">Observation 3.2 </span> (Snake equation)</p>
+<div class="observation-content section" id="proof-content">
+<div class="figure align-center" id="fig-tensor-networks-transposition-snake">
+<a class="reference internal image-reference" href="../_images/transposition-snake.svg"><img alt="../_images/transposition-snake.svg" height="78em" src="../_images/transposition-snake.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.11 </span><span class="caption-text">Snake equation</span><a class="headerlink" href="#fig-tensor-networks-transposition-snake" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We have <span class="math notranslate nohighlight">\(\delta^{ik}\delta_{kj}\neq 0\)</span> if and only if <span class="math notranslate nohighlight">\(i=k=j\)</span>. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[
+\sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\delta^{ik}\delta_{kj}\,e_i\otimes e^j
+=\sum\limits_{i=1}^n\sum\limits_{j=1}^n\delta^i_j\,e_i\otimes e^j \,.
+\]</div>
+</div>
+<p>Next we will use the tensor</p>
+<div class="math notranslate nohighlight" id="equation-eqn-tensor-networks-swap-tensor">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-tensor" title="Permalink to this equation">¶</a></span>\[S=\sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\sum\limits_{l=1}^n
+  \delta^i_l\delta^j_k\,e_i\otimes e_j\otimes e^k\otimes e^l\,.\]</div>
+<p>For <span class="math notranslate nohighlight">\(v=\sum\limits_{p=1}^nv^pe_p\in V\)</span> and <span class="math notranslate nohighlight">\(w=\sum\limits_{q=1}^nw^qe_q\in W\)</span> we define the
+<span class="math notranslate nohighlight">\(\SWAP\)</span> operator by</p>
+<div class="math notranslate nohighlight" id="equation-eqn-tensor-networks-swap-operator">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-operator" title="Permalink to this equation">¶</a></span>\[\SWAP:v\otimes w\longmapsto C_{k,p}(C_{l,q}(S\otimes v\otimes w))\,.\]</div>
+<p>Evaluating the contractions we obtain</p>
+<div class="math notranslate nohighlight" id="equation-eqn-tensor-networks-swap-resolution">
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-resolution" title="Permalink to this equation">¶</a></span>\[\begin{split}\SWAP(v\otimes w) 
+&amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\sum\limits_{l=1}^n
+  \delta^i_l\delta^j_kv^kw^l\,e_i\otimes e_j \\
+&amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^nv^jw^i\,e_i\otimes e_j \\
+&amp;= \Bigg(\sum\limits_{i=1}^nw^ie_i\Bigg)\otimes \Bigg(\sum\limits_{j=1}^nv^je_j\Bigg) \\
+&amp;= w\otimes v\,.\end{split}\]</div>
+<p>Hence the <span class="math notranslate nohighlight">\(\SWAP\)</span> operator is a linear map (bilinear if we consider <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> to be
+independent variables) with</p>
+<div class="math notranslate nohighlight" id="equation-eqn-tensor-networks-swap-meta">
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-meta" title="Permalink to this equation">¶</a></span>\[\begin{split}\SWAP: &amp;\, V\otimes W\longrightarrow W\otimes V\,,\\
+  &amp;\, v\otimes w\longmapsto w\otimes v\,.\end{split}\]</div>
+<p>During chapter <a class="reference internal" href="tensors.html#ch-tensors"><span class="std std-ref">Tensors</span></a> we have stated that the tensor product can be
+consider as commutative. We will not question this fact, as
+<span class="math notranslate nohighlight">\(V\otimes W\simeq W\otimes V\)</span> with the natural isomorphism
+<span class="math notranslate nohighlight">\(v\otimes w\leftrightarrow w\otimes v\)</span>. In practical applications, however,
+the order of factors might be relevant - because it might define which
+tensors in the diagram are connected. In quantum circuits for example
+qubits might not be interchangeable. In these cases, the <span class="math notranslate nohighlight">\(\SWAP\)</span> operator is
+relevant - if values of two qubits need to be swapped during a quantum computation
+for instance. In chapter <a class="reference internal" href="quantum-computing.html#ch-quantum"><span class="std std-ref">Quantum Computing</span></a> we will learn how the <span class="math notranslate nohighlight">\(\SWAP\)</span> operator
+can implemented on quantum computers. For the moment we leave it with claiming
+its relevance.</p>
+<p>Equations <a class="reference internal" href="#equation-eqn-tensor-networks-swap-tensor">(3.4)</a>,
+<a class="reference internal" href="#equation-eqn-tensor-networks-swap-operator">(3.5)</a>,
+<a class="reference internal" href="#equation-eqn-tensor-networks-swap-resolution">(3.6)</a> can be depicted as</p>
+<div class="figure align-center" id="fig-tensor-networks-swap-indices">
+<a class="reference internal image-reference" href="../_images/swap-indices.svg"><img alt="../_images/swap-indices.svg" height="100em" src="../_images/swap-indices.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.12 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\SWAP\)</span> operator in action</span><a class="headerlink" href="#fig-tensor-networks-swap-indices" title="Permalink to this image">¶</a></p>
+</div>
+<p>visualizing the exchanged roles of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span>. This leads to the following definition.</p>
+<div class="proof definition admonition" id="def-tensor-networks-swap-operator">
+<p class="admonition-title"><span class="caption-number">Definition 3.2 </span> (<span class="math notranslate nohighlight">\(\SWAP\)</span> operator)</p>
+<div class="definition-content section" id="proof-content">
+<p>The <span class="math notranslate nohighlight">\(\SWAP\)</span> operator, respectively tensor <span class="math notranslate nohighlight">\(S\)</span> of equation
+<a class="reference internal" href="#equation-eqn-tensor-networks-swap-tensor">(3.4)</a>, will be displayed in
+tensor network diagram notation as:</p>
+<div class="figure align-center" id="fig-tensor-networks-swap-definition">
+<a class="reference internal image-reference" href="../_images/swap-definition.svg"><img alt="../_images/swap-definition.svg" height="66em" src="../_images/swap-definition.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.13 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\SWAP\)</span> operator</span><a class="headerlink" href="#fig-tensor-networks-swap-definition" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div><div class="proof observation admonition" id="obs-tensor-networks-swap-selfinverse">
+<p class="admonition-title"><span class="caption-number">Observation 3.3 </span> (<span class="math notranslate nohighlight">\(\SWAP\)</span> twice)</p>
+<div class="observation-content section" id="proof-content">
+<p>The <span class="math notranslate nohighlight">\(\SWAP\)</span> operator is self-inverse. Swapping the same vectors
+twice is nothing different than the identity map.</p>
+<div class="figure align-center" id="fig-tensor-networks-swap-selfinverse">
+<a class="reference internal image-reference" href="../_images/swap-selfinverse.svg"><img alt="../_images/swap-selfinverse.svg" height="66em" src="../_images/swap-selfinverse.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.14 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\SWAP\)</span> twice</span><a class="headerlink" href="#fig-tensor-networks-swap-selfinverse" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div></div>
 <div class="section" id="permutations">
 <h2><span class="section-number">3.3. </span>Permutations<a class="headerlink" href="#permutations" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3><span class="section-number">3.3.1. </span>TODO<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="todo">
+<h3><span class="section-number">3.3.1. </span>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Copy and adapt Permutations chapter from old structure</p></li>
 </ul>

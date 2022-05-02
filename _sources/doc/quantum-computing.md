@@ -1,3 +1,4 @@
+(ch-quantum)=
 # Quantum Computing
 
 - Inner product spaces

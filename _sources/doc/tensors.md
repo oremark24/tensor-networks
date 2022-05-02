@@ -1,3 +1,4 @@
+(ch-tensors)=
 # Tensors
 
 This chapter will define the notion of a _tensor_ and develop
