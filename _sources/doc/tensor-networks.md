@@ -647,8 +647,12 @@ Linear map transposition
 ```
 ````
 
-{cite}`penrose71` gives the following identity, called snake or
-zig-zag equation.
+We wanted to be precise in {prf:ref}`obs-tensor-networks-transposition`, but considering
+{numref}`fig-tensor-networks-transposition-vector` and 
+{numref}`fig-tensor-networks-transposition-dual`, the vectors of coefficients $v$ and $v^T$
+are the same - apart from orientation. In future diagrams we might be lazy and stick in 
+both cases to $v$ (if there is no danger of confusion). {cite}`penrose71` gives the 
+following identity, called snake or zig-zag equation.
 
 ````{prf:observation} Snake equation
 :label: obs-tensor-networks-snake-equation
@@ -909,10 +913,29 @@ Again we will distinguish both classes be constructing an appropriate invariant.
 ```{prf:definition} Parity of permutation
 :label: def-tensor-networks-permutation-parity
 The ___parity___ $\sgn(\pi)$ of a permutation $\pi$ is defined by 
+
 $$
-\sgn(\pi)\def(-1)^{\inv(\pi)}
-$$.
-``` 
+\sgn(\pi)\def(-1)^{\inv(\pi)}\,.
+$$
+```
+
+```{prf:observation} Parity swap
+:label: obs-tensor-networks-parity-swap
+If we swap two values of a permutation, then the parity changes. That is, if
+$\pi$ and $\pi'$ are $n$-permutations with
+
+$$
+\pi(i) &= \pi'(j) \,, \\
+\pi(j) &= \pi'(i) \,, \\
+\pi(k) &= \pi'(k) \,,\, i\neq k\neq j
+$$
+
+for some $i$ and $j$, then
+
+$$
+\sgn(\pi) = -\sgn(\pi') \,.
+$$
+```
 
 ```{prf:definition} Determinant
 :label: def-tensor-networks-determinant
@@ -926,15 +949,55 @@ $$
 
 This formula will become much clearer, when writing out for small or sparse matrices.
 
-- Let $A=[a]$. The only permutation of one element is $\id$ with $\sgn(\id)=1$. 
-We get $\det(A)=1\cdot a=a$.
-- Let $A=\begin{bmatrix} a & b \\ c & d \end{bmatrix}$. We have two permutations, 
-$\id$ and $\pi:\pi(1)=2,\pi(2)=1$ with $\sgn(\pi)=-1$. We get $\det(A)=1\cdot a\cdot d+(-1)\cdot c\cdot b=ad-bc$.
+```{prf:example} Determinant of $1\times 1$-matrix
+:label: ex-tensor-networks-det1x1
+Let $A=[a]$. The only permutation of one element is $\id$ with $\sgn(\id)=1$. 
+We get 
+
+$$
+\det(A)=1\cdot a=a\,.
+$$
+```
+
+```{prf:example} Determinant of $2\times 2$-matrix
+:label: ex-tensor-networks-det2x2
+Let $A=\begin{bmatrix} a & b \\ c & d \end{bmatrix}$. We have two permutations, 
+$\id$ and $\pi:\pi(1)=2,\pi(2)=1$ with $\sgn(\pi)=-1$. We get 
+
+$$
+\det(A)=1\cdot a\cdot d+(-1)\cdot c\cdot b=ad-bc\,.
+$$
+```
+
+```{prf:example} Determinant of $3\times 3$-matrix
+:label: ex-tensor-networks-det3x3
 - Let 
 $A=\begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}$. 
-We get $\det(A)=a_{11}a_{22}a_{33}-a_{11}a_{32}a_{23}-a_{21}a_{12}a_{33}+a_{21}a_{32}a_{13}+a_{31}a_{12}a_{23}-a_{31}a_{22}a_{13}.$
-- Let $A=\diag(a_1,\ldots,a_n)$. All permutations but $\id$ contain a zero-element in the respective product. Hence only one addend remains and we get $\det(A)=a_1\cdot\ldots\cdot a_n.$
-- The same reasoning applies also to triangular matrices. Again only the main diagonal addend survives and the determinant is given by the product of the main diagonal entries.
+We get 
+
+$$
+\det(A)=
+a_{11}a_{22}a_{33}-a_{11}a_{32}a_{23}-a_{21}a_{12}a_{33}+
+a_{21}a_{32}a_{13}+a_{31}a_{12}a_{23}-a_{31}a_{22}a_{13}\,.
+$$
+```
+
+```{prf:example} Determinant of diagonal matrix
+:label: ex-tensor-networks-detdiag
+Let $A=\diag(a_1,\ldots,a_n)$. All permutations but $\id$ contain a zero-element in the 
+respective product. Hence only one addend remains and we get 
+
+$$
+\det(A)=a_1\cdot\ldots\cdot a_n\,.
+$$
+```
+
+```{prf:example} Determinant of triangular matrix
+:label: ex-tensor-networks-dettriangular
+The same reasoning as in {prf:ref}`ex-tensor-networks-detdiag` can be applied. Again only 
+the main diagonal addend survives and the determinant is given by the product of the main 
+diagonal entries.
+```
 
 It's time to derive some properties from the definition.
 
@@ -1040,9 +1103,179 @@ every product of the determinant definition has a zero factor. We obtain $\det(A
 This proves the theorem.
 ```
 
-## Levi-Civita Symbol
+## Graphical Reasoning
 
-### TODO
-* $\varepsilon_{ijk}$
+Another helpful tool using the parity of permutations is the $\varepsilon$_-tensor_.
 
-    
+```{prf:definition} $\varepsilon$-tensor
+:label: def-tensor-networks-epstensor
+For indices $i_1,\ldots,i_r$ we define the ___Levi-Civita symbol___ as
+
+$$
+\varepsilon^{i_1\ldots i_r}\def
+\begin{cases}
+  \sgn(\pi)\,, 
+    & \text{index values are an $r$-permutation $\pi$ with $i_k=\pi(k),\,k=1,\ldots,r$} 
+    \,, \\
+  0\,, & \text{otherwise} \,.
+\end{cases}
+$$
+
+The $\bold{\varepsilon}$___-tensor___ is a tensor based on the Levi-Civita symbol.
+
+$$
+\varepsilon\def\sum\limits_{i_1=1}^{n_1}\cdots\sum\limits_{i_r=1}^{n_r}
+  \varepsilon^{i_1\ldots i_r}\,e_{i_1}\otimes\ldots\otimes e_{i_r} \,.
+$$
+```
+
+We have defined the $\varepsilon$-tensor using contravariant indices 
+(superscript at coefficients), but similar to the Kronecker symbol we
+will be using the $\varepsilon$-tensor with all kinds of index combinations.
+For example,
+
+```{math}
+:label: eq-tensor-networks-epsraw
+\varepsilon
+&= \sum\limits_{i=1}^2\sum\limits_{j=1}^2\varepsilon_{ij}\,e^i\otimes e^j \\
+&= e^1\otimes e^2-e^2\otimes e^1\,
+```
+
+is also an $\varepsilon$-tensor making use of the Levi-Civita symbol with
+subscript indices. The $\varepsilon$-tensor will usually used in conjunction
+with other tensors that define its type. Therefore we will be using a round
+shape, for instance the tensor of equation {eq}`eq-tensor-networks-epsraw` will
+look like (using wire bending):
+
+```{figure} ../img/tensor-networks/epsilon-raw.svg
+:height: 110em
+:align: center
+:name: fig-tensor-networks-epsilon-raw
+$\varepsilon$-tensor
+```
+
+From {prf:ref}`obs-tensor-networks-parity-swap` we learn that the $\varepsilon$-tensor
+will change its sign, if the position of two coefficient's indices is swapped. 
+For example, again using the tensor of {eq}`eq-tensor-networks-epsraw`, we have
+
+$$
+\varepsilon'
+&\def \sum\limits_{i=1}^2\sum\limits_{j=1}^2\varepsilon_{ji}\,e^i\otimes e^j \\
+&= \sum\limits_{i=1}^2\sum\limits_{j=1}^2(-\varepsilon_{ij})\,e^i\otimes e^j \\
+&= -\varepsilon\,.
+$$
+
+This can of course also be expressed as diagram:
+
+```{figure} ../img/tensor-networks/epsilon-swap.svg
+:height: 80em
+:align: center
+:name: fig-tensor-networks-epsilon-swap
+Index swap
+```
+
+```{prf:definition} Antisymmetric tensor
+In accordance with 
+[_antisymmetric matrices_](https://en.wikipedia.org/wiki/Skew-symmetric_matrix),
+we call a tensor that switches sign under index swap ___antisymmetric tensor___.
+```
+
+Let
+
+```{math}
+:label: eq-tensor-networks-2x2T
+T=\sum\limits_{i=1}^2\sum\limits_{j=1}^2T^i_j\,e_i\otimes e^j
+```
+
+be a tensor. We know from {prf:ref}`ex-tensor-networks-det2x2` how we can
+compute the determinant of its coefficients matrix, which we will denote
+as $\det(T)$ here.
+
+```{math}
+:label: eq-tensor-networks-epsdet
+\det(T)
+&= T^1_1T^2_2-T^2_1T^1_2 \\
+&= \sum\limits_{i=1}^2\sum\limits_{j=1}^2\varepsilon^{ij}T^1_iT^2_j \,.
+```
+
+Now, check this out.
+
+````{prf:observation} Determinant diagram
+With $T$ of equation {eq}`eq-tensor-networks-2x2T`, the following diagrammatic equation
+holds.
+
+```{figure} ../img/tensor-networks/epsilon-det.jpg
+:height: 20em
+:align: center
+:name: fig-tensor-networks-epsilon-det
+Determinant equation
+```
+````
+
+```{prf:proof}
+We transform the left-hand side into the ride-hand side.
+
+$$
+\sum\limits_{i=1}^2\sum\limits_{k=1}^2\sum\limits_{j=1}^2\sum\limits_{l=1}^2
+  \varepsilon^{jl}T^i_jT^k_l\,e_i\otimes e_k
+&= \underbrace{
+    \sum\limits_{j=1}^2\sum\limits_{l=1}^2\varepsilon^{jl}T^1_jT^1_l\,e_1\otimes e_1
+  }_{=(T^1_1T^1_2-T^1_2T^1_1)\,e_1\otimes e_1=0} \\
+&\quad + \underbrace{
+    \sum\limits_{j=1}^2\sum\limits_{l=1}^2\varepsilon^{jl}T^1_jT^2_l\,e_1\otimes e_2
+  }_{=\det(T)\,e_1\otimes e_2} \\
+&\quad + \underbrace{
+    \sum\limits_{j=1}^2\sum\limits_{l=1}^2\varepsilon^{jl}T^2_jT^1_l\,e_2\otimes e_1
+  }_{=-\det(T)\,e_2\otimes e_1} \\
+&\quad + \underbrace{
+    \sum\limits_{j=1}^2\sum\limits_{l=1}^2\varepsilon^{jl}T^2_jT^2_l\,e_2\otimes e_2
+  }_{=(T^2_1T^2_2-T^2_2T^2_1)\,e_2\otimes e_2=0} \\
+&=\det(T)\sum\limits_{i=1}^2\sum\limits_{k=1}^2\varepsilon^{ik}\,e_i\otimes e_k \\
+&= \det(T)\cdot\varepsilon\,.
+$$
+```
+
+Let $\psi\in\C^2\otimes\C^2$ be a vector of a tensor product space. $\psi$ can be
+entangled or separable. Similar to the determinant being an invariant for invertible
+matrices, we will now define an invariant for entangled/separable tensors.
+
+````{prf:definition} Concurrence
+:label: def-tensor-networks-concurrence
+We define the ___concurrence___ $C(\psi)$ of $\psi\in\C^2\otimes\C^2$ as the absolute 
+value of the following full contracted tensor network (therefore it is a real number).
+
+```{figure} ../img/tensor-networks/epsilon-concurrence.jpg
+:height: 20em
+:align: center
+:name: fig-tensor-networks-epsilon-concurrence
+Concurrence
+```
+````
+
+The concurrence measures, if a tensor is entangled.
+
+```{prf:observation} Concurrence as invariant
+:label: obs-tensor-networks-concurrence
+
+$\psi\in\C^2\otimes\C^2$ is entangled if and only if $C(\psi)\neq 0$.
+```
+
+````{prf:proof}
+We have
+
+```{figure} ../img/tensor-networks/epsilon-concurrence-eq.jpg
+:height: 50em
+:align: center
+:name: fig-tensor-networks-epsilon-concurrence-eq
+Concurrence equation
+```
+````
+
+Final step:
+
+```{figure} ../img/tensor-networks/epsilon-local-trafo.jpg
+:height: 50em
+:align: center
+:name: fig-tensor-networks-epsilon-local-trafo
+Local transformation
+```

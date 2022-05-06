@@ -459,7 +459,7 @@ $$
   
 A tensor with $r$ contravariant and 
 $s$ covariant indices is called
-an ___order-___$\pmb{(r,s)}$ ___tensor___.
+an ___order-___$\bold{(r,s)}$ ___tensor___.
 ```
 
 Let us come back to the standard objects of Linear Algebra. 

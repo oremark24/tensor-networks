@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Tensors and Combinatorics" href="combinatorics.html" />
@@ -253,16 +253,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#levi-civita-symbol">
-   3.4. Levi-Civita Symbol
+  <a class="reference internal nav-link" href="#graphical-reasoning">
+   3.4. Graphical Reasoning
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#todo">
-     3.4.1. TODO
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -300,16 +293,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#levi-civita-symbol">
-   3.4. Levi-Civita Symbol
+  <a class="reference internal nav-link" href="#graphical-reasoning">
+   3.4. Graphical Reasoning
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#todo">
-     3.4.1. TODO
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -778,8 +764,12 @@ network diagram notation, the relations can be expressed as follows.</p>
 <p class="caption"><span class="caption-number">Fig. 3.10 </span><span class="caption-text">Linear map transposition</span><a class="headerlink" href="#fig-tensor-networks-transposition-matrix" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-</div><p><span id="id3">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> gives the following identity, called snake or
-zig-zag equation.</p>
+</div><p>We wanted to be precise in <a class="reference internal" href="#obs-tensor-networks-transposition">Observation 3.1</a>, but considering
+<a class="reference internal" href="#fig-tensor-networks-transposition-vector"><span class="std std-numref">Fig. 3.8</span></a> and
+<a class="reference internal" href="#fig-tensor-networks-transposition-dual"><span class="std std-numref">Fig. 3.9</span></a>, the vectors of coefficients <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(v^T\)</span>
+are the same - apart from orientation. In future diagrams we might be lazy and stick in
+both cases to <span class="math notranslate nohighlight">\(v\)</span> (if there is no danger of confusion). <span id="id3">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> gives the
+following identity, called snake or zig-zag equation.</p>
 <div class="proof observation admonition" id="obs-tensor-networks-snake-equation">
 <p class="admonition-title"><span class="caption-number">Observation 3.2 </span> (Snake equation)</p>
 <div class="observation-content section" id="proof-content">
@@ -982,10 +972,28 @@ This time the classes are:</p>
 <div class="proof definition admonition" id="def-tensor-networks-permutation-parity">
 <p class="admonition-title"><span class="caption-number">Definition 3.4 </span> (Parity of permutation)</p>
 <div class="definition-content section" id="proof-content">
-<p>The <em><strong>parity</strong></em> <span class="math notranslate nohighlight">\(\sgn(\pi)\)</span> of a permutation <span class="math notranslate nohighlight">\(\pi\)</span> is defined by
-$<span class="math notranslate nohighlight">\(
-\sgn(\pi)\def(-1)^{\inv(\pi)}
-\)</span>$.</p>
+<p>The <em><strong>parity</strong></em> <span class="math notranslate nohighlight">\(\sgn(\pi)\)</span> of a permutation <span class="math notranslate nohighlight">\(\pi\)</span> is defined by</p>
+<div class="math notranslate nohighlight">
+\[
+\sgn(\pi)\def(-1)^{\inv(\pi)}\,.
+\]</div>
+</div>
+</div><div class="proof observation admonition" id="obs-tensor-networks-parity-swap">
+<p class="admonition-title"><span class="caption-number">Observation 3.5 </span> (Parity swap)</p>
+<div class="observation-content section" id="proof-content">
+<p>If we swap two values of a permutation, then the parity changes. That is, if
+<span class="math notranslate nohighlight">\(\pi\)</span> and <span class="math notranslate nohighlight">\(\pi'\)</span> are <span class="math notranslate nohighlight">\(n\)</span>-permutations with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\pi(i) &amp;= \pi'(j) \,, \\
+\pi(j) &amp;= \pi'(i) \,, \\
+\pi(k) &amp;= \pi'(k) \,,\, i\neq k\neq j
+\end{split}\]</div>
+<p>for some <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+\sgn(\pi) = -\sgn(\pi') \,.
+\]</div>
 </div>
 </div><div class="proof definition admonition" id="def-tensor-networks-determinant">
 <p class="admonition-title"><span class="caption-number">Definition 3.5 </span> (Determinant)</p>
@@ -998,20 +1006,61 @@ of a matrix <span class="math notranslate nohighlight">\(A=\lbrack a_{ij}\rbrack
 \]</div>
 </div>
 </div><p>This formula will become much clearer, when writing out for small or sparse matrices.</p>
+<div class="proof example admonition" id="ex-tensor-networks-det1x1">
+<p class="admonition-title"><span class="caption-number">Example 3.1 </span> (Determinant of <span class="math notranslate nohighlight">\(1\times 1\)</span>-matrix)</p>
+<div class="example-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(A=[a]\)</span>. The only permutation of one element is <span class="math notranslate nohighlight">\(\id\)</span> with <span class="math notranslate nohighlight">\(\sgn(\id)=1\)</span>.
+We get</p>
+<div class="math notranslate nohighlight">
+\[
+\det(A)=1\cdot a=a\,.
+\]</div>
+</div>
+</div><div class="proof example admonition" id="ex-tensor-networks-det2x2">
+<p class="admonition-title"><span class="caption-number">Example 3.2 </span> (Determinant of <span class="math notranslate nohighlight">\(2\times 2\)</span>-matrix)</p>
+<div class="example-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(A=\begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)</span>. We have two permutations,
+<span class="math notranslate nohighlight">\(\id\)</span> and <span class="math notranslate nohighlight">\(\pi:\pi(1)=2,\pi(2)=1\)</span> with <span class="math notranslate nohighlight">\(\sgn(\pi)=-1\)</span>. We get</p>
+<div class="math notranslate nohighlight">
+\[
+\det(A)=1\cdot a\cdot d+(-1)\cdot c\cdot b=ad-bc\,.
+\]</div>
+</div>
+</div><div class="proof example admonition" id="ex-tensor-networks-det3x3">
+<p class="admonition-title"><span class="caption-number">Example 3.3 </span> (Determinant of <span class="math notranslate nohighlight">\(3\times 3\)</span>-matrix)</p>
+<div class="example-content section" id="proof-content">
 <ul class="simple">
-<li><p>Let <span class="math notranslate nohighlight">\(A=[a]\)</span>. The only permutation of one element is <span class="math notranslate nohighlight">\(\id\)</span> with <span class="math notranslate nohighlight">\(\sgn(\id)=1\)</span>.
-We get <span class="math notranslate nohighlight">\(\det(A)=1\cdot a=a\)</span>.</p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(A=\begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\)</span>. We have two permutations,
-<span class="math notranslate nohighlight">\(\id\)</span> and <span class="math notranslate nohighlight">\(\pi:\pi(1)=2,\pi(2)=1\)</span> with <span class="math notranslate nohighlight">\(\sgn(\pi)=-1\)</span>. We get <span class="math notranslate nohighlight">\(\det(A)=1\cdot a\cdot d+(-1)\cdot c\cdot b=ad-bc\)</span>.</p></li>
 <li><p>Let
 <span class="math notranslate nohighlight">\(A=\begin{bmatrix} a_{11} &amp; a_{12} &amp; a_{13} \\ a_{21} &amp; a_{22} &amp; a_{23} \\ a_{31} &amp; a_{32} &amp; a_{33} \end{bmatrix}\)</span>.
-We get <span class="math notranslate nohighlight">\(\det(A)=a_{11}a_{22}a_{33}-a_{11}a_{32}a_{23}-a_{21}a_{12}a_{33}+a_{21}a_{32}a_{13}+a_{31}a_{12}a_{23}-a_{31}a_{22}a_{13}.\)</span></p></li>
-<li><p>Let <span class="math notranslate nohighlight">\(A=\diag(a_1,\ldots,a_n)\)</span>. All permutations but <span class="math notranslate nohighlight">\(\id\)</span> contain a zero-element in the respective product. Hence only one addend remains and we get <span class="math notranslate nohighlight">\(\det(A)=a_1\cdot\ldots\cdot a_n.\)</span></p></li>
-<li><p>The same reasoning applies also to triangular matrices. Again only the main diagonal addend survives and the determinant is given by the product of the main diagonal entries.</p></li>
+We get</p></li>
 </ul>
-<p>It’s time to derive some properties from the definition.</p>
+<div class="math notranslate nohighlight">
+\[
+\det(A)=
+a_{11}a_{22}a_{33}-a_{11}a_{32}a_{23}-a_{21}a_{12}a_{33}+
+a_{21}a_{32}a_{13}+a_{31}a_{12}a_{23}-a_{31}a_{22}a_{13}\,.
+\]</div>
+</div>
+</div><div class="proof example admonition" id="ex-tensor-networks-detdiag">
+<p class="admonition-title"><span class="caption-number">Example 3.4 </span> (Determinant of diagonal matrix)</p>
+<div class="example-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(A=\diag(a_1,\ldots,a_n)\)</span>. All permutations but <span class="math notranslate nohighlight">\(\id\)</span> contain a zero-element in the
+respective product. Hence only one addend remains and we get</p>
+<div class="math notranslate nohighlight">
+\[
+\det(A)=a_1\cdot\ldots\cdot a_n\,.
+\]</div>
+</div>
+</div><div class="proof example admonition" id="ex-tensor-networks-dettriangular">
+<p class="admonition-title"><span class="caption-number">Example 3.5 </span> (Determinant of triangular matrix)</p>
+<div class="example-content section" id="proof-content">
+<p>The same reasoning as in <a class="reference internal" href="#ex-tensor-networks-detdiag">Example 3.4</a> can be applied. Again only
+the main diagonal addend survives and the determinant is given by the product of the main
+diagonal entries.</p>
+</div>
+</div><p>It’s time to derive some properties from the definition.</p>
 <div class="proof observation admonition" id="obs-tensor-networks-determinant-multilinearity">
-<p class="admonition-title"><span class="caption-number">Observation 3.5 </span> (Determinant properties)</p>
+<p class="admonition-title"><span class="caption-number">Observation 3.6 </span> (Determinant properties)</p>
 <div class="observation-content section" id="proof-content">
 <p>We regard matrices <span class="math notranslate nohighlight">\(A=\lbrack a_{ij}\rbrack_{i=1,j=1}^{n,\;\;\;n}\in\C^{n\times n}\)</span> as
 being composed of its <span class="math notranslate nohighlight">\(n\)</span> columns, so denoted as <span class="math notranslate nohighlight">\(A=[A_1\ldots A_n]\)</span>. The column vector
@@ -1102,13 +1151,142 @@ every product of the determinant definition has a zero factor. We obtain <span c
 <p>This proves the theorem.</p>
 </div>
 </div>
-<div class="section" id="levi-civita-symbol">
-<h2><span class="section-number">3.4. </span>Levi-Civita Symbol<a class="headerlink" href="#levi-civita-symbol" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="todo">
-<h3><span class="section-number">3.4.1. </span>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\varepsilon_{ijk}\)</span></p></li>
-</ul>
+<div class="section" id="graphical-reasoning">
+<h2><span class="section-number">3.4. </span>Graphical Reasoning<a class="headerlink" href="#graphical-reasoning" title="Permalink to this headline">¶</a></h2>
+<p>Another helpful tool using the parity of permutations is the <span class="math notranslate nohighlight">\(\varepsilon\)</span><em>-tensor</em>.</p>
+<div class="proof definition admonition" id="def-tensor-networks-epstensor">
+<p class="admonition-title"><span class="caption-number">Definition 3.6 </span> (<span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor)</p>
+<div class="definition-content section" id="proof-content">
+<p>For indices <span class="math notranslate nohighlight">\(i_1,\ldots,i_r\)</span> we define the <em><strong>Levi-Civita symbol</strong></em> as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\varepsilon^{i_1\ldots i_r}\def
+\begin{cases}
+  \sgn(\pi)\,, 
+    &amp; \text{index values are an $r$-permutation $\pi$ with $i_k=\pi(k),\,k=1,\ldots,r$} 
+    \,, \\
+  0\,, &amp; \text{otherwise} \,.
+\end{cases}
+\end{split}\]</div>
+<p>The <span class="math notranslate nohighlight">\(\bold{\varepsilon}\)</span><em><strong>-tensor</strong></em> is a tensor based on the Levi-Civita symbol.</p>
+<div class="math notranslate nohighlight">
+\[
+\varepsilon\def\sum\limits_{i_1=1}^{n_1}\cdots\sum\limits_{i_r=1}^{n_r}
+  \varepsilon^{i_1\ldots i_r}\,e_{i_1}\otimes\ldots\otimes e_{i_r} \,.
+\]</div>
+</div>
+</div><p>We have defined the <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor using contravariant indices
+(superscript at coefficients), but similar to the Kronecker symbol we
+will be using the <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor with all kinds of index combinations.
+For example,</p>
+<div class="math notranslate nohighlight" id="equation-eq-tensor-networks-epsraw">
+<span class="eqno">(3.8)<a class="headerlink" href="#equation-eq-tensor-networks-epsraw" title="Permalink to this equation">¶</a></span>\[\begin{split}\varepsilon
+&amp;= \sum\limits_{i=1}^2\sum\limits_{j=1}^2\varepsilon_{ij}\,e^i\otimes e^j \\
+&amp;= e^1\otimes e^2-e^2\otimes e^1\,\end{split}\]</div>
+<p>is also an <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor making use of the Levi-Civita symbol with
+subscript indices. The <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor will usually used in conjunction
+with other tensors that define its type. Therefore we will be using a round
+shape, for instance the tensor of equation <a class="reference internal" href="#equation-eq-tensor-networks-epsraw">(3.8)</a> will
+look like (using wire bending):</p>
+<div class="figure align-center" id="fig-tensor-networks-epsilon-raw">
+<a class="reference internal image-reference" href="../_images/epsilon-raw.svg"><img alt="../_images/epsilon-raw.svg" height="110em" src="../_images/epsilon-raw.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.18 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor</span><a class="headerlink" href="#fig-tensor-networks-epsilon-raw" title="Permalink to this image">¶</a></p>
+</div>
+<p>From <a class="reference internal" href="#obs-tensor-networks-parity-swap">Observation 3.5</a> we learn that the <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor
+will change its sign, if the position of two coefficient’s indices is swapped.
+For example, again using the tensor of <a class="reference internal" href="#equation-eq-tensor-networks-epsraw">(3.8)</a>, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\varepsilon'
+&amp;\def \sum\limits_{i=1}^2\sum\limits_{j=1}^2\varepsilon_{ji}\,e^i\otimes e^j \\
+&amp;= \sum\limits_{i=1}^2\sum\limits_{j=1}^2(-\varepsilon_{ij})\,e^i\otimes e^j \\
+&amp;= -\varepsilon\,.
+\end{split}\]</div>
+<p>This can of course also be expressed as diagram:</p>
+<div class="figure align-center" id="fig-tensor-networks-epsilon-swap">
+<a class="reference internal image-reference" href="../_images/epsilon-swap.svg"><img alt="../_images/epsilon-swap.svg" height="80em" src="../_images/epsilon-swap.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.19 </span><span class="caption-text">Index swap</span><a class="headerlink" href="#fig-tensor-networks-epsilon-swap" title="Permalink to this image">¶</a></p>
+</div>
+<div class="proof definition admonition" id="definition-27">
+<p class="admonition-title"><span class="caption-number">Definition 3.7 </span> (Antisymmetric tensor)</p>
+<div class="definition-content section" id="proof-content">
+<p>In accordance with
+<a class="reference external" href="https://en.wikipedia.org/wiki/Skew-symmetric_matrix"><em>antisymmetric matrices</em></a>,
+we call a tensor that switches sign under index swap <em><strong>antisymmetric tensor</strong></em>.</p>
+</div>
+</div><p>Let</p>
+<div class="math notranslate nohighlight" id="equation-eq-tensor-networks-2x2t">
+<span class="eqno">(3.9)<a class="headerlink" href="#equation-eq-tensor-networks-2x2t" title="Permalink to this equation">¶</a></span>\[T=\sum\limits_{i=1}^2\sum\limits_{j=1}^2T^i_j\,e_i\otimes e^j\]</div>
+<p>be a tensor. We know from <a class="reference internal" href="#ex-tensor-networks-det2x2">Example 3.2</a> how we can
+compute the determinant of its coefficients matrix, which we will denote
+as <span class="math notranslate nohighlight">\(\det(T)\)</span> here.</p>
+<div class="math notranslate nohighlight" id="equation-eq-tensor-networks-epsdet">
+<span class="eqno">(3.10)<a class="headerlink" href="#equation-eq-tensor-networks-epsdet" title="Permalink to this equation">¶</a></span>\[\begin{split}\det(T)
+&amp;= T^1_1T^2_2-T^2_1T^1_2 \\
+&amp;= \sum\limits_{i=1}^2\sum\limits_{j=1}^2\varepsilon^{ij}T^1_iT^2_j \,.\end{split}\]</div>
+<p>Now, check this out.</p>
+<div class="proof observation admonition" id="observation-28">
+<p class="admonition-title"><span class="caption-number">Observation 3.7 </span> (Determinant diagram)</p>
+<div class="observation-content section" id="proof-content">
+<p>With <span class="math notranslate nohighlight">\(T\)</span> of equation <a class="reference internal" href="#equation-eq-tensor-networks-2x2t">(3.9)</a>, the following diagrammatic equation
+holds.</p>
+<div class="figure align-center" id="fig-tensor-networks-epsilon-det">
+<a class="reference internal image-reference" href="../_images/epsilon-det.jpg"><img alt="../_images/epsilon-det.jpg" src="../_images/epsilon-det.jpg" style="height: 20em;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.20 </span><span class="caption-text">Determinant equation</span><a class="headerlink" href="#fig-tensor-networks-epsilon-det" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We transform the left-hand side into the ride-hand side.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\sum\limits_{i=1}^2\sum\limits_{k=1}^2\sum\limits_{j=1}^2\sum\limits_{l=1}^2
+  \varepsilon^{jl}T^i_jT^k_l\,e_i\otimes e_k
+&amp;= \underbrace{
+    \sum\limits_{j=1}^2\sum\limits_{l=1}^2\varepsilon^{jl}T^1_jT^1_l\,e_1\otimes e_1
+  }_{=(T^1_1T^1_2-T^1_2T^1_1)\,e_1\otimes e_1=0} \\
+&amp;\quad + \underbrace{
+    \sum\limits_{j=1}^2\sum\limits_{l=1}^2\varepsilon^{jl}T^1_jT^2_l\,e_1\otimes e_2
+  }_{=\det(T)\,e_1\otimes e_2} \\
+&amp;\quad + \underbrace{
+    \sum\limits_{j=1}^2\sum\limits_{l=1}^2\varepsilon^{jl}T^2_jT^1_l\,e_2\otimes e_1
+  }_{=-\det(T)\,e_2\otimes e_1} \\
+&amp;\quad + \underbrace{
+    \sum\limits_{j=1}^2\sum\limits_{l=1}^2\varepsilon^{jl}T^2_jT^2_l\,e_2\otimes e_2
+  }_{=(T^2_1T^2_2-T^2_2T^2_1)\,e_2\otimes e_2=0} \\
+&amp;=\det(T)\sum\limits_{i=1}^2\sum\limits_{k=1}^2\varepsilon^{ik}\,e_i\otimes e_k \\
+&amp;= \det(T)\cdot\varepsilon\,.
+\end{split}\]</div>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(\psi\in\C^2\otimes\C^2\)</span> be a vector of a tensor product space. <span class="math notranslate nohighlight">\(\psi\)</span> can be
+entangled or separable. Similar to the determinant being an invariant for invertible
+matrices, we will now define an invariant for entangled/separable tensors.</p>
+<div class="proof definition admonition" id="def-tensor-networks-concurrence">
+<p class="admonition-title"><span class="caption-number">Definition 3.8 </span> (Concurrence)</p>
+<div class="definition-content section" id="proof-content">
+<p>We define the <em><strong>concurrence</strong></em> <span class="math notranslate nohighlight">\(C(\psi)\)</span> of <span class="math notranslate nohighlight">\(\psi\in\C^2\otimes\C^2\)</span> as the absolute
+value of the following full contracted tensor network (therefore it is a real number).</p>
+<div class="figure align-center" id="fig-tensor-networks-epsilon-concurrence">
+<a class="reference internal image-reference" href="../_images/epsilon-concurrence.jpg"><img alt="../_images/epsilon-concurrence.jpg" src="../_images/epsilon-concurrence.jpg" style="height: 20em;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.21 </span><span class="caption-text">Concurrence</span><a class="headerlink" href="#fig-tensor-networks-epsilon-concurrence" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div><p>The concurrence measures, if a tensor is entangled.</p>
+<div class="proof observation admonition" id="obs-tensor-networks-concurrence">
+<p class="admonition-title"><span class="caption-number">Observation 3.8 </span> (Concurrence as invariant)</p>
+<div class="observation-content section" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\psi\in\C^2\otimes\C^2\)</span> is entangled if and only if <span class="math notranslate nohighlight">\(C(\psi)\neq 0\)</span>.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We have</p>
+<div class="figure align-center" id="fig-tensor-networks-epsilon-concurrence-eq">
+<a class="reference internal image-reference" href="../_images/epsilon-concurrence-eq.jpg"><img alt="../_images/epsilon-concurrence-eq.jpg" src="../_images/epsilon-concurrence-eq.jpg" style="height: 50em;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.22 </span><span class="caption-text">Concurrence equation</span><a class="headerlink" href="#fig-tensor-networks-epsilon-concurrence-eq" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<p>Final step:</p>
+<div class="figure align-center" id="fig-tensor-networks-epsilon-local-trafo">
+<a class="reference internal image-reference" href="../_images/epsilon-local-trafo.jpg"><img alt="../_images/epsilon-local-trafo.jpg" src="../_images/epsilon-local-trafo.jpg" style="height: 50em;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3.23 </span><span class="caption-text">Local transformation</span><a class="headerlink" href="#fig-tensor-networks-epsilon-local-trafo" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
