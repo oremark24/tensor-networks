@@ -15,18 +15,91 @@ kernelspec:
 
 # Tensors and Combinatorics
 
-```{code-cell}
-# the code below requires the miniKanren package
-# pip install miniKanren
+```{figure} ../img/combinatorics/map-coloring.png
+:align: center
+:name: fig-tensor-networks-epsilon-local-trafo
+Map coloring
+```
 
-from kanren import run, eq, membero, var, conde
-x = var()
-run(0, x, eq(x, 5))
+Minikanren implementation for Python: [kanren package](https://github.com/logpy/logpy).
+
+```{code-cell}
+# pip install kanren
+from kanren import *
+
+# part of Python's standard library
+from functools import partial
+```
+
+```{code-cell}
+# facts
+different_2 = Relation()
+facts(different_2,
+      ("red", "green"),
+      ("green", "red")
+)
+
+different_3 = Relation()
+facts(different_3,
+      ("red", "green"),
+      ("green", "red"),
+      ("red", "blue"),
+      ("blue", "red"),
+      ("green", "blue"),
+      ("blue", "green") 
+)
+
+# rules
+def coloring(different, tn, ms, al, ga, fl):
+    return lall(
+        different(tn, ms),
+        different(tn, al),
+        different(tn, ga),
+        different(ms, al),
+        different(al, ga),
+        different(al, fl),
+        different(ga, fl)
+    )
+
+coloring_2 = partial(coloring, different_2)
+coloring_3 = partial(coloring, different_3)
+```
+
+```{code-cell}
+# goals
+tn, ms, al, ga, fl = var(), var(), var(), var(), var()
+
+colors_2 = coloring_2(tn, ms, al, ga, fl)
+colors_3 = coloring_3(tn, ms, al, ga, fl)
+
+al_red = eq(al, "red")
+tn_green = eq(tn, "green")
+
+# query
+query = { 
+    "Tennessee": tn,
+    "Mississippi": ms,
+    "Alabama": al,
+    "Georgia": ga,
+    "Florida": fl
+}
+```
+
+```{code-cell}
+run(0, query, colors_2)
+```
+
+```{code-cell}
+run(0, query, colors_3)
+```
+
+```{code-cell}
+run(0, query, colors_3, al_red, tn_green)
 ```
 
 ## Idea
 
-1. Zebra Puzzle (solution with miniKanren)
+1. Map coloring problem
 2. How does it work? -> relational programming
 3. AND as FUNCTION and as RELATION (implementation)
 4. 4-color example with constraint programming
