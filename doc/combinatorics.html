@@ -308,19 +308,147 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="tensors-and-combinatorics">
 <h1><span class="section-number">4. </span>Tensors and Combinatorics<a class="headerlink" href="#tensors-and-combinatorics" title="Permalink to this headline">¶</a></h1>
+<div class="figure align-center" id="fig-tensor-networks-epsilon-local-trafo">
+<img alt="../_images/map-coloring.png" src="../_images/map-coloring.png" />
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Map coloring</span><a class="headerlink" href="#fig-tensor-networks-epsilon-local-trafo" title="Permalink to this image">¶</a></p>
+</div>
+<p>Minikanren implementation for Python: <a class="reference external" href="https://github.com/logpy/logpy">kanren package</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the code below requires the miniKanren package</span>
-<span class="c1"># pip install miniKanren</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pip install kanren</span>
+<span class="kn">from</span> <span class="nn">kanren</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="kn">from</span> <span class="nn">kanren</span> <span class="kn">import</span> <span class="n">run</span><span class="p">,</span> <span class="n">eq</span><span class="p">,</span> <span class="n">membero</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">conde</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">var</span><span class="p">()</span>
-<span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">eq</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="c1"># part of Python&#39;s standard library</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># facts</span>
+<span class="n">different_2</span> <span class="o">=</span> <span class="n">Relation</span><span class="p">()</span>
+<span class="n">facts</span><span class="p">(</span><span class="n">different_2</span><span class="p">,</span>
+      <span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">different_3</span> <span class="o">=</span> <span class="n">Relation</span><span class="p">()</span>
+<span class="n">facts</span><span class="p">(</span><span class="n">different_3</span><span class="p">,</span>
+      <span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">),</span>
+      <span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span> 
+<span class="p">)</span>
+
+<span class="c1"># rules</span>
+<span class="k">def</span> <span class="nf">coloring</span><span class="p">(</span><span class="n">different</span><span class="p">,</span> <span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">lall</span><span class="p">(</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">al</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ga</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">al</span><span class="p">,</span> <span class="n">fl</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">coloring_2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">coloring</span><span class="p">,</span> <span class="n">different_2</span><span class="p">)</span>
+<span class="n">coloring_3</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">coloring</span><span class="p">,</span> <span class="n">different_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># goals</span>
+<span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span> <span class="o">=</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">()</span>
+
+<span class="n">colors_2</span> <span class="o">=</span> <span class="n">coloring_2</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">)</span>
+<span class="n">colors_3</span> <span class="o">=</span> <span class="n">coloring_3</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">)</span>
+
+<span class="n">al_red</span> <span class="o">=</span> <span class="n">eq</span><span class="p">(</span><span class="n">al</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">tn_green</span> <span class="o">=</span> <span class="n">eq</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+
+<span class="c1"># query</span>
+<span class="n">query</span> <span class="o">=</span> <span class="p">{</span> 
+    <span class="s2">&quot;Tennessee&quot;</span><span class="p">:</span> <span class="n">tn</span><span class="p">,</span>
+    <span class="s2">&quot;Mississippi&quot;</span><span class="p">:</span> <span class="n">ms</span><span class="p">,</span>
+    <span class="s2">&quot;Alabama&quot;</span><span class="p">:</span> <span class="n">al</span><span class="p">,</span>
+    <span class="s2">&quot;Georgia&quot;</span><span class="p">:</span> <span class="n">ga</span><span class="p">,</span>
+    <span class="s2">&quot;Florida&quot;</span><span class="p">:</span> <span class="n">fl</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">colors_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5,)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">colors_3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Tennessee&#39;: &#39;red&#39;,
+  &#39;Mississippi&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;blue&#39;,
+  &#39;Georgia&#39;: &#39;green&#39;,
+  &#39;Florida&#39;: &#39;red&#39;},
+ {&#39;Tennessee&#39;: &#39;blue&#39;,
+  &#39;Mississippi&#39;: &#39;red&#39;,
+  &#39;Alabama&#39;: &#39;green&#39;,
+  &#39;Georgia&#39;: &#39;red&#39;,
+  &#39;Florida&#39;: &#39;blue&#39;},
+ {&#39;Tennessee&#39;: &#39;blue&#39;,
+  &#39;Mississippi&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;red&#39;,
+  &#39;Georgia&#39;: &#39;green&#39;,
+  &#39;Florida&#39;: &#39;blue&#39;},
+ {&#39;Tennessee&#39;: &#39;red&#39;,
+  &#39;Mississippi&#39;: &#39;blue&#39;,
+  &#39;Alabama&#39;: &#39;green&#39;,
+  &#39;Georgia&#39;: &#39;blue&#39;,
+  &#39;Florida&#39;: &#39;red&#39;},
+ {&#39;Tennessee&#39;: &#39;green&#39;,
+  &#39;Mississippi&#39;: &#39;red&#39;,
+  &#39;Alabama&#39;: &#39;blue&#39;,
+  &#39;Georgia&#39;: &#39;red&#39;,
+  &#39;Florida&#39;: &#39;green&#39;},
+ {&#39;Tennessee&#39;: &#39;green&#39;,
+  &#39;Mississippi&#39;: &#39;blue&#39;,
+  &#39;Alabama&#39;: &#39;red&#39;,
+  &#39;Georgia&#39;: &#39;blue&#39;,
+  &#39;Florida&#39;: &#39;green&#39;})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">colors_3</span><span class="p">,</span> <span class="n">al_red</span><span class="p">,</span> <span class="n">tn_green</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Tennessee&#39;: &#39;green&#39;,
+  &#39;Mississippi&#39;: &#39;blue&#39;,
+  &#39;Alabama&#39;: &#39;red&#39;,
+  &#39;Georgia&#39;: &#39;blue&#39;,
+  &#39;Florida&#39;: &#39;green&#39;},)
 </pre></div>
 </div>
 </div>
@@ -328,7 +456,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="idea">
 <h2><span class="section-number">4.1. </span>Idea<a class="headerlink" href="#idea" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p>Zebra Puzzle (solution with miniKanren)</p></li>
+<li><p>Map coloring problem</p></li>
 <li><p>How does it work? -&gt; relational programming</p></li>
 <li><p>AND as FUNCTION and as RELATION (implementation)</p></li>
 <li><p>4-color example with constraint programming</p></li>
