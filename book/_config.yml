@@ -35,6 +35,9 @@ sphinx:
           cL: \mathcal{L}
           def: \mathrel{\vcenter{:}}=
           fed: =\mathrel{\vcenter{:}}
+          bold: 
+            - \pmb{#1}
+            - 1
           norm: 
             - \|#1\|
             - 1
