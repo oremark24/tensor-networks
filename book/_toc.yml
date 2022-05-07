@@ -16,3 +16,4 @@ parts:
   - chapters: 
     - file: doc/bibliography
     - file: doc/todo
+    - file: doc/presentation

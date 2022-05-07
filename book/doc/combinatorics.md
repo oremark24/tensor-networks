@@ -17,7 +17,7 @@ kernelspec:
 
 ```{figure} ../img/combinatorics/map-coloring.png
 :align: center
-:name: fig-tensor-networks-epsilon-local-trafo
+:name: fig-tensor-networks-map-coloring
 Map coloring
 ```
 
