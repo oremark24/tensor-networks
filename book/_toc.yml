@@ -14,6 +14,8 @@ parts:
     - file: doc/matrix-product-state
     - file: doc/machine-learning
   - chapters: 
+    - file: doc/slides
+      sections:
+        - file: doc/slides/nutshell
     - file: doc/bibliography
     - file: doc/todo
-    - file: doc/presentation
