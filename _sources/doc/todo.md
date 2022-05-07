@@ -5,3 +5,7 @@
 - In section {ref}`sec-tensor-networks-permutations` the matrix indices are still legacy (always
 subscript). Adapt this to tensor notation. Furthermore, determinant should be defined row-wise and
 not columnwise. (Elementary operations are usually row-operations and not column operations)
+- Update references
+  - 15-puzzle repository (should also be cloned and iframe-access the clone)
+  - map-coloring repository
+  - intro to logical programming in python repository
