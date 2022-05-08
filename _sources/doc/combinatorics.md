@@ -21,8 +21,6 @@ kernelspec:
 Map coloring
 ```
 
-Minikanren implementation for Python: [kanren package](https://github.com/logpy/logpy).
-
 ```{code-cell}
 # pip install kanren
 from kanren import *
@@ -95,6 +93,36 @@ run(0, query, colors_3)
 
 ```{code-cell}
 run(0, query, colors_3, al_red, tn_green)
+```
+
+```{code-cell}
+def xor_fn(x, y):
+    return x ^ y
+
+xor_fn(True, False)
+```
+
+```{code-cell}
+xor_rel = Relation()
+facts(xor_rel,
+      (False, False, False),
+      (True, False, True),
+      (False, True, True),      
+      (True, True, False)
+)
+      
+z = var()
+run(0, z, xor_rel(True, False, z))
+```
+
+```{code-cell}
+x = var()
+run(0, x, xor_rel(x, False, True))
+```
+
+```{code-cell}
+y = var()
+run(0, (x, y), xor_rel(x, y, True))
 ```
 
 ## Idea
