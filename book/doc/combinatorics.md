@@ -15,6 +15,11 @@ kernelspec:
 
 # Tensors and Combinatorics
 
+- The Reasoned Schemer {cite}`friedman18`
+- Dissertation minikanren {cite}`byrd09`
+- Logic programming repository {cite}`Fawi20`
+- kanren Python port {cite}`Rocklin13`
+
 ```{figure} ../img/combinatorics/map-coloring.png
 :align: center
 :name: fig-tensor-networks-map-coloring
