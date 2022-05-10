@@ -9,3 +9,4 @@ not columnwise. (Elementary operations are usually row-operations and not column
   - 15-puzzle repository (should also be cloned and iframe-access the clone)
   - map-coloring repository
   - intro to logical programming in python repository
+- Adapt {numref}`sec-combinatorics-counting` (e.g. redraw figures in Biamonte style)
