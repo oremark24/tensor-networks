@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "xor": "\\mathrm{xor}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 
@@ -261,6 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
    <div class="modindex-jumpbox">
    <a href="#cap-cor-tensor-networks-determinant-el-ops"><strong>cor-tensor-networks-determinant-el-ops</strong></a> | 
    <a href="#cap-cor-tensor-networks-determinant-id-cols"><strong>cor-tensor-networks-determinant-id-cols</strong></a> | 
+   <a href="#cap-def-combinatorics-xor-tensor"><strong>def-combinatorics-xor-tensor</strong></a> | 
    <a href="#cap-def-kronecker"><strong>def-kronecker</strong></a> | 
    <a href="#cap-def-tensor-networks-concurrence"><strong>def-tensor-networks-concurrence</strong></a> | 
    <a href="#cap-def-tensor-networks-determinant"><strong>def-tensor-networks-determinant</strong></a> | 
@@ -277,6 +278,10 @@ const thebe_selector_output = ".output, .cell_output"
    <a href="#cap-defTensorOrder"><strong>defTensorOrder</strong></a> | 
    <a href="#cap-definition-27"><strong>definition-27</strong></a> | 
    <a href="#cap-ex-Fn"><strong>ex-Fn</strong></a> | 
+   <a href="#cap-ex-combinatorics-bridge"><strong>ex-combinatorics-bridge</strong></a> | 
+   <a href="#cap-ex-combinatorics-penrose"><strong>ex-combinatorics-penrose</strong></a> | 
+   <a href="#cap-ex-combinatorics-penrose2"><strong>ex-combinatorics-penrose2</strong></a> | 
+   <a href="#cap-ex-combinatorics-penrose3"><strong>ex-combinatorics-penrose3</strong></a> | 
    <a href="#cap-ex-magic-squares"><strong>ex-magic-squares</strong></a> | 
    <a href="#cap-ex-tensor-networks-det1x1"><strong>ex-tensor-networks-det1x1</strong></a> | 
    <a href="#cap-ex-tensor-networks-det2x2"><strong>ex-tensor-networks-det2x2</strong></a> | 
@@ -313,6 +318,9 @@ const thebe_selector_output = ".output, .cell_output"
    <a href="#cap-obsInnerProduct"><strong>obsInnerProduct</strong></a> | 
    <a href="#cap-observation-28"><strong>observation-28</strong></a> | 
    <a href="#cap-rem-kronecker"><strong>rem-kronecker</strong></a> | 
+   <a href="#cap-thm-combinatorics-bridge"><strong>thm-combinatorics-bridge</strong></a> | 
+   <a href="#cap-thm-combinatorics-penrose"><strong>thm-combinatorics-penrose</strong></a> | 
+   <a href="#cap-thm-combinatorics-penrose2"><strong>thm-combinatorics-penrose2</strong></a> | 
    <a href="#cap-thm-tensor-networks-invertibility"><strong>thm-tensor-networks-invertibility</strong></a> | 
    <a href="#cap-thmComposition"><strong>thmComposition</strong></a> | 
    <a href="#cap-thmMultilinearity"><strong>thmMultilinearity</strong></a> | 
@@ -336,6 +344,14 @@ const thebe_selector_output = ".output, .cell_output"
        <td>
        <a href="doc/tensor-networks.html#cor-tensor-networks-determinant-id-cols"><code class="xref">cor-tensor-networks-determinant-id-cols</code></a> <em>(doc/tensor-networks)</em></td><td>
        <em>corollary</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def-combinatorics-xor-tensor"><td></td><td>
+       <strong>def-combinatorics-xor-tensor</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/combinatorics.html#def-combinatorics-xor-tensor"><code class="xref">def-combinatorics-xor-tensor</code></a> <em>(doc/combinatorics)</em></td><td>
+       <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-kronecker"><td></td><td>
        <strong>def-kronecker</strong></td><td></td></tr>
@@ -463,6 +479,38 @@ const thebe_selector_output = ".output, .cell_output"
        <td></td>
        <td>
        <a href="doc/foundation.html#ex-Fn"><code class="xref">ex-Fn</code></a> <em>(doc/foundation)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex-combinatorics-bridge"><td></td><td>
+       <strong>ex-combinatorics-bridge</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/combinatorics.html#ex-combinatorics-bridge"><code class="xref">ex-combinatorics-bridge</code></a> <em>(doc/combinatorics)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex-combinatorics-penrose"><td></td><td>
+       <strong>ex-combinatorics-penrose</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/combinatorics.html#ex-combinatorics-penrose"><code class="xref">ex-combinatorics-penrose</code></a> <em>(doc/combinatorics)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex-combinatorics-penrose2"><td></td><td>
+       <strong>ex-combinatorics-penrose2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/combinatorics.html#ex-combinatorics-penrose2"><code class="xref">ex-combinatorics-penrose2</code></a> <em>(doc/combinatorics)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-ex-combinatorics-penrose3"><td></td><td>
+       <strong>ex-combinatorics-penrose3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/combinatorics.html#ex-combinatorics-penrose3"><code class="xref">ex-combinatorics-penrose3</code></a> <em>(doc/combinatorics)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-magic-squares"><td></td><td>
@@ -752,6 +800,30 @@ const thebe_selector_output = ".output, .cell_output"
        <td>
        <a href="doc/tensor-networks.html#rem-kronecker"><code class="xref">rem-kronecker</code></a> <em>(doc/tensor-networks)</em></td><td>
        <em>remark</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm-combinatorics-bridge"><td></td><td>
+       <strong>thm-combinatorics-bridge</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/combinatorics.html#thm-combinatorics-bridge"><code class="xref">thm-combinatorics-bridge</code></a> <em>(doc/combinatorics)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm-combinatorics-penrose"><td></td><td>
+       <strong>thm-combinatorics-penrose</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/combinatorics.html#thm-combinatorics-penrose"><code class="xref">thm-combinatorics-penrose</code></a> <em>(doc/combinatorics)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm-combinatorics-penrose2"><td></td><td>
+       <strong>thm-combinatorics-penrose2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/combinatorics.html#thm-combinatorics-penrose2"><code class="xref">thm-combinatorics-penrose2</code></a> <em>(doc/combinatorics)</em></td><td>
+       <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-thm-tensor-networks-invertibility"><td></td><td>
        <strong>thm-tensor-networks-invertibility</strong></td><td></td></tr>

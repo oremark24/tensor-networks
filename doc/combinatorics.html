@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "xor": "\\mathrm{xor}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Quantum Computing" href="quantum-computing.html" />
@@ -275,13 +275,23 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#idea">
-   4.1. Idea
+  <a class="reference internal nav-link" href="#relational-programming">
+   4.1. Relational programming
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#todo">
-   4.2. TODO
+  <a class="reference internal nav-link" href="#boolean-tensors">
+   4.2. Boolean tensors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#counting-problems">
+   4.3. Counting problems
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sat-instances">
+   4.4. SAT instances
   </a>
  </li>
 </ul>
@@ -305,13 +315,23 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#idea">
-   4.1. Idea
+  <a class="reference internal nav-link" href="#relational-programming">
+   4.1. Relational programming
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#todo">
-   4.2. TODO
+  <a class="reference internal nav-link" href="#boolean-tensors">
+   4.2. Boolean tensors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#counting-problems">
+   4.3. Counting problems
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sat-instances">
+   4.4. SAT instances
   </a>
  </li>
 </ul>
@@ -325,14 +345,40 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="tensors-and-combinatorics">
 <h1><span class="section-number">4. </span>Tensors and Combinatorics<a class="headerlink" href="#tensors-and-combinatorics" title="Permalink to this headline">¶</a></h1>
-<div class="figure align-center" id="fig-tensor-networks-map-coloring">
+<p>What is <em>Combinatorics</em>? It is a discipline of mathematics that investigates existence,
+construction and counting of configurations (confer the preface of <span id="id1">[<a class="reference internal" href="bibliography.html#id11" title="George Pólya, Robert E. Tarjan, and Donald R. Woods. Notes on introductory combinatorics. Volume 4 of Progress in Computer Science. Birkhäuser Boston Inc., Boston, MA, 1983. ISBN 0-8176-3123-2; 0-8176-3170-4. URL: https://link.springer.com/book/9780817649524.">PolyaTW83</a>]</span>).
+Here, a configuration is conceived as a discrete structure. That is an artifact that
+is not continuous, but defined by finite or infinite countable parameters.</p>
+<div class="section" id="relational-programming">
+<h2><span class="section-number">4.1. </span>Relational programming<a class="headerlink" href="#relational-programming" title="Permalink to this headline">¶</a></h2>
+<p>An example combinatorial problem is the following map coloring puzzle. Look at the map
+of five states.</p>
+<div class="figure align-center" id="fig-combinatorics-map-coloring">
 <img alt="../_images/map-coloring.png" src="../_images/map-coloring.png" />
-<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Map coloring</span><a class="headerlink" href="#fig-tensor-networks-map-coloring" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Map coloring</span><a class="headerlink" href="#fig-combinatorics-map-coloring" title="Permalink to this image">¶</a></p>
 </div>
+<p>The task is to color the state shapes such that states with a common border are colored
+differently. This shall be done in a way that as few colors as possible are used.
+The given map represents a small example that could even be solved with pencil and paper.
+This comes in handy, when we might want to verify our algorithmic solutions later. But
+of course a pencil and paper approach would soon fail, if the map becomes big and complex.</p>
+<p>An interesting way to solve problems like this in a declarative fashion, offers logic
+programming. It will abstract away the solution enumerating part and instead rely on
+a description of solution identifying properties.</p>
+<p>The map <a class="reference internal" href="#fig-combinatorics-map-coloring"><span class="std std-numref">Fig. 4.1</span></a> and also the solution approach is taken
+from the repository <span id="id2">[<a class="reference internal" href="bibliography.html#id9" title="Muhammad Fawi. Pytholog. 2020. URL: https://github.com/MNoorFawi/pytholog.">Faw20</a>]</span>, that gives an introduction into the logic programming
+library <code class="docutils literal notranslate"><span class="pre">pytholog</span></code> for Python. It adds Prolog as an external DSL to Python.</p>
+<p>We will be following another path, that is explained in the entertaining book
+“The Reasoned Schemer”, <span id="id3">[<a class="reference internal" href="bibliography.html#id7" title="Daniel P. Friedman, William E. Byrd, Oleg Kiselyov, and Jason Hemann. The Reasoned Schemer, second edition. MIT Press, 2018. ISBN 9780262535519. URL: https://mitpress.mit.edu/books/reasoned-schemer-second-edition.">FBKH18</a>]</span>, or more prosaic in William Byrd’s dissertation,
+<span id="id4">[<a class="reference internal" href="bibliography.html#id8" title="William E. Byrd. Relational Programming in Minikanren: Techniques, Applications, and Implementations. PhD thesis, Indiana University, USA, 2009. AAI3380156. URL: https://github.com/webyrd/dissertation-single-spaced.">Byr09</a>]</span>. Both publications feature and develop the Scheme internal logic DSL <code class="docutils literal notranslate"><span class="pre">miniKanren</span></code>.
+We will use its Python port <code class="docutils literal notranslate"><span class="pre">kanren</span></code> from repository <span id="id5">[<a class="reference internal" href="bibliography.html#id10" title="Matthew Rocklin and others. Kanren. 2013. URL: https://github.com/logpy/logpy.">R+13</a>]</span>.</p>
+<p>Let us describe the solution to the given map coloring problem step by step. As mentioned,
+we will be using <code class="docutils literal notranslate"><span class="pre">kanren</span></code> as dependency and the <code class="docutils literal notranslate"><span class="pre">partial</span></code> function from <code class="docutils literal notranslate"><span class="pre">functools</span></code>, allowing
+for <a class="reference external" href="https://en.wikipedia.org/wiki/Currying">currying</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pip install kanren</span>
-<span class="kn">from</span> <span class="nn">kanren</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">kanren</span> <span class="kn">import</span> <span class="n">Relation</span><span class="p">,</span> <span class="n">facts</span><span class="p">,</span> <span class="n">lall</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">eq</span><span class="p">,</span> <span class="n">run</span>
 
 <span class="c1"># part of Python&#39;s standard library</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
@@ -340,6 +386,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>As a first step we have to explain the problem to <code class="docutils literal notranslate"><span class="pre">kanren</span></code>. This will be done through <em>facts</em> and
+<em>rules</em>. Facts form the knowledge base by defining relations between possible values of logic
+variables. We do not claim that our solution displays the only feasible approach. As a challenge
+you might want to try to find a different way. However, in our problem description we are using
+color tones as knowledge atoms. The facts are given by all possible color combinations to be
+used for adjacent states. We want to try out coloring the map with two colors. We define a
+relation <code class="docutils literal notranslate"><span class="pre">different_2</span></code> for that. In case the two color attempt is not going through, we
+define a relation <code class="docutils literal notranslate"><span class="pre">different_3</span></code> holding all facts for a try with three colors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># facts</span>
@@ -358,8 +412,21 @@ const thebe_selector_output = ".output, .cell_output"
       <span class="p">(</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">),</span>
       <span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span> 
 <span class="p">)</span>
-
-<span class="c1"># rules</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rules extend the facts through logical inference. As foundation for our rules
+we define the function <code class="docutils literal notranslate"><span class="pre">coloring</span></code> that takes a set of facts and five logic variables
+representing a possible color per state. The function body checks, if the coloring is
+feasible. This is the case, if and only if adjacent states are colored differently.
+We are using the defined relations and the <code class="docutils literal notranslate"><span class="pre">kanren</span></code> combinator <code class="docutils literal notranslate"><span class="pre">lall</span></code>. It stands for
+“logic all” and is true exactly when all subsequent facts are true.</p>
+<p>From the function we inherit two rules. <code class="docutils literal notranslate"><span class="pre">coloring_2</span></code> contains the knowledge of feasible
+colorings with two colors, <code class="docutils literal notranslate"><span class="pre">coloring_3</span></code> does the same for three colors respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rules</span>
 <span class="k">def</span> <span class="nf">coloring</span><span class="p">(</span><span class="n">different</span><span class="p">,</span> <span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">lall</span><span class="p">(</span>
         <span class="n">different</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">),</span>
@@ -377,6 +444,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>Next we will tell <code class="docutils literal notranslate"><span class="pre">kanren</span></code>, what we are seeking for. This is expressed by means of
+<em>goals</em> and a <em>query</em>. Goals are combining facts and rules with values that set
+solution properties. First we define a logic variable per state. The we define
+goals <code class="docutils literal notranslate"><span class="pre">colors_2</span></code> and <code class="docutils literal notranslate"><span class="pre">colors_3</span></code> for feasible colorings with two, respectively three,
+colors. You might already wonder about the certainty that in case of success
+we will not find a unique coloring. From one feasible coloring we can easily derive
+another  valid coloring by permuting the colors. To cut down a potential set of solutions
+further to our likings, we define two more goals <code class="docutils literal notranslate"><span class="pre">al_red</span></code> and <code class="docutils literal notranslate"><span class="pre">tn_green</span></code>. They
+require Alabama to be colored “green” and Tennessee to be colored “green”, respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># goals</span>
@@ -387,8 +463,16 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="n">al_red</span> <span class="o">=</span> <span class="n">eq</span><span class="p">(</span><span class="n">al</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
 <span class="n">tn_green</span> <span class="o">=</span> <span class="n">eq</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
-
-<span class="c1"># query</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our final preparatory step is to define the query - the solution structure. We want to know
+the coloring of all five states. Hence, our query contains all five logic variables, combined
+into a dictionary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># query</span>
 <span class="n">query</span> <span class="o">=</span> <span class="p">{</span> 
     <span class="s2">&quot;Tennessee&quot;</span><span class="p">:</span> <span class="n">tn</span><span class="p">,</span>
     <span class="s2">&quot;Mississippi&quot;</span><span class="p">:</span> <span class="n">ms</span><span class="p">,</span>
@@ -400,6 +484,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>Now we are done with the problem and solution description. Enumerating and checking configurations
+in an efficient way, we will leave to the <code class="docutils literal notranslate"><span class="pre">kanren</span></code> system. The process is executed with the <code class="docutils literal notranslate"><span class="pre">run</span></code>
+function. The first parameter tells, in how many solutions we are interested in. We are giving a
+<code class="docutils literal notranslate"><span class="pre">0</span></code> to get all possible solutions. The second parameter provides the query followed by parameters
+containing goals. Let us first find all solutions using at most two colors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">colors_2</span><span class="p">)</span>
@@ -412,6 +501,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>The answer is an empty tupel. This (logically) proves, that there is no solution. So, maybe there
+is more luck with three colors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">colors_3</span><span class="p">)</span>
@@ -419,26 +510,26 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Tennessee&#39;: &#39;blue&#39;,
-  &#39;Mississippi&#39;: &#39;green&#39;,
-  &#39;Alabama&#39;: &#39;red&#39;,
-  &#39;Georgia&#39;: &#39;green&#39;,
-  &#39;Florida&#39;: &#39;blue&#39;},
- {&#39;Tennessee&#39;: &#39;red&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Tennessee&#39;: &#39;red&#39;,
   &#39;Mississippi&#39;: &#39;blue&#39;,
   &#39;Alabama&#39;: &#39;green&#39;,
   &#39;Georgia&#39;: &#39;blue&#39;,
   &#39;Florida&#39;: &#39;red&#39;},
- {&#39;Tennessee&#39;: &#39;green&#39;,
-  &#39;Mississippi&#39;: &#39;red&#39;,
-  &#39;Alabama&#39;: &#39;blue&#39;,
-  &#39;Georgia&#39;: &#39;red&#39;,
-  &#39;Florida&#39;: &#39;green&#39;},
  {&#39;Tennessee&#39;: &#39;blue&#39;,
   &#39;Mississippi&#39;: &#39;red&#39;,
   &#39;Alabama&#39;: &#39;green&#39;,
   &#39;Georgia&#39;: &#39;red&#39;,
   &#39;Florida&#39;: &#39;blue&#39;},
+ {&#39;Tennessee&#39;: &#39;blue&#39;,
+  &#39;Mississippi&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;red&#39;,
+  &#39;Georgia&#39;: &#39;green&#39;,
+  &#39;Florida&#39;: &#39;blue&#39;},
+ {&#39;Tennessee&#39;: &#39;green&#39;,
+  &#39;Mississippi&#39;: &#39;red&#39;,
+  &#39;Alabama&#39;: &#39;blue&#39;,
+  &#39;Georgia&#39;: &#39;red&#39;,
+  &#39;Florida&#39;: &#39;green&#39;},
  {&#39;Tennessee&#39;: &#39;green&#39;,
   &#39;Mississippi&#39;: &#39;blue&#39;,
   &#39;Alabama&#39;: &#39;red&#39;,
@@ -453,6 +544,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>This time the answer contains six possible configurations. Taking into account that we would already
+obtain six permutations from one feasible coloring, the coloring is unique if we factor out permutations.
+To nail down a unique coloring we fix the colors of Alabama and Tennessee by stating two more goals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">colors_3</span><span class="p">,</span> <span class="n">al_red</span><span class="p">,</span> <span class="n">tn_green</span><span class="p">)</span>
@@ -469,6 +563,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>All goals we have used are defined by a relation. This is a more restricted form of <em>unification</em>,
+that for example Prolog makes available. The form of logic programming we have used is therefore
+called <em>relational programming</em>.</p>
+<p>To elaborate more on the difference of programming with relations and “conventional” programming,
+let us compare functions and relations. The <code class="docutils literal notranslate"><span class="pre">xor</span></code> operator will serve as example.
+We define it as function of two boolean parameters. As usual we can feed in two boolean values
+to get the boolean result of the operator in return.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">xor_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -484,6 +585,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>The same can be achieved with relational programming as well. Similar to the map coloring example
+we will be using <code class="docutils literal notranslate"><span class="pre">kanren</span></code> to set up the appropriate relation. It contains the truth table of the
+<code class="docutils literal notranslate"><span class="pre">xor</span></code> (<span class="math notranslate nohighlight">\(\oplus\)</span>) operator. The relation consists of four facts, each fact is a triple <span class="math notranslate nohighlight">\((x,y,z)\)</span>
+representing one row of the truth table with <span class="math notranslate nohighlight">\(x\oplus y = z\)</span>. We write <span class="math notranslate nohighlight">\(\oplus\)</span>, since
+<code class="docutils literal notranslate"><span class="pre">xor</span></code> is the same as the addition (modulo <span class="math notranslate nohighlight">\(2\)</span>) of the field on <span class="math notranslate nohighlight">\(\{0,1\}\)</span> with <span class="math notranslate nohighlight">\(0\)</span> representing
+<code class="docutils literal notranslate"><span class="pre">False</span></code> and <span class="math notranslate nohighlight">\(1\)</span> representing <code class="docutils literal notranslate"><span class="pre">True</span></code>. The function call can be mimicked by setting a goal that
+provides <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and asks for <span class="math notranslate nohighlight">\(z\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xor_rel</span> <span class="o">=</span> <span class="n">Relation</span><span class="p">()</span>
@@ -505,6 +613,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>But, the relation does not distinguish between inputs and outputs as the function does. That we have
+used the first two parameters of the triple to define a goal was due to the fact that we wanted to
+model the function call. Instead it is not forbidden to provide parameter two and three and ask for
+the first one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">var</span><span class="p">()</span>
@@ -518,6 +630,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
+<p>What we have done is actually to ask for solutions of the equation <span class="math notranslate nohighlight">\(x\oplus 0 = 1\)</span>. We can even ask
+for pairs, or in terms of the equation, a solution of <span class="math notranslate nohighlight">\(x\oplus y=1\)</span>. <code class="docutils literal notranslate"><span class="pre">kanren</span></code> returns both solutions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">var</span><span class="p">()</span>
@@ -531,24 +645,272 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="idea">
-<h2><span class="section-number">4.1. </span>Idea<a class="headerlink" href="#idea" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Map coloring problem</p></li>
-<li><p>How does it work? -&gt; relational programming</p></li>
-<li><p>AND as FUNCTION and as RELATION (implementation)</p></li>
-<li><p>4-color example with constraint programming</p></li>
-<li><p>4-color example with SAT problem</p></li>
-<li><p>AND Tensor (similar to RELATION)</p></li>
-</ol>
 </div>
-<div class="section" id="todo">
-<h2><span class="section-number">4.2. </span>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="boolean-tensors">
+<h2><span class="section-number">4.2. </span>Boolean tensors<a class="headerlink" href="#boolean-tensors" title="Permalink to this headline">¶</a></h2>
+<p>To bring tensors into play, we consider <span class="math notranslate nohighlight">\(\C^2\)</span> as logic space, with
+<span class="math notranslate nohighlight">\(e_0\def\begin{bmatrix}1 &amp; 0\end{bmatrix}^T\)</span> representing <code class="docutils literal notranslate"><span class="pre">False</span></code> and
+<span class="math notranslate nohighlight">\(e_1\def\begin{bmatrix}0 &amp; 1\end{bmatrix}^T\)</span> representing <code class="docutils literal notranslate"><span class="pre">True</span></code>.
+In this terminology we can express <code class="docutils literal notranslate"><span class="pre">xor</span></code> as tensor.</p>
+<div class="proof definition admonition" id="def-combinatorics-xor-tensor">
+<p class="admonition-title"><span class="caption-number">Definition 4.1 </span> (<span class="math notranslate nohighlight">\(\xor\)</span>-tensor)</p>
+<div class="definition-content section" id="proof-content">
+<p>We define the tensor <span class="math notranslate nohighlight">\(\xor\in\C^2\otimes\C^2\otimes\C^2\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+\xor = 
+    e_0\otimes e^0\otimes e^0 +
+    e_1\otimes e^1\otimes e^0 +
+    e_1\otimes e^0\otimes e^1 +
+    e_0\otimes e^1\otimes e^1 \,,
+\]</div>
+<p>and draw</p>
+<div class="figure align-center" id="fig-combinatorics-xor-tensor">
+<a class="reference internal image-reference" href="../_images/xor-tensor.svg"><img alt="../_images/xor-tensor.svg" height="50em" src="../_images/xor-tensor.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.2 </span><span class="caption-text"><span class="math notranslate nohighlight">\(xor\)</span>-tensor</span><a class="headerlink" href="#fig-combinatorics-xor-tensor" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div><p>Next:</p>
 <ul class="simple">
-<li><p>Boolean tensors</p></li>
-<li><p>Counting SAT solutions</p></li>
-<li><p>Counting graph colorings</p></li>
+<li><p>Truth table for <span class="math notranslate nohighlight">\(\xor\)</span>-tensor</p></li>
+<li><p>contravariance / covariance of indices does not matter</p></li>
 </ul>
+</div>
+<div class="section" id="counting-problems">
+<span id="sec-combinatorics-counting"></span><h2><span class="section-number">4.3. </span>Counting problems<a class="headerlink" href="#counting-problems" title="Permalink to this headline">¶</a></h2>
+<p>Interestingly tensor networks can be used to obtain algebraic descriptions of counting problems.
+This has mostly theoretical value, as it provides another way of analyzing this kind of problems.
+We will give a few examples.</p>
+<p>Roger Penrose introduced the graphical language for tensor networks (he called them
+<em>abstract tensor systems</em>) in <span id="id6">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span>. As an motivating application he gives counting
+edge colorings of <span class="math notranslate nohighlight">\(3\)</span>-regular planar graphs. We will revisit this example here.</p>
+<p>Let <span class="math notranslate nohighlight">\(G=(N,E)\)</span> be a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Regular_graph"><span class="math notranslate nohighlight">\(3\)</span>-regular</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Planar_graph">planar</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Multigraph">multigraph</a>.
+This means, that <span class="math notranslate nohighlight">\(G\)</span> might contain multiple edges connecting same nodes. Furthermore, every node
+is incident on exactly <span class="math notranslate nohighlight">\(3\)</span> edges and there exists a crossing-free embedding of <span class="math notranslate nohighlight">\(G\)</span> into <span class="math notranslate nohighlight">\(\R^2\)</span>.
+The minimal example looks like:</p>
+<div class="figure align-center" id="fig-combinatorics-penrose-minimal">
+<a class="reference internal image-reference" href="../_images/penrose-minimal.svg"><img alt="../_images/penrose-minimal.svg" height="150em" src="../_images/penrose-minimal.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Minimal <span class="math notranslate nohighlight">\(3\)</span>-regular graph</span><a class="headerlink" href="#fig-combinatorics-penrose-minimal" title="Permalink to this image">¶</a></p>
+</div>
+<p>We are looking for all edge colorings with <span class="math notranslate nohighlight">\(3\)</span> colors <span class="math notranslate nohighlight">\(f:E\rightarrow\{1,2,3\}\)</span> such that incident
+edges are mapped to different colors. The minimal example can be colored in six different ways:</p>
+<div class="figure align-center" id="fig-combinatorics-penrose-coloring">
+<a class="reference internal image-reference" href="../_images/penrose-coloring.svg"><img alt="../_images/penrose-coloring.svg" height="150em" src="../_images/penrose-coloring.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Minimal edge coloring</span><a class="headerlink" href="#fig-combinatorics-penrose-coloring" title="Permalink to this image">¶</a></p>
+</div>
+<p>This value can also be obtained by interpreting the graph as tensor network.
+Each node will be replaced by a <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor with <span class="math notranslate nohighlight">\(3\)</span> indices, every index of dimension <span class="math notranslate nohighlight">\(3\)</span>.
+Each edge is representing the respective contraction of incident tensors. Thus, the minimal
+example translates into the following tensor network.</p>
+<div class="proof example admonition" id="ex-combinatorics-penrose">
+<p class="admonition-title"><span class="caption-number">Example 4.1 </span></p>
+<div class="example-content section" id="proof-content">
+<div class="figure align-center" id="fig-combinatorics-penrose-network">
+<a class="reference internal image-reference" href="../_images/penrose-network.svg"><img alt="../_images/penrose-network.svg" height="150em" src="../_images/penrose-network.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Edge coloring tensor network</span><a class="headerlink" href="#fig-combinatorics-penrose-network" title="Permalink to this image">¶</a></p>
+</div>
+<p>This contraction has the following value.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\sum\limits_{i=1}^3\sum\limits_{j=1}^3\sum\limits_{k=1}^3\varepsilon_{ijk}\varepsilon_{ijk}
+= \sum\limits_{i=1}^3\sum\limits_{\substack{j=1 \\ j\neq i}}^3\sum\limits_{\substack{k=1 \\ k\neq i,j}}^3 1
+= 6
+\end{split}\]</div>
+</div>
+</div><p>Indeed, <span id="id7">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> contains the following theorem.</p>
+<div class="proof theorem admonition" id="thm-combinatorics-penrose">
+<p class="admonition-title"><span class="caption-number">Theorem 4.1 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>The number of all edge colorings with <span class="math notranslate nohighlight">\(3\)</span> colors of a planar <span class="math notranslate nohighlight">\(3\)</span>-regular multigraph is
+obtained by replacing each node with an order-<span class="math notranslate nohighlight">\(3\)</span> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor, interpreting
+each edge as a contraction and then contracting the resulting tensor network.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We leave it with explaining plausibility.</p>
+<p>The construction is valid, because the graph is <span class="math notranslate nohighlight">\(3\)</span>-regular. Having an <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor
+located in a node enforces the coloring to be proper in the sense that incident edges
+(on that node) are colored differently, otherwise <span class="math notranslate nohighlight">\(\varepsilon_{ijk}=0\)</span>.
+This means that every configuration of the indices with values from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(3\)</span> represents
+on one hand a valid and distinct coloring and contributes on the other hand
+a <span class="math notranslate nohighlight">\(+1\)</span> or a <span class="math notranslate nohighlight">\(-1\)</span> to the sum.</p>
+<p>For planar graphs the contribution is always <span class="math notranslate nohighlight">\(1\)</span>, what proves the theorem.
+<span id="id8">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> arguments:</p>
+<blockquote>
+<div><p>Finally we have to check that each non-zero term contributes precisely the value +1.
+It is at this point that the planarity of the graph enters. There are various ways of
+seeing that the sign comes out correctly here, but I have not been able to think of an
+argument which can be presented in a nutshell, so I shall just omit it here.</p>
+</div></blockquote>
+<p>So we will do and leave this final conclusion to the reader.</p>
+</div>
+<p>However, Roger Penrose gives an example that shows that planarity is indeed a necessary
+for the theorem.</p>
+<div class="proof example admonition" id="ex-combinatorics-penrose2">
+<p class="admonition-title"><span class="caption-number">Example 4.2 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Consider the following graph <span class="math notranslate nohighlight">\(K_{3,3}\)</span>.</p>
+<div class="figure align-center" id="fig-combinatorics-penrose-k33">
+<a class="reference internal image-reference" href="../_images/penrose-k33.svg"><img alt="../_images/penrose-k33.svg" height="300em" src="../_images/penrose-k33.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33" title="Permalink to this image">¶</a></p>
+</div>
+<p>It is the complete <a class="reference external" href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>
+with <span class="math notranslate nohighlight">\(3\)</span> nodes in each partition. There are no nodes between the red nodes and between
+the blue nodes. But every red node is connected with every blue node. By the famous
+<a class="reference external" href="https://en.wikipedia.org/wiki/Kuratowski%27s_theorem">theorem of Kuratowski</a>,
+this graph is not planar. Now, consider to exchange <span class="math notranslate nohighlight">\(2\)</span> nodes in the resulting tensor
+network.</p>
+<div class="figure align-center" id="fig-combinatorics-penrose-exchange">
+<a class="reference internal image-reference" href="../_images/penrose-exchange.svg"><img alt="../_images/penrose-exchange.svg" height="300em" src="../_images/penrose-exchange.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span> with node swap</span><a class="headerlink" href="#fig-combinatorics-penrose-exchange" title="Permalink to this image">¶</a></p>
+</div>
+<p>Let us assume we exchange the nodes marked by <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>. The tensor network would be
+the same and the contraction has to yield the same result. However, <span class="math notranslate nohighlight">\(5\)</span> of the
+involved epsilon tensors have changed, those representing the nodes <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(2\)</span> and the blue
+nodes. However, the tensors behind <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span> are changing in the same way.
+One is zero exactly when the other is zero. In addition, if one changes the sign, the other
+will do as well. Hence, the value of the product of the two does not change at all,
+when going from the first tensor network to the second. In contrary, every blue node
+switches exactly to indices. For example, the upper blue node swaps the index <span class="math notranslate nohighlight">\(k\)</span> with the
+index <span class="math notranslate nohighlight">\(r\)</span>. Therefore, when moving from the left tensor network to the right tensor network,
+every non-zero “blue” epsilon tensor will change the sign. Hence, if the product of the
+three is not zero, it will change the sign. This implies, that every non-zero summand of
+the contraction will change its sign. There is only one possibility, that both contractions
+can yield the same result while having opposite signs. The value has to be zero, which
+contradicts the fact that the <span class="math notranslate nohighlight">\(K_{3,3}\)</span> is <span class="math notranslate nohighlight">\(3\)</span>-colorable in <span class="math notranslate nohighlight">\(12\)</span> different ways, one of
+those being:</p>
+<div class="figure align-center" id="fig-combinatorics-penrose-k33-coloring">
+<a class="reference internal image-reference" href="../_images/penrose-k33-coloring.svg"><img alt="../_images/penrose-k33-coloring.svg" height="300em" src="../_images/penrose-k33-coloring.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Edge-colored <span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33-coloring" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div><p>So far the initial motivation of the inventor of the graphical tensor network language.
+Actually, this coloring result is just a side product and the paper establishes further
+insights. Therefore, the usage of the Levi-Civita symbol. If we are just interested in
+edge coloring, we can obtain the counting value in a much simpler way. Instead of
+<span class="math notranslate nohighlight">\(\varepsilon\)</span> we simply use an <span class="math notranslate nohighlight">\(\eta\)</span>-tensor that counts <span class="math notranslate nohighlight">\(1\)</span> for all for all edge
+permutations.</p>
+<div class="math notranslate nohighlight" id="equation-eqn-combinatorics-eta-tensor">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-eqn-combinatorics-eta-tensor" title="Permalink to this equation">¶</a></span>\[\begin{split}\eta_{i_1\ldots i_q} \def 
+    \begin{cases}
+        1,\quad\,i_s\neq i_t,\,1\le s&lt;t\le q, \\
+        0,\quad\text{otherwise}. 
+    \end{cases}\end{split}\]</div>
+<p>Obviously, <span class="math notranslate nohighlight">\(\eta_{i_1\ldots i_q} = \varepsilon_{i_1\ldots i_q}^2\)</span> and we have not to
+think about what would happen in the case of <span class="math notranslate nohighlight">\(-1\)</span>. This allows to formulate another
+edge coloring theorem.</p>
+<div class="proof theorem admonition" id="thm-combinatorics-penrose2">
+<p class="admonition-title"><span class="caption-number">Theorem 4.2 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(G=(N,E)\)</span> be a multigraph. We assign a tensor network to <span class="math notranslate nohighlight">\(G\)</span> as follows. Each node
+will be replaced by an <span class="math notranslate nohighlight">\(\eta\)</span>-tensor with as many indices as incident edges. Each edge will
+be interpreted as contraction along the related index. Every index of the tensor network
+shall have the same dimension <span class="math notranslate nohighlight">\(c\)</span>. Then the number of edge <span class="math notranslate nohighlight">\(c\)</span>-colorings is exactly the
+value of the contraction of the tensor network.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Similar to the argument of <a class="reference internal" href="#thm-combinatorics-penrose">Theorem 4.1</a>, a node being represented
+by <span class="math notranslate nohighlight">\(\eta_{i_1\ldots i_q}\)</span> ensures, that a colorings with incident edges of same color do
+not count (factor zero), whereas colorings with incident edges having pairwise a different
+color contribute a <span class="math notranslate nohighlight">\(1\)</span> (all <span class="math notranslate nohighlight">\(\eta\)</span>-tensors are <span class="math notranslate nohighlight">\(1\)</span> for respective indices). Edges being
+represented by contractions ensures that an edge is colored the same, seen from both ends
+(the index is the same). Every index being of dimension <span class="math notranslate nohighlight">\(c\)</span> means, that the indices are
+running from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(c\)</span>, hence <span class="math notranslate nohighlight">\(c\)</span> colors are used.</p>
+</div>
+<p>Let us conclude the part on edge colorings with an example.</p>
+<div class="proof example admonition" id="ex-combinatorics-penrose3">
+<p class="admonition-title"><span class="caption-number">Example 4.3 </span></p>
+<div class="example-content section" id="proof-content">
+<p>We consider the following graph, respectively tensor network with named indices.</p>
+<div class="figure align-center" id="fig-combinatorics-penrose-example">
+<a class="reference internal image-reference" href="../_images/penrose-example.svg"><img alt="../_images/penrose-example.svg" height="150em" src="../_images/penrose-example.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.9 </span><span class="caption-text">Edge-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-penrose-example" title="Permalink to this image">¶</a></p>
+</div>
+<p>Following <a class="reference internal" href="#thm-combinatorics-penrose2">Theorem 4.2</a>, if we are interested in counting all
+edge colorings with <span class="math notranslate nohighlight">\(c\)</span> colors, we have to calculate the following tensor contraction.</p>
+<div class="math notranslate nohighlight">
+\[
+\sum\limits_{i=1}^c
+\sum\limits_{j=1}^c
+\sum\limits_{k=1}^c
+\sum\limits_{p=1}^c
+\eta_{ij}\eta_{ik}\eta_{jkp}\underbrace{\eta_p}_{=1}
+=
+\sum\limits_{i=1}^c
+\sum\limits_{j=1}^c
+\sum\limits_{k=1}^c
+\sum\limits_{p=1}^c
+\eta_{ij}\eta_{ik}\eta_{jkp}
+\]</div>
+<p>Let us consider the cases <span class="math notranslate nohighlight">\(c=1,2,3\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c=1,2:\)</span> According to the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Pigeonhole_principle">pigeonhole principle</a>
+we obtain <span class="math notranslate nohighlight">\(\eta_{jkp}=0\)</span> for <span class="math notranslate nohighlight">\(j,k,p\in\{1(,2)\}\)</span>. Hence, the contraction value is <span class="math notranslate nohighlight">\(0\)</span>.
+This means, that there is no valid coloring with <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(2\)</span> colors.</p></li>
+<li><p><span class="math notranslate nohighlight">\(c=3:\)</span> Before we enumerate all combinations of index values, we can reduce them. We will
+add all values <span class="math notranslate nohighlight">\(\eta_{ij}\eta_{ik}\eta_{jkp}\neq 0\)</span>. This implies
+<span class="math notranslate nohighlight">\(i\neq j,\,i\neq k,\,j\neq k,\,j\neq p,\,k\neq p\)</span>. Hence, every combination sees different
+values for <span class="math notranslate nohighlight">\(j\)</span> and <span class="math notranslate nohighlight">\(k\)</span> and assigns the missing third value to <span class="math notranslate nohighlight">\(i=p\)</span>. Hence, the number of
+<span class="math notranslate nohighlight">\(3\)</span>-colorings equals the number of permutations of the <span class="math notranslate nohighlight">\(3\)</span> colors which is <span class="math notranslate nohighlight">\(6\)</span>.</p></li>
+</ul>
+<p>What we have done here, is actually the same as enumerating all possible colorings directly.
+Assigning values to indices is and checking whether all <span class="math notranslate nohighlight">\(\eta\)</span>-tensors are <span class="math notranslate nohighlight">\(1\)</span> is exactly the
+same as assigning colors to edges and checking if the coloring is valid in all nodes.</p>
+</div>
+</div><p><span id="id9">[<a class="reference internal" href="bibliography.html#id4" title="Jacob C Bridgeman and Christopher T Chubb. Hand-waving and interpretive dance: an introductory course on tensor networks. Journal of Physics A: Mathematical and Theoretical, 50(22):223001, may 2017. URL: https://doi.org/10.1088%2F1751-8121%2Faa6dc3, doi:10.1088/1751-8121/aa6dc3.">BC17</a>]</span> analyzes node colorings in a similar way. A node coloring for a graph
+<span class="math notranslate nohighlight">\(G=(N,E)\)</span> with <span class="math notranslate nohighlight">\(c\)</span> colors is a map <span class="math notranslate nohighlight">\(f:N\rightarrow\{1,\ldots,c\}\)</span> such that adjacent nodes
+are mapped to different colors. Obviously it suffices to consider simple graphs without
+multiple edges, since multiple edges would just add redundant information. We will introduce
+the construction with the same example, that had concluded the previous section.</p>
+<div class="proof example admonition" id="ex-combinatorics-bridge">
+<p class="admonition-title"><span class="caption-number">Example 4.4 </span></p>
+<div class="example-content section" id="proof-content">
+<p>Consider this graph.</p>
+<div class="figure align-center" id="fig-combinatorics-bridge-example">
+<a class="reference internal image-reference" href="../_images/bridge-example.svg"><img alt="../_images/bridge-example.svg" height="150em" src="../_images/bridge-example.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Node-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-bridge-example" title="Permalink to this image">¶</a></p>
+</div>
+<p>We will use a generalize version of the Kronecker delta.</p>
+<div class="math notranslate nohighlight" id="equation-eqn-combinatorics-bridge-kronecker">
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-eqn-combinatorics-bridge-kronecker" title="Permalink to this equation">¶</a></span>\[\begin{split}\delta_{i_1\ldots i_q} \def
+    \begin{cases}
+        1,\quad i_1=i_2=\ldots =i_q\,, \\
+        0,\quad\text{otherwise}. 
+    \end{cases}\end{split}\]</div>
+<p>Again, we assign a tensor network to the graph by replacing nodes with tensors and edges
+with contractions. This time, nodes will be replaced by the generalized Kronecker tensor
+(with as many indices as incident edges). Edges will be subdiveded by an additional node
+that will be transformed into an <span class="math notranslate nohighlight">\(\eta\)</span>-tensor. The example graph will be transformed
+into this tensor network.</p>
+<div class="figure align-center" id="fig-combinatorics-bridge-tensors">
+<a class="reference internal image-reference" href="../_images/bridge-tensors.svg"><img alt="../_images/bridge-tensors.svg" height="150em" src="../_images/bridge-tensors.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.11 </span><span class="caption-text">Node-coloring counting tensor network</span><a class="headerlink" href="#fig-combinatorics-bridge-tensors" title="Permalink to this image">¶</a></p>
+</div>
+<p>Again, all indices are of dimension <span class="math notranslate nohighlight">\(c\)</span> if we are counting <span class="math notranslate nohighlight">\(c\)</span>-colorings. We leave it to
+the reader to confirm that the example graph requires at least <span class="math notranslate nohighlight">\(3\)</span> colors and is
+<span class="math notranslate nohighlight">\(3\)</span>-colorable in <span class="math notranslate nohighlight">\(12\)</span> different ways.</p>
+</div>
+</div><p>Using this construction, we are able to count all valid node colorings.</p>
+<div class="proof theorem admonition" id="thm-combinatorics-bridge">
+<p class="admonition-title"><span class="caption-number">Theorem 4.3 </span></p>
+<div class="theorem-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(G=(N,E)\)</span> be a graph. We assign a tensor network as described in
+<a class="reference internal" href="#ex-combinatorics-bridge">Example 4.4</a>. Every index of the tensor network shall have the same
+dimension <span class="math notranslate nohighlight">\(c\)</span>. Then the number of node <span class="math notranslate nohighlight">\(c\)</span>-colorings is exactly the value of the contraction
+of the tensor network.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. The reasoning is quite simple. Each index represents the color the connected node is colored
+with. The <span class="math notranslate nohighlight">\(\delta\)</span> assigned to the node ensures that all connected indices represent the same
+color. The <span class="math notranslate nohighlight">\(\eta\)</span> assigned to an edge ensures, that the nodes connected by this edge are mapped
+to different colors.</p>
+</div>
+</div>
+<div class="section" id="sat-instances">
+<h2><span class="section-number">4.4. </span>SAT instances<a class="headerlink" href="#sat-instances" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
