@@ -1209,7 +1209,7 @@ Indeed, this is the identity.
 ```
 
 ```{prf:example} NOT Gate
-:label: exNot
+:label: ex-tensors-not
 The Hadamard transformation (and the identity of course as well) will play 
 a prominent role in the later Quantum Computing elaboration. The _NOT gate_ is 
 another building block. A quantum bit (_qubit_) holds state values of 

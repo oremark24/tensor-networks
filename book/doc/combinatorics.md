@@ -258,7 +258,7 @@ and draw
 :align: center
 :height: 50em
 :name: fig-combinatorics-xor-tensor
-$xor$-tensor
+$\xor$-tensor
 ```
 ````
 
@@ -294,7 +294,7 @@ like `xor`:
 
 Hold on, we have considered $\xor$ as linear transformation on both covariant indices. But we have
 learned about relational programming and the beauty of the $\xor$-tensor is that it allows naturally
-to be seen as relation as well. We use diagram notation to rewrite aforementioned lines of code.
+to be seen as relation as well. We will rewrite aforementioned lines of code in tensor logic.
 
 ```{code-cell}      
 z = var()
@@ -307,7 +307,7 @@ This is still the function call $\xor(e_1\otimes e_0)=e_1$, in diagram notation:
 :align: center
 :height: 96em
 :name: fig-combinatorics-xor-fn
-$xor$ function call
+$\xor$ function call
 ```
 
 ```{code-cell}
@@ -332,7 +332,95 @@ This yields the diagram:
 :align: center
 :height: 80em
 :name: fig-combinatorics-xor-rel
-$xor$ relation call
+$\xor$ relation call
+```
+
+```{code-cell}
+y = var()
+run(0, (x, y), xor_rel(x, y, True))
+```
+
+The `kanren` output delivers already the result. But we can confirm also analytically.
+
+```{math}
+:label: eq-combinatorics-xor-not
+\xor(e^1)=
+    & \quad e^1(e_0)\cdot e^0\otimes e^0 \\
+    & + e^1(e_1)\cdot e^1\otimes e^0 \\
+    & + e^1(e_1)\cdot e^0\otimes e^1 \\
+    & + e^1(e_0)\cdot e^1\otimes e^1 \\
+    = & \quad e^1\otimes e^0 + e^0\otimes e^1 \fed X \,.
+```
+
+We compare the outcome of equation {eq}`eq-combinatorics-xor-not` with 
+{prf:ref}`ex-tensors-not`. Indeed, if we ignore the index types we have constructed a 
+`NOT` gate. Similar to {prf:ref}`rem-tensor-networks-kronecker` we will allow all 
+combinations of covariant and contravariant indices and depending on the specific 
+situation use the appropriate one. We will treat all boolean tensors similarily.
+
+````{prf:remark} Versions of boolean tensors
+:label: rem-combinatorics-index-types
+According to specific situations we consider boolean tensors with bent wires the same.
+For example, the $\xor$ tensor can also be used as:
+
+$$
+\xor = 
+    e^0\otimes e_0\otimes e_0 +
+    e^1\otimes e_1\otimes e_0 +
+    e^1\otimes e_0\otimes e_1 +
+    e^0\otimes e_1\otimes e_1 \,.
+$$
+
+We would then draw
+
+```{figure} ../img/combinatorics/xor-mirror.svg
+:align: center
+:height: 50em
+:name: fig-combinatorics-xor-mirror
+$\xor$-tensor
+```
+
+Due to symmetry of shapes, it might be necessary to explain the orientation of the tensor
+to avoid misunderstandings.
+````
+
+Coming back to equation {eq}`eq-combinatorics-xor-not`, we can express it with
+the following diagrammatic equation.
+
+```{figure} ../img/combinatorics/xor-not.svg
+:align: center
+:height: 65em
+:name: fig-combinatorics-xor-not
+$\xor=X$
+```
+
+This was interesting. Maybe another interesting result will uncover when we seek for
+all input combinations yielding $e^0$.
+
+```{code-cell}
+y = var()
+run(0, (x, y), xor_rel(x, y, False))
+```
+
+Again, this can also be obtained analytically.
+
+```{math}
+:label: eq-combinatorics-xor-delta
+\xor(e^0)=
+    & \quad e^0(e_0)\cdot e^0\otimes e^0 \\
+    & + e^0(e_1)\cdot e^1\otimes e^0 \\
+    & + e^0(e_1)\cdot e^0\otimes e^1 \\
+    & + e^0(e_0)\cdot e^1\otimes e^1 \\
+    = & \quad e^0\otimes e^0 + e^1\otimes e^1 = \delta \,.
+```
+
+In diagram notation this is:
+
+```{figure} ../img/combinatorics/xor-delta.svg
+:align: center
+:height: 65em
+:name: fig-combinatorics-xor-delta
+$\xor=\delta$
 ```
 
 (sec-combinatorics-counting)=
