@@ -518,7 +518,7 @@ In consequence the Kronecker delta is in a sense representing a wire. The direct
 defined by the type of Kronecker delta (location of the indices).
 
 ````{prf:remark} Drawing the Kronecker delta
-:label: rem-kronecker
+:label: rem-tensor-networks-kronecker
 We have the following diagramatic representations of the Kronecker delta versions.
 
 ```{figure} ../img/tensor-networks/kronecker-line.svg
