@@ -262,9 +262,78 @@ $xor$-tensor
 ```
 ````
 
-Next:
-- Truth table for $\xor$-tensor
-- contravariance / covariance of indices does not matter
+Let us see, if the $\xor$-tensor contains `xor` behavior. We will check the truth table rows.
+One important detail is the symmetry of the $\xor$-tensor regarding the right factors $e^0\otimes e^1$.
+This already resembles commutativity of `xor` and allows us to be lax in respect of
+describing how we are multiplying out. Indeed $\xor(e_i\otimes e_j)=\xor(e_j\otimes e_i)$ and we
+do not have to precisely laying out which contravariant index belongs to which covariant index.
+But usually we will go from left to right, applying second factor of $\xor$ to first factor of the argument
+and applying third factor of $\xor$ to second factor of the argument.
+
+We check:
+
+$$
+\xor(e_0\otimes e_0) =
+    & \quad e_0\cdot \underbrace{e^0(e_0)\cdot e^0(e_0)}_{=1} \\
+    & + e_1\cdot \underbrace{e^1(e_0)\cdot e^0(e_0)}_{=0} \\
+    & + e_1\cdot \underbrace{e^0(e_0)\cdot e^1(e_0)}_{=0} \\
+    & + e_0\cdot \underbrace{e^1(e_0)\cdot e^1(e_0)}_{=0} \\
+    = & \quad e_0 \,.
+$$
+
+In similar fashion we can validate the other truth table rows and can verify that $\xor$ behaves indeed
+like `xor`:
+
+```{math}
+:label: eqn-combinatorics-xor-truth-table
+\xor(e_0\otimes e_0) &= e_0 \,, \\
+\xor(e_1\otimes e_0) &= e_1 \,, \\
+\xor(e_0\otimes e_1) &= e_1 \,, \\
+\xor(e_1\otimes e_1) &= e_0 \,. \\
+```
+
+Hold on, we have considered $\xor$ as linear transformation on both covariant indices. But we have
+learned about relational programming and the beauty of the $\xor$-tensor is that it allows naturally
+to be seen as relation as well. We use diagram notation to rewrite aforementioned lines of code.
+
+```{code-cell}      
+z = var()
+run(0, z, xor_rel(True, False, z))
+```
+
+This is still the function call $\xor(e_1\otimes e_0)=e_1$, in diagram notation:
+
+```{figure} ../img/combinatorics/xor-fn.svg
+:align: center
+:height: 96em
+:name: fig-combinatorics-xor-fn
+$xor$ function call
+```
+
+```{code-cell}
+x = var()
+run(0, x, xor_rel(x, False, True))
+```
+
+We have used $\xor$ as relation, thus applying the tensor to other indices:
+
+$$
+\xor(e^1\otimes e_0)=
+    & \quad e^1(e_0)\cdot e^0\cdot e^0(e_0) \\
+    & + e^1(e_1)\cdot e^1\cdot e^0(e_0) \\
+    & + e^1(e_1)\cdot e^0\cdot e^1(e_0) \\
+    & + e^1(e_0)\cdot e^1\cdot e^1(e_0) \\
+    = & \quad e^1 \,.
+$$
+
+This yields the diagram:
+
+```{figure} ../img/combinatorics/xor-rel.svg
+:align: center
+:height: 80em
+:name: fig-combinatorics-xor-rel
+$xor$ relation call
+```
 
 (sec-combinatorics-counting)=
 ## Counting problems

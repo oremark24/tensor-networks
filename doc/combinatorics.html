@@ -515,11 +515,21 @@ is more luck with three colors.</p>
   &#39;Alabama&#39;: &#39;green&#39;,
   &#39;Georgia&#39;: &#39;blue&#39;,
   &#39;Florida&#39;: &#39;red&#39;},
+ {&#39;Tennessee&#39;: &#39;red&#39;,
+  &#39;Mississippi&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;blue&#39;,
+  &#39;Georgia&#39;: &#39;green&#39;,
+  &#39;Florida&#39;: &#39;red&#39;},
  {&#39;Tennessee&#39;: &#39;blue&#39;,
   &#39;Mississippi&#39;: &#39;red&#39;,
   &#39;Alabama&#39;: &#39;green&#39;,
   &#39;Georgia&#39;: &#39;red&#39;,
   &#39;Florida&#39;: &#39;blue&#39;},
+ {&#39;Tennessee&#39;: &#39;green&#39;,
+  &#39;Mississippi&#39;: &#39;blue&#39;,
+  &#39;Alabama&#39;: &#39;red&#39;,
+  &#39;Georgia&#39;: &#39;blue&#39;,
+  &#39;Florida&#39;: &#39;green&#39;},
  {&#39;Tennessee&#39;: &#39;blue&#39;,
   &#39;Mississippi&#39;: &#39;green&#39;,
   &#39;Alabama&#39;: &#39;red&#39;,
@@ -529,17 +539,7 @@ is more luck with three colors.</p>
   &#39;Mississippi&#39;: &#39;red&#39;,
   &#39;Alabama&#39;: &#39;blue&#39;,
   &#39;Georgia&#39;: &#39;red&#39;,
-  &#39;Florida&#39;: &#39;green&#39;},
- {&#39;Tennessee&#39;: &#39;green&#39;,
-  &#39;Mississippi&#39;: &#39;blue&#39;,
-  &#39;Alabama&#39;: &#39;red&#39;,
-  &#39;Georgia&#39;: &#39;blue&#39;,
-  &#39;Florida&#39;: &#39;green&#39;},
- {&#39;Tennessee&#39;: &#39;red&#39;,
-  &#39;Mississippi&#39;: &#39;green&#39;,
-  &#39;Alabama&#39;: &#39;blue&#39;,
-  &#39;Georgia&#39;: &#39;green&#39;,
-  &#39;Florida&#39;: &#39;red&#39;})
+  &#39;Florida&#39;: &#39;green&#39;})
 </pre></div>
 </div>
 </div>
@@ -670,11 +670,79 @@ In this terminology we can express <code class="docutils literal notranslate"><s
 <p class="caption"><span class="caption-number">Fig. 4.2 </span><span class="caption-text"><span class="math notranslate nohighlight">\(xor\)</span>-tensor</span><a class="headerlink" href="#fig-combinatorics-xor-tensor" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-</div><p>Next:</p>
-<ul class="simple">
-<li><p>Truth table for <span class="math notranslate nohighlight">\(\xor\)</span>-tensor</p></li>
-<li><p>contravariance / covariance of indices does not matter</p></li>
-</ul>
+</div><p>Let us see, if the <span class="math notranslate nohighlight">\(\xor\)</span>-tensor contains <code class="docutils literal notranslate"><span class="pre">xor</span></code> behavior. We will check the truth table rows.
+One important detail is the symmetry of the <span class="math notranslate nohighlight">\(\xor\)</span>-tensor regarding the right factors <span class="math notranslate nohighlight">\(e^0\otimes e^1\)</span>.
+This already resembles commutativity of <code class="docutils literal notranslate"><span class="pre">xor</span></code> and allows us to be lax in respect of
+describing how we are multiplying out. Indeed <span class="math notranslate nohighlight">\(\xor(e_i\otimes e_j)=\xor(e_j\otimes e_i)\)</span> and we
+do not have to precisely laying out which contravariant index belongs to which covariant index.
+But usually we will go from left to right, applying second factor of <span class="math notranslate nohighlight">\(\xor\)</span> to first factor of the argument
+and applying third factor of <span class="math notranslate nohighlight">\(\xor\)</span> to second factor of the argument.</p>
+<p>We check:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\xor(e_0\otimes e_0) =
+    &amp; \quad e_0\cdot \underbrace{e^0(e_0)\cdot e^0(e_0)}_{=1} \\
+    &amp; + e_1\cdot \underbrace{e^1(e_0)\cdot e^0(e_0)}_{=0} \\
+    &amp; + e_1\cdot \underbrace{e^0(e_0)\cdot e^1(e_0)}_{=0} \\
+    &amp; + e_0\cdot \underbrace{e^1(e_0)\cdot e^1(e_0)}_{=0} \\
+    = &amp; \quad e_0 \,.
+\end{split}\]</div>
+<p>In similar fashion we can validate the other truth table rows and can verify that <span class="math notranslate nohighlight">\(\xor\)</span> behaves indeed
+like <code class="docutils literal notranslate"><span class="pre">xor</span></code>:</p>
+<div class="math notranslate nohighlight" id="equation-eqn-combinatorics-xor-truth-table">
+<span class="eqno">(4.1)<a class="headerlink" href="#equation-eqn-combinatorics-xor-truth-table" title="Permalink to this equation">¶</a></span>\[\begin{split}\xor(e_0\otimes e_0) &amp;= e_0 \,, \\
+\xor(e_1\otimes e_0) &amp;= e_1 \,, \\
+\xor(e_0\otimes e_1) &amp;= e_1 \,, \\
+\xor(e_1\otimes e_1) &amp;= e_0 \,. \\\end{split}\]</div>
+<p>Hold on, we have considered <span class="math notranslate nohighlight">\(\xor\)</span> as linear transformation on both covariant indices. But we have
+learned about relational programming and the beauty of the <span class="math notranslate nohighlight">\(\xor\)</span>-tensor is that it allows naturally
+to be seen as relation as well. We use diagram notation to rewrite aforementioned lines of code.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">var</span><span class="p">()</span>
+<span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">xor_rel</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is still the function call <span class="math notranslate nohighlight">\(\xor(e_1\otimes e_0)=e_1\)</span>, in diagram notation:</p>
+<div class="figure align-center" id="fig-combinatorics-xor-fn">
+<a class="reference internal image-reference" href="../_images/xor-fn.svg"><img alt="../_images/xor-fn.svg" height="96em" src="../_images/xor-fn.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.3 </span><span class="caption-text"><span class="math notranslate nohighlight">\(xor\)</span> function call</span><a class="headerlink" href="#fig-combinatorics-xor-fn" title="Permalink to this image">¶</a></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">var</span><span class="p">()</span>
+<span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">xor_rel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(True,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have used <span class="math notranslate nohighlight">\(\xor\)</span> as relation, thus applying the tensor to other indices:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\xor(e^1\otimes e_0)=
+    &amp; \quad e^1(e_0)\cdot e^0\cdot e^0(e_0) \\
+    &amp; + e^1(e_1)\cdot e^1\cdot e^0(e_0) \\
+    &amp; + e^1(e_1)\cdot e^0\cdot e^1(e_0) \\
+    &amp; + e^1(e_0)\cdot e^1\cdot e^1(e_0) \\
+    = &amp; \quad e^1 \,.
+\end{split}\]</div>
+<p>This yields the diagram:</p>
+<div class="figure align-center" id="fig-combinatorics-xor-rel">
+<a class="reference internal image-reference" href="../_images/xor-rel.svg"><img alt="../_images/xor-rel.svg" height="80em" src="../_images/xor-rel.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text"><span class="math notranslate nohighlight">\(xor\)</span> relation call</span><a class="headerlink" href="#fig-combinatorics-xor-rel" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="counting-problems">
 <span id="sec-combinatorics-counting"></span><h2><span class="section-number">4.3. </span>Counting problems<a class="headerlink" href="#counting-problems" title="Permalink to this headline">¶</a></h2>
@@ -693,13 +761,13 @@ is incident on exactly <span class="math notranslate nohighlight">\(3\)</span> e
 The minimal example looks like:</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-minimal">
 <a class="reference internal image-reference" href="../_images/penrose-minimal.svg"><img alt="../_images/penrose-minimal.svg" height="150em" src="../_images/penrose-minimal.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Minimal <span class="math notranslate nohighlight">\(3\)</span>-regular graph</span><a class="headerlink" href="#fig-combinatorics-penrose-minimal" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Minimal <span class="math notranslate nohighlight">\(3\)</span>-regular graph</span><a class="headerlink" href="#fig-combinatorics-penrose-minimal" title="Permalink to this image">¶</a></p>
 </div>
 <p>We are looking for all edge colorings with <span class="math notranslate nohighlight">\(3\)</span> colors <span class="math notranslate nohighlight">\(f:E\rightarrow\{1,2,3\}\)</span> such that incident
 edges are mapped to different colors. The minimal example can be colored in six different ways:</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-coloring">
 <a class="reference internal image-reference" href="../_images/penrose-coloring.svg"><img alt="../_images/penrose-coloring.svg" height="150em" src="../_images/penrose-coloring.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Minimal edge coloring</span><a class="headerlink" href="#fig-combinatorics-penrose-coloring" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Minimal edge coloring</span><a class="headerlink" href="#fig-combinatorics-penrose-coloring" title="Permalink to this image">¶</a></p>
 </div>
 <p>This value can also be obtained by interpreting the graph as tensor network.
 Each node will be replaced by a <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor with <span class="math notranslate nohighlight">\(3\)</span> indices, every index of dimension <span class="math notranslate nohighlight">\(3\)</span>.
@@ -710,7 +778,7 @@ example translates into the following tensor network.</p>
 <div class="example-content section" id="proof-content">
 <div class="figure align-center" id="fig-combinatorics-penrose-network">
 <a class="reference internal image-reference" href="../_images/penrose-network.svg"><img alt="../_images/penrose-network.svg" height="150em" src="../_images/penrose-network.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Edge coloring tensor network</span><a class="headerlink" href="#fig-combinatorics-penrose-network" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text">Edge coloring tensor network</span><a class="headerlink" href="#fig-combinatorics-penrose-network" title="Permalink to this image">¶</a></p>
 </div>
 <p>This contraction has the following value.</p>
 <div class="math notranslate nohighlight">
@@ -754,7 +822,7 @@ for the theorem.</p>
 <p>Consider the following graph <span class="math notranslate nohighlight">\(K_{3,3}\)</span>.</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-k33">
 <a class="reference internal image-reference" href="../_images/penrose-k33.svg"><img alt="../_images/penrose-k33.svg" height="300em" src="../_images/penrose-k33.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.6 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.8 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33" title="Permalink to this image">¶</a></p>
 </div>
 <p>It is the complete <a class="reference external" href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>
 with <span class="math notranslate nohighlight">\(3\)</span> nodes in each partition. There are no nodes between the red nodes and between
@@ -764,7 +832,7 @@ this graph is not planar. Now, consider to exchange <span class="math notranslat
 network.</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-exchange">
 <a class="reference internal image-reference" href="../_images/penrose-exchange.svg"><img alt="../_images/penrose-exchange.svg" height="300em" src="../_images/penrose-exchange.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.7 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span> with node swap</span><a class="headerlink" href="#fig-combinatorics-penrose-exchange" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.9 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span> with node swap</span><a class="headerlink" href="#fig-combinatorics-penrose-exchange" title="Permalink to this image">¶</a></p>
 </div>
 <p>Let us assume we exchange the nodes marked by <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>. The tensor network would be
 the same and the contraction has to yield the same result. However, <span class="math notranslate nohighlight">\(5\)</span> of the
@@ -783,7 +851,7 @@ contradicts the fact that the <span class="math notranslate nohighlight">\(K_{3,
 those being:</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-k33-coloring">
 <a class="reference internal image-reference" href="../_images/penrose-k33-coloring.svg"><img alt="../_images/penrose-k33-coloring.svg" height="300em" src="../_images/penrose-k33-coloring.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.8 </span><span class="caption-text">Edge-colored <span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33-coloring" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Edge-colored <span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33-coloring" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div><p>So far the initial motivation of the inventor of the graphical tensor network language.
@@ -793,7 +861,7 @@ edge coloring, we can obtain the counting value in a much simpler way. Instead o
 <span class="math notranslate nohighlight">\(\varepsilon\)</span> we simply use an <span class="math notranslate nohighlight">\(\eta\)</span>-tensor that counts <span class="math notranslate nohighlight">\(1\)</span> for all for all edge
 permutations.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-combinatorics-eta-tensor">
-<span class="eqno">(4.1)<a class="headerlink" href="#equation-eqn-combinatorics-eta-tensor" title="Permalink to this equation">¶</a></span>\[\begin{split}\eta_{i_1\ldots i_q} \def 
+<span class="eqno">(4.2)<a class="headerlink" href="#equation-eqn-combinatorics-eta-tensor" title="Permalink to this equation">¶</a></span>\[\begin{split}\eta_{i_1\ldots i_q} \def 
     \begin{cases}
         1,\quad\,i_s\neq i_t,\,1\le s&lt;t\le q, \\
         0,\quad\text{otherwise}. 
@@ -826,7 +894,7 @@ running from <span class="math notranslate nohighlight">\(1\)</span> to <span cl
 <p>We consider the following graph, respectively tensor network with named indices.</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-example">
 <a class="reference internal image-reference" href="../_images/penrose-example.svg"><img alt="../_images/penrose-example.svg" height="150em" src="../_images/penrose-example.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.9 </span><span class="caption-text">Edge-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-penrose-example" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.11 </span><span class="caption-text">Edge-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-penrose-example" title="Permalink to this image">¶</a></p>
 </div>
 <p>Following <a class="reference internal" href="#thm-combinatorics-penrose2">Theorem 4.2</a>, if we are interested in counting all
 edge colorings with <span class="math notranslate nohighlight">\(c\)</span> colors, we have to calculate the following tensor contraction.</p>
@@ -871,11 +939,11 @@ the construction with the same example, that had concluded the previous section.
 <p>Consider this graph.</p>
 <div class="figure align-center" id="fig-combinatorics-bridge-example">
 <a class="reference internal image-reference" href="../_images/bridge-example.svg"><img alt="../_images/bridge-example.svg" height="150em" src="../_images/bridge-example.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.10 </span><span class="caption-text">Node-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-bridge-example" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.12 </span><span class="caption-text">Node-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-bridge-example" title="Permalink to this image">¶</a></p>
 </div>
 <p>We will use a generalize version of the Kronecker delta.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-combinatorics-bridge-kronecker">
-<span class="eqno">(4.2)<a class="headerlink" href="#equation-eqn-combinatorics-bridge-kronecker" title="Permalink to this equation">¶</a></span>\[\begin{split}\delta_{i_1\ldots i_q} \def
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-eqn-combinatorics-bridge-kronecker" title="Permalink to this equation">¶</a></span>\[\begin{split}\delta_{i_1\ldots i_q} \def
     \begin{cases}
         1,\quad i_1=i_2=\ldots =i_q\,, \\
         0,\quad\text{otherwise}. 
@@ -887,7 +955,7 @@ that will be transformed into an <span class="math notranslate nohighlight">\(\e
 into this tensor network.</p>
 <div class="figure align-center" id="fig-combinatorics-bridge-tensors">
 <a class="reference internal image-reference" href="../_images/bridge-tensors.svg"><img alt="../_images/bridge-tensors.svg" height="150em" src="../_images/bridge-tensors.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.11 </span><span class="caption-text">Node-coloring counting tensor network</span><a class="headerlink" href="#fig-combinatorics-bridge-tensors" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.13 </span><span class="caption-text">Node-coloring counting tensor network</span><a class="headerlink" href="#fig-combinatorics-bridge-tensors" title="Permalink to this image">¶</a></p>
 </div>
 <p>Again, all indices are of dimension <span class="math notranslate nohighlight">\(c\)</span> if we are counting <span class="math notranslate nohighlight">\(c\)</span>-colorings. We leave it to
 the reader to confirm that the example graph requires at least <span class="math notranslate nohighlight">\(3\)</span> colors and is
