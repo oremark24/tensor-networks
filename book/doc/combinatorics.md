@@ -482,7 +482,7 @@ We define the $\copy$-tensor by
 $$
 \copy = 
     e_0\otimes e_0\otimes e^0 +
-    e_1\otimes e^1\otimes e^1 \,.
+    e_1\otimes e_1\otimes e^1 \,.
 $$
 
 The diagram shape is:
