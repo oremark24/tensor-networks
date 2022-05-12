@@ -48,14 +48,17 @@ sphinx:
             - \Bigg\langle#1,#2\Bigg\rangle
             - 2
           tr: \mathrm{tr}
-          span: \mathrm{span}
-          SWAP: \mathrm{SWAP}
+          span: \mathrm{span}          
           inv: \mathrm{inv}
           sgn: \mathrm{sgn}
           id: \mathrm{id}
           diag: \mathrm{diag}
           Diag: \mathrm{Diag}
-          xor: \mathrm{xor}
+          swap: \mathrm{SWAP}
+          xor: \mathrm{XOR}
+          and: \mathrm{AND}
+          or: \mathrm{OR}
+          copy: \mathrm{COPY}
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:

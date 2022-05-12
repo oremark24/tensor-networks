@@ -681,18 +681,18 @@ S=\sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\sum\limits_{l=1}^n
 ```
 
 For $v=\sum\limits_{p=1}^nv^pe_p\in V$ and $w=\sum\limits_{q=1}^nw^qe_q\in W$ we define the
-$\SWAP$ operator by
+$\swap$ operator by
 
 ```{math}
 :label: eqn-tensor-networks-swap-operator
-\SWAP:v\otimes w\longmapsto C_{k,p}(C_{l,q}(S\otimes v\otimes w))\,.
+\swap:v\otimes w\longmapsto C_{k,p}(C_{l,q}(S\otimes v\otimes w))\,.
 ```
 
 Evaluating the contractions we obtain
 
 ```{math}
 :label: eqn-tensor-networks-swap-resolution
-\SWAP(v\otimes w) 
+\swap(v\otimes w) 
 &= \sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\sum\limits_{l=1}^n
   \delta^i_l\delta^j_kv^kw^l\,e_i\otimes e_j \\
 &= \sum\limits_{i=1}^n\sum\limits_{j=1}^nv^jw^i\,e_i\otimes e_j \\
@@ -700,12 +700,12 @@ Evaluating the contractions we obtain
 &= w\otimes v\,.
 ```
 
-Hence the $\SWAP$ operator is a linear map (bilinear if we consider $v$ and $w$ to be
+Hence the $\swap$ operator is a linear map (bilinear if we consider $v$ and $w$ to be
 independent variables) with
 
 ```{math}
 :label: eqn-tensor-networks-swap-meta
-\SWAP: &\, V\otimes W\longrightarrow W\otimes V\,,\\
+\swap: &\, V\otimes W\longrightarrow W\otimes V\,,\\
   &\, v\otimes w\longmapsto w\otimes v\,.
 ```
 
@@ -715,9 +715,9 @@ $V\otimes W\simeq W\otimes V$ with the natural isomorphism
 $v\otimes w\leftrightarrow w\otimes v$. In practical applications, however,
 the order of factors might be relevant - because it might define which
 tensors in the diagram are connected. In quantum circuits for example
-qubits might not be interchangeable. In these cases, the $\SWAP$ operator is
+qubits might not be interchangeable. In these cases, the $\swap$ operator is
 relevant - if values of two qubits need to be swapped during a quantum computation
-for instance. In chapter {ref}`ch-quantum` we will learn how the $\SWAP$ operator
+for instance. In chapter {ref}`ch-quantum` we will learn how the $\swap$ operator
 can implemented on quantum computers. For the moment we leave it with claiming
 its relevance.
 
@@ -729,14 +729,14 @@ Equations {eq}`eqn-tensor-networks-swap-tensor`,
 :height: 100em
 :align: center
 :name: fig-tensor-networks-swap-indices
-$\SWAP$ operator in action
+$\swap$ operator in action
 ```
 
 visualizing the exchanged roles of $v$ and $w$. This leads to the following definition.
 
-````{prf:definition} $\SWAP$ operator
+````{prf:definition} $\swap$ operator
 :label: def-tensor-networks-swap-operator
-The $\SWAP$ operator, respectively tensor $S$ of equation 
+The $\swap$ operator, respectively tensor $S$ of equation 
 {eq}`eqn-tensor-networks-swap-tensor`, will be displayed in
 tensor network diagram notation as:
 
@@ -744,20 +744,20 @@ tensor network diagram notation as:
 :height: 66em
 :align: center
 :name: fig-tensor-networks-swap-definition
-$\SWAP$ operator
+$\swap$ operator
 ```
 ````
 
-````{prf:observation} $\SWAP$ twice
+````{prf:observation} $\swap$ twice
 :label: obs-tensor-networks-swap-selfinverse
-The $\SWAP$ operator is self-inverse. Swapping the same vectors
+The $\swap$ operator is self-inverse. Swapping the same vectors
 twice is nothing different than the identity map.
 
 ```{figure} ../img/tensor-networks/swap-selfinverse.svg
 :height: 66em
 :align: center
 :name: fig-tensor-networks-swap-selfinverse
-$\SWAP$ twice
+$\swap$ twice
 ```
 ````
 
