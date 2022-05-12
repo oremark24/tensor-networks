@@ -423,6 +423,95 @@ In diagram notation this is:
 $\xor=\delta$
 ```
 
+In a similar fashion other logic gates can be mimicked by respective tensors.
+We will give examples, define each in one version, but keeping in mind that we
+might use them with other index types as well.
+
+````{prf:definition} $\and$-tensor
+:label: def-combinatorics-and-tensor
+We define the $\and$-tensor by
+
+$$
+\and = 
+    e_0\otimes e^0\otimes e^0 +
+    e_0\otimes e^1\otimes e^0 +
+    e_0\otimes e^0\otimes e^1 +
+    e_1\otimes e^1\otimes e^1 \,.
+$$
+
+The diagram shape is:
+
+```{figure} ../img/combinatorics/and-tensor.svg
+:align: center
+:height: 50em
+:name: fig-combinatorics-and-tensor
+$\and$-tensor
+```
+````
+
+````{prf:definition} $\or$-tensor
+:label: def-combinatorics-or-tensor
+We define the $\or$-tensor by
+
+$$
+\or = 
+    e_0\otimes e^0\otimes e^0 +
+    e_1\otimes e^1\otimes e^0 +
+    e_1\otimes e^0\otimes e^1 +
+    e_1\otimes e^1\otimes e^1 \,.
+$$
+
+The diagram shape is:
+
+```{figure} ../img/combinatorics/or-tensor.svg
+:align: center
+:height: 50em
+:name: fig-combinatorics-or-tensor
+$\or$-tensor
+```
+````
+
+We will define and investigate another tensor that nicely interrelates with other boolean
+tensors. Strictly speaking, it is not inherited from a logic gate. It resembles splitting
+a bit into two, thus copying a boolean value.
+
+````{prf:definition} $\copy$-tensor
+:label: def-combinatorics-copy-tensor
+We define the $\copy$-tensor by
+
+$$
+\copy = 
+    e_0\otimes e_0\otimes e^0 +
+    e_1\otimes e^1\otimes e^1 \,.
+$$
+
+The diagram shape is:
+
+```{figure} ../img/combinatorics/copy-tensor.svg
+:align: center
+:height: 35em
+:name: fig-combinatorics-copy-tensor
+$\copy$-tensor
+```
+````
+
+Indeed, we have
+
+```{math}
+:label: eqn-combinatorics-copy-tensor
+\copy(e_0) &= e_0\otimes e_0 \,, \\
+\copy(e_1) &= e_1\otimes e_1 \,.
+```
+
+The effect of the $\copy$-tensor can also be nicely illustrated by a diagrammatic equation.
+
+```{figure} ../img/combinatorics/copy-effect.svg
+:align: center
+:height: 100em
+:name: fig-combinatorics-copy-effect
+$\copy$-tensor effect
+```
+
 (sec-combinatorics-counting)=
 ## Counting problems
 

@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "SWAP": "\\mathrm{SWAP}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "xor": "\\mathrm{xor}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "swap": "\\mathrm{SWAP}", "xor": "\\mathrm{XOR}", "and": "\\mathrm{AND}", "or": "\\mathrm{OR}", "copy": "\\mathrm{COPY}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Tensors and Combinatorics" href="combinatorics.html" />
@@ -808,21 +808,21 @@ following identity, called snake or zig-zag equation.</p>
 <span class="eqno">(3.4)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-tensor" title="Permalink to this equation">¶</a></span>\[S=\sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\sum\limits_{l=1}^n
   \delta^i_l\delta^j_k\,e_i\otimes e_j\otimes e^k\otimes e^l\,.\]</div>
 <p>For <span class="math notranslate nohighlight">\(v=\sum\limits_{p=1}^nv^pe_p\in V\)</span> and <span class="math notranslate nohighlight">\(w=\sum\limits_{q=1}^nw^qe_q\in W\)</span> we define the
-<span class="math notranslate nohighlight">\(\SWAP\)</span> operator by</p>
+<span class="math notranslate nohighlight">\(\swap\)</span> operator by</p>
 <div class="math notranslate nohighlight" id="equation-eqn-tensor-networks-swap-operator">
-<span class="eqno">(3.5)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-operator" title="Permalink to this equation">¶</a></span>\[\SWAP:v\otimes w\longmapsto C_{k,p}(C_{l,q}(S\otimes v\otimes w))\,.\]</div>
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-operator" title="Permalink to this equation">¶</a></span>\[\swap:v\otimes w\longmapsto C_{k,p}(C_{l,q}(S\otimes v\otimes w))\,.\]</div>
 <p>Evaluating the contractions we obtain</p>
 <div class="math notranslate nohighlight" id="equation-eqn-tensor-networks-swap-resolution">
-<span class="eqno">(3.6)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-resolution" title="Permalink to this equation">¶</a></span>\[\begin{split}\SWAP(v\otimes w) 
+<span class="eqno">(3.6)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-resolution" title="Permalink to this equation">¶</a></span>\[\begin{split}\swap(v\otimes w) 
 &amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^n\sum\limits_{k=1}^n\sum\limits_{l=1}^n
   \delta^i_l\delta^j_kv^kw^l\,e_i\otimes e_j \\
 &amp;= \sum\limits_{i=1}^n\sum\limits_{j=1}^nv^jw^i\,e_i\otimes e_j \\
 &amp;= \Bigg(\sum\limits_{i=1}^nw^ie_i\Bigg)\otimes \Bigg(\sum\limits_{j=1}^nv^je_j\Bigg) \\
 &amp;= w\otimes v\,.\end{split}\]</div>
-<p>Hence the <span class="math notranslate nohighlight">\(\SWAP\)</span> operator is a linear map (bilinear if we consider <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> to be
+<p>Hence the <span class="math notranslate nohighlight">\(\swap\)</span> operator is a linear map (bilinear if we consider <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span> to be
 independent variables) with</p>
 <div class="math notranslate nohighlight" id="equation-eqn-tensor-networks-swap-meta">
-<span class="eqno">(3.7)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-meta" title="Permalink to this equation">¶</a></span>\[\begin{split}\SWAP: &amp;\, V\otimes W\longrightarrow W\otimes V\,,\\
+<span class="eqno">(3.7)<a class="headerlink" href="#equation-eqn-tensor-networks-swap-meta" title="Permalink to this equation">¶</a></span>\[\begin{split}\swap: &amp;\, V\otimes W\longrightarrow W\otimes V\,,\\
   &amp;\, v\otimes w\longmapsto w\otimes v\,.\end{split}\]</div>
 <p>During chapter <a class="reference internal" href="tensors.html#ch-tensors"><span class="std std-ref">Tensors</span></a> we have stated that the tensor product can be
 consider as commutative. We will not question this fact, as
@@ -830,9 +830,9 @@ consider as commutative. We will not question this fact, as
 <span class="math notranslate nohighlight">\(v\otimes w\leftrightarrow w\otimes v\)</span>. In practical applications, however,
 the order of factors might be relevant - because it might define which
 tensors in the diagram are connected. In quantum circuits for example
-qubits might not be interchangeable. In these cases, the <span class="math notranslate nohighlight">\(\SWAP\)</span> operator is
+qubits might not be interchangeable. In these cases, the <span class="math notranslate nohighlight">\(\swap\)</span> operator is
 relevant - if values of two qubits need to be swapped during a quantum computation
-for instance. In chapter <a class="reference internal" href="quantum-computing.html#ch-quantum"><span class="std std-ref">Quantum Computing</span></a> we will learn how the <span class="math notranslate nohighlight">\(\SWAP\)</span> operator
+for instance. In chapter <a class="reference internal" href="quantum-computing.html#ch-quantum"><span class="std std-ref">Quantum Computing</span></a> we will learn how the <span class="math notranslate nohighlight">\(\swap\)</span> operator
 can implemented on quantum computers. For the moment we leave it with claiming
 its relevance.</p>
 <p>Equations <a class="reference internal" href="#equation-eqn-tensor-networks-swap-tensor">(3.4)</a>,
@@ -840,28 +840,28 @@ its relevance.</p>
 <a class="reference internal" href="#equation-eqn-tensor-networks-swap-resolution">(3.6)</a> can be depicted as</p>
 <div class="figure align-center" id="fig-tensor-networks-swap-indices">
 <a class="reference internal image-reference" href="../_images/swap-indices.svg"><img alt="../_images/swap-indices.svg" height="100em" src="../_images/swap-indices.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 3.12 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\SWAP\)</span> operator in action</span><a class="headerlink" href="#fig-tensor-networks-swap-indices" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3.12 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\swap\)</span> operator in action</span><a class="headerlink" href="#fig-tensor-networks-swap-indices" title="Permalink to this image">¶</a></p>
 </div>
 <p>visualizing the exchanged roles of <span class="math notranslate nohighlight">\(v\)</span> and <span class="math notranslate nohighlight">\(w\)</span>. This leads to the following definition.</p>
 <div class="proof definition admonition" id="def-tensor-networks-swap-operator">
-<p class="admonition-title"><span class="caption-number">Definition 3.2 </span> (<span class="math notranslate nohighlight">\(\SWAP\)</span> operator)</p>
+<p class="admonition-title"><span class="caption-number">Definition 3.2 </span> (<span class="math notranslate nohighlight">\(\swap\)</span> operator)</p>
 <div class="definition-content section" id="proof-content">
-<p>The <span class="math notranslate nohighlight">\(\SWAP\)</span> operator, respectively tensor <span class="math notranslate nohighlight">\(S\)</span> of equation
+<p>The <span class="math notranslate nohighlight">\(\swap\)</span> operator, respectively tensor <span class="math notranslate nohighlight">\(S\)</span> of equation
 <a class="reference internal" href="#equation-eqn-tensor-networks-swap-tensor">(3.4)</a>, will be displayed in
 tensor network diagram notation as:</p>
 <div class="figure align-center" id="fig-tensor-networks-swap-definition">
 <a class="reference internal image-reference" href="../_images/swap-definition.svg"><img alt="../_images/swap-definition.svg" height="66em" src="../_images/swap-definition.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 3.13 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\SWAP\)</span> operator</span><a class="headerlink" href="#fig-tensor-networks-swap-definition" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3.13 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\swap\)</span> operator</span><a class="headerlink" href="#fig-tensor-networks-swap-definition" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div><div class="proof observation admonition" id="obs-tensor-networks-swap-selfinverse">
-<p class="admonition-title"><span class="caption-number">Observation 3.3 </span> (<span class="math notranslate nohighlight">\(\SWAP\)</span> twice)</p>
+<p class="admonition-title"><span class="caption-number">Observation 3.3 </span> (<span class="math notranslate nohighlight">\(\swap\)</span> twice)</p>
 <div class="observation-content section" id="proof-content">
-<p>The <span class="math notranslate nohighlight">\(\SWAP\)</span> operator is self-inverse. Swapping the same vectors
+<p>The <span class="math notranslate nohighlight">\(\swap\)</span> operator is self-inverse. Swapping the same vectors
 twice is nothing different than the identity map.</p>
 <div class="figure align-center" id="fig-tensor-networks-swap-selfinverse">
 <a class="reference internal image-reference" href="../_images/swap-selfinverse.svg"><img alt="../_images/swap-selfinverse.svg" height="66em" src="../_images/swap-selfinverse.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 3.14 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\SWAP\)</span> twice</span><a class="headerlink" href="#fig-tensor-networks-swap-selfinverse" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3.14 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\swap\)</span> twice</span><a class="headerlink" href="#fig-tensor-networks-swap-selfinverse" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div></div>
