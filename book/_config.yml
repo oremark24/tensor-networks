@@ -59,6 +59,9 @@ sphinx:
           and: \mathrm{AND}
           or: \mathrm{OR}
           copy: \mathrm{COPY}
+          red: \text{red}
+          green: \text{green}
+          blue: \text{blue}
 
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
