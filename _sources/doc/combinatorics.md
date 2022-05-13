@@ -102,15 +102,15 @@ colorings with two colors, `coloring_3` does the same for three colors respectiv
 
 ```{code-cell}
 # rules
-def coloring(different, tn, ms, al, ga, fl):
+def coloring(different, t, m, a, g, f):
     return lall(
-        different(tn, ms),
-        different(tn, al),
-        different(tn, ga),
-        different(ms, al),
-        different(al, ga),
-        different(al, fl),
-        different(ga, fl)
+        different(t, m),
+        different(t, a),
+        different(t, g),
+        different(m, a),
+        different(a, g),
+        different(a, f),
+        different(g, f)
     )
 
 coloring_2 = partial(coloring, different_2)
@@ -124,18 +124,18 @@ goals `colors_2` and `colors_3` for feasible colorings with two, respectively th
 colors. You might already wonder about the certainty that in case of success 
 we will not find a unique coloring. From one feasible coloring we can easily derive 
 another  valid coloring by permuting the colors. To cut down a potential set of solutions
-further to our likings, we define two more goals `al_red` and `tn_green`. They
+further to our likings, we define two more goals `a_red` and `t_green`. They
 require Alabama to be colored "green" and Tennessee to be colored "green", respectively.
 
 ```{code-cell}
 # goals
-tn, ms, al, ga, fl = var(), var(), var(), var(), var()
+t, m, a, g, f = var(), var(), var(), var(), var()
 
-colors_2 = coloring_2(tn, ms, al, ga, fl)
-colors_3 = coloring_3(tn, ms, al, ga, fl)
+colors_2 = coloring_2(t, m, a, g, f)
+colors_3 = coloring_3(t, m, a, g, f)
 
-al_red = eq(al, "red")
-tn_green = eq(tn, "green")
+a_red = eq(a, "red")
+t_green = eq(t, "green")
 ```
 
 Our final preparatory step is to define the query - the solution structure. We want to know
@@ -145,11 +145,11 @@ into a dictionary.
 ```{code-cell}
 # query
 query = { 
-    "Tennessee": tn,
-    "Mississippi": ms,
-    "Alabama": al,
-    "Georgia": ga,
-    "Florida": fl
+    "Tennessee": t,
+    "Mississippi": m,
+    "Alabama": a,
+    "Georgia": g,
+    "Florida": f
 }
 ```
 
@@ -175,7 +175,7 @@ obtain six permutations from one feasible coloring, the coloring is unique if we
 To nail down a unique coloring we fix the colors of Alabama and Tennessee by stating two more goals.
 
 ```{code-cell}
-run(0, query, colors_3, al_red, tn_green)
+run(0, query, colors_3, a_red, t_green)
 ```
 
 All goals we have used are defined by a relation. This is a more restricted form of _unification_, 
@@ -233,6 +233,7 @@ y = var()
 run(0, (x, y), xor_rel(x, y, True))
 ```
 
+(sec-combinatorics-boolean-tensors)=
 ## Boolean tensors
 
 To bring tensors into play, we consider $\C^2$ as logic space, with 
@@ -512,8 +513,182 @@ The effect of the $\copy$-tensor can also be nicely illustrated by a diagrammati
 $\copy$-tensor effect
 ```
 
-(sec-combinatorics-counting)=
-## Counting problems
+(sec-combinatorics-sat)=
+## Counting SAT solutions
+
+Can we transfer the map coloring problem into the boolean universe? We set the same task,
+the states displayed in {numref}`fig-combinatorics-map-coloring` shall be colored using
+"red", "green", "blue", such that neighbors (states with common border) have different colors
+assigned. We want to rephrase the mathematical model to only use boolean variables and boolean
+combinators (logic gates / boolean tensors).
+
+Previously we had logic variables 
+$t,m,a,g,f\in\{\text{"}\red\text{"},\text{"}\green\text{"},\text{"}\blue\text{"}\}$, 
+representing the colorings of Tennessee, Mississippi, Alabama, Georgia, and Florida, 
+respectively. To turn them into boolean variables, we need to split them into three 
+flags each, telling if the related color is used. For example, the coloring of Tennesse 
+will now be given by the three variables
+
+$$
+t_{\red} &= 
+    \begin{cases}
+        1\,, & \text{Tennessee is colored in "red"} \,, \\
+        0\,, & \text{otherwise} \,,
+    \end{cases} \\[0.5em]
+t_{\green} &= 
+    \begin{cases}
+        1\,, & \text{Tennessee is colored in "green"} \,, \\
+        0\,, & \text{otherwise} \,,
+    \end{cases} \\[0.5em]
+t_{\blue} &= 
+    \begin{cases}
+        1\,, & \text{Tennessee is colored in "blue"} \,, \\
+        0\,, & \text{otherwise} \,.
+    \end{cases}
+$$
+
+The boolean variables will be combined by boolean expressions that enforce feasible 
+colorings. We have three different types, explained by example.
+
+```{prf:criterion} Tennessee is colored with at least one color
+:label: crit-combinatorics-col-ge1
+
+$$
+t_{\red}\lor t_{\green}\lor t_{\blue}
+$$
+```
+
+```{prf:criterion} Tennessee is colored with at most one color
+:label: crit-combinatorics-col-le1
+
+$$
+(\neg t_{\red}\lor\neg t_{\green}) \land 
+(\neg t_{\red}\lor\neg t_{\blue}) \land
+(\neg t_{\green}\lor\neg t_{\blue})
+$$
+```
+
+```{prf:criterion} Tennessee and Mississippi are colored differently
+:label: crit-combinatorics-col-neq
+
+$$
+(\neg t_{\red}\lor\neg m_{\red}) \land 
+(\neg t_{\green}\lor\neg m_{\green}) \land
+(\neg t_{\blue}\lor\neg m_{\blue})
+$$
+```
+
+{prf:ref}`crit-combinatorics-col-ge1` as well as {prf:ref}`crit-combinatorics-col-le1` 
+provide an expression per state. {prf:ref}`crit-combinatorics-col-neq` gives an
+expression for each pair of adjacent states. We end up with $15$ boolean variables 
+and $5+5+7=17$ boolean expressions and can validate the following observation.
+
+```{prf:observation} Coloring by boolean expressions
+:label: obs-combinatorics-col-sat
+A configuration (assignments of `True` or `False` to all variables) is representing a 
+feasible coloring if and only if all boolean expressions evaluate to `True`.
+```
+
+A problem of this type, finding configurations of boolean variables such that a set
+of boolean expressions is fulfilled, is called 
+[Boolean satisfiability problem](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem)
+and abbreviated SAT.
+
+We want to work out, how boolean tensors can be used to count the number of solutions
+to a specific SAT problem. We start with the simple problem
+
+```{math}
+:label: eqn-combinatorics-xor-expression
+x\oplus y\,,
+```
+
+this is, we are looking for all pairs $(x,y)$ such that `xor`-combining them evaluates to `true`.
+Reusing the code we have developed earlier, we can count algorithmically to obtain $2$ solutions.
+
+```{code-cell}
+solutions = run(0, (x, y), xor_rel(x, y, True))
+len(solutions)
+```
+
+How do we obtain this number with tensor networks? The $\xor$-tensor that evaluates to `True` 
+is given by:
+
+```{figure} ../img/combinatorics/xor-true.svg
+:align: center
+:height: 65em
+:name: fig-combinatorics-xor-true
+$\xor(x\otimes y)=e_1$
+```
+
+We recall equation {eq}`eq-combinatorics-xor-not` contains the identity
+
+$$
+\xor(e^1) = e^1\otimes e^0 + e^0\otimes e^1 \,.
+$$
+
+Each summand of the right hand side is representing one solution of 
+{eq}`eqn-combinatorics-xor-expression`. How do we count summands? Well,
+we fully contract the tensor with itself, such that indices representing
+left parameters are mapped together as well as indices representing right paramters, 
+respectively. We get
+
+$$
+& C_{i_1,i_2}(C_{j_1,j_2}(\xor(e^1)\otimes\xor(e_1)) \\
+& = C_{i_1,i_2}(C_{j_1,j_2}((e^1\otimes e^0 + e^0\otimes e^1)\otimes(e_1\otimes e_0 + e_0\otimes e_1)) \\
+& = e^1(e_1)\cdot e^0(e_0) + e^0(e_1)\cdot e^1(e_0) + e^1(e_0)\cdot e^0(e_1) + e^0(e_0)\cdot e^1(e_1) \\
+& = 2 \,.
+$$
+
+This equation can be expressed as tensor network:
+
+```{figure} ../img/combinatorics/xor-counting.svg
+:align: center
+:height: 65em
+:name: fig-combinatorics-xor-counting
+Counting $\xor(x\otimes y)=e_1$
+```
+
+In general, we can count as follows:
+
+````{prf:theorem} Counting SAT solutions
+:label: thm-combinatorics-sat-counting
+Let $x_1,\ldots,x_n\in\{0,1\}$ be boolean variables and let 
+$f_1,\ldots,f_m:(x_1,\ldots,x_n)\mapsto z\in\{0,1\}$ be boolean expressions.
+Then the number of SAT solutions
+
+$$
+\#\{(x_1,\ldots,x_n) : f_1(x_1,\ldots,x_n)=\ldots=f_m(x_1,\ldots,x_n)=1\}
+$$
+
+is determined by the tensor network:
+
+```{figure} ../img/combinatorics/f-counting.svg
+:align: center
+:height: 115em
+:name: fig-combinatorics-f-counting
+Counting SAT solutions
+```
+
+The tensor $f$ is derived from $f=f_1\land\ldots\land f_m$ and constructed accordingly
+from boolean tensors.
+````
+
+The idea of proof is outlined in the construction we have done previously. We give another example.
+
+````{prf:example} Counting
+We want to count all configurations $(t_\red,t_\green,t_\blue)$ fulfilling
+{prf:ref}`crit-combinatorics-col-le1`. In how many ways Tennessee can be colored with at most
+one of the colors "red", "blue", "green"?
+
+```{figure} ../img/combinatorics/tennessee-counting.jpg
+:align: center
+:name: fig-combinatorics-tennessee-counting
+Counting Tennessee colors
+```
+````
+
+(sec-combinatorics-colorings)=
+## Counting graph colorings
 
 Interestingly tensor networks can be used to obtain algebraic descriptions of counting problems. 
 This has mostly theoretical value, as it provides another way of analyzing this kind of problems. 
@@ -804,5 +979,3 @@ with. The $\delta$ assigned to the node ensures that all connected indices repre
 color. The $\eta$ assigned to an edge ensures, that the nodes connected by this edge are mapped 
 to different colors.
 ```
-
-## SAT instances

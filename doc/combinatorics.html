@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "swap": "\\mathrm{SWAP}", "xor": "\\mathrm{XOR}", "and": "\\mathrm{AND}", "or": "\\mathrm{OR}", "copy": "\\mathrm{COPY}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "swap": "\\mathrm{SWAP}", "xor": "\\mathrm{XOR}", "and": "\\mathrm{AND}", "or": "\\mathrm{OR}", "copy": "\\mathrm{COPY}", "red": "\\text{red}", "green": "\\text{green}", "blue": "\\text{blue}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Quantum Computing" href="quantum-computing.html" />
@@ -285,13 +285,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#counting-problems">
-   4.3. Counting problems
+  <a class="reference internal nav-link" href="#counting-sat-solutions">
+   4.3. Counting SAT solutions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sat-instances">
-   4.4. SAT instances
+  <a class="reference internal nav-link" href="#counting-graph-colorings">
+   4.4. Counting graph colorings
   </a>
  </li>
 </ul>
@@ -325,13 +325,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#counting-problems">
-   4.3. Counting problems
+  <a class="reference internal nav-link" href="#counting-sat-solutions">
+   4.3. Counting SAT solutions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sat-instances">
-   4.4. SAT instances
+  <a class="reference internal nav-link" href="#counting-graph-colorings">
+   4.4. Counting graph colorings
   </a>
  </li>
 </ul>
@@ -427,15 +427,15 @@ colorings with two colors, <code class="docutils literal notranslate"><span clas
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rules</span>
-<span class="k">def</span> <span class="nf">coloring</span><span class="p">(</span><span class="n">different</span><span class="p">,</span> <span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">coloring</span><span class="p">(</span><span class="n">different</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">lall</span><span class="p">(</span>
-        <span class="n">different</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">),</span>
-        <span class="n">different</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">al</span><span class="p">),</span>
-        <span class="n">different</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ga</span><span class="p">),</span>
-        <span class="n">different</span><span class="p">(</span><span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">),</span>
-        <span class="n">different</span><span class="p">(</span><span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">),</span>
-        <span class="n">different</span><span class="p">(</span><span class="n">al</span><span class="p">,</span> <span class="n">fl</span><span class="p">),</span>
-        <span class="n">different</span><span class="p">(</span><span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">)</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">g</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span>
+        <span class="n">different</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
     <span class="p">)</span>
 
 <span class="n">coloring_2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">coloring</span><span class="p">,</span> <span class="n">different_2</span><span class="p">)</span>
@@ -451,18 +451,18 @@ goals <code class="docutils literal notranslate"><span class="pre">colors_2</spa
 colors. You might already wonder about the certainty that in case of success
 we will not find a unique coloring. From one feasible coloring we can easily derive
 another  valid coloring by permuting the colors. To cut down a potential set of solutions
-further to our likings, we define two more goals <code class="docutils literal notranslate"><span class="pre">al_red</span></code> and <code class="docutils literal notranslate"><span class="pre">tn_green</span></code>. They
+further to our likings, we define two more goals <code class="docutils literal notranslate"><span class="pre">a_red</span></code> and <code class="docutils literal notranslate"><span class="pre">t_green</span></code>. They
 require Alabama to be colored “green” and Tennessee to be colored “green”, respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># goals</span>
-<span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span> <span class="o">=</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">()</span>
+<span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">(),</span> <span class="n">var</span><span class="p">()</span>
 
-<span class="n">colors_2</span> <span class="o">=</span> <span class="n">coloring_2</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">)</span>
-<span class="n">colors_3</span> <span class="o">=</span> <span class="n">coloring_3</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">ms</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">ga</span><span class="p">,</span> <span class="n">fl</span><span class="p">)</span>
+<span class="n">colors_2</span> <span class="o">=</span> <span class="n">coloring_2</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="n">colors_3</span> <span class="o">=</span> <span class="n">coloring_3</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 
-<span class="n">al_red</span> <span class="o">=</span> <span class="n">eq</span><span class="p">(</span><span class="n">al</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
-<span class="n">tn_green</span> <span class="o">=</span> <span class="n">eq</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">a_red</span> <span class="o">=</span> <span class="n">eq</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">t_green</span> <span class="o">=</span> <span class="n">eq</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -474,11 +474,11 @@ into a dictionary.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># query</span>
 <span class="n">query</span> <span class="o">=</span> <span class="p">{</span> 
-    <span class="s2">&quot;Tennessee&quot;</span><span class="p">:</span> <span class="n">tn</span><span class="p">,</span>
-    <span class="s2">&quot;Mississippi&quot;</span><span class="p">:</span> <span class="n">ms</span><span class="p">,</span>
-    <span class="s2">&quot;Alabama&quot;</span><span class="p">:</span> <span class="n">al</span><span class="p">,</span>
-    <span class="s2">&quot;Georgia&quot;</span><span class="p">:</span> <span class="n">ga</span><span class="p">,</span>
-    <span class="s2">&quot;Florida&quot;</span><span class="p">:</span> <span class="n">fl</span>
+    <span class="s2">&quot;Tennessee&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span>
+    <span class="s2">&quot;Mississippi&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">,</span>
+    <span class="s2">&quot;Alabama&quot;</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span>
+    <span class="s2">&quot;Georgia&quot;</span><span class="p">:</span> <span class="n">g</span><span class="p">,</span>
+    <span class="s2">&quot;Florida&quot;</span><span class="p">:</span> <span class="n">f</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -520,15 +520,10 @@ is more luck with three colors.</p>
   &#39;Alabama&#39;: &#39;blue&#39;,
   &#39;Georgia&#39;: &#39;green&#39;,
   &#39;Florida&#39;: &#39;red&#39;},
- {&#39;Tennessee&#39;: &#39;red&#39;,
-  &#39;Mississippi&#39;: &#39;blue&#39;,
-  &#39;Alabama&#39;: &#39;green&#39;,
-  &#39;Georgia&#39;: &#39;blue&#39;,
-  &#39;Florida&#39;: &#39;red&#39;},
  {&#39;Tennessee&#39;: &#39;blue&#39;,
-  &#39;Mississippi&#39;: &#39;red&#39;,
-  &#39;Alabama&#39;: &#39;green&#39;,
-  &#39;Georgia&#39;: &#39;red&#39;,
+  &#39;Mississippi&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;red&#39;,
+  &#39;Georgia&#39;: &#39;green&#39;,
   &#39;Florida&#39;: &#39;blue&#39;},
  {&#39;Tennessee&#39;: &#39;green&#39;,
   &#39;Mississippi&#39;: &#39;blue&#39;,
@@ -536,10 +531,15 @@ is more luck with three colors.</p>
   &#39;Georgia&#39;: &#39;blue&#39;,
   &#39;Florida&#39;: &#39;green&#39;},
  {&#39;Tennessee&#39;: &#39;blue&#39;,
-  &#39;Mississippi&#39;: &#39;green&#39;,
-  &#39;Alabama&#39;: &#39;red&#39;,
-  &#39;Georgia&#39;: &#39;green&#39;,
-  &#39;Florida&#39;: &#39;blue&#39;})
+  &#39;Mississippi&#39;: &#39;red&#39;,
+  &#39;Alabama&#39;: &#39;green&#39;,
+  &#39;Georgia&#39;: &#39;red&#39;,
+  &#39;Florida&#39;: &#39;blue&#39;},
+ {&#39;Tennessee&#39;: &#39;red&#39;,
+  &#39;Mississippi&#39;: &#39;blue&#39;,
+  &#39;Alabama&#39;: &#39;green&#39;,
+  &#39;Georgia&#39;: &#39;blue&#39;,
+  &#39;Florida&#39;: &#39;red&#39;})
 </pre></div>
 </div>
 </div>
@@ -549,7 +549,7 @@ obtain six permutations from one feasible coloring, the coloring is unique if we
 To nail down a unique coloring we fix the colors of Alabama and Tennessee by stating two more goals.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">colors_3</span><span class="p">,</span> <span class="n">al_red</span><span class="p">,</span> <span class="n">tn_green</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">colors_3</span><span class="p">,</span> <span class="n">a_red</span><span class="p">,</span> <span class="n">t_green</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -647,7 +647,7 @@ for pairs, or in terms of the equation, a solution of <span class="math notransl
 </div>
 </div>
 <div class="section" id="boolean-tensors">
-<h2><span class="section-number">4.2. </span>Boolean tensors<a class="headerlink" href="#boolean-tensors" title="Permalink to this headline">¶</a></h2>
+<span id="sec-combinatorics-boolean-tensors"></span><h2><span class="section-number">4.2. </span>Boolean tensors<a class="headerlink" href="#boolean-tensors" title="Permalink to this headline">¶</a></h2>
 <p>To bring tensors into play, we consider <span class="math notranslate nohighlight">\(\C^2\)</span> as logic space, with
 <span class="math notranslate nohighlight">\(e_0\def\begin{bmatrix}1 &amp; 0\end{bmatrix}^T\)</span> representing <code class="docutils literal notranslate"><span class="pre">False</span></code> and
 <span class="math notranslate nohighlight">\(e_1\def\begin{bmatrix}0 &amp; 1\end{bmatrix}^T\)</span> representing <code class="docutils literal notranslate"><span class="pre">True</span></code>.
@@ -892,8 +892,162 @@ a bit into two, thus copying a boolean value.</p>
 <p class="caption"><span class="caption-number">Fig. 4.11 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\copy\)</span>-tensor effect</span><a class="headerlink" href="#fig-combinatorics-copy-effect" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<div class="section" id="counting-problems">
-<span id="sec-combinatorics-counting"></span><h2><span class="section-number">4.3. </span>Counting problems<a class="headerlink" href="#counting-problems" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="counting-sat-solutions">
+<span id="sec-combinatorics-sat"></span><h2><span class="section-number">4.3. </span>Counting SAT solutions<a class="headerlink" href="#counting-sat-solutions" title="Permalink to this headline">¶</a></h2>
+<p>Can we transfer the map coloring problem into the boolean universe? We set the same task,
+the states displayed in <a class="reference internal" href="#fig-combinatorics-map-coloring"><span class="std std-numref">Fig. 4.1</span></a> shall be colored using
+“red”, “green”, “blue”, such that neighbors (states with common border) have different colors
+assigned. We want to rephrase the mathematical model to only use boolean variables and boolean
+combinators (logic gates / boolean tensors).</p>
+<p>Previously we had logic variables
+<span class="math notranslate nohighlight">\(t,m,a,g,f\in\{\text{&quot;}\red\text{&quot;},\text{&quot;}\green\text{&quot;},\text{&quot;}\blue\text{&quot;}\}\)</span>,
+representing the colorings of Tennessee, Mississippi, Alabama, Georgia, and Florida,
+respectively. To turn them into boolean variables, we need to split them into three
+flags each, telling if the related color is used. For example, the coloring of Tennesse
+will now be given by the three variables</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+t_{\red} &amp;= 
+    \begin{cases}
+        1\,, &amp; \text{Tennessee is colored in &quot;red&quot;} \,, \\
+        0\,, &amp; \text{otherwise} \,,
+    \end{cases} \\[0.5em]
+t_{\green} &amp;= 
+    \begin{cases}
+        1\,, &amp; \text{Tennessee is colored in &quot;green&quot;} \,, \\
+        0\,, &amp; \text{otherwise} \,,
+    \end{cases} \\[0.5em]
+t_{\blue} &amp;= 
+    \begin{cases}
+        1\,, &amp; \text{Tennessee is colored in &quot;blue&quot;} \,, \\
+        0\,, &amp; \text{otherwise} \,.
+    \end{cases}
+\end{split}\]</div>
+<p>The boolean variables will be combined by boolean expressions that enforce feasible
+colorings. We have three different types, explained by example.</p>
+<div class="proof criterion admonition" id="crit-combinatorics-col-ge1">
+<p class="admonition-title"><span class="caption-number">Criterion 4.1 </span> (Tennessee is colored with at least one color)</p>
+<div class="criterion-content section" id="proof-content">
+<div class="math notranslate nohighlight">
+\[
+t_{\red}\lor t_{\green}\lor t_{\blue}
+\]</div>
+</div>
+</div><div class="proof criterion admonition" id="crit-combinatorics-col-le1">
+<p class="admonition-title"><span class="caption-number">Criterion 4.2 </span> (Tennessee is colored with at most one color)</p>
+<div class="criterion-content section" id="proof-content">
+<div class="math notranslate nohighlight">
+\[
+(\neg t_{\red}\lor\neg t_{\green}) \land 
+(\neg t_{\red}\lor\neg t_{\blue}) \land
+(\neg t_{\green}\lor\neg t_{\blue})
+\]</div>
+</div>
+</div><div class="proof criterion admonition" id="crit-combinatorics-col-neq">
+<p class="admonition-title"><span class="caption-number">Criterion 4.3 </span> (Tennessee and Mississippi are colored differently)</p>
+<div class="criterion-content section" id="proof-content">
+<div class="math notranslate nohighlight">
+\[
+(\neg t_{\red}\lor\neg m_{\red}) \land 
+(\neg t_{\green}\lor\neg m_{\green}) \land
+(\neg t_{\blue}\lor\neg m_{\blue})
+\]</div>
+</div>
+</div><p><a class="reference internal" href="#crit-combinatorics-col-ge1">Criterion 4.1</a> as well as <a class="reference internal" href="#crit-combinatorics-col-le1">Criterion 4.2</a>
+provide an expression per state. <a class="reference internal" href="#crit-combinatorics-col-neq">Criterion 4.3</a> gives an
+expression for each pair of adjacent states. We end up with <span class="math notranslate nohighlight">\(15\)</span> boolean variables
+and <span class="math notranslate nohighlight">\(5+5+7=17\)</span> boolean expressions and can validate the following observation.</p>
+<div class="proof observation admonition" id="obs-combinatorics-col-sat">
+<p class="admonition-title"><span class="caption-number">Observation 4.1 </span> (Coloring by boolean expressions)</p>
+<div class="observation-content section" id="proof-content">
+<p>A configuration (assignments of <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> to all variables) is representing a
+feasible coloring if and only if all boolean expressions evaluate to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</div>
+</div><p>A problem of this type, finding configurations of boolean variables such that a set
+of boolean expressions is fulfilled, is called
+<a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">Boolean satisfiability problem</a>
+and abbreviated SAT.</p>
+<p>We want to work out, how boolean tensors can be used to count the number of solutions
+to a specific SAT problem. We start with the simple problem</p>
+<div class="math notranslate nohighlight" id="equation-eqn-combinatorics-xor-expression">
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-eqn-combinatorics-xor-expression" title="Permalink to this equation">¶</a></span>\[x\oplus y\,,\]</div>
+<p>this is, we are looking for all pairs <span class="math notranslate nohighlight">\((x,y)\)</span> such that <code class="docutils literal notranslate"><span class="pre">xor</span></code>-combining them evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code>.
+Reusing the code we have developed earlier, we can count algorithmically to obtain <span class="math notranslate nohighlight">\(2\)</span> solutions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solutions</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">xor_rel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">solutions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do we obtain this number with tensor networks? The <span class="math notranslate nohighlight">\(\xor\)</span>-tensor that evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>
+is given by:</p>
+<div class="figure align-center" id="fig-combinatorics-xor-true">
+<a class="reference internal image-reference" href="../_images/xor-true.svg"><img alt="../_images/xor-true.svg" height="65em" src="../_images/xor-true.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.12 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\xor(x\otimes y)=e_1\)</span></span><a class="headerlink" href="#fig-combinatorics-xor-true" title="Permalink to this image">¶</a></p>
+</div>
+<p>We recall equation <a class="reference internal" href="#equation-eq-combinatorics-xor-not">(4.2)</a> contains the identity</p>
+<div class="math notranslate nohighlight">
+\[
+\xor(e^1) = e^1\otimes e^0 + e^0\otimes e^1 \,.
+\]</div>
+<p>Each summand of the right hand side is representing one solution of
+<a class="reference internal" href="#equation-eqn-combinatorics-xor-expression">(4.5)</a>. How do we count summands? Well,
+we fully contract the tensor with itself, such that indices representing
+left parameters are mapped together as well as indices representing right paramters,
+respectively. We get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; C_{i_1,i_2}(C_{j_1,j_2}(\xor(e^1)\otimes\xor(e_1)) \\
+&amp; = C_{i_1,i_2}(C_{j_1,j_2}((e^1\otimes e^0 + e^0\otimes e^1)\otimes(e_1\otimes e_0 + e_0\otimes e_1)) \\
+&amp; = e^1(e_1)\cdot e^0(e_0) + e^0(e_1)\cdot e^1(e_0) + e^1(e_0)\cdot e^0(e_1) + e^0(e_0)\cdot e^1(e_1) \\
+&amp; = 2 \,.
+\end{split}\]</div>
+<p>This equation can be expressed as tensor network:</p>
+<div class="figure align-center" id="fig-combinatorics-xor-counting">
+<a class="reference internal image-reference" href="../_images/xor-counting.svg"><img alt="../_images/xor-counting.svg" height="65em" src="../_images/xor-counting.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.13 </span><span class="caption-text">Counting <span class="math notranslate nohighlight">\(\xor(x\otimes y)=e_1\)</span></span><a class="headerlink" href="#fig-combinatorics-xor-counting" title="Permalink to this image">¶</a></p>
+</div>
+<p>In general, we can count as follows:</p>
+<div class="proof theorem admonition" id="thm-combinatorics-sat-counting">
+<p class="admonition-title"><span class="caption-number">Theorem 4.1 </span> (Counting SAT solutions)</p>
+<div class="theorem-content section" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(x_1,\ldots,x_n\in\{0,1\}\)</span> be boolean variables and let
+<span class="math notranslate nohighlight">\(f_1,\ldots,f_m:(x_1,\ldots,x_n)\mapsto z\in\{0,1\}\)</span> be boolean expressions.
+Then the number of SAT solutions</p>
+<div class="math notranslate nohighlight">
+\[
+\#\{(x_1,\ldots,x_n) : f_1(x_1,\ldots,x_n)=\ldots=f_m(x_1,\ldots,x_n)=1\}
+\]</div>
+<p>is determined by the tensor network:</p>
+<div class="figure align-center" id="fig-combinatorics-f-counting">
+<a class="reference internal image-reference" href="../_images/f-counting.svg"><img alt="../_images/f-counting.svg" height="115em" src="../_images/f-counting.svg" /></a>
+<p class="caption"><span class="caption-number">Fig. 4.14 </span><span class="caption-text">Counting SAT solutions</span><a class="headerlink" href="#fig-combinatorics-f-counting" title="Permalink to this image">¶</a></p>
+</div>
+<p>The tensor <span class="math notranslate nohighlight">\(f\)</span> is derived from <span class="math notranslate nohighlight">\(f=f_1\land\ldots\land f_m\)</span> and constructed accordingly
+from boolean tensors.</p>
+</div>
+</div><p>The idea of proof is outlined in the construction we have done previously. We give another example.</p>
+<div class="proof example admonition" id="example-10">
+<p class="admonition-title"><span class="caption-number">Example 4.1 </span> (Counting)</p>
+<div class="example-content section" id="proof-content">
+<p>We want to count all configurations <span class="math notranslate nohighlight">\((t_\red,t_\green,t_\blue)\)</span> fulfilling
+<a class="reference internal" href="#crit-combinatorics-col-le1">Criterion 4.2</a>. In how many ways Tennessee can be colored with at most
+one of the colors “red”, “blue”, “green”?</p>
+<div class="figure align-center" id="fig-combinatorics-tennessee-counting">
+<img alt="../_images/tennessee-counting.jpg" src="../_images/tennessee-counting.jpg" />
+<p class="caption"><span class="caption-number">Fig. 4.15 </span><span class="caption-text">Counting Tennessee colors</span><a class="headerlink" href="#fig-combinatorics-tennessee-counting" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div></div>
+<div class="section" id="counting-graph-colorings">
+<span id="sec-combinatorics-colorings"></span><h2><span class="section-number">4.4. </span>Counting graph colorings<a class="headerlink" href="#counting-graph-colorings" title="Permalink to this headline">¶</a></h2>
 <p>Interestingly tensor networks can be used to obtain algebraic descriptions of counting problems.
 This has mostly theoretical value, as it provides another way of analyzing this kind of problems.
 We will give a few examples.</p>
@@ -909,24 +1063,24 @@ is incident on exactly <span class="math notranslate nohighlight">\(3\)</span> e
 The minimal example looks like:</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-minimal">
 <a class="reference internal image-reference" href="../_images/penrose-minimal.svg"><img alt="../_images/penrose-minimal.svg" height="150em" src="../_images/penrose-minimal.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.12 </span><span class="caption-text">Minimal <span class="math notranslate nohighlight">\(3\)</span>-regular graph</span><a class="headerlink" href="#fig-combinatorics-penrose-minimal" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.16 </span><span class="caption-text">Minimal <span class="math notranslate nohighlight">\(3\)</span>-regular graph</span><a class="headerlink" href="#fig-combinatorics-penrose-minimal" title="Permalink to this image">¶</a></p>
 </div>
 <p>We are looking for all edge colorings with <span class="math notranslate nohighlight">\(3\)</span> colors <span class="math notranslate nohighlight">\(f:E\rightarrow\{1,2,3\}\)</span> such that incident
 edges are mapped to different colors. The minimal example can be colored in six different ways:</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-coloring">
 <a class="reference internal image-reference" href="../_images/penrose-coloring.svg"><img alt="../_images/penrose-coloring.svg" height="150em" src="../_images/penrose-coloring.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.13 </span><span class="caption-text">Minimal edge coloring</span><a class="headerlink" href="#fig-combinatorics-penrose-coloring" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.17 </span><span class="caption-text">Minimal edge coloring</span><a class="headerlink" href="#fig-combinatorics-penrose-coloring" title="Permalink to this image">¶</a></p>
 </div>
 <p>This value can also be obtained by interpreting the graph as tensor network.
 Each node will be replaced by a <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor with <span class="math notranslate nohighlight">\(3\)</span> indices, every index of dimension <span class="math notranslate nohighlight">\(3\)</span>.
 Each edge is representing the respective contraction of incident tensors. Thus, the minimal
 example translates into the following tensor network.</p>
 <div class="proof example admonition" id="ex-combinatorics-penrose">
-<p class="admonition-title"><span class="caption-number">Example 4.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 4.2 </span></p>
 <div class="example-content section" id="proof-content">
 <div class="figure align-center" id="fig-combinatorics-penrose-network">
 <a class="reference internal image-reference" href="../_images/penrose-network.svg"><img alt="../_images/penrose-network.svg" height="150em" src="../_images/penrose-network.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.14 </span><span class="caption-text">Edge coloring tensor network</span><a class="headerlink" href="#fig-combinatorics-penrose-network" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.18 </span><span class="caption-text">Edge coloring tensor network</span><a class="headerlink" href="#fig-combinatorics-penrose-network" title="Permalink to this image">¶</a></p>
 </div>
 <p>This contraction has the following value.</p>
 <div class="math notranslate nohighlight">
@@ -938,7 +1092,7 @@ example translates into the following tensor network.</p>
 </div>
 </div><p>Indeed, <span id="id7">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> contains the following theorem.</p>
 <div class="proof theorem admonition" id="thm-combinatorics-penrose">
-<p class="admonition-title"><span class="caption-number">Theorem 4.1 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 4.2 </span></p>
 <div class="theorem-content section" id="proof-content">
 <p>The number of all edge colorings with <span class="math notranslate nohighlight">\(3\)</span> colors of a planar <span class="math notranslate nohighlight">\(3\)</span>-regular multigraph is
 obtained by replacing each node with an order-<span class="math notranslate nohighlight">\(3\)</span> <span class="math notranslate nohighlight">\(\varepsilon\)</span>-tensor, interpreting
@@ -965,12 +1119,12 @@ argument which can be presented in a nutshell, so I shall just omit it here.</p>
 <p>However, Roger Penrose gives an example that shows that planarity is indeed a necessary
 for the theorem.</p>
 <div class="proof example admonition" id="ex-combinatorics-penrose2">
-<p class="admonition-title"><span class="caption-number">Example 4.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 4.3 </span></p>
 <div class="example-content section" id="proof-content">
 <p>Consider the following graph <span class="math notranslate nohighlight">\(K_{3,3}\)</span>.</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-k33">
 <a class="reference internal image-reference" href="../_images/penrose-k33.svg"><img alt="../_images/penrose-k33.svg" height="300em" src="../_images/penrose-k33.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.15 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.19 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33" title="Permalink to this image">¶</a></p>
 </div>
 <p>It is the complete <a class="reference external" href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>
 with <span class="math notranslate nohighlight">\(3\)</span> nodes in each partition. There are no nodes between the red nodes and between
@@ -980,7 +1134,7 @@ this graph is not planar. Now, consider to exchange <span class="math notranslat
 network.</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-exchange">
 <a class="reference internal image-reference" href="../_images/penrose-exchange.svg"><img alt="../_images/penrose-exchange.svg" height="300em" src="../_images/penrose-exchange.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.16 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span> with node swap</span><a class="headerlink" href="#fig-combinatorics-penrose-exchange" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.20 </span><span class="caption-text"><span class="math notranslate nohighlight">\(K_{3,3}\)</span> with node swap</span><a class="headerlink" href="#fig-combinatorics-penrose-exchange" title="Permalink to this image">¶</a></p>
 </div>
 <p>Let us assume we exchange the nodes marked by <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>. The tensor network would be
 the same and the contraction has to yield the same result. However, <span class="math notranslate nohighlight">\(5\)</span> of the
@@ -999,7 +1153,7 @@ contradicts the fact that the <span class="math notranslate nohighlight">\(K_{3,
 those being:</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-k33-coloring">
 <a class="reference internal image-reference" href="../_images/penrose-k33-coloring.svg"><img alt="../_images/penrose-k33-coloring.svg" height="300em" src="../_images/penrose-k33-coloring.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.17 </span><span class="caption-text">Edge-colored <span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33-coloring" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.21 </span><span class="caption-text">Edge-colored <span class="math notranslate nohighlight">\(K_{3,3}\)</span></span><a class="headerlink" href="#fig-combinatorics-penrose-k33-coloring" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div><p>So far the initial motivation of the inventor of the graphical tensor network language.
@@ -1009,7 +1163,7 @@ edge coloring, we can obtain the counting value in a much simpler way. Instead o
 <span class="math notranslate nohighlight">\(\varepsilon\)</span> we simply use an <span class="math notranslate nohighlight">\(\eta\)</span>-tensor that counts <span class="math notranslate nohighlight">\(1\)</span> for all for all edge
 permutations.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-combinatorics-eta-tensor">
-<span class="eqno">(4.5)<a class="headerlink" href="#equation-eqn-combinatorics-eta-tensor" title="Permalink to this equation">¶</a></span>\[\begin{split}\eta_{i_1\ldots i_q} \def 
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-eqn-combinatorics-eta-tensor" title="Permalink to this equation">¶</a></span>\[\begin{split}\eta_{i_1\ldots i_q} \def 
     \begin{cases}
         1,\quad\,i_s\neq i_t,\,1\le s&lt;t\le q, \\
         0,\quad\text{otherwise}. 
@@ -1018,7 +1172,7 @@ permutations.</p>
 think about what would happen in the case of <span class="math notranslate nohighlight">\(-1\)</span>. This allows to formulate another
 edge coloring theorem.</p>
 <div class="proof theorem admonition" id="thm-combinatorics-penrose2">
-<p class="admonition-title"><span class="caption-number">Theorem 4.2 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 4.3 </span></p>
 <div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(G=(N,E)\)</span> be a multigraph. We assign a tensor network to <span class="math notranslate nohighlight">\(G\)</span> as follows. Each node
 will be replaced by an <span class="math notranslate nohighlight">\(\eta\)</span>-tensor with as many indices as incident edges. Each edge will
@@ -1027,7 +1181,7 @@ shall have the same dimension <span class="math notranslate nohighlight">\(c\)</
 value of the contraction of the tensor network.</p>
 </div>
 </div><div class="proof admonition" id="proof">
-<p>Proof. Similar to the argument of <a class="reference internal" href="#thm-combinatorics-penrose">Theorem 4.1</a>, a node being represented
+<p>Proof. Similar to the argument of <a class="reference internal" href="#thm-combinatorics-penrose">Theorem 4.2</a>, a node being represented
 by <span class="math notranslate nohighlight">\(\eta_{i_1\ldots i_q}\)</span> ensures, that a colorings with incident edges of same color do
 not count (factor zero), whereas colorings with incident edges having pairwise a different
 color contribute a <span class="math notranslate nohighlight">\(1\)</span> (all <span class="math notranslate nohighlight">\(\eta\)</span>-tensors are <span class="math notranslate nohighlight">\(1\)</span> for respective indices). Edges being
@@ -1037,14 +1191,14 @@ running from <span class="math notranslate nohighlight">\(1\)</span> to <span cl
 </div>
 <p>Let us conclude the part on edge colorings with an example.</p>
 <div class="proof example admonition" id="ex-combinatorics-penrose3">
-<p class="admonition-title"><span class="caption-number">Example 4.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 4.4 </span></p>
 <div class="example-content section" id="proof-content">
 <p>We consider the following graph, respectively tensor network with named indices.</p>
 <div class="figure align-center" id="fig-combinatorics-penrose-example">
 <a class="reference internal image-reference" href="../_images/penrose-example.svg"><img alt="../_images/penrose-example.svg" height="150em" src="../_images/penrose-example.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.18 </span><span class="caption-text">Edge-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-penrose-example" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.22 </span><span class="caption-text">Edge-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-penrose-example" title="Permalink to this image">¶</a></p>
 </div>
-<p>Following <a class="reference internal" href="#thm-combinatorics-penrose2">Theorem 4.2</a>, if we are interested in counting all
+<p>Following <a class="reference internal" href="#thm-combinatorics-penrose2">Theorem 4.3</a>, if we are interested in counting all
 edge colorings with <span class="math notranslate nohighlight">\(c\)</span> colors, we have to calculate the following tensor contraction.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1082,16 +1236,16 @@ are mapped to different colors. Obviously it suffices to consider simple graphs 
 multiple edges, since multiple edges would just add redundant information. We will introduce
 the construction with the same example, that had concluded the previous section.</p>
 <div class="proof example admonition" id="ex-combinatorics-bridge">
-<p class="admonition-title"><span class="caption-number">Example 4.4 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 4.5 </span></p>
 <div class="example-content section" id="proof-content">
 <p>Consider this graph.</p>
 <div class="figure align-center" id="fig-combinatorics-bridge-example">
 <a class="reference internal image-reference" href="../_images/bridge-example.svg"><img alt="../_images/bridge-example.svg" height="150em" src="../_images/bridge-example.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.19 </span><span class="caption-text">Node-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-bridge-example" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.23 </span><span class="caption-text">Node-coloring example graph</span><a class="headerlink" href="#fig-combinatorics-bridge-example" title="Permalink to this image">¶</a></p>
 </div>
 <p>We will use a generalize version of the Kronecker delta.</p>
 <div class="math notranslate nohighlight" id="equation-eqn-combinatorics-bridge-kronecker">
-<span class="eqno">(4.6)<a class="headerlink" href="#equation-eqn-combinatorics-bridge-kronecker" title="Permalink to this equation">¶</a></span>\[\begin{split}\delta_{i_1\ldots i_q} \def
+<span class="eqno">(4.7)<a class="headerlink" href="#equation-eqn-combinatorics-bridge-kronecker" title="Permalink to this equation">¶</a></span>\[\begin{split}\delta_{i_1\ldots i_q} \def
     \begin{cases}
         1,\quad i_1=i_2=\ldots =i_q\,, \\
         0,\quad\text{otherwise}. 
@@ -1103,7 +1257,7 @@ that will be transformed into an <span class="math notranslate nohighlight">\(\e
 into this tensor network.</p>
 <div class="figure align-center" id="fig-combinatorics-bridge-tensors">
 <a class="reference internal image-reference" href="../_images/bridge-tensors.svg"><img alt="../_images/bridge-tensors.svg" height="150em" src="../_images/bridge-tensors.svg" /></a>
-<p class="caption"><span class="caption-number">Fig. 4.20 </span><span class="caption-text">Node-coloring counting tensor network</span><a class="headerlink" href="#fig-combinatorics-bridge-tensors" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4.24 </span><span class="caption-text">Node-coloring counting tensor network</span><a class="headerlink" href="#fig-combinatorics-bridge-tensors" title="Permalink to this image">¶</a></p>
 </div>
 <p>Again, all indices are of dimension <span class="math notranslate nohighlight">\(c\)</span> if we are counting <span class="math notranslate nohighlight">\(c\)</span>-colorings. We leave it to
 the reader to confirm that the example graph requires at least <span class="math notranslate nohighlight">\(3\)</span> colors and is
@@ -1111,10 +1265,10 @@ the reader to confirm that the example graph requires at least <span class="math
 </div>
 </div><p>Using this construction, we are able to count all valid node colorings.</p>
 <div class="proof theorem admonition" id="thm-combinatorics-bridge">
-<p class="admonition-title"><span class="caption-number">Theorem 4.3 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 4.4 </span></p>
 <div class="theorem-content section" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(G=(N,E)\)</span> be a graph. We assign a tensor network as described in
-<a class="reference internal" href="#ex-combinatorics-bridge">Example 4.4</a>. Every index of the tensor network shall have the same
+<a class="reference internal" href="#ex-combinatorics-bridge">Example 4.5</a>. Every index of the tensor network shall have the same
 dimension <span class="math notranslate nohighlight">\(c\)</span>. Then the number of node <span class="math notranslate nohighlight">\(c\)</span>-colorings is exactly the value of the contraction
 of the tensor network.</p>
 </div>
@@ -1124,9 +1278,6 @@ with. The <span class="math notranslate nohighlight">\(\delta\)</span> assigned 
 color. The <span class="math notranslate nohighlight">\(\eta\)</span> assigned to an edge ensures, that the nodes connected by this edge are mapped
 to different colors.</p>
 </div>
-</div>
-<div class="section" id="sat-instances">
-<h2><span class="section-number">4.4. </span>SAT instances<a class="headerlink" href="#sat-instances" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
