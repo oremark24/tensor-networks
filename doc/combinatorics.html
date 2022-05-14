@@ -285,13 +285,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boolean-satisfiability">
+   4.3. Boolean satisfiability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#counting-sat-solutions">
-   4.3. Counting SAT solutions
+   4.4. Counting SAT solutions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#counting-graph-colorings">
-   4.4. Counting graph colorings
+   4.5. Counting graph colorings
   </a>
  </li>
 </ul>
@@ -325,13 +330,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boolean-satisfiability">
+   4.3. Boolean satisfiability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#counting-sat-solutions">
-   4.3. Counting SAT solutions
+   4.4. Counting SAT solutions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#counting-graph-colorings">
-   4.4. Counting graph colorings
+   4.5. Counting graph colorings
   </a>
  </li>
 </ul>
@@ -438,6 +448,7 @@ colorings with two colors, <code class="docutils literal notranslate"><span clas
         <span class="n">different</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
     <span class="p">)</span>
 
+
 <span class="n">coloring_2</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">coloring</span><span class="p">,</span> <span class="n">different_2</span><span class="p">)</span>
 <span class="n">coloring_3</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">coloring</span><span class="p">,</span> <span class="n">different_3</span><span class="p">)</span>
 </pre></div>
@@ -510,21 +521,26 @@ is more luck with three colors.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Tennessee&#39;: &#39;green&#39;,
-  &#39;Mississippi&#39;: &#39;red&#39;,
-  &#39;Alabama&#39;: &#39;blue&#39;,
-  &#39;Georgia&#39;: &#39;red&#39;,
-  &#39;Florida&#39;: &#39;green&#39;},
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Tennessee&#39;: &#39;blue&#39;,
+  &#39;Mississippi&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;red&#39;,
+  &#39;Georgia&#39;: &#39;green&#39;,
+  &#39;Florida&#39;: &#39;blue&#39;},
  {&#39;Tennessee&#39;: &#39;red&#39;,
   &#39;Mississippi&#39;: &#39;green&#39;,
   &#39;Alabama&#39;: &#39;blue&#39;,
   &#39;Georgia&#39;: &#39;green&#39;,
   &#39;Florida&#39;: &#39;red&#39;},
- {&#39;Tennessee&#39;: &#39;blue&#39;,
-  &#39;Mississippi&#39;: &#39;green&#39;,
-  &#39;Alabama&#39;: &#39;red&#39;,
-  &#39;Georgia&#39;: &#39;green&#39;,
-  &#39;Florida&#39;: &#39;blue&#39;},
+ {&#39;Tennessee&#39;: &#39;green&#39;,
+  &#39;Mississippi&#39;: &#39;red&#39;,
+  &#39;Alabama&#39;: &#39;blue&#39;,
+  &#39;Georgia&#39;: &#39;red&#39;,
+  &#39;Florida&#39;: &#39;green&#39;},
+ {&#39;Tennessee&#39;: &#39;red&#39;,
+  &#39;Mississippi&#39;: &#39;blue&#39;,
+  &#39;Alabama&#39;: &#39;green&#39;,
+  &#39;Georgia&#39;: &#39;blue&#39;,
+  &#39;Florida&#39;: &#39;red&#39;},
  {&#39;Tennessee&#39;: &#39;green&#39;,
   &#39;Mississippi&#39;: &#39;blue&#39;,
   &#39;Alabama&#39;: &#39;red&#39;,
@@ -534,12 +550,7 @@ is more luck with three colors.</p>
   &#39;Mississippi&#39;: &#39;red&#39;,
   &#39;Alabama&#39;: &#39;green&#39;,
   &#39;Georgia&#39;: &#39;red&#39;,
-  &#39;Florida&#39;: &#39;blue&#39;},
- {&#39;Tennessee&#39;: &#39;red&#39;,
-  &#39;Mississippi&#39;: &#39;blue&#39;,
-  &#39;Alabama&#39;: &#39;green&#39;,
-  &#39;Georgia&#39;: &#39;blue&#39;,
-  &#39;Florida&#39;: &#39;red&#39;})
+  &#39;Florida&#39;: &#39;blue&#39;})
 </pre></div>
 </div>
 </div>
@@ -892,8 +903,8 @@ a bit into two, thus copying a boolean value.</p>
 <p class="caption"><span class="caption-number">Fig. 4.11 </span><span class="caption-text"><span class="math notranslate nohighlight">\(\copy\)</span>-tensor effect</span><a class="headerlink" href="#fig-combinatorics-copy-effect" title="Permalink to this image">¶</a></p>
 </div>
 </div>
-<div class="section" id="counting-sat-solutions">
-<span id="sec-combinatorics-sat"></span><h2><span class="section-number">4.3. </span>Counting SAT solutions<a class="headerlink" href="#counting-sat-solutions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="boolean-satisfiability">
+<span id="sec-combinatorics-bool-sat"></span><h2><span class="section-number">4.3. </span>Boolean satisfiability<a class="headerlink" href="#boolean-satisfiability" title="Permalink to this headline">¶</a></h2>
 <p>Can we transfer the map coloring problem into the boolean universe? We set the same task,
 the states displayed in <a class="reference internal" href="#fig-combinatorics-map-coloring"><span class="std std-numref">Fig. 4.1</span></a> shall be colored using
 “red”, “green”, “blue”, such that neighbors (states with common border) have different colors
@@ -967,6 +978,133 @@ feasible coloring if and only if all boolean expressions evaluate to <code class
 of boolean expressions is fulfilled, is called
 <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">Boolean satisfiability problem</a>
 and abbreviated SAT.</p>
+<p>There are specialized SAT solvers to treat these kinds of problems. We will be using
+<a class="reference external" href="http://fmv.jku.at/picosat/"><em>PicoSAT</em></a> (<span id="id6">[<a class="reference internal" href="bibliography.html#id13" title="Armin Biere. Picosat essentials. J. Satisf. Boolean Model. Comput., 4(2-4):75–97, 2008. URL: https://doi.org/10.3233/sat190039, doi:10.3233/sat190039.">Bie08</a>]</span>), the Python binding is done
+by <em>pycosat</em> library (<span id="id7">[<a class="reference internal" href="bibliography.html#id12" title="Ilan Schnell and others. Pycosat: bindings to picosat (a sat solver). 2013. URL: https://github.com/conda/pycosat.">S+13</a>]</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pip install pycosat</span>
+<span class="kn">from</span> <span class="nn">pycosat</span> <span class="kn">import</span> <span class="n">itersolve</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want to solve the SAT version of the map coloring problem. In analogy of <code class="docutils literal notranslate"><span class="pre">kanren</span></code>
+facts, rules and goals, we define a boolean expression containing specified criteria
+<a class="reference internal" href="#crit-combinatorics-col-ge1">Criterion 4.1</a>, <a class="reference internal" href="#crit-combinatorics-col-le1">Criterion 4.2</a>,
+<a class="reference internal" href="#crit-combinatorics-col-neq">Criterion 4.3</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># state x has &gt;=1 colors</span>
+<span class="k">def</span> <span class="nf">ge1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">]]</span>
+
+
+<span class="c1"># state x has &lt;=1 colors</span>
+<span class="k">def</span> <span class="nf">le1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">)],</span> <span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">)]]</span>
+
+
+<span class="c1"># states x,y have different colors</span>
+<span class="k">def</span> <span class="nf">ne</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="p">(</span><span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="p">)]]</span> 
+
+
+<span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="n">ge1</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">ge1</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">ge1</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">ge1</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">+</span> <span class="n">ge1</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">+</span> \
+          <span class="n">le1</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">le1</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">le1</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">le1</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">+</span> <span class="n">le1</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">+</span> \
+          <span class="n">ne</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">ne</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">ne</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="o">+</span> <span class="n">ne</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">+</span> \
+          <span class="n">ne</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="o">+</span> <span class="n">ne</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="o">+</span> <span class="n">ne</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The boolean expression is the only information the SAT solver consumes. We have added
+some logic to display the solutions similar to the <code class="docutils literal notranslate"><span class="pre">kanren</span></code> output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_sat</span><span class="p">(</span><span class="n">formula</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">assignment</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">x</span><span class="o">-</span><span class="mi">1</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Tennessee&quot;</span><span class="p">,</span> <span class="s2">&quot;Mississippi&quot;</span><span class="p">,</span> <span class="s2">&quot;Alabama&quot;</span><span class="p">,</span> <span class="s2">&quot;Georgia&quot;</span><span class="p">,</span> <span class="s2">&quot;Florida&quot;</span><span class="p">][</span><span class="n">x0</span><span class="o">//</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">][</span><span class="n">x0</span><span class="o">%</span><span class="k">3</span>]
+        <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">color</span>
+    
+    <span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">xs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">assignment</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">solution</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="k">for</span> <span class="n">xs</span> <span class="ow">in</span> <span class="n">itersolve</span><span class="p">(</span><span class="n">formula</span><span class="p">)]</span>
+
+
+<span class="n">run_sat</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;Tennessee&#39;, &#39;blue&#39;),
+  (&#39;Mississippi&#39;, &#39;green&#39;),
+  (&#39;Alabama&#39;, &#39;red&#39;),
+  (&#39;Georgia&#39;, &#39;green&#39;),
+  (&#39;Florida&#39;, &#39;blue&#39;)],
+ [(&#39;Tennessee&#39;, &#39;blue&#39;),
+  (&#39;Mississippi&#39;, &#39;red&#39;),
+  (&#39;Alabama&#39;, &#39;green&#39;),
+  (&#39;Georgia&#39;, &#39;red&#39;),
+  (&#39;Florida&#39;, &#39;blue&#39;)],
+ [(&#39;Tennessee&#39;, &#39;green&#39;),
+  (&#39;Mississippi&#39;, &#39;red&#39;),
+  (&#39;Alabama&#39;, &#39;blue&#39;),
+  (&#39;Georgia&#39;, &#39;red&#39;),
+  (&#39;Florida&#39;, &#39;green&#39;)],
+ [(&#39;Tennessee&#39;, &#39;green&#39;),
+  (&#39;Mississippi&#39;, &#39;blue&#39;),
+  (&#39;Alabama&#39;, &#39;red&#39;),
+  (&#39;Georgia&#39;, &#39;blue&#39;),
+  (&#39;Florida&#39;, &#39;green&#39;)],
+ [(&#39;Tennessee&#39;, &#39;red&#39;),
+  (&#39;Mississippi&#39;, &#39;blue&#39;),
+  (&#39;Alabama&#39;, &#39;green&#39;),
+  (&#39;Georgia&#39;, &#39;blue&#39;),
+  (&#39;Florida&#39;, &#39;red&#39;)],
+ [(&#39;Tennessee&#39;, &#39;red&#39;),
+  (&#39;Mississippi&#39;, &#39;green&#39;),
+  (&#39;Alabama&#39;, &#39;blue&#39;),
+  (&#39;Georgia&#39;, &#39;green&#39;),
+  (&#39;Florida&#39;, &#39;red&#39;)]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similar to our first approach, we can add more requirements to make the solution unique:</p>
+<div class="proof criterion admonition" id="crit-combinatorics-col-ared">
+<p class="admonition-title"><span class="caption-number">Criterion 4.4 </span> (Alabama is colored red and Tennessee is colored green)</p>
+<div class="criterion-content section" id="proof-content">
+<div class="math notranslate nohighlight">
+\[
+a_{\red}\land t_{\green}
+\]</div>
+</div>
+</div><p>In Python code this reads:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_red</span><span class="p">,</span> <span class="n">t_green</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">7</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">2</span><span class="p">]]</span>
+<span class="n">run_sat</span><span class="p">(</span><span class="n">formula</span> <span class="o">+</span> <span class="n">a_red</span> <span class="o">+</span> <span class="n">t_green</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[(&#39;Tennessee&#39;, &#39;green&#39;),
+  (&#39;Mississippi&#39;, &#39;blue&#39;),
+  (&#39;Alabama&#39;, &#39;red&#39;),
+  (&#39;Georgia&#39;, &#39;blue&#39;),
+  (&#39;Florida&#39;, &#39;green&#39;)]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="counting-sat-solutions">
+<span id="sec-combinatorics-sat-counting"></span><h2><span class="section-number">4.4. </span>Counting SAT solutions<a class="headerlink" href="#counting-sat-solutions" title="Permalink to this headline">¶</a></h2>
 <p>We want to work out, how boolean tensors can be used to count the number of solutions
 to a specific SAT problem. We start with the simple problem</p>
 <div class="math notranslate nohighlight" id="equation-eqn-combinatorics-xor-expression">
@@ -1034,7 +1172,7 @@ Then the number of SAT solutions</p>
 from boolean tensors.</p>
 </div>
 </div><p>The idea of proof is outlined in the construction we have done previously. We give another example.</p>
-<div class="proof example admonition" id="example-10">
+<div class="proof example admonition" id="example-11">
 <p class="admonition-title"><span class="caption-number">Example 4.1 </span> (Counting)</p>
 <div class="example-content section" id="proof-content">
 <p>We want to count all configurations <span class="math notranslate nohighlight">\((t_\red,t_\green,t_\blue)\)</span> fulfilling
@@ -1047,12 +1185,12 @@ one of the colors “red”, “blue”, “green”?</p>
 </div>
 </div></div>
 <div class="section" id="counting-graph-colorings">
-<span id="sec-combinatorics-colorings"></span><h2><span class="section-number">4.4. </span>Counting graph colorings<a class="headerlink" href="#counting-graph-colorings" title="Permalink to this headline">¶</a></h2>
+<span id="sec-combinatorics-colorings"></span><h2><span class="section-number">4.5. </span>Counting graph colorings<a class="headerlink" href="#counting-graph-colorings" title="Permalink to this headline">¶</a></h2>
 <p>Interestingly tensor networks can be used to obtain algebraic descriptions of counting problems.
 This has mostly theoretical value, as it provides another way of analyzing this kind of problems.
 We will give a few examples.</p>
 <p>Roger Penrose introduced the graphical language for tensor networks (he called them
-<em>abstract tensor systems</em>) in <span id="id6">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span>. As an motivating application he gives counting
+<em>abstract tensor systems</em>) in <span id="id8">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span>. As an motivating application he gives counting
 edge colorings of <span class="math notranslate nohighlight">\(3\)</span>-regular planar graphs. We will revisit this example here.</p>
 <p>Let <span class="math notranslate nohighlight">\(G=(N,E)\)</span> be a
 <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_graph"><span class="math notranslate nohighlight">\(3\)</span>-regular</a>
@@ -1090,7 +1228,7 @@ example translates into the following tensor network.</p>
 = 6
 \end{split}\]</div>
 </div>
-</div><p>Indeed, <span id="id7">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> contains the following theorem.</p>
+</div><p>Indeed, <span id="id9">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> contains the following theorem.</p>
 <div class="proof theorem admonition" id="thm-combinatorics-penrose">
 <p class="admonition-title"><span class="caption-number">Theorem 4.2 </span></p>
 <div class="theorem-content section" id="proof-content">
@@ -1107,7 +1245,7 @@ This means that every configuration of the indices with values from <span class=
 on one hand a valid and distinct coloring and contributes on the other hand
 a <span class="math notranslate nohighlight">\(+1\)</span> or a <span class="math notranslate nohighlight">\(-1\)</span> to the sum.</p>
 <p>For planar graphs the contribution is always <span class="math notranslate nohighlight">\(1\)</span>, what proves the theorem.
-<span id="id8">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> arguments:</p>
+<span id="id10">[<a class="reference internal" href="bibliography.html#id5" title="Roger Penrose. Applications of negative dimensional tensors. Combinatorial Mathematics and its Applications, pages 221–244, 1971. URL: https://www.mscs.dal.ca/~selinger/papers/graphical-bib/public/Penrose-applications-of-negative-dimensional-tensors.pdf.">Pen71</a>]</span> arguments:</p>
 <blockquote>
 <div><p>Finally we have to check that each non-zero term contributes precisely the value +1.
 It is at this point that the planarity of the graph enters. There are various ways of
@@ -1230,7 +1368,7 @@ values for <span class="math notranslate nohighlight">\(j\)</span> and <span cla
 Assigning values to indices is and checking whether all <span class="math notranslate nohighlight">\(\eta\)</span>-tensors are <span class="math notranslate nohighlight">\(1\)</span> is exactly the
 same as assigning colors to edges and checking if the coloring is valid in all nodes.</p>
 </div>
-</div><p><span id="id9">[<a class="reference internal" href="bibliography.html#id4" title="Jacob C Bridgeman and Christopher T Chubb. Hand-waving and interpretive dance: an introductory course on tensor networks. Journal of Physics A: Mathematical and Theoretical, 50(22):223001, may 2017. URL: https://doi.org/10.1088%2F1751-8121%2Faa6dc3, doi:10.1088/1751-8121/aa6dc3.">BC17</a>]</span> analyzes node colorings in a similar way. A node coloring for a graph
+</div><p><span id="id11">[<a class="reference internal" href="bibliography.html#id4" title="Jacob C Bridgeman and Christopher T Chubb. Hand-waving and interpretive dance: an introductory course on tensor networks. Journal of Physics A: Mathematical and Theoretical, 50(22):223001, may 2017. URL: https://doi.org/10.1088%2F1751-8121%2Faa6dc3, doi:10.1088/1751-8121/aa6dc3.">BC17</a>]</span> analyzes node colorings in a similar way. A node coloring for a graph
 <span class="math notranslate nohighlight">\(G=(N,E)\)</span> with <span class="math notranslate nohighlight">\(c\)</span> colors is a map <span class="math notranslate nohighlight">\(f:N\rightarrow\{1,\ldots,c\}\)</span> such that adjacent nodes
 are mapped to different colors. Obviously it suffices to consider simple graphs without
 multiple edges, since multiple edges would just add redundant information. We will introduce

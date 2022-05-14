@@ -113,6 +113,7 @@ def coloring(different, t, m, a, g, f):
         different(g, f)
     )
 
+
 coloring_2 = partial(coloring, different_2)
 coloring_3 = partial(coloring, different_3)
 ```
@@ -513,8 +514,8 @@ The effect of the $\copy$-tensor can also be nicely illustrated by a diagrammati
 $\copy$-tensor effect
 ```
 
-(sec-combinatorics-sat)=
-## Counting SAT solutions
+(sec-combinatorics-bool-sat)=
+## Boolean satisfiability
 
 Can we transfer the map coloring problem into the boolean universe? We set the same task,
 the states displayed in {numref}`fig-combinatorics-map-coloring` shall be colored using
@@ -593,6 +594,83 @@ A problem of this type, finding configurations of boolean variables such that a 
 of boolean expressions is fulfilled, is called 
 [Boolean satisfiability problem](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem)
 and abbreviated SAT.
+
+There are specialized SAT solvers to treat these kinds of problems. We will be using 
+[_PicoSAT_](http://fmv.jku.at/picosat/) ({cite}`biere08`), the Python binding is done 
+by _pycosat_ library ({cite}`schnell13`).
+
+```{code-cell}
+# pip install pycosat
+from pycosat import itersolve
+```
+
+We want to solve the SAT version of the map coloring problem. In analogy of `kanren`
+facts, rules and goals, we define a boolean expression containing specified criteria
+{prf:ref}`crit-combinatorics-col-ge1`, {prf:ref}`crit-combinatorics-col-le1`, 
+{prf:ref}`crit-combinatorics-col-neq`.
+
+```{code-cell}
+# state x has >=1 colors
+def ge1(x):
+    return [[x, x+1, x+2]]
+
+
+# state x has <=1 colors
+def le1(x):
+    return [[-x, -(x+1)], [-x, -(x+2)], [-(x+1), -(x+2)]]
+
+
+# states x,y have different colors
+def ne(x, y):
+    return [[-x, -y], [-(x+1), -(y+1)], [-(x+2), -(y+2)]] 
+
+
+t, m, a, g, f = 1, 4, 7, 10, 13
+formula = ge1(t) + ge1(m) + ge1(a) + ge1(g) + ge1(f) + \
+          le1(t) + le1(m) + le1(a) + le1(g) + le1(f) + \
+          ne(t, m) + ne(t, a) + ne(t, g) + ne(m, a) + \
+          ne(a, g) + ne(a, f) + ne(g, f)
+```
+
+The boolean expression is the only information the SAT solver consumes. We have added
+some logic to display the solutions similar to the `kanren` output.
+
+```{code-cell}
+def run_sat(formula):
+    def assignment(x):
+        x0 = x-1
+        state = ["Tennessee", "Mississippi", "Alabama", "Georgia", "Florida"][x0//3]
+        color = ["red", "green", "blue"][x0%3]
+        return state, color
+    
+    def solution(xs):
+        return [assignment(x) for x in xs if x>0]
+    
+    return [solution(xs) for xs in itersolve(formula)]
+
+
+run_sat(formula)
+```
+
+Similar to our first approach, we can add more requirements to make the solution unique:
+
+```{prf:criterion} Alabama is colored red and Tennessee is colored green
+:label: crit-combinatorics-col-ared
+
+$$
+a_{\red}\land t_{\green}
+$$
+```
+
+In Python code this reads:
+
+```{code-cell}
+a_red, t_green = [[7]], [[2]]
+run_sat(formula + a_red + t_green)
+```
+
+(sec-combinatorics-sat-counting)=
+## Counting SAT solutions
 
 We want to work out, how boolean tensors can be used to count the number of solutions
 to a specific SAT problem. We start with the simple problem
