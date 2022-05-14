@@ -12,4 +12,5 @@ not columnwise. (Elementary operations are usually row-operations and not column
 - Adapt {numref}`sec-combinatorics-colorings` (e.g. redraw figures in Biamonte style)
 - Add more graphical equations (of Biamonte) to {numref}`sec-combinatorics-boolean-tensors`
 - Find (and apply) ad hoc notation for contractions
-- Use SAT solver in {numref}`sec-combinatorics-sat`
+- Distinguish between $\xor$ and co-$\xor$. This should help in equations that contain both tensors.
+- Idea, for contractions with no index notions use e.g. $C_{1,3}(\cdot)$ to contract first and third factor (from left.)
