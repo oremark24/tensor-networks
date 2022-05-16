@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to Python &#8212; Tensor Networks for Computer Scientists</title>
+    <title>Tensor networks in a nutshell &#8212; Tensor Networks for Computer Scientists</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -114,7 +114,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../tensor-networks.html">
+  <a class="reference internal" href="../networks.html">
    3. Tensor Networks
   </a>
  </li>
@@ -124,17 +124,17 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../quantum-computing.html">
+  <a class="reference internal" href="../quantum.html">
    5. Quantum Computing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../matrix-product-state.html">
+  <a class="reference internal" href="../mps.html">
    6. Matrix Product State
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../machine-learning.html">
+  <a class="reference internal" href="../ml.html">
    7. Tensor Machine Learning
   </a>
  </li>
@@ -152,7 +152,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Introduction to Python
+     Tensor networks in a nutshell
     </a>
    </li>
   </ul>
@@ -273,7 +273,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Introduction to Python</h1>
+                <h1>Tensor networks in a nutshell</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -284,26 +284,22 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-python">
-<h1>Introduction to Python<a class="headerlink" href="#introduction-to-python" title="Permalink to this headline">¶</a></h1>
-<p>We define a function <span class="math notranslate nohighlight">\(\mathrm{mult}:\mathbb{R}\times\mathbb{R}\rightarrow\mathbb{R}\)</span>:</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="tensor-networks-in-a-nutshell">
+<h1>Tensor networks in a nutshell<a class="headerlink" href="#tensor-networks-in-a-nutshell" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mult</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="k">def</span> <span class="nf">mult</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">mult</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="n">add</span><span class="p">(</span><span class="n">mult</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">mult</span><span class="p">(</span><span class="mi">47</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>637
 </pre></div>
 </div>
 </div>

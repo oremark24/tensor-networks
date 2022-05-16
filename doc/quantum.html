@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "swap": "\\mathrm{SWAP}", "xor": "\\mathrm{XOR}", "and": "\\mathrm{AND}", "or": "\\mathrm{OR}", "copy": "\\mathrm{COPY}", "red": "\\text{red}", "green": "\\text{green}", "blue": "\\text{blue}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Matrix Product State" href="matrix-product-state.html" />
+    <link rel="next" title="6. Matrix Product State" href="mps.html" />
     <link rel="prev" title="4. Tensors and Combinatorics" href="combinatorics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -114,7 +114,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tensor-networks.html">
+  <a class="reference internal" href="networks.html">
    3. Tensor Networks
   </a>
  </li>
@@ -129,12 +129,12 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="matrix-product-state.html">
+  <a class="reference internal" href="mps.html">
    6. Matrix Product State
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="machine-learning.html">
+  <a class="reference internal" href="ml.html">
    7. Tensor Machine Learning
   </a>
  </li>
@@ -152,7 +152,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="slides/nutshell.html">
-     Introduction to Python
+     Tensor networks in a nutshell
     </a>
    </li>
   </ul>
@@ -208,7 +208,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/doc/quantum-computing.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/doc/quantum.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -228,7 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/oremark24/tensor-networks/issues/new?title=Issue%20on%20page%20%2Fdoc/quantum-computing.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/oremark24/tensor-networks/issues/new?title=Issue%20on%20page%20%2Fdoc/quantum.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -249,6 +249,19 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hilbert-spaces-and-dirac-notation">
+   5.1. Hilbert spaces and Dirac notation
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -261,6 +274,19 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hilbert-spaces-and-dirac-notation">
+   5.1. Hilbert spaces and Dirac notation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -269,7 +295,25 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="quantum-computing">
 <span id="ch-quantum"></span><h1><span class="section-number">5. </span>Quantum Computing<a class="headerlink" href="#quantum-computing" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
+<blockquote>
+<div><p><em>Mathematics is a game played according to certain simple rules with meaningless
+marks on paper.</em>
+David Hilbert</p>
+</div></blockquote>
+<p>To understand <em>Quantum Computing</em> we need to know its realm and language. We study both first,
+<em>Hilbert spaces</em> and <em>Dirac notation</em>.</p>
+<div class="section" id="hilbert-spaces-and-dirac-notation">
+<h2><span class="section-number">5.1. </span>Hilbert spaces and Dirac notation<a class="headerlink" href="#hilbert-spaces-and-dirac-notation" title="Permalink to this headline">¶</a></h2>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 5.1 </span></p>
+<div class="definition-content section" id="proof-content">
+</div>
+</div><div class="proof definition admonition" id="def-quantum-hilbert-space">
+<p class="admonition-title"><span class="caption-number">Definition 5.2 </span> (Complex Hilbert space)</p>
+<div class="definition-content section" id="proof-content">
+<p>A <em><strong>Complex Hilbert space</strong></em> <span class="math notranslate nohighlight">\(H\)</span> is</p>
+</div>
+</div><ul class="simple">
 <li><p>Inner product spaces</p></li>
 <li><p>Unitary and Hermitian Maps (and properties)</p></li>
 <li><p>Dirac notation</p></li>
@@ -277,6 +321,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Quantum Circuits are Tensor Networks</p></li>
 <li><p>(Approximating Tensor Networks with Quantum Circuits)</p></li>
 </ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -311,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
             <p class="prev-next-title"><span class="section-number">4. </span>Tensors and Combinatorics</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="matrix-product-state.html" title="next page">
+    <a class='right-next' id="next-link" href="mps.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">6. </span>Matrix Product State</p>

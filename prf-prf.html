@@ -119,7 +119,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="doc/tensor-networks.html">
+  <a class="reference internal" href="doc/networks.html">
    3. Tensor Networks
   </a>
  </li>
@@ -129,17 +129,17 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="doc/quantum-computing.html">
+  <a class="reference internal" href="doc/quantum.html">
    5. Quantum Computing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="doc/matrix-product-state.html">
+  <a class="reference internal" href="doc/mps.html">
    6. Matrix Product State
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="doc/machine-learning.html">
+  <a class="reference internal" href="doc/ml.html">
    7. Tensor Machine Learning
   </a>
  </li>
@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="doc/slides/nutshell.html">
-     Introduction to Python
+     Tensor networks in a nutshell
     </a>
    </li>
   </ul>
@@ -270,6 +270,7 @@ const thebe_selector_output = ".output, .cell_output"
    <a href="#cap-def-combinatorics-or-tensor"><strong>def-combinatorics-or-tensor</strong></a> | 
    <a href="#cap-def-combinatorics-xor-tensor"><strong>def-combinatorics-xor-tensor</strong></a> | 
    <a href="#cap-def-kronecker"><strong>def-kronecker</strong></a> | 
+   <a href="#cap-def-quantum-hilbert-space"><strong>def-quantum-hilbert-space</strong></a> | 
    <a href="#cap-def-tensor-networks-concurrence"><strong>def-tensor-networks-concurrence</strong></a> | 
    <a href="#cap-def-tensor-networks-determinant"><strong>def-tensor-networks-determinant</strong></a> | 
    <a href="#cap-def-tensor-networks-epstensor"><strong>def-tensor-networks-epstensor</strong></a> | 
@@ -283,6 +284,7 @@ const thebe_selector_output = ".output, .cell_output"
    <a href="#cap-defNetwork"><strong>defNetwork</strong></a> | 
    <a href="#cap-defProduct"><strong>defProduct</strong></a> | 
    <a href="#cap-defTensorOrder"><strong>defTensorOrder</strong></a> | 
+   <a href="#cap-definition-0"><strong>definition-0</strong></a> | 
    <a href="#cap-definition-27"><strong>definition-27</strong></a> | 
    <a href="#cap-ex-Fn"><strong>ex-Fn</strong></a> | 
    <a href="#cap-ex-combinatorics-bridge"><strong>ex-combinatorics-bridge</strong></a> | 
@@ -345,7 +347,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#cor-tensor-networks-determinant-el-ops"><code class="xref">cor-tensor-networks-determinant-el-ops</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#cor-tensor-networks-determinant-el-ops"><code class="xref">cor-tensor-networks-determinant-el-ops</code></a> <em>(doc/networks)</em></td><td>
        <em>corollary</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-cor-tensor-networks-determinant-id-cols"><td></td><td>
@@ -353,7 +355,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#cor-tensor-networks-determinant-id-cols"><code class="xref">cor-tensor-networks-determinant-id-cols</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#cor-tensor-networks-determinant-id-cols"><code class="xref">cor-tensor-networks-determinant-id-cols</code></a> <em>(doc/networks)</em></td><td>
        <em>corollary</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-crit-combinatorics-col-ared"><td></td><td>
@@ -428,12 +430,20 @@ const thebe_selector_output = ".output, .cell_output"
        <a href="doc/tensors.html#def-kronecker"><code class="xref">def-kronecker</code></a> <em>(doc/tensors)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def-quantum-hilbert-space"><td></td><td>
+       <strong>def-quantum-hilbert-space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/quantum.html#def-quantum-hilbert-space"><code class="xref">def-quantum-hilbert-space</code></a> <em>(doc/quantum)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-tensor-networks-concurrence"><td></td><td>
        <strong>def-tensor-networks-concurrence</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#def-tensor-networks-concurrence"><code class="xref">def-tensor-networks-concurrence</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#def-tensor-networks-concurrence"><code class="xref">def-tensor-networks-concurrence</code></a> <em>(doc/networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-tensor-networks-determinant"><td></td><td>
@@ -441,7 +451,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#def-tensor-networks-determinant"><code class="xref">def-tensor-networks-determinant</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#def-tensor-networks-determinant"><code class="xref">def-tensor-networks-determinant</code></a> <em>(doc/networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-tensor-networks-epstensor"><td></td><td>
@@ -449,7 +459,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#def-tensor-networks-epstensor"><code class="xref">def-tensor-networks-epstensor</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#def-tensor-networks-epstensor"><code class="xref">def-tensor-networks-epstensor</code></a> <em>(doc/networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-tensor-networks-permutation"><td></td><td>
@@ -457,7 +467,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#def-tensor-networks-permutation"><code class="xref">def-tensor-networks-permutation</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#def-tensor-networks-permutation"><code class="xref">def-tensor-networks-permutation</code></a> <em>(doc/networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-tensor-networks-permutation-parity"><td></td><td>
@@ -465,7 +475,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#def-tensor-networks-permutation-parity"><code class="xref">def-tensor-networks-permutation-parity</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#def-tensor-networks-permutation-parity"><code class="xref">def-tensor-networks-permutation-parity</code></a> <em>(doc/networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-tensor-networks-swap-operator"><td></td><td>
@@ -473,7 +483,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#def-tensor-networks-swap-operator"><code class="xref">def-tensor-networks-swap-operator</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#def-tensor-networks-swap-operator"><code class="xref">def-tensor-networks-swap-operator</code></a> <em>(doc/networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def-vector-space"><td></td><td>
@@ -513,7 +523,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#defNetwork"><code class="xref">defNetwork</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#defNetwork"><code class="xref">defNetwork</code></a> <em>(doc/networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-defProduct"><td></td><td>
@@ -532,12 +542,20 @@ const thebe_selector_output = ".output, .cell_output"
        <a href="doc/tensors.html#defTensorOrder"><code class="xref">defTensorOrder</code></a> <em>(doc/tensors)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-0"><td></td><td>
+       <strong>definition-0</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="doc/quantum.html#definition-0"><code class="xref">definition-0</code></a> <em>(doc/quantum)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-definition-27"><td></td><td>
        <strong>definition-27</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#definition-27"><code class="xref">definition-27</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#definition-27"><code class="xref">definition-27</code></a> <em>(doc/networks)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-Fn"><td></td><td>
@@ -593,7 +611,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#ex-tensor-networks-det1x1"><code class="xref">ex-tensor-networks-det1x1</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#ex-tensor-networks-det1x1"><code class="xref">ex-tensor-networks-det1x1</code></a> <em>(doc/networks)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-tensor-networks-det2x2"><td></td><td>
@@ -601,7 +619,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#ex-tensor-networks-det2x2"><code class="xref">ex-tensor-networks-det2x2</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#ex-tensor-networks-det2x2"><code class="xref">ex-tensor-networks-det2x2</code></a> <em>(doc/networks)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-tensor-networks-det3x3"><td></td><td>
@@ -609,7 +627,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#ex-tensor-networks-det3x3"><code class="xref">ex-tensor-networks-det3x3</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#ex-tensor-networks-det3x3"><code class="xref">ex-tensor-networks-det3x3</code></a> <em>(doc/networks)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-tensor-networks-detdiag"><td></td><td>
@@ -617,7 +635,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#ex-tensor-networks-detdiag"><code class="xref">ex-tensor-networks-detdiag</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#ex-tensor-networks-detdiag"><code class="xref">ex-tensor-networks-detdiag</code></a> <em>(doc/networks)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-tensor-networks-dettriangular"><td></td><td>
@@ -625,7 +643,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#ex-tensor-networks-dettriangular"><code class="xref">ex-tensor-networks-dettriangular</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#ex-tensor-networks-dettriangular"><code class="xref">ex-tensor-networks-dettriangular</code></a> <em>(doc/networks)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-ex-tensors-not"><td></td><td>
@@ -713,7 +731,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#illuDiagrams"><code class="xref">illuDiagrams</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#illuDiagrams"><code class="xref">illuDiagrams</code></a> <em>(doc/networks)</em></td><td>
        <em>remark</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-illuDuals"><td></td><td>
@@ -721,7 +739,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#illuDuals"><code class="xref">illuDuals</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#illuDuals"><code class="xref">illuDuals</code></a> <em>(doc/networks)</em></td><td>
        <em>remark</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-illuGeneral"><td></td><td>
@@ -729,7 +747,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#illuGeneral"><code class="xref">illuGeneral</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#illuGeneral"><code class="xref">illuGeneral</code></a> <em>(doc/networks)</em></td><td>
        <em>remark</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-illuLinMaps"><td></td><td>
@@ -737,7 +755,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#illuLinMaps"><code class="xref">illuLinMaps</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#illuLinMaps"><code class="xref">illuLinMaps</code></a> <em>(doc/networks)</em></td><td>
        <em>remark</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-illuScalar"><td></td><td>
@@ -745,7 +763,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#illuScalar"><code class="xref">illuScalar</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#illuScalar"><code class="xref">illuScalar</code></a> <em>(doc/networks)</em></td><td>
        <em>remark</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-illuVectors"><td></td><td>
@@ -753,7 +771,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#illuVectors"><code class="xref">illuVectors</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#illuVectors"><code class="xref">illuVectors</code></a> <em>(doc/networks)</em></td><td>
        <em>remark</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-lemProductMap"><td></td><td>
@@ -777,7 +795,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#obs-tensor-networks-concurrence"><code class="xref">obs-tensor-networks-concurrence</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#obs-tensor-networks-concurrence"><code class="xref">obs-tensor-networks-concurrence</code></a> <em>(doc/networks)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-tensor-networks-determinant-multilinearity"><td></td><td>
@@ -785,7 +803,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#obs-tensor-networks-determinant-multilinearity"><code class="xref">obs-tensor-networks-determinant-multilinearity</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#obs-tensor-networks-determinant-multilinearity"><code class="xref">obs-tensor-networks-determinant-multilinearity</code></a> <em>(doc/networks)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-tensor-networks-invariant"><td></td><td>
@@ -793,7 +811,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#obs-tensor-networks-invariant"><code class="xref">obs-tensor-networks-invariant</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#obs-tensor-networks-invariant"><code class="xref">obs-tensor-networks-invariant</code></a> <em>(doc/networks)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-tensor-networks-parity-swap"><td></td><td>
@@ -801,7 +819,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#obs-tensor-networks-parity-swap"><code class="xref">obs-tensor-networks-parity-swap</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#obs-tensor-networks-parity-swap"><code class="xref">obs-tensor-networks-parity-swap</code></a> <em>(doc/networks)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-tensor-networks-snake-equation"><td></td><td>
@@ -809,7 +827,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#obs-tensor-networks-snake-equation"><code class="xref">obs-tensor-networks-snake-equation</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#obs-tensor-networks-snake-equation"><code class="xref">obs-tensor-networks-snake-equation</code></a> <em>(doc/networks)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-tensor-networks-swap-selfinverse"><td></td><td>
@@ -817,7 +835,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#obs-tensor-networks-swap-selfinverse"><code class="xref">obs-tensor-networks-swap-selfinverse</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#obs-tensor-networks-swap-selfinverse"><code class="xref">obs-tensor-networks-swap-selfinverse</code></a> <em>(doc/networks)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obs-tensor-networks-transposition"><td></td><td>
@@ -825,7 +843,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#obs-tensor-networks-transposition"><code class="xref">obs-tensor-networks-transposition</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#obs-tensor-networks-transposition"><code class="xref">obs-tensor-networks-transposition</code></a> <em>(doc/networks)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-obsContractionLinearity"><td></td><td>
@@ -873,7 +891,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#observation-28"><code class="xref">observation-28</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#observation-28"><code class="xref">observation-28</code></a> <em>(doc/networks)</em></td><td>
        <em>observation</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-rem-combinatorics-index-types"><td></td><td>
@@ -889,7 +907,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#rem-tensor-networks-kronecker"><code class="xref">rem-tensor-networks-kronecker</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#rem-tensor-networks-kronecker"><code class="xref">rem-tensor-networks-kronecker</code></a> <em>(doc/networks)</em></td><td>
        <em>remark</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-thm-combinatorics-bridge"><td></td><td>
@@ -929,7 +947,7 @@ const thebe_selector_output = ".output, .cell_output"
      <tr>
        <td></td>
        <td>
-       <a href="doc/tensor-networks.html#thm-tensor-networks-invertibility"><code class="xref">thm-tensor-networks-invertibility</code></a> <em>(doc/tensor-networks)</em></td><td>
+       <a href="doc/networks.html#thm-tensor-networks-invertibility"><code class="xref">thm-tensor-networks-invertibility</code></a> <em>(doc/networks)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-thmComposition"><td></td><td>

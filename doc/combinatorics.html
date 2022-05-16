@@ -57,8 +57,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "swap": "\\mathrm{SWAP}", "xor": "\\mathrm{XOR}", "and": "\\mathrm{AND}", "or": "\\mathrm{OR}", "copy": "\\mathrm{COPY}", "red": "\\text{red}", "green": "\\text{green}", "blue": "\\text{blue}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Quantum Computing" href="quantum-computing.html" />
-    <link rel="prev" title="3. Tensor Networks" href="tensor-networks.html" />
+    <link rel="next" title="5. Quantum Computing" href="quantum.html" />
+    <link rel="prev" title="3. Tensor Networks" href="networks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -114,7 +114,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="tensor-networks.html">
+  <a class="reference internal" href="networks.html">
    3. Tensor Networks
   </a>
  </li>
@@ -124,17 +124,17 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="quantum-computing.html">
+  <a class="reference internal" href="quantum.html">
    5. Quantum Computing
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="matrix-product-state.html">
+  <a class="reference internal" href="mps.html">
    6. Matrix Product State
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="machine-learning.html">
+  <a class="reference internal" href="ml.html">
    7. Tensor Machine Learning
   </a>
  </li>
@@ -152,7 +152,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="slides/nutshell.html">
-     Introduction to Python
+     Tensor networks in a nutshell
     </a>
    </li>
   </ul>
@@ -522,20 +522,10 @@ is more luck with three colors.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Tennessee&#39;: &#39;blue&#39;,
-  &#39;Mississippi&#39;: &#39;green&#39;,
-  &#39;Alabama&#39;: &#39;red&#39;,
-  &#39;Georgia&#39;: &#39;green&#39;,
-  &#39;Florida&#39;: &#39;blue&#39;},
- {&#39;Tennessee&#39;: &#39;red&#39;,
-  &#39;Mississippi&#39;: &#39;green&#39;,
-  &#39;Alabama&#39;: &#39;blue&#39;,
-  &#39;Georgia&#39;: &#39;green&#39;,
-  &#39;Florida&#39;: &#39;red&#39;},
- {&#39;Tennessee&#39;: &#39;green&#39;,
   &#39;Mississippi&#39;: &#39;red&#39;,
-  &#39;Alabama&#39;: &#39;blue&#39;,
+  &#39;Alabama&#39;: &#39;green&#39;,
   &#39;Georgia&#39;: &#39;red&#39;,
-  &#39;Florida&#39;: &#39;green&#39;},
+  &#39;Florida&#39;: &#39;blue&#39;},
  {&#39;Tennessee&#39;: &#39;red&#39;,
   &#39;Mississippi&#39;: &#39;blue&#39;,
   &#39;Alabama&#39;: &#39;green&#39;,
@@ -547,10 +537,20 @@ is more luck with three colors.</p>
   &#39;Georgia&#39;: &#39;blue&#39;,
   &#39;Florida&#39;: &#39;green&#39;},
  {&#39;Tennessee&#39;: &#39;blue&#39;,
+  &#39;Mississippi&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;red&#39;,
+  &#39;Georgia&#39;: &#39;green&#39;,
+  &#39;Florida&#39;: &#39;blue&#39;},
+ {&#39;Tennessee&#39;: &#39;green&#39;,
   &#39;Mississippi&#39;: &#39;red&#39;,
-  &#39;Alabama&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;blue&#39;,
   &#39;Georgia&#39;: &#39;red&#39;,
-  &#39;Florida&#39;: &#39;blue&#39;})
+  &#39;Florida&#39;: &#39;green&#39;},
+ {&#39;Tennessee&#39;: &#39;red&#39;,
+  &#39;Mississippi&#39;: &#39;green&#39;,
+  &#39;Alabama&#39;: &#39;blue&#39;,
+  &#39;Georgia&#39;: &#39;green&#39;,
+  &#39;Florida&#39;: &#39;red&#39;})
 </pre></div>
 </div>
 </div>
@@ -777,7 +777,7 @@ to be seen as relation as well. We will rewrite aforementioned lines of code in 
     = &amp; \quad e^1\otimes e^0 + e^0\otimes e^1 \fed X \,.\end{split}\]</div>
 <p>We compare the outcome of equation <a class="reference internal" href="#equation-eq-combinatorics-xor-not">(4.2)</a> with
 <a class="reference internal" href="tensors.html#ex-tensors-not">Example 2.6</a>. Indeed, if we ignore the index types we have constructed a
-<code class="docutils literal notranslate"><span class="pre">NOT</span></code> gate. Similar to <a class="reference internal" href="tensor-networks.html#rem-tensor-networks-kronecker">Remark 3.7</a> we will allow all
+<code class="docutils literal notranslate"><span class="pre">NOT</span></code> gate. Similar to <a class="reference internal" href="networks.html#rem-tensor-networks-kronecker">Remark 3.7</a> we will allow all
 combinations of covariant and contravariant indices and depending on the specific
 situation use the appropriate one. We will treat all boolean tensors similarily.</p>
 <div class="proof remark admonition" id="rem-combinatorics-index-types">
@@ -1444,14 +1444,14 @@ to different colors.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="tensor-networks.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="networks.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title"><span class="section-number">3. </span>Tensor Networks</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="quantum-computing.html" title="next page">
+    <a class='right-next' id="next-link" href="quantum.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">5. </span>Quantum Computing</p>
