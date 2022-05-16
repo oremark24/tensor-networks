@@ -8,11 +8,11 @@ parts:
     chapters:
     - file: doc/foundation
     - file: doc/tensors
-    - file: doc/tensor-networks
+    - file: doc/networks
     - file: doc/combinatorics
-    - file: doc/quantum-computing
-    - file: doc/matrix-product-state
-    - file: doc/machine-learning
+    - file: doc/quantum
+    - file: doc/mps
+    - file: doc/ml
   - chapters: 
     - file: doc/slides
       sections:
