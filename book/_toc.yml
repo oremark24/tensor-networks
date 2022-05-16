@@ -10,12 +10,12 @@ parts:
     - file: doc/tensors
     - file: doc/networks
     - file: doc/combinatorics
+      # numbered: False
+      sections:
+        - file: doc/slides/nutshell
     - file: doc/quantum
     - file: doc/mps
     - file: doc/ml
-  - chapters: 
-    - file: doc/slides
-      sections:
-        - file: doc/slides/nutshell
+  - chapters:
     - file: doc/bibliography
     - file: doc/todo
