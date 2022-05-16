@@ -14,3 +14,4 @@ not columnwise. (Elementary operations are usually row-operations and not column
 - Find (and apply) ad hoc notation for contractions
 - Distinguish between $\xor$ and co-$\xor$. This should help in equations that contain both tensors.
 - Idea, for contractions with no index notions use e.g. $C_{1,3}(\cdot)$ to contract first and third factor (from left.)
+- Slides on Binder do not show referenced pictures
