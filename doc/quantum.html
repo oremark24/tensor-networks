@@ -54,11 +54,11 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "ip": ["\\langle#1,#2\\rangle", 2], "IP": ["\\Bigg\\langle#1,#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "swap": "\\mathrm{SWAP}", "xor": "\\mathrm{XOR}", "and": "\\mathrm{AND}", "or": "\\mathrm{OR}", "copy": "\\mathrm{COPY}", "red": "\\text{red}", "green": "\\text{green}", "blue": "\\text{blue}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"C": "\\mathbb{C}", "F": "\\mathbb{F}", "Q": "\\mathbb{Q}", "R": "\\mathbb{R}", "cU": "\\mathcal{U}", "cV": "\\mathcal{V}", "cW": "\\mathcal{W}", "cH": "\\mathcal{H}", "cB": "\\mathcal{B}", "cL": "\\mathcal{L}", "def": "\\mathrel{\\vcenter{:}}=", "fed": "=\\mathrel{\\vcenter{:}}", "bold": ["\\pmb{#1}", 1], "norm": ["\\|#1\\|", 1], "abs": ["\\lvert#1\\rvert", 1], "ip": ["\\langle#1\\vert#2\\rangle", 2], "IP": ["\\Bigg\\langle#1\\Bigg\\vert#2\\Bigg\\rangle", 2], "tr": "\\mathrm{tr}", "span": "\\mathrm{span}", "inv": "\\mathrm{inv}", "sgn": "\\mathrm{sgn}", "id": "\\mathrm{id}", "diag": "\\mathrm{diag}", "Diag": "\\mathrm{Diag}", "swap": "\\mathrm{SWAP}", "xor": "\\mathrm{XOR}", "and": "\\mathrm{AND}", "or": "\\mathrm{OR}", "copy": "\\mathrm{COPY}", "red": "\\text{red}", "green": "\\text{green}", "blue": "\\text{blue}"}}, "tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="6. Matrix Product State" href="mps.html" />
-    <link rel="prev" title="4. Tensors and Combinatorics" href="combinatorics.html" />
+    <link rel="prev" title="4. Combinatorics" href="combinatorics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -120,7 +120,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="combinatorics.html">
-   4. Tensors and Combinatorics
+   4. Combinatorics
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="notebooks/combinatorics.html">
-     5. Combinatorics
+     Combinatorics
     </a>
    </li>
   </ul>
@@ -321,14 +321,172 @@ David Hilbert</p>
 <em>Hilbert spaces</em> and <em>Dirac notation</em>.</p>
 <div class="section" id="hilbert-spaces-and-dirac-notation">
 <h2><span class="section-number">5.1. </span>Hilbert spaces and Dirac notation<a class="headerlink" href="#hilbert-spaces-and-dirac-notation" title="Permalink to this headline">¶</a></h2>
-<div class="proof definition admonition" id="definition-0">
-<p class="admonition-title"><span class="caption-number">Definition 5.1 </span></p>
+<p>Hilbert spaces are attractive for physicists because they offer the possibility to incorporate
+infinitesimal changes into theories, enabling usage of derivatives, Taylor expansion et cetera.
+This founded by two properties of Hilbert spaces. They allow to measure distances, and ensure that
+all limit points (based on distances) belong to the space. How to measure distances? This is
+done through inner products, the mathematical model of angulometer and ruler for vectors. Note,
+that we consider only vector spaces over <span class="math notranslate nohighlight">\(\C\)</span> in this chapter, as this is used all the time in
+Quantum Computing.</p>
+<div class="proof definition admonition" id="def-quantum-ip">
+<p class="admonition-title"><span class="caption-number">Definition 5.1 </span> (Inner product)</p>
 <div class="definition-content section" id="proof-content">
+<p>An <em><strong>inner product</strong></em> on vector space <span class="math notranslate nohighlight">\(V\)</span> over <span class="math notranslate nohighlight">\(\C\)</span> is a function</p>
+<div class="math notranslate nohighlight">
+\[
+\ip{\cdot}{\cdot}:V\times V\rightarrow\C,\,(u,v)\mapsto\ip{u}{v}
+\]</div>
+<p>with following properties:</p>
+<div class="admonition-additivity-in-second-slot admonition">
+<p class="admonition-title">Additivity in second slot</p>
+<p><span class="math notranslate nohighlight">\(\ip{u}{v+v'}=\ip{u}{v}+\ip{u}{v'}\)</span> for all <span class="math notranslate nohighlight">\(u,v,v'\in V\)</span></p>
 </div>
-</div><div class="proof definition admonition" id="def-quantum-hilbert-space">
-<p class="admonition-title"><span class="caption-number">Definition 5.2 </span> (Complex Hilbert space)</p>
+<div class="admonition-homogeneity-in-second-slot admonition">
+<p class="admonition-title">Homogeneity in second slot</p>
+<p><span class="math notranslate nohighlight">\(\ip{u}{\lambda v}=\lambda\ip{u}{v}\)</span> for all <span class="math notranslate nohighlight">\(u,v\in V\)</span> and all <span class="math notranslate nohighlight">\(\lambda\in\C\)</span></p>
+</div>
+<div class="admonition-conjugate-symmetry admonition">
+<p class="admonition-title">Conjugate symmetry</p>
+<p><span class="math notranslate nohighlight">\(\ip{u}{v}=\overline{\ip{v}{u}}\)</span> for all <span class="math notranslate nohighlight">\(u,v\in V\)</span></p>
+</div>
+<div class="admonition-positiv-definiteness admonition">
+<p class="admonition-title">Positiv definiteness</p>
+<p><span class="math notranslate nohighlight">\(\ip{v}{v}\ge 0\)</span> for all <span class="math notranslate nohighlight">\(v\in V\)</span> and <span class="math notranslate nohighlight">\(\ip{v}{v}=0\)</span> if and only if <span class="math notranslate nohighlight">\(v=0\)</span></p>
+</div>
+<p>A vector space equipped with an inner product is called <em><strong>inner product space</strong></em>.</p>
+</div>
+</div><p>The question occurs, why did we define additivity and homogeneity only for the first variable?
+The answer is, for the second one, we can conclude similar characteristics from first slot
+properties and conjugate symmetry.</p>
+<div class="proof observation admonition" id="obs-quantum-ip">
+<p class="admonition-title"><span class="caption-number">Observation 5.1 </span> (First slot properties)</p>
+<div class="observation-content section" id="proof-content">
+<p>An inner product is additive and conjugate homogenious in second slot.</p>
+<div class="admonition-additivity-in-first-slot admonition">
+<p class="admonition-title">Additivity in first slot</p>
+<p><span class="math notranslate nohighlight">\(\ip{u+u'}{v}=\ip{u}{v}+\ip{u'}{v}\)</span> for all <span class="math notranslate nohighlight">\(u,u',v\in V\)</span></p>
+</div>
+<div class="admonition-conjugate-homogeneity-in-first-slot admonition">
+<p class="admonition-title">Conjugate homogeneity in first slot</p>
+<p><span class="math notranslate nohighlight">\(\ip{\lambda u}{v}=\overline{\lambda}\ip{u}{v}\)</span> for all <span class="math notranslate nohighlight">\(u,v\in V\)</span> and all <span class="math notranslate nohighlight">\(\lambda\in\C\)</span></p>
+</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. For <span class="math notranslate nohighlight">\(u,u',v\in V\)</span> and <span class="math notranslate nohighlight">\(\lambda\in\C\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ip{u+u'}{v} 
+&amp;= \overline{\ip{v}{u+u'}} \\
+&amp;= \overline{\ip{v}{u}+\ip{v}{u'}} \\
+&amp;= \overline{\ip{v}{u}}+\overline{\ip{v}{u'}} \\
+&amp;= \ip{u}{v}+\ip{u'}{v}
+\end{split}\]</div>
+<p>as well as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ip{\lambda u}{v}
+&amp;= \overline{\ip{v}{\lambda u}} \\
+&amp;= \overline{\lambda\ip{v}{u}} \\
+&amp;= \overline{\lambda}\overline{\ip{v}{u}} \\
+&amp;= \overline{\lambda}\ip{u}{v}.
+\end{split}\]</div>
+</div>
+<p>The reason for having <em>conjugate</em> homogeneity in the first slot is that we want
+to obtain a real number, when applying the inner product of a vector to itself.
+This is necessary to define a feasible length measure based on the inner product.</p>
+<div class="proof corollary admonition" id="corollary-2">
+<p class="admonition-title"><span class="caption-number">Corollary 5.1 </span></p>
+<div class="corollary-content section" id="proof-content">
+<p>For each <span class="math notranslate nohighlight">\(v\in V\)</span> the inner product <span class="math notranslate nohighlight">\(\ip{v}{v}\)</span> is real.</p>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Conjugate symmetry (<a class="reference internal" href="#def-quantum-ip">Definition 5.1</a>) yields</p>
+<div class="math notranslate nohighlight">
+\[
+\ip{v}{v} = \overline{\ip{v}{v}}\quad\Rightarrow\quad\ip{v}{v}\in\R\,.
+\]</div>
+</div>
+<p>Together <a class="reference internal" href="#def-quantum-ip">Definition 5.1</a> and <a class="reference internal" href="#obs-quantum-ip">Observation 5.1</a> imply, that the
+inner product is kind of linear in the first variable and linear in the second
+variable. Hence, fixing the first variable yields a linear map in the second variable.</p>
+<div class="proof observation admonition" id="obs-quantum-ip-lin">
+<p class="admonition-title"><span class="caption-number">Observation 5.2 </span> (Inner product as linear functional)</p>
+<div class="observation-content section" id="proof-content">
+<p>For a fixed <span class="math notranslate nohighlight">\(u\in V\)</span> the map</p>
+<div class="math notranslate nohighlight">
+\[
+\ip{u}{\cdot}:V\rightarrow\C,\,v\mapsto\ip{u}{v}
+\]</div>
+<p>is a linear functional (linear map). For fixed bases
+<span class="math notranslate nohighlight">\(\{e_1,\ldots,e_n\}\subseteq V\)</span> and <span class="math notranslate nohighlight">\(\{1\}\subseteq\C\)</span>
+the matrix representation of <span class="math notranslate nohighlight">\(\ip{u}{\cdot}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{bmatrix}
+  \ip{u}{e_1}\;\ip{u}{e_2}\;\cdots\;\ip{u}{e_n}
+\end{bmatrix}
+\,.
+\]</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. The linearity follows directly from <a class="reference internal" href="#def-quantum-ip">Definition 5.1</a>.
+For <span class="math notranslate nohighlight">\(v=v^ie_i\)</span> we derive the matrix representation as usual:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ip{u}{v}
+&amp;= \ip{u}{v^ie_i} \\
+&amp;= v^i\ip{u}{e_i} \\
+&amp;= \begin{bmatrix}
+  \ip{u}{e_1}\;\cdots\;\ip{u}{e_n}
+\end{bmatrix}
+\begin{bmatrix}
+  v^1 \\
+  \vdots \\
+  v^n
+\end{bmatrix}
+\,.
+\end{split}\]</div>
+</div>
+<p>Based on the inner product we can define the length measure.</p>
+<div class="proof definition admonition" id="def-quantum-norm">
+<p class="admonition-title"><span class="caption-number">Definition 5.2 </span> (Norm)</p>
 <div class="definition-content section" id="proof-content">
-<p>A <em><strong>Complex Hilbert space</strong></em> <span class="math notranslate nohighlight">\(H\)</span> is</p>
+<p>For <span class="math notranslate nohighlight">\(v\in V\)</span> we define the <em><strong>norm</strong></em> of v, denoted <span class="math notranslate nohighlight">\(\norm{v}\)</span>, by</p>
+<div class="math notranslate nohighlight">
+\[
+\norm{v}\def\sqrt{\ip{v}{v}}\,.
+\]</div>
+</div>
+</div><p>Directly from this definition we obtain basic norm properties.</p>
+<div class="proof observation admonition" id="obs-quantum-norm-props">
+<p class="admonition-title"><span class="caption-number">Observation 5.3 </span> (Basic norm properties)</p>
+<div class="observation-content section" id="proof-content">
+<div class="admonition-absolute-homogeneity admonition">
+<p class="admonition-title">Absolute homogeneity</p>
+<p><span class="math notranslate nohighlight">\(\norm{\lambda v}=\abs{\lambda}\,\norm{u}\)</span> for all <span class="math notranslate nohighlight">\(v\in V\)</span> and all <span class="math notranslate nohighlight">\(\lambda\in\C\)</span></p>
+</div>
+<div class="admonition-positiv-definiteness admonition">
+<p class="admonition-title">Positiv definiteness</p>
+<p><span class="math notranslate nohighlight">\(\norm{v}\ge 0\)</span> for all <span class="math notranslate nohighlight">\(v\in V\)</span> and <span class="math notranslate nohighlight">\(\norm{v}=0\)</span> if and only if <span class="math notranslate nohighlight">\(v=0\)</span></p>
+</div>
+</div>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Absolute homogeneity holds because of</p>
+<div class="math notranslate nohighlight" id="equation-eqn-quantum-norm-homogeneity">
+<span class="eqno">(5.1)<a class="headerlink" href="#equation-eqn-quantum-norm-homogeneity" title="Permalink to this equation">¶</a></span>\[\begin{split}\norm{\lambda v}^2
+&amp;= \ip{\lambda v}{\lambda v} \\
+&amp;= \lambda \ip{\lambda v}{v} \\
+&amp;= \lambda\overline{\lambda}\ip{v}{v} \\
+&amp;= \abs{\lambda}^2\norm{v}^2\,.\end{split}\]</div>
+<p>Positive definiteness is derived directly from <a class="reference internal" href="#def-quantum-ip">Definition 5.1</a> and
+positive definiteness there.</p>
+</div>
+<p>Equation <a class="reference internal" href="#equation-eqn-quantum-norm-homogeneity">(5.1)</a> shows a very common technique when
+calculating with norms: working with squares and translating terms to inner products.</p>
+<div class="proof definition admonition" id="def-quantum-hilbert-space">
+<p class="admonition-title"><span class="caption-number">Definition 5.3 </span> (Hilbert space)</p>
+<div class="definition-content section" id="proof-content">
+<p>A <em><strong>Hilbert space</strong></em> <span class="math notranslate nohighlight">\(H\)</span> is is a complete inner product space.</p>
 </div>
 </div><ul class="simple">
 <li><p>Inner product spaces</p></li>
@@ -370,7 +528,7 @@ David Hilbert</p>
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">4. </span>Tensors and Combinatorics</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>Combinatorics</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="mps.html" title="next page">
