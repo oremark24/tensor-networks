@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Tensors and Combinatorics
+# Combinatorics
 
 What is _Combinatorics_? It is a discipline of mathematics that investigates existence,
 construction and counting of configurations (confer the preface of {cite}`polya83`).
