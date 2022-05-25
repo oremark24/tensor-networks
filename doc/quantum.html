@@ -141,8 +141,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="slides/index.html">
-   Slides
+  <a class="reference internal" href="resources.html">
+   Resources
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -151,25 +151,13 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="slides/combinatorics.html">
-     5. Combinatorics
+    <a class="reference internal" href="combinatorics-s.html">
+     4. Combinatorics [slides]
     </a>
    </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="notebooks/index.html">
-   Notebooks
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="notebooks/combinatorics.html">
-     Combinatorics
+    <a class="reference internal" href="combinatorics-nb.html">
+     4. Combinatorics [notebook]
     </a>
    </li>
   </ul>
@@ -349,8 +337,8 @@ Quantum Computing.</p>
 <p class="admonition-title">Conjugate symmetry</p>
 <p><span class="math notranslate nohighlight">\(\ip{u}{v}=\overline{\ip{v}{u}}\)</span> for all <span class="math notranslate nohighlight">\(u,v\in V\)</span></p>
 </div>
-<div class="admonition-positiv-definiteness admonition">
-<p class="admonition-title">Positiv definiteness</p>
+<div class="admonition-positive-definiteness admonition">
+<p class="admonition-title">Positive definiteness</p>
 <p><span class="math notranslate nohighlight">\(\ip{v}{v}\ge 0\)</span> for all <span class="math notranslate nohighlight">\(v\in V\)</span> and <span class="math notranslate nohighlight">\(\ip{v}{v}=0\)</span> if and only if <span class="math notranslate nohighlight">\(v=0\)</span></p>
 </div>
 <p>A vector space equipped with an inner product is called <em><strong>inner product space</strong></em>.</p>
@@ -394,9 +382,9 @@ properties and conjugate symmetry.</p>
 <p>The reason for having <em>conjugate</em> homogeneity in the first slot is that we want
 to obtain a real number, when applying the inner product of a vector to itself.
 This is necessary to define a feasible length measure based on the inner product.</p>
-<div class="proof corollary admonition" id="corollary-2">
-<p class="admonition-title"><span class="caption-number">Corollary 5.1 </span></p>
-<div class="corollary-content section" id="proof-content">
+<div class="proof observation admonition" id="obs-quantum-ip-real">
+<p class="admonition-title"><span class="caption-number">Observation 5.2 </span> (Self-product is real)</p>
+<div class="observation-content section" id="proof-content">
 <p>For each <span class="math notranslate nohighlight">\(v\in V\)</span> the inner product <span class="math notranslate nohighlight">\(\ip{v}{v}\)</span> is real.</p>
 </div>
 </div><div class="proof admonition" id="proof">
@@ -410,7 +398,7 @@ This is necessary to define a feasible length measure based on the inner product
 inner product is kind of linear in the first variable and linear in the second
 variable. Hence, fixing the first variable yields a linear map in the second variable.</p>
 <div class="proof observation admonition" id="obs-quantum-ip-lin">
-<p class="admonition-title"><span class="caption-number">Observation 5.2 </span> (Inner product as linear functional)</p>
+<p class="admonition-title"><span class="caption-number">Observation 5.3 </span> (Inner product as linear functional)</p>
 <div class="observation-content section" id="proof-content">
 <p>For a fixed <span class="math notranslate nohighlight">\(u\in V\)</span> the map</p>
 <div class="math notranslate nohighlight">
@@ -457,33 +445,58 @@ For <span class="math notranslate nohighlight">\(v=v^ie_i\)</span> we derive the
 \norm{v}\def\sqrt{\ip{v}{v}}\,.
 \]</div>
 </div>
-</div><p>Directly from this definition we obtain basic norm properties.</p>
+</div><p>Directly from this definition
+we obtain basic norm properties.</p>
 <div class="proof observation admonition" id="obs-quantum-norm-props">
-<p class="admonition-title"><span class="caption-number">Observation 5.3 </span> (Basic norm properties)</p>
+<p class="admonition-title"><span class="caption-number">Observation 5.4 </span> (Basic norm properties)</p>
 <div class="observation-content section" id="proof-content">
+<div class="admonition-well-definied admonition">
+<p class="admonition-title">Well-definied</p>
+<p>The norm is well-defined (not ambiguous) and <span class="math notranslate nohighlight">\(\norm{v}\in\R\)</span> for all <span class="math notranslate nohighlight">\(v\in V\)</span>.</p>
+</div>
 <div class="admonition-absolute-homogeneity admonition">
 <p class="admonition-title">Absolute homogeneity</p>
 <p><span class="math notranslate nohighlight">\(\norm{\lambda v}=\abs{\lambda}\,\norm{u}\)</span> for all <span class="math notranslate nohighlight">\(v\in V\)</span> and all <span class="math notranslate nohighlight">\(\lambda\in\C\)</span></p>
 </div>
-<div class="admonition-positiv-definiteness admonition">
-<p class="admonition-title">Positiv definiteness</p>
+<div class="admonition-positive-definiteness admonition">
+<p class="admonition-title">Positive definiteness</p>
 <p><span class="math notranslate nohighlight">\(\norm{v}\ge 0\)</span> for all <span class="math notranslate nohighlight">\(v\in V\)</span> and <span class="math notranslate nohighlight">\(\norm{v}=0\)</span> if and only if <span class="math notranslate nohighlight">\(v=0\)</span></p>
 </div>
 </div>
 </div><div class="proof admonition" id="proof">
-<p>Proof. Absolute homogeneity holds because of</p>
+<p>Proof. The norm is well-defined and real because of <a class="reference internal" href="#obs-quantum-ip-real">Observation 5.2</a>
+and <a class="reference internal" href="#def-quantum-ip">Definition 5.1</a> (positive definiteness). The last reference also
+includes positive definiteness of the norm.</p>
+<p>Absolute homogeneity holds because of</p>
 <div class="math notranslate nohighlight" id="equation-eqn-quantum-norm-homogeneity">
 <span class="eqno">(5.1)<a class="headerlink" href="#equation-eqn-quantum-norm-homogeneity" title="Permalink to this equation">¶</a></span>\[\begin{split}\norm{\lambda v}^2
 &amp;= \ip{\lambda v}{\lambda v} \\
 &amp;= \lambda \ip{\lambda v}{v} \\
 &amp;= \lambda\overline{\lambda}\ip{v}{v} \\
 &amp;= \abs{\lambda}^2\norm{v}^2\,.\end{split}\]</div>
-<p>Positive definiteness is derived directly from <a class="reference internal" href="#def-quantum-ip">Definition 5.1</a> and
-positive definiteness there.</p>
 </div>
 <p>Equation <a class="reference internal" href="#equation-eqn-quantum-norm-homogeneity">(5.1)</a> shows a very common technique when
-calculating with norms: working with squares and translating terms to inner products.</p>
-<div class="proof definition admonition" id="def-quantum-hilbert-space">
+calculating with norms: working with squares and translating terms to inner products.
+Talking about squares of norms: We will find this concept also encoded in the
+next observation.</p>
+<div class="proof observation admonition" id="obs-quantum-pythagoras">
+<p class="admonition-title"><span class="caption-number">Observation 5.5 </span> (Theorem of Pythagoras)</p>
+<div class="observation-content section" id="proof-content">
+</div>
+</div><p>The term <em>norm</em> is well defined even in more general terms (if not derived from
+inner product). Absolute homogeneity and positive definiteness are defining properties
+then. They are complemented and completed by a third defining property. That is
+the triangle inequality</p>
+<div class="math notranslate nohighlight" id="equation-eq-quantum-triangle-inequality">
+<span class="eqno">(5.2)<a class="headerlink" href="#equation-eq-quantum-triangle-inequality" title="Permalink to this equation">¶</a></span>\[\norm{u+v}\le\norm{u}+\norm{v} \,,\]</div>
+<p>that has to hold for all <span class="math notranslate nohighlight">\(u,v\in V\)</span>. Similar to the other two properties, we will
+derive this automatically from the norm definition based on the inner product. But
+we have to work a bit to achieve this. We start with another famous inequality.</p>
+<div class="proof observation admonition" id="obs-quantum-cauchy-schwarz">
+<p class="admonition-title"><span class="caption-number">Observation 5.6 </span> (Cauchy-Schwarz Inequality)</p>
+<div class="observation-content section" id="proof-content">
+</div>
+</div><div class="proof definition admonition" id="def-quantum-hilbert-space">
 <p class="admonition-title"><span class="caption-number">Definition 5.3 </span> (Hilbert space)</p>
 <div class="definition-content section" id="proof-content">
 <p>A <em><strong>Hilbert space</strong></em> <span class="math notranslate nohighlight">\(H\)</span> is is a complete inner product space.</p>

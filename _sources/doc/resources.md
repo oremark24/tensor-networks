@@ -1,4 +1,4 @@
-# Slides
+# Resources
 
 ```{tableofcontents}
 ```
