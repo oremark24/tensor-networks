@@ -14,11 +14,9 @@ parts:
     - file: doc/mps
     - file: doc/ml
   - chapters:
-    - file: doc/slides/index
+    - file: doc/resources
       sections:
-        - file: doc/slides/combinatorics
-    - file: doc/notebooks/index
-      sections:
-        - file: doc/notebooks/combinatorics
+        - file: doc/combinatorics-s
+        - file: doc/combinatorics-nb
     - file: doc/bibliography
     - file: doc/todo

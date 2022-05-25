@@ -81,3 +81,24 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+## global substitutions (used for slides layout)
+parse:
+  myst_substitutions:
+    slides: |
+      <script>
+        const style = document.createElement('style')
+        style.type = 'text/css'
+        style.innerHTML = `
+          @page { 
+            size: A4 landscape; 
+          }
+          h2 {
+            page-break-before: always;
+          }
+          footer {
+            display: none;
+          }
+        `
+        document.getElementsByTagName('head')[0].appendChild(style)
+      </script>

@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Combinatorics
+# 4. Combinatorics [notebook]
 
 ## Relational programming
 
