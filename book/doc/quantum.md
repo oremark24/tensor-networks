@@ -40,7 +40,7 @@ $\ip{u}{\lambda v}=\lambda\ip{u}{v}$ for all $u,v\in V$ and all $\lambda\in\C$
 $\ip{u}{v}=\overline{\ip{v}{u}}$ for all $u,v\in V$
 ```
 
-```{admonition} Positiv definiteness
+```{admonition} Positive definiteness
 $\ip{v}{v}\ge 0$ for all $v\in V$ and $\ip{v}{v}=0$ if and only if $v=0$
 ```
 
@@ -90,7 +90,8 @@ The reason for having _conjugate_ homogeneity in the first slot is that we want
 to obtain a real number, when applying the inner product of a vector to itself.
 This is necessary to define a feasible length measure based on the inner product.
 
-```{prf:corollary}
+```{prf:observation} Self-product is real
+:label: obs-quantum-ip-real
 For each $v\in V$ the inner product $\ip{v}{v}$ is real.
 ```
 
@@ -157,21 +158,30 @@ $$
 $$
 ```
 
-Directly from this definition we obtain basic norm properties.
+Directly from this definition 
+we obtain basic norm properties.
 
 ````{prf:observation} Basic norm properties
 :label: obs-quantum-norm-props
+
+```{admonition} Well-definied
+The norm is well-defined (not ambiguous) and $\norm{v}\in\R$ for all $v\in V$.
+```
 
 ```{admonition} Absolute homogeneity
 $\norm{\lambda v}=\abs{\lambda}\,\norm{u}$ for all $v\in V$ and all $\lambda\in\C$
 ```
 
-```{admonition} Positiv definiteness
+```{admonition} Positive definiteness
 $\norm{v}\ge 0$ for all $v\in V$ and $\norm{v}=0$ if and only if $v=0$
 ```
 ````
 
 ````{prf:proof}
+The norm is well-defined and real because of {prf:ref}`obs-quantum-ip-real` 
+and {prf:ref}`def-quantum-ip` (positive definiteness). The last reference also
+includes positive definiteness of the norm.
+
 Absolute homogeneity holds because of
 
 ```{math}
@@ -182,13 +192,35 @@ Absolute homogeneity holds because of
 &= \lambda\overline{\lambda}\ip{v}{v} \\
 &= \abs{\lambda}^2\norm{v}^2\,.
 ```
-
-Positive definiteness is derived directly from {prf:ref}`def-quantum-ip` and
-positive definiteness there.
 ````
 
 Equation {eq}`eqn-quantum-norm-homogeneity` shows a very common technique when
 calculating with norms: working with squares and translating terms to inner products.
+Talking about squares of norms: We will find this concept also encoded in the
+next observation.
+
+```{prf:observation} Theorem of Pythagoras
+:label: obs-quantum-pythagoras
+
+```
+
+The term _norm_ is well defined even in more general terms (if not derived from 
+inner product). Absolute homogeneity and positive definiteness are defining properties 
+then. They are complemented and completed by a third defining property. That is
+the triangle inequality
+
+```{math}
+:label: eq-quantum-triangle-inequality
+\norm{u+v}\le\norm{u}+\norm{v} \,,
+```
+
+that has to hold for all $u,v\in V$. Similar to the other two properties, we will
+derive this automatically from the norm definition based on the inner product. But
+we have to work a bit to achieve this. We start with another famous inequality.
+
+```{prf:observation} Cauchy-Schwarz Inequality
+:label: obs-quantum-cauchy-schwarz
+```
 
 ```{prf:definition} Hilbert space
 :label: def-quantum-hilbert-space
