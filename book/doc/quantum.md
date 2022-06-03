@@ -211,13 +211,28 @@ that are also the basis of a classic theorem of that era.
 
 ```{prf:observation} Theorem of Pythagoras
 :label: obs-quantum-pythagoras
+Orthogonal vectors $u,v\in V$ fulfill the equation
 
+$$
+\norm{u+v}^2=\norm{u}^2+\norm{v}^2 \,.
+$$
+```
+
+```{prf:proof}
+We have
+
+$$
+\norm{u+v}^2
+&= \ip{u+v}{u+v} \\
+&= \ip{u}{u} + \underbrace{\ip{u}{v}}_{=0} + \underbrace{\ip{v}{u}}_{=0} + \ip{v}{v} \\
+&= \norm{u}^2+\norm{v}^2 \,.
+$$
 ```
 
 The term _norm_ is well defined even in more general terms (if not derived from 
 inner product). Absolute homogeneity and positive definiteness are defining properties 
 then. They are complemented and completed by a third defining property. That is
-the triangle inequality
+the _Triangle Inequality_
 
 ```{math}
 :label: eq-quantum-triangle-inequality
@@ -230,6 +245,118 @@ we have to work a bit to achieve this. We start with another famous inequality.
 
 ```{prf:observation} Cauchy-Schwarz Inequality
 :label: obs-quantum-cauchy-schwarz
+For $u,v\in V$ we have
+
+$$
+\abs{\ip{u}{v}}\le\norm{u}\norm{v}\,.
+$$
+
+The inequality becomes equal if and only if $v=a\cdot u$ or $u=a\cdot v$ for some $a\in\C$.
+```
+
+```{prf:proof}
+Obviously, the assertion is fulfilled for $v=0$. Now, assume $v\neq 0$.
+We can write $u$ as
+
+$$
+u= \underbrace{u-\frac{\ip{u}{v}}{\norm{v}^2}v}_{\fed w}
+ + \underbrace{\frac{\ip{u}{v}}{\norm{v}^2}v}_{\fed w'} \,.
+$$
+
+This is also called _orthogonal decomposition_, since $w$ and $w'$ are orthogonal:
+
+$$
+\ip{w}{w'}
+&= \IP{u-\frac{\ip{u}{v}}{\norm{v}^2}v}{\frac{\ip{u}{v}}{\norm{v}^2}v} \\
+&= \frac{\ip{u}{v}}{\norm{v}^2}\ip{u}{v}-\frac{\ip{u}{v}^2}{\norm{v}^4}\ip{v}{v} \\
+&= \frac{\ip{u}{v}^2}{\norm{v}^2}-\frac{\ip{u}{v}^2}{\norm{v}^2} \\
+&= 0 \,.
+$$
+
+Hence, we can apply the Theorem of Pythagoras {prf:ref}`obs-quantum-pythagoras`
+to the orthogonal decomposition of $u$.
+
+$$
+\norm{u}^2
+&= \norm{w}^2+\norm{w'}^2 \\
+&= \norm{w}^2 + \Norm{\frac{\ip{u}{v}}{\norm{v}^2}v}^2 \\
+&= \norm{w}^2 + \frac{\abs{\ip{u}{v}}^2}{\norm{v}^4}\norm{v}^2 \\
+&= \underbrace{\norm{w}^2}_{\ge 0} + \frac{\abs{\ip{u}{v}}^2}{\norm{v}^2} \\
+&\ge \frac{\abs{\ip{u}{v}}^2}{\norm{v}^2} \,.
+$$
+
+Multiplying this inequality by $\norm{v}^2$ and taking square roots yields the
+Cauchy-Schwarz Inequality. Furthermore, we obtain that $\norm{w}$ determines
+how strict the inequality is, having equality if and only if $\norm{w}=0$.
+This is the case if and only if $w=0$ or, by taking into account how $w$ is
+defined, $u=a\cdot v$ with $a=\ip{u}{v}/\norm{v}^2$. This completes the proof.
+```
+
+This provides us with all the tools to proof the Triangle Inequality 
+{eq}`eq-quantum-triangle-inequality`.
+
+```{prf:observation} Triangle Inequality
+:label: obs-quantum-triangle-inequality
+For $u,v\in V$ we have
+
+$$
+\norm{u+v}\le\norm{u}+\norm{v} \,.
+$$
+
+The inequality becomes equal if and only if $v=a\cdot u$ or $u=a\cdot v$ for some $a\ge 0$.
+```
+
+```{prf:proof}
+We have
+
+$$
+\norm{u+v}^2
+&= \ip{u+v}{u+v} \\
+&= \ip{u}{u} + \ip{u}{v} + \ip{v}{u} + \ip{v}{v} \\
+&= \ip{u}{u} + \ip{u}{v} + \overline{\ip{u}{v}} + \ip{v}{v} \\
+&= \norm{u}^2 + \norm{v}^2 + 2\re{\ip{u}{v}} \\
+&\underbrace{\le}_{\abs{x+iy}=\sqrt{x^2+y^2}\ge\abs{x}} \norm{u}^2 + \norm{v}^2 + 2\abs{\ip{u}{v}} \\
+&\underbrace{\le}_{\text{Cauchy-Schwarz}} \norm{u}^2 + \norm{v}^2 + 2\norm{u}\norm{v} \\
+&= (\norm{u}+\norm{v})^2 \,.
+$$
+
+Taking square roots yields the Triangle Inequality. It is equal if and only if both inequalities in
+the equation chain are strict, that is if and only if $\re{\ip{u}{v}}=\norm{u}\norm{v}$. If we have for
+example $u=a\cdot v$ for $a\ge 0$, then
+
+$$
+\re{\ip{u}{v}}=\re{\ip{av}{v}}
+=a\re{\underbrace{\ip{v}{v}}_{=\norm{v}^2\in\R}}=a\norm{v}^2
+=\norm{av}\norm{v}=\norm{u}\norm{v}\,.
+$$
+
+Conversely, $\re{\ip{u}{v}}=\norm{u}\norm{v}$ implies the Cauchy-Schwarz Inequality being
+fulfilled with equality. Hence, we have for example $u=a\cdot v$ with an $a\in\C$.
+We put this into the equation:
+
+$$
+\re{\ip{av}{v}}=\norm{av}\norm{v}\,.
+$$
+
+We transform the left-hand side
+
+$$
+\re{\ip{av}{v}}=\re{a\ip{v}{v}}=\re{a\underbrace{\norm{v}^2}_{\in\R}}=\re{a}\norm{v}^2
+$$
+
+and the right-hand side
+
+$$
+\norm{av}\norm{v}=\abs{a}\norm{v}^2
+$$
+
+to obtain
+
+$$
+\re{a}=\abs{a} \,.
+$$
+
+This is only possible for $a\in\R$ and $a\ge 0$. The proof is complete.
 ```
 
 ```{prf:definition} Hilbert space
