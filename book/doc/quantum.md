@@ -196,8 +196,18 @@ Absolute homogeneity holds because of
 
 Equation {eq}`eqn-quantum-norm-homogeneity` shows a very common technique when
 calculating with norms: working with squares and translating terms to inner products.
-Talking about squares of norms: We will find this concept also encoded in the
-next observation.
+
+With help of the inner product we can also introduce the crucial definition of
+_orthogonality_.
+
+```{prf:definition} Orthogonality
+:label: def-quantum-orthogonality
+Two vectors $u,v\in V$ with $\ip{u}{v}=0$ are called ___orthogonal___.
+```
+
+The origin of the word _orthogonal_ is the Greek word _orthogonios_, which
+means right-angled. Already the ancient Greeks have dealt with "right angles",
+that are also the basis of a classic theorem of that era.
 
 ```{prf:observation} Theorem of Pythagoras
 :label: obs-quantum-pythagoras

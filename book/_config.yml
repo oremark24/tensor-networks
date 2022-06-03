@@ -20,9 +20,9 @@ sphinx:
   extra_extensions:
     - sphinx_proof
   config:
-    mathjax_config:
-      TeX:
-        Macros:
+    mathjax3_config:
+      tex:
+        macros:
           C: \mathbb{C}
           F: \mathbb{F}
           Q: \mathbb{Q}
