@@ -359,12 +359,23 @@ $$
 This is only possible for $a\in\R$ and $a\ge 0$. The proof is complete.
 ```
 
+Now, {prf:ref}`obs-quantum-norm-props` together with
+{prf:ref}`obs-quantum-triangle-inequality` ensure that the norm defined 
+in this way is indeed fulfilling common 
+[norm properties](https://en.wikipedia.org/wiki/Norm_(mathematics)).
+In addition to the notion of orthogonality, the norm is inducing the
+notion of the _length_ of a vector $v$ by $\norm{v}$ and the notion of
+_distance_ of vectors respectively _metric_ on the space $v$ and $w$ by $\norm{v-w}$. 
+With help of distance, the notion of convergence within a inner product space can be 
+defined the usual way. We will not go into details here, but give the following important
+definition (complemented by an explanatory example).
+
 ```{prf:definition} Hilbert space
 :label: def-quantum-hilbert-space
 A ___Hilbert space___ $H$ is is a complete inner product space.
 ```
 
-- Inner product spaces
+- Merge Observation 5.3 with Riesz Theorem
 - Unitary and Hermitian Maps (and properties)
 - Dirac notation
 - Quantum Computing (Operations and Measurements)
