@@ -8,7 +8,7 @@
 To understand _Quantum Computing_ we need to know its realm and language. We study both first,
 _Hilbert spaces_ and _Dirac notation_.
 
-## Hilbert spaces and Dirac notation
+## Hilbert spaces
 
 Hilbert spaces are attractive for physicists because they offer the possibility to incorporate
 infinitesimal changes into theories, enabling usage of derivatives, Taylor expansion et cetera.
@@ -45,6 +45,19 @@ $\ip{v}{v}\ge 0$ for all $v\in V$ and $\ip{v}{v}=0$ if and only if $v=0$
 ```
 
 A vector space equipped with an inner product is called ___inner product space___.
+````
+
+We will mostly rely on the standard inner product which we give as an example now.
+
+````{prf:example}
+:label: ex-quantum-standard-ip
+For $\C^n$ with basis $\{e_1,\ldots,e_n\}$ we define the standard inner product 
+for $v,w\in\C^n$ with $v=v^ie_i$ and $w=w^ie_i$ as:
+
+```{math}
+:label: eq-quantum-standard-ip
+\ip{v}{w}\def\sum\limits_{i=1}^n\overline{v^i}w^i\,.
+```
 ````
 
 The question occurs, why did we define additivity and homogeneity only for the first variable? 
@@ -366,14 +379,249 @@ in this way is indeed fulfilling common
 In addition to the notion of orthogonality, the norm is inducing the
 notion of the _length_ of a vector $v$ by $\norm{v}$ and the notion of
 _distance_ of vectors respectively _metric_ on the space $v$ and $w$ by $\norm{v-w}$. 
-With help of distance, the notion of convergence within a inner product space can be 
-defined the usual way. We will not go into details here, but give the following important
+With help of distance, the notion of convergence, limits and limit points 
+within an inner product space can be defined the usual way.
+We will not go into details here, but give the following important
 definition (complemented by an explanatory example).
 
 ```{prf:definition} Hilbert space
 :label: def-quantum-hilbert-space
-A ___Hilbert space___ $H$ is is a complete inner product space.
+A ___Hilbert space___ $H$ is is an inner product space that contains
+all its limit points.
 ```
+
+To justify that the explicit second statement "contains all its limit points"
+is otherwise not guaranteed, we give an example of an inner product space
+that is no Hilbert space.
+
+````{prf:example} Non-Hilbert space
+:label: ex-quantum-no-hilbert-space
+We consider the space $C[0,1]$ of all continuous functions $f:[0,1]\rightarrow\R$
+equipped with an addition
+
+$$
+(f+g)(x)\def f(x)+g(x)
+$$
+
+for all $f,g\in C[0,1]$, and a scalar multiplication
+
+$$
+(a\cdot f)(x)\def a\cdot f(x)
+$$
+
+for all $a\in\R,\,f\in C[0,1]$. Then $C[0,1]$ together with both operations forms
+a vector space. Furthermore an inner product can be defined in a similar way to
+the standard inner product (multiply related elements and sum everything up):
+
+```{math}
+:label: eq-quantum-integral-ip
+\ip{f}{g}\def\int\limits_{0}^{1}\overline{f(x)}g(x)dx \,.
+```
+
+The complex conjugation of $f(x)$ is actually not necessary since all considered functions
+are real valued. We left it here to show similarity to equation / definition 
+{eq}`eq-quantum-standard-ip` and to illustrate how complex valued functions would be treated.
+
+As explained the distance between two functions $f$ and $g$ is measured by
+
+$$
+\norm{f-g}=\sqrt{\int\limits_{0}^{1}(f(x)-g(x))^2dx} \,.
+$$
+
+Now, consider the following series of functions $\{f_t\}_{t=1}^\infty\subseteq C[0,1]$ with
+
+$$
+f_t(x)\def
+\begin{cases}
+tx, & 0\le x<1/t \,, \\
+1, & 1/t\le x\le 1 \,.
+\end{cases}
+$$
+
+In the induced metric this series of functions converges towards the function
+
+$$
+f(x)\def
+\begin{cases}
+0, & x=0 \,, \\
+1, & 0<x\le 1 \,.
+\end{cases}
+$$
+
+Function $f$ is not continuous, thus $f\notin C[0,1]$. Hence, $C[0,1]$ equipped with
+the aforementioned operations and inner product is not complete and therefore no
+Hilbert space.
+````
+
+In this work we limit ourselves to finite dimensional spaces. This has also the implication
+that we are on the safe side regards completeness as the following theorem provides.
+We give it without a proof.
+
+```{prf:theorem} Completeness
+:label: thm-quantum-completeness
+All finite dimensional inner product spaces are complete.
+```
+
+This means that in the following we can use the terms inner product space and 
+Hilbert space interchangeably. In the next step we will feature sets of vectors that
+are pairwise orthogonal and elementwise of norm one.
+
+````{prf:definition} Orthonormal vectors
+:label: thm-quantum-orthobasis
+Let $H$ be a Hilbert space. A set of vectors $\{v_1,\ldots,v_m\}\subseteq H$
+is called ___orthonormal___ if
+
+```{math}
+:label: eq-quantum-orthobasis
+\ip{v_i}{v_j}=\delta_{ij}=
+\begin{cases}
+0, & i\neq j \,,\\
+1, & i=j \,. 
+\end{cases}
+```
+````
+
+Interestingly, vectors being orthonormal ensures already that the vectors
+are linearly independent. Consequently, orthonormality of a set of vectors
+is an even stronger property that linear independence.
+
+```{prf:observation} Orthonormal $=$ linear independent
+:label: obs-quantum-ortho-independence
+In a Hilbert space every orthonormal set of vectors is linearly independent.
+```
+
+```{prf:proof}
+Contrary to the assertion, suppose $\{v_1,\ldots,v_m\}$ is an orthonormal set of vectors
+that is not linearly independent. Then there is a non-trivial linear combination
+
+$$
+a^iv_i=0
+$$
+
+with some $a^j\neq 0$. Positive definiteness of the norm ({prf:ref}`obs-quantum-norm-props`)
+tells us, that
+
+$$
+\norm{a^iv_i}^2=0\,.
+$$
+
+We apply the theorm of Pythagoras ({prf:ref}`obs-quantum-pythagoras`) and absolute homogeneity
+({prf:ref}`obs-quantum-norm-props`) of the norm to obtain
+
+$$
+0 &= \Norm{\sum\limits_{i=1}^ma^iv_i}^2 \\
+&= \sum\limits_{i=1}^m\norm{a^iv_i}^2 \\
+&= \sum\limits_{i=1}^m|a^i|^2\,{\underbrace{\norm{v_i}}_{=1}}^2 \\
+&= \sum\limits_{i=1}^m|a^i|^2 \\
+&\ge |a^j|^2 \\
+&> 0 \,.
+$$
+
+This is a contradiction.
+```
+
+Do we always find a orthonormal vectors? Let's see.
+
+```{prf:algorithm} Gram-Schmidt procedure
+:label: alg-quantum-gram-schmidt
+Let $H$ be a Hilbert space and $\{v_1,\ldots,v_m\}\subseteq H$ a linear independent set of vectors. 
+We compute vectors $w_1,\ldots,w_m$ as follows: 
+
+$$
+w_1&\def\frac{v_1}{\norm{v_1}} \,, \\
+w_2&\def\frac{v_2-\ip{v_2}{w_1}\,w_1}{\norm{v_2-\ip{v_2}{w_1}\,w_1}} \,, \\
+w_3&\def\frac{v_3-\ip{v_3}{w_1}\,w_1-\ip{v_3}{w_2}\,w_2}{\norm{v_3-\ip{v_3}{w_1}\,w_1-\ip{v_3}{w_2}\,w_2}} \,, \\
+&\qquad\qquad\vdots \\
+w_m&\def\frac{v_m-\sum\limits_{i=1}^{m-1}\ip{v_m}{w_i}\,w_i}{\Norm{v_m-\sum\limits_{i=1}^{m-1}\ip{v_m}{w_i}\,w_i}} \,.
+$$
+```
+
+This procedure will orthogonalize and normalize the basis.
+
+```{prf:theorem} Gram-Schmidt procedure
+:label: thm-quantum-gram-schmidt
+Under the notions of {prf:ref}`alg-quantum-gram-schmidt` the set
+$\{w_1,\ldots,w_m\}$ is orthonormal.
+```
+
+````{prf:proof}
+We will show by induction that after each step the set $\{w_1,\ldots,w_j\}$ is orthonormal, 
+$j=1,\ldots,m$. It will be helpful to even strengthen the induction
+hypothesis to have a stronger assumption available. We will assert
+$\span\{v_1,\ldots,v_j\}=\span\{w_1,\ldots,w_j\}$ for $j=1,\ldots,m$ in addition.
+
+For the base case $j=1$, we have $v_1$ being a basis element, which implies $v_1\neq 0$ and
+therefore $\norm{v_1}>0$. Hence, we do not divide by zero. This means, $w_1$ is correctly defined
+and a multiple of $v_1$ with norm equals one. This implies the induction hypothesis.
+
+Now, let us assume, the assertion is already proven for $1,\ldots,j-1$. Because 
+the set $\{v_1,\ldots,v_j\}$ is linearly independent, we have
+
+$$
+v_j\notin\span\{v_1,\ldots,v_{j-1}\}=\span\{w_1,\ldots,w_{j-1}\} \,.
+$$ 
+
+This implies
+
+$$
+v_j-\sum\limits_{i=1}^{j-1}\ip{v_m}{w_i}\,w_i\neq 0 \,.
+$$
+
+Hence, we are not dividing by zero in
+the definition of $w_j$. Dividing a vector by its norm yields a vector of norm one, in particular
+$\norm{w_j}=1$. Next we will check orthogonality of $w_j$ to already defined vectors $w_k$. 
+Let $1\le k<j$ and use already proven orthonormality of $w_1,\ldots,w_{j-1}$.
+
+$$
+\ip{w_j}{w_k}
+&=\IP{v_j-\sum\limits_{i=1}^{j-1}\ip{v_j}{w_i}\,w_i \Big{/} \Norm{v_j-\sum\limits_{i=1}^{j-1}\ip{v_j}{w_i}\,w_i}}{w_k} \\
+&=\frac{\ip{v_j}{w_k}-\ip{v_j}{w_k}}{\Norm{v_j-\sum\limits_{i=1}^{j-1}\ip{v_j}{w_i}\,w_i}} \\
+&=0\,.
+$$
+
+Thus, $\{w_1,\ldots,w_j\}$ is an orthonormal set. By definition we have 
+
+$$
+w_j\in\span\{w_1,\ldots,w_{j-1},v_j\}=\span\{v_1,\ldots,v_j\} \,,
+$$
+
+which shows that
+
+```{math}
+:label: eq-quantum-span-containment
+\span\{w_1,\ldots,w_j\}\subseteq\span\{v_1,\ldots,v_j\} \,.
+```
+
+From {prf:ref}`obs-quantum-ortho-independence` we know, that the set
+$\{w_1,\ldots,w_j\}$ is not only orthonormal but also linearly independent.
+This gives
+
+$$
+\dim(\span\{w_1,\ldots,w_j\})=\dim(\span\{v_1,\ldots,v_j\})
+$$
+
+and together with {eq}`eq-quantum-span-containment`
+
+$$
+\span\{w_1,\ldots,w_j\}=\span\{v_1,\ldots,v_j\} \,.
+$$
+
+This completes the induction step and altogether the proof.
+````
+
+```{prf:corollary} Orthonormal basis
+:label: cor-quantum-orthobasis
+Every (finite-dimensional) Hilbert space has an orthonormal basis.
+```
+
+```{prf:proof}
+Every finite-dimensional space has a basis. This follows
+from the [Steinitz exchange lemma](https://en.wikipedia.org/wiki/Steinitz_exchange_lemma).
+We apply the Gram-Schmidt procedure {prf:ref}`alg-quantum-gram-schmidt` to a basis.
+The assertion follows from {prf:ref}`thm-quantum-gram-schmidt`.
+```
+
+## Todo
 
 - Merge Observation 5.3 with Riesz Theorem
 - Unitary and Hermitian Maps (and properties)
