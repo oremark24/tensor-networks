@@ -621,11 +621,152 @@ We apply the Gram-Schmidt procedure {prf:ref}`alg-quantum-gram-schmidt` to a bas
 The assertion follows from {prf:ref}`thm-quantum-gram-schmidt`.
 ```
 
-## Todo
+The coefficients of a vector regarding an orthonormal basis can be computed by
+projecting the vector to the respective basis elements.
 
-- Merge Observation 5.3 with Riesz Theorem
-- Unitary and Hermitian Maps (and properties)
-- Dirac notation
-- Quantum Computing (Operations and Measurements)
+````{prf:observation} Representation in orthonormal basis
+:label: obs-quantum-orthocoeffis
+Let $\{e_1,\ldots,e_n\}$ be an orthonormal basis of a Hilbert space $H$ and $v\in H$ an
+arbitrary vector. Then
+
+```{math}
+:label: eq-quantum-orthocoeffis
+v=\ip{e_1}{v}\,e_1+\cdots+\ip{e_n}{v}\,e_n
+```
+
+and
+
+```{math}
+:label: eq-quantum-orthonorm
+\norm{v}^2=|\ip{e_1}{v}|^2+\cdots+|\ip{e_n}{v}|^2 \,.
+```
+````
+
+```{prf:proof}
+Equation {eq}`eq-quantum-orthocoeffis`is obtained from
+
+$$
+\ip{e_j}{v}=\ip{e_j}{v^ie_i}=v^i\underbrace{\ip{e_j}{e_i}}_{=\delta_{ji}}=v^i\,.
+$$
+
+Equation {eq}`eq-quantum-orthonorm` is coming from equation {eq}`eq-quantum-orthocoeffis` and
+
+$$
+\norm{v}^2=\ip{v^je_j}{v^ie_i}=\overline{v^j}v^i\underbrace{\ip{e_j}{e_i}}_{=\delta_{ji}}
+=\sum\limits_{i=1}^n|v^i|^2 \,.
+$$
+```
+
+## Dirac notation
+
+In Physics a special notation for vectors and dual vectors is common, the _Dirac notation_ also
+called _Bra-Ket notation_. Articles on Quantum computing rely
+almost exclusively on this notation when using vector-based formulas. We will it introduce now.
+The justification of this notation is based on the _Riesz Representation Theorem_
+({prf:ref}`thm-quantum-riesz`).
+
+In {prf:ref}`obs-quantum-ip-lin` we have already seen, that the inner product is also defining
+a linear functional. The Riesz Representation Theorem states the converse.
+Every linear functional on a Hilbert space can be represented by a unique vector and the inner 
+product.
+
+```{prf:theorem} Riesz Representation Theorem
+:label: thm-quantum-riesz
+Let $H$ be a (finite-dimensional) Hilbert space and $\varphi:H\rightarrow\C$ a linear functional
+on $H$. Then there is a unique vector $u\in H$ such that
+
+$$
+\varphi(v)=\ip{u}{v}
+$$
+
+for all $v\in H$.
+```
+
+```{prf:proof}
+According {prf:ref}`cor-quantum-orthobasis` let $\{e_1,\ldots,e_n\}$ be an orthonormal basis of $H$.
+Then we have for every $v\in H$ according to equation {eq}`eq-quantum-orthocoeffis`
+
+$$
+\varphi(v) &= \varphi(\ip{e_1}{v}\,e_1+\cdots+\ip{e_n}{v}\,e_n) \\
+&= \ip{e_1}{v}\,\varphi(e_1)+\cdots+\ip{e_n}{v}\,\varphi(e_n) \\
+&= \ip{\underbrace{\overline{\varphi(e_1)}\,e_1+\cdots+\overline{\varphi(e_n)}\,e_n}_{\fed u}}{v} \,.
+$$
+
+Hence, we have already found a $u$ with desired behavior. Now, we will show that there is only one such 
+vector $u\in H$. Let us assume, there are $u_1,u_2\in H$, such that
+
+$$
+\varphi(v)=\ip{u_1}{v}=\ip{u_2}{v}
+$$
+
+for all $v\in H$. Then
+
+$$
+0=\ip{u_1}{v}-\ip{u_2}{v}=\ip{u_1-u_2}{v}
+$$
+
+for all $v\in H$. Setting $v\def u_1-u_2$ this yields $\norm{u_1-u_2}^2=0$ and therefore $u_1-u_2=0$.
+In other words, $u_1=u_2$, completing the proof.
+```
+
+This means, considering an inner product $\ip{u}{v}$, we can interpret the right hand side $v$ as
+vector of a Hilbert space $H$ and the left hand side $u$ as a dual vector of $H^\ast$. This is exactly,
+what the Dirac notation does. It takes the inner product $\ip{u}{v}$ apart, 
+deriving the so called _bra_ $\bra{u}\in H^\ast$ and the so called _ket_ $\ket{v}\in H$. The inner product
+is then simply represented by the _braket_, the product of bra and ket $\bra{u}\ket{v}=\ip{u}{v}$.
+
+Some care is needed, if considering coefficients of $u$ in an orthonormal basis of $H$, compared to
+the coefficients of the by $u$ represented linear functional in the related dual basis of $H^\ast$.
+The reason is, that equation {eq}`eq-quantum-orthocoeffis` looks slightly differently.
+
+````{prf:observation} Bra coefficients
+:label: obs-quantum-bracoeffis
+Let $\{e_1,\ldots,e_n\}$ be an orthonormal basis of a Hilbert space $H$ and $u\in H$ an
+arbitrary vector. Then
+
+```{math}
+:label: eq-quantum-bracoeffis
+u=\overline{\ip{u}{e_1}}\,e_1+\cdots+\overline{\ip{u}{e_n}}\,e_n \,.
+```
+````
+
+```{prf:proof}
+We have
+
+$$
+\ip{u}{e_j}=\ip{u^ie_i}{e_j}=\overline{u^i}\underbrace{\ip{e_i}{e_j}}_{=\delta_{ij}}=\overline{u^i}\,.
+$$
+```
+
+```{prf:observation} Relation of bra and dual vector
+:label: obs-quantum-bra-dual
+Let $H$ be a (finite-dimensional) Hilbert space and $\{e_1,\ldots,e_n\}\subseteq H$ an orthonormal basis
+and $\{e^1,\ldots,e^n\}\subseteq H^\ast$ the related dual basis.
+Let $\varphi\in H^\ast$ be a linear functional and $u\in H$ the vector representing it, i.e. 
+
+$$
+\ip{u}{v}=\varphi(v)
+$$ 
+
+for all $v\in H$, as given by {prf:ref}`thm-quantum-riesz`. The coefficients of $\varphi$ and $u$,
+
+$$
+\varphi&=\varphi_ie^i \,, \\
+u&=u^ie_i
+$$
+
+are linked by
+
+$$
+\varphi_i=\overline{u^i}
+$$
+
+for all $i=1,\ldots,n$.
+```
+
+## Todo
+- Inner products in Gram Schmidt procedure: Swap factors (consistency with projection)
+- Unitary Maps
+- Postulates of Quantum Computing
 - Quantum Circuits are Tensor Networks
 - (Approximating Tensor Networks with Quantum Circuits)
