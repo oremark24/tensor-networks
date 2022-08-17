@@ -529,10 +529,10 @@ We compute vectors $w_1,\ldots,w_m$ as follows:
 
 $$
 w_1&\def\frac{v_1}{\norm{v_1}} \,, \\
-w_2&\def\frac{v_2-\ip{v_2}{w_1}\,w_1}{\norm{v_2-\ip{v_2}{w_1}\,w_1}} \,, \\
-w_3&\def\frac{v_3-\ip{v_3}{w_1}\,w_1-\ip{v_3}{w_2}\,w_2}{\norm{v_3-\ip{v_3}{w_1}\,w_1-\ip{v_3}{w_2}\,w_2}} \,, \\
+w_2&\def\frac{v_2-\ip{w_1}{v_2}\,w_1}{\norm{v_2-\ip{w_1}{v_2}\,w_1}} \,, \\
+w_3&\def\frac{v_3-\ip{w_1}{v_3}\,w_1-\ip{w_2}{v_3}\,w_2}{\norm{v_3-\ip{w_1}{v_3}\,w_1-\ip{w_2}{v_3}\,w_2}} \,, \\
 &\qquad\qquad\vdots \\
-w_m&\def\frac{v_m-\sum\limits_{i=1}^{m-1}\ip{v_m}{w_i}\,w_i}{\Norm{v_m-\sum\limits_{i=1}^{m-1}\ip{v_m}{w_i}\,w_i}} \,.
+w_m&\def\frac{v_m-\sum\limits_{i=1}^{m-1}\ip{w_i}{v_m}\,w_i}{\Norm{v_m-\sum\limits_{i=1}^{m-1}\ip{w_i}{v_m}\,w_i}} \,.
 $$
 ```
 
@@ -564,7 +564,7 @@ $$
 This implies
 
 $$
-v_j-\sum\limits_{i=1}^{j-1}\ip{v_m}{w_i}\,w_i\neq 0 \,.
+v_j-\sum\limits_{i=1}^{j-1}\ip{w_i}{v_m}\,w_i\neq 0 \,.
 $$
 
 Hence, we are not dividing by zero in
@@ -573,9 +573,9 @@ $\norm{w_j}=1$. Next we will check orthogonality of $w_j$ to already defined vec
 Let $1\le k<j$ and use already proven orthonormality of $w_1,\ldots,w_{j-1}$.
 
 $$
-\ip{w_j}{w_k}
-&=\IP{v_j-\sum\limits_{i=1}^{j-1}\ip{v_j}{w_i}\,w_i \Big{/} \Norm{v_j-\sum\limits_{i=1}^{j-1}\ip{v_j}{w_i}\,w_i}}{w_k} \\
-&=\frac{\ip{v_j}{w_k}-\ip{v_j}{w_k}}{\Norm{v_j-\sum\limits_{i=1}^{j-1}\ip{v_j}{w_i}\,w_i}} \\
+\ip{w_k}{w_j}
+&=\IP{w_k}{v_j-\sum\limits_{i=1}^{j-1}\ip{w_i}{v_j}\,w_i \Big{/} \Norm{v_j-\sum\limits_{i=1}^{j-1}\ip{w_i}{v_j}\,w_i}} \\
+&=\frac{\ip{w_k}{v_j}-\ip{w_k}{v_j}}{\Norm{v_j-\sum\limits_{i=1}^{j-1}\ip{w_i}{v_j}\,w_i}} \\
 &=0\,.
 $$
 
@@ -711,61 +711,81 @@ In other words, $u_1=u_2$, completing the proof.
 
 This means, considering an inner product $\ip{u}{v}$, we can interpret the right hand side $v$ as
 vector of a Hilbert space $H$ and the left hand side $u$ as a dual vector of $H^\ast$. This is exactly,
-what the Dirac notation does. It takes the inner product $\ip{u}{v}$ apart, 
-deriving the so called _bra_ $\bra{u}\in H^\ast$ and the so called _ket_ $\ket{v}\in H$. The inner product
-is then simply represented by the _braket_, the product of bra and ket $\bra{u}\ket{v}=\ip{u}{v}$.
+what the Dirac notation does. 
 
-Some care is needed, if considering coefficients of $u$ in an orthonormal basis of $H$, compared to
+```{prf:definition} Dirac notation
+:label: def-quantum-dirac
+Let $H$ be a Hilbert space. We take the inner product $\ip{u}{v}$ apart, 
+deriving the so called 
+
+* ___bra___ $\bra{u}\in H^\ast$ 
+
+and the so called 
+
+* ___ket___ $\ket{v}\in H$. 
+
+The inner product is then simply represented by the
+
+* ___braket___, the product of bra and ket $\bra{u}\ket{v}\def\ip{u}{v}$.
+
+If vectors are indexed, it is common to leave out the symbol and write only the index instead.
+Let for example $B\def\{e_1,\ldots,e_n\}\subseteq H$ and $B^\ast\def\{e^1,\ldots,e^n\}\subseteq H^\ast$ 
+be orthonormal bases. We could denote them by 
+
+* $B=\{\ket{1},\ldots,\ket{n}\}$ and $B^\ast=\{\bra{1},\ldots,\bra{n}\}$.
+```
+
+We will now stick to the Dirac notation. Some care is needed, if considering coefficients 
+of $u$ in an orthonormal basis of $H$, compared to
 the coefficients of the by $u$ represented linear functional in the related dual basis of $H^\ast$.
 The reason is, that equation {eq}`eq-quantum-orthocoeffis` looks slightly differently.
 
-````{prf:observation} Bra coefficients
+```{prf:observation} Bra coefficients
 :label: obs-quantum-bracoeffis
-Let $\{e_1,\ldots,e_n\}$ be an orthonormal basis of a Hilbert space $H$ and $u\in H$ an
-arbitrary vector. Then
+Let $H$ be a (finite-dimensional) Hilbert space with basis $\{e_1,\ldots,e_n\}$.
+Let $\bra{u}\in H^\ast$ be a dual vector with representation $u\in H$ according to
+{prf:ref}`thm-quantum-riesz`. The dual vector $\bra{u}\in H^\ast$ can be represented in the dual basis
+$\{\bra{1}=e^1,\ldots,\bra{n}=e^n\}$ by 
 
-```{math}
-:label: eq-quantum-bracoeffis
-u=\overline{\ip{u}{e_1}}\,e_1+\cdots+\overline{\ip{u}{e_n}}\,e_n \,.
+$$
+\bra{u}=\sum\limits_{i=1}^n\tilde{u}_i\bra{i}\,.
+$$
+
+On the other hand $u\in H$ can be expressed in basis $\{e_1,\ldots,e_n\}$ by
+
+$$
+u=u^ie_i\,.
+$$
+
+Then the coefficients relate by
+
+$$
+\tilde{u}_i=\overline{u^i},\,i=1,\ldots,n\,.
+$$
 ```
-````
 
 ```{prf:proof}
-We have
+Using the inner product we have
 
 $$
-\ip{u}{e_j}=\ip{u^ie_i}{e_j}=\overline{u^i}\underbrace{\ip{e_i}{e_j}}_{=\delta_{ij}}=\overline{u^i}\,.
+\ip{u}{e_j}=\ip{u^ie_i}{e_j}=\overline{u^i}\underbrace{\ip{e_i}{e_j}}_{=\delta_{ij}}=\overline{u^j}\,.
+$$
+
+Using Dirac notation (and applying linear functional $\bra{u}\in H^\ast$ to basis element $\ket{j}\in H$) 
+we express the same value by
+
+$$
+\ip{u}{j}=\sum\limits_{i=1}^n\tilde{u}_i\underbrace{\ip{i}{j}}_{=\delta^i_j}=\tilde{u}_j\,.
 $$
 ```
 
-```{prf:observation} Relation of bra and dual vector
-:label: obs-quantum-bra-dual
-Let $H$ be a (finite-dimensional) Hilbert space and $\{e_1,\ldots,e_n\}\subseteq H$ an orthonormal basis
-and $\{e^1,\ldots,e^n\}\subseteq H^\ast$ the related dual basis.
-Let $\varphi\in H^\ast$ be a linear functional and $u\in H$ the vector representing it, i.e. 
+## Projections and Unitary Maps
 
-$$
-\ip{u}{v}=\varphi(v)
-$$ 
+## Postulates of Quantum Computing
 
-for all $v\in H$, as given by {prf:ref}`thm-quantum-riesz`. The coefficients of $\varphi$ and $u$,
-
-$$
-\varphi&=\varphi_ie^i \,, \\
-u&=u^ie_i
-$$
-
-are linked by
-
-$$
-\varphi_i=\overline{u^i}
-$$
-
-for all $i=1,\ldots,n$.
-```
+## Quantum Circuits and Tensor Networks
 
 ## Todo
-- Inner products in Gram Schmidt procedure: Swap factors (consistency with projection)
 - Unitary Maps
 - Postulates of Quantum Computing
 - Quantum Circuits are Tensor Networks
