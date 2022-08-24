@@ -1601,7 +1601,7 @@ we obtain indeed $M$ as matrix representation of $CX$.
 ```    
 
 ```{prf:example} Entanglement Circuit
-:label: exCircuit
+:label: ex-tensors-circuit
 A quantum circuit is a sequence of quantum gates. We construct one out of the 
 previous two examples and chain an Hadamard gate and a CNOT gate:
 

@@ -1,3 +1,4 @@
+(ch-networks)=
 # Tensor Networks
 
 ## Tensor Network Diagrams

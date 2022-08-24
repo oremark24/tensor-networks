@@ -779,14 +779,428 @@ $$
 $$
 ```
 
-## Projections and Unitary Maps
+<!--
+## Unitary Maps
+-->
 
-## Postulates of Quantum Computing
+## Introduction to Quantum Computing
+
+We continue with laying out the computing model of _Quantum Computations_.
+We will do this in an abstract way by postulating the rules / axioms, that
+Quantum Computations follow, but leaving out the deeper Physical justifications
+based on Quantum Mechanics. We follow the path chosen in {cite}`nielsen00` and
+stick to the same postulates.
+
+Although following a different model, we can still make a comparision to classical computing since
+similar parts have to be defined. First will be the system's state. In classical computing
+this is current content of memory. Quantum Computing is completely modelled by means of
+Linear Algebra. The state (current content of memory if you will) is given as a vector. The underlying
+space is a Hilbert space.
+
+```{prf:definition} State - Quantum Computing Postulate 1
+:label: def-quantum-post1
+The ___state space___ of a Quantum Computing system is a (finite dimensional)
+Hilbert space $H$. The system's ___state___ before or after any computation step
+is completely described by its ___state vector___, 
+which is a unit vector in the state space:
+
+$$
+\ket{\psi}\in H\,,\,\norm{\ket{\psi}}=1\,.
+$$
+```
+
+The atomic state is the _qubit_ (quantum bit). Whereas a classical bit can take one of two values,
+the qubit is a unit vector spanned by two basis vectors.
+
+```{prf:definition} Qubit
+:label: def-quantum-qubit
+A ___qubit___ $\ket{\psi}$ is a _quantum state_ in _state space_ $\ket{\psi}\in\C^2$. 
+It is usually represented by a linear combination of an orthonormal basis
+$\{\ket{0},\ket{1}\}\subseteq\C^2$.
+
+The linear combination
+
+$$
+\ket{\psi}=a\ket{0}+b\ket{1}
+$$
+
+is called ___superposition___ and the basis $\{\ket{0},\ket{1}\}$ ___computational basis___.
+```
+
+Next we have to define how the computation actually takes place. In classical computing
+a computation step is loading data into the processor and storing the processor's output
+back into memory, which modifys the system's state. Again, in Quantum Computing we are
+using the tool set of Linear Algebra. How do we modify the state, which is a vector? Of course
+this will be done by a linear map that transform the current state into the next state. 
+Quantum Computing requires the map to be unitary.
+
+```{prf:definition} Evolution - Quantum Computing Postulate 2
+:label: def-quantum-post2
+A ___computation step___ during a Quantum Computing calculation is given by a
+_unitary map_ on the state space $U\in L(H)$. The computation step
+transforms the state $\ket{\psi}\in H$ before the computation into the state
+$\ket{\psi'}\in H$ after the computation:
+
+$$
+\ket{\psi'}=U\ket{\psi}\,.
+$$
+```
+
+We have already learned about quantum gates in {ref}`ch-tensors`. We reconsider the
+Hadamard transformation {prf:ref}`exHadamard`.
+
+```{prf:example} Hadamard gate
+:label: ex-quantum-hadamard
+The Hadamard transformation from {prf:ref}`exHadamard` can be written in Dirac notation as
+
+$$
+\tilde{H}=\ket{0}\bra{0}+\ket{0}\bra{1}+\ket{1}\bra{0}-\ket{1}\bra{1}\,.
+$$
+
+We need to scale
+
+$$
+H=\frac{1}{\sqrt{2}}\tilde{H}
+$$
+
+to obtain a unitary Hadamard transformation $H$. Indeed
+
+$$
+H^\ast H &= \frac{1}{2}\Big(\ket{0}\bra{0}+\ket{0}\bra{1}+\ket{1}\bra{0}-\ket{1}\bra{1}\Big)^2 \\
+&= \frac{1}{2}\Big(
+  \ket{0}\underbrace{\ip{0}{0}}_{=1}\bra{0}
+  + \ket{0}\underbrace{\ip{0}{0}}_{=1}\bra{1}
+  + \ket{0}\underbrace{\ip{0}{1}}_{=0}\bra{0}
+  - \ket{0}\underbrace{\ip{0}{1}}_{=0}\bra{1} \\
+  &\quad\; + \; \ket{0}\underbrace{\ip{1}{0}}_{=0}\bra{0}
+  + \ket{0}\underbrace{\ip{1}{0}}_{=0}\bra{1}
+  + \ket{0}\underbrace{\ip{1}{1}}_{=1}\bra{0}
+  - \ket{0}\underbrace{\ip{1}{1}}_{=1}\bra{1} \\
+  &\quad\; + \; \ket{1}\underbrace{\ip{0}{0}}_{=1}\bra{0}
+  + \ket{1}\underbrace{\ip{0}{0}}_{=1}\bra{1}
+  + \ket{1}\underbrace{\ip{0}{1}}_{=0}\bra{0}
+  - \ket{1}\underbrace{\ip{0}{1}}_{=0}\bra{1} \\
+  &\quad\; - \; \ket{1}\underbrace{\ip{1}{0}}_{=0}\bra{0}
+  - \ket{1}\underbrace{\ip{1}{0}}_{=0}\bra{1}
+  - \ket{1}\underbrace{\ip{1}{1}}_{=1}\bra{0}
+  + \ket{1}\underbrace{\ip{1}{1}}_{=1}\bra{1}
+  \Big) \\
+&= \ket{0}\bra{0}+\ket{1}\bra{1} \\
+&= I \,.
+$$
+
+Usually a qubit will be initialized with $\ket{\psi_0}=\ket{0}$. A computation step based on
+Hadamard will lead to the follow-up state
+
+$$
+\ket{\psi_1} &= H\ket{\psi_0} \\
+&= \frac{1}{\sqrt{2}}\Big(\ket{0}\bra{0}+\ket{0}\bra{1}+\ket{1}\bra{0}-\ket{1}\bra{1}\Big)\ket{0} \\
+&= \frac{1}{\sqrt{2}}\Big(
+  \ket{0}\underbrace{\ip{0}{0}}_{=1}
+  +\ket{0}\underbrace{\ip{1}{0}}_{=0}
+  +\ket{1}\underbrace{\ip{0}{0}}_{=1}
+  -\ket{1}\underbrace{\ip{1}{0}}_{=0}
+  \Big) \\
+&= \frac{1}{\sqrt{2}}\ket{0}+\frac{1}{\sqrt{2}}\ket{1}\,.
+$$
+```
+
+The third postulate deals with evaluating the result of the whole computation.
+In respect of classical computing this corresponds to reading out relevant parts
+of the memory to obtain the result. Switching back to Quantum Computing, the 
+memory is represented by a unit vector in Hilbert space. How do we read out the relevant part?
+Think of projecting this vector. Indeed, something similar will be done. The projections
+are resembled by linear maps, the lengths of resulting vectors will be measured to provide
+probabilities for the respective vector being the final result. As you see, Quantum measurement
+involves drawing of lots.
+
+````{prf:definition} Measurement - Quantum Computing Postulate 3
+:label: def-quantum-post3
+___Quantum Measurement___ is described by a collection of linear maps on the state space
+$M_1,\ldots,M_m\in L(H)$ such that it fulfills the ___completeness condition___
+
+```{math}
+:label: eq-quantum-measurement
+M^\ast_1M_1+\ldots+M^\ast_mM_m=I\,.
+```
+
+Input to a measurement operation is a (quantum computed) state vector $\ket{\psi}\in H$.
+The measurement will randomly select one of $m$ events with probabilities
+
+$$
+p_i=\norm{M_i\ket{\psi}}^2\,,\,i=1,\ldots,m\,.
+$$
+
+The outcome is the state vector
+
+$$
+\frac{M_i\ket{\psi}}{\norm{M_i\ket{\psi}}}\in H
+$$
+
+with probability $p_i$ for $i=1,\ldots,m$.
+````
+
+We need to check whether the defined probabilities cover the full probability space.
+This will be ensured by the completeness condition.
+
+```{prf:observation} Well-definedness of Postulate 3
+:label: obs-quantum-measurement
+The probabilities $p_i$ from {prf:ref}`def-quantum-post3` form a feasible probability
+distribution, that is 
+
+$$
+& p_i\ge 0\,,\,i=1,\ldots,m\,, \\
+& p_1+\ldots+p_m=1\,.
+$$
+```
+
+```{prf:proof}
+Obviously $p_i\ge 0$ for all $i=1,\ldots,m$. We use the completeness condition
+{eq}`eq-quantum-measurement` to obtain that all probabilities add up to one:
+
+$$
+p_1+\ldots+p_m &= \norm{M_1\ket{\psi}}^2+\ldots+\norm{M_m\ket{\psi}}^2 \\
+&= \bra{\psi}M^\ast_1M_1\ket{\psi}+\ldots+\bra{\psi}M^\ast_mM_m\ket{\psi} \\
+&= \bra{\psi}(\underbrace{M^\ast_1M_1+\ldots+M^\ast_mM_m}_{=I})\ket{\psi} \\
+&= \bra{\psi}\ket{\psi} \\
+&= \norm{\ket{\psi}}^2 \\
+&= 1\,.
+$$
+```
+
+We extend the qubit example and measure against the computational basis.
+
+```{prf:example} Qubit measurement
+:label: ex-quantum-measure
+We choose $M_1=\ket{0}\bra{0}$ and $M_2=\ket{1}\bra{1}$. The completeness condition
+$M_1+M_2=I$ is obviously fulfilled. Measuring a qubit in superposition
+
+$$
+\ket{\psi}=a\ket{0}+b\ket{1}
+$$
+
+yields state vector
+
+$$
+\frac{M_1\ket{\psi}}{\norm{M_1\ket{\psi}}} 
+= \frac{(\ket{0}\bra{0})(a\ket{0}+b\ket{1})}{\norm{(\ket{0}\bra{0})(a\ket{0}+b\ket{1})}}
+= \frac{a}{|a|}\ket{0}
+$$
+
+with probability
+
+$$
+p_1 = \norm{M_1\ket{\psi}}^2
+= \norm{(\ket{0}\bra{0})(a\ket{0}+b\ket{1})}^2
+= \norm{a\ket{0}}^2
+= |a|^2
+$$
+
+and state vector
+
+$$
+\frac{M_2\ket{\psi}}{\norm{M_2\ket{\psi}}} 
+= \frac{b}{|b|}\ket{1}
+$$
+
+with probability
+
+$$
+p_2 = |b|^2 \,.
+$$
+```
+
+There is one postulate more. It is possible to construct bigger Quantum Systems
+out of smaller ones. This will be done by applying tensor products.
+An analogy of classical computing would be parallelization. In practical Quantum Computing
+this is of particular importance, because _qubits_ are the atomic representations
+Quantum state. The complete information is made out of compositions of qubits.
+
+```{prf:definition} Composition - Quantum Computing Postulate 4
+:label: def-quantum-post4
+Suppose, there are two Quantum Computing systems with state spaces $H_1$ and
+$H_2$. Both can be combined to a ___composite Quantum Computing system___ with
+state space $H$. The composite state space is the tensor product of the
+component state spaces
+
+$$
+H=H_1\otimes H_2\,.
+$$
+
+Moreover, during any step of the Quantum computation, the joint state $\ket{\psi}\in H$ 
+of the composite system is the tensor product of the component states $\ket{\psi_1}\in H_1$
+and $\ket{\psi_2}\in H_2$:
+
+$$
+\ket{\psi}=\ket{\psi_1}\otimes\ket{\psi_2}\,.
+$$
+```
+
+We will look at an example. We have already scratched the surface of Quantum Computing
+in {ref}`ch-tensors`. We will shed new light on {prf:ref}`ex-tensors-circuit`.
+
+```{prf:example} Composite Computation
+:label: ex-quantum-composite
+In the example we will consider a two-qubit system and execute the following steps:
+
+1. Initialize by $\ket{00}$
+2. Apply Hadamard gate to first qubit
+3. Apply CNOT gate with first qubit being control bit
+4. Measure the probability of the system being in state $\ket{11}$
+
+The Hadamard gate for a single qubit in {prf:ref}`ex-quantum-hadamard`. In this example, we have to
+lift it to a two-qubit system in that way that Hadamard will be applied to qubit one and an Identity
+will be applied to qubit two. According to {prf:ref}`def-quantum-post4` the combination will be
+orchestrated by tensor products. We have 
+
+$$
+H\otimes I
+&= \frac{1}{\sqrt{2}}\Big(\ket{0}\bra{0}+\ket{0}\bra{1}+\ket{1}\bra{0}-\ket{1}\bra{1}\Big)
+  \otimes\Big(\ket{0}\bra{0}+\ket{1}\bra{1}\Big) \\
+&= \frac{1}{\sqrt{2}}\Big(
+  \ket{00}\bra{00}+\ket{00}\bra{10}+\ket{10}\bra{00}-\ket{10}\bra{10} \\
+  & \qquad + \; \ket{01}\bra{01}+\ket{01}\bra{11}+\ket{11}\bra{01}-\ket{11}\bra{11}
+  \Big) \,.
+$$
+
+Applying this to the initial state of $\ket{00}$ yields
+
+$$
+(H\otimes I)\ket{00}=\frac{1}{\sqrt{2}}\Big(\ket{00}+\ket{10}\Big)\,.
+$$
+
+To calculate step 3, we recall the CNOT gate from {prf:ref}`exCnot`. Expressed in Dirac notation
+it looks like (first qubit being control bit):
+
+$$
+CX &= \ket{0}\bra{0}\otimes I+\ket{1}\bra{1}\otimes X \\
+&= \ket{0}\bra{0}\otimes\Big(\ket{0}\bra{0}+\ket{1}\bra{1}\Big)
+  + \ket{1}\bra{1}\otimes\Big(\ket{0}\bra{1}+\ket{1}\bra{0}\Big) \\
+&= \ket{00}\bra{00}+\ket{01}\bra{01}+\ket{10}\bra{11}+\ket{11}\bra{10} \,.
+$$
+
+Now we can feed the result of step 2 into step 3 and obtain the final state vector
+
+$$
+CX\Bigg(\frac{1}{\sqrt{2}}\Big(\ket{00}+\ket{10}\Big)\Bigg)
+= \frac{1}{\sqrt{2}}\Big(\ket{00}+\ket{11}\Big) \,.
+$$
+
+The measurement against $\ket{11}$ can be done by map 
+$M=\ket{1}\bra{1}\otimes\ket{1}\bra{1}=\ket{11}\bra{11}$. The resulting
+probability is
+
+$$
+p &= \Norm{M\Bigg(\frac{1}{\sqrt{2}}\Big(\ket{00}+\ket{11}\Big)\Bigg)}^2 \\
+&= \Norm{\frac{1}{\sqrt{2}}\ket{11}}^2 \\
+&= \frac{1}{2}\,.
+$$
+```
 
 ## Quantum Circuits and Tensor Networks
 
-## Todo
-- Unitary Maps
-- Postulates of Quantum Computing
-- Quantum Circuits are Tensor Networks
-- (Approximating Tensor Networks with Quantum Circuits)
+Similar to classical computing, when computations can also be expressed by logic gates
+wired to together, also a graphical language for Quantum Computing exists.
+{prf:ref}`ex-quantum-composite` would be encoded in the following picture.
+
+```{figure} ../img/quantum/circuit.png
+:height: 8em
+:align: center
+:name: fig-quantum-circuit
+Quantum Circuit
+```
+
+It reads from left to right. There are horizontal lanes representing the qubits. The upper lane
+reflects qubit one and the lower lane qubit two. The left most boxes show the inital values.
+After that the symbols represent unitary transformations. First, there is an Hadamard on lane (qubit one),
+the second lane does not show a symbol but the wire, this is the code for identity on that lane.
+According to {prf:ref}`def-quantum-post4` all symbols at the same vertical position belong together
+and are composed by tensor products. The next symbol (connected dot and plus) is the common way
+to encode a CNOT gate. The dot points to the control bit and the plus sits on the target bit.
+The final boxes denote measurements.
+
+Quantum circuits, usually defined by formal languages as QASM, are a widely used possibility to
+program quantum computers. Executing the circuit above yields the following histogram.
+
+```{figure} ../img/quantum/histogram.svg
+:height: 300em
+:align: center
+:name: fig-quantum-histogram
+Probabilities
+```
+
+It show that the outcome of a quantum algorithm is probabilistic. {prf:ref}`ex-quantum-composite`
+has proven that the state vector $\ket{11}$ will be computed with probability $1/2$, in the same way
+can be obtained that the state vector $\ket{00}$ will be computed in the other $50$ percent of cases.
+
+The histogram was created by executing the circuit $1024$ times and counting the resulting state vectors
+in computational basis. As we see the numerical results match closely the theoretically derived expectation.
+
+Interesingly, the computation steps one to three of {prf:ref}`ex-quantum-composite` are based on tensor operations.
+Hence, we can draw a tensor network diagram reflecting those operations. Here it is:
+
+```{figure} ../img/quantum/tensor-network.svg
+:height: 150em
+:align: center
+:name: fig-quantum-tensor-network
+Tensor Network
+```
+
+It basically looks the same as the quantum circuit mirrored vertically. How about step 4 of the calculation in
+{prf:ref}`ex-quantum-composite`? It computes a squared norm of an applied linear map. Recalling
+{prf:ref}`illuScalar` we remember that inner products (because of being special cases of multilinear maps) can
+be expressed as tensor network. Indeed,
+
+$$
+\norm{\ket{\psi}}^2 = \ip{\psi}{\psi}
+$$
+
+can be calculated by the full contraction of the tensor network:
+
+```{figure} ../img/quantum/norm.svg
+:height: 70em
+:align: center
+:name: fig-quantum-norm
+$\norm{\ket{\psi}}^2$
+```
+
+In analogy, the result of the full calculation of {prf:ref}`ex-quantum-composite` can be obtained by the
+following tensor network:
+
+```{figure} ../img/quantum/eval-circuit.svg
+:height: 160em
+:align: center
+:name: fig-quantum-eval-circuit
+Quantum circuit as tensor network
+```
+
+Note, that linear map $M$ encodes the state vector we are measuring against. Changing $M$ (and $M^\ast$) in the
+same tensor network allows for other (arbitrary) measurements. In that sense the tensor network (with $M$ being
+thought to be variable), we have a general representation of the quantum circuit displayed in
+{numref}`fig-quantum-circuit`.
+
+Moreover, we have not used any detailed of that concrete circuit. The way we have constructed the tensor
+network is generic. It is constructed by taking the quantum circuit (and interpreting all involved vectors
+and linear maps as tensors), make a copy and transpose it and plug both parts together. The resulting full
+contraction yields the probability of the measurement given by linear map $M$. This provides already a constructive
+proof of the following correlation.
+
+```{prf:observation} Quantum Circuits as Tensor Networks
+:label: obs-quantum-circuits-networks
+
+Every quantum circuit can be calculated by a full contracted tensor network.
+```
+
+We would not expect that a reverse correlation holds. After all, are quantum circuits built out of unitary
+transformations whereas tensor networks can combine arbitrary tensors / transformations. However, there
+is still a nice relationship. Tensor networks can be approximated by quantum circuits. The proof requires some more
+mathematics but can be comprehended by studying the paper {cite}`landau10`.
+
+<!--
+
+## ToDo
+* more on unitary matrices
+* matrices and Dirac notation
+* justification of $CX$ as copy and XOR tensor
+
+-->
